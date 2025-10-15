@@ -10,7 +10,6 @@ public class TimerManager : MonoBehaviour
     {
         timerText = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
     }
-
     // Update is called once per frame
     void Update()
     {

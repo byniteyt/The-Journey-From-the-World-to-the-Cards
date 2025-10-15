@@ -48,3 +48,11 @@ public enum CharacterType
     Dragon,
     Undead
 }
+public enum InGamePhase 
+{
+    DrawPhase,
+    FirstMainPhase,
+    BattlePhase,
+    SecondMainPhase,
+    EndPhase
+}

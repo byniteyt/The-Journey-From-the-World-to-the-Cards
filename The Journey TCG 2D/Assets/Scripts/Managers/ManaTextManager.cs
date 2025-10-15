@@ -14,6 +14,15 @@ public class ManaTextManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         manaText = GameObject.Find("Mana Source").GetComponentInChildren<TextMeshProUGUI>();
         manaSlider = GameObject.Find("Mana Source").GetComponentInChildren<Slider>();
         manaText.text = "Mana: 0";
@@ -43,5 +52,13 @@ public class ManaTextManager : MonoBehaviour
         {
             manaText.text = "Mana: " + actualMana;
         }
+    }
+    public bool ChangeMana(int amount)
+    {
+        if (actualMana + amount < 0) return false;
+        actualMana += amount;
+        if (actualMana > maxMana) actualMana = maxMana;
+        UpdateManaText();
+        return true;
     }
 }

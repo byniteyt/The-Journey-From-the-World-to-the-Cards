@@ -9,5 +9,9 @@ public class RoomCard : Card
     public CharacterType[] buffCharacters;
     public CharacterType[] nerfCharacters;
 
-    
+    public void OnDestroyRoom()
+    {
+        
+    }
+
 }
