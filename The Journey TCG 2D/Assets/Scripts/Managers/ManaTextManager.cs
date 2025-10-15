@@ -16,6 +16,7 @@ public class ManaTextManager : MonoBehaviour
     {
         manaText = GameObject.Find("Mana Source").GetComponentInChildren<TextMeshProUGUI>();
         manaSlider = GameObject.Find("Mana Source").GetComponentInChildren<Slider>();
+        manaText.text = "Mana: 0";
     }
 
     // Update is called once per frame
