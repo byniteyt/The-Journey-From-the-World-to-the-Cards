@@ -1,9 +1,8 @@
 public enum CardType
 {
-    Attack,
-    Defense,
-    Magic,
-    Support
+    Character,
+    Spell,
+    Room
 }
 
 public enum Rarity

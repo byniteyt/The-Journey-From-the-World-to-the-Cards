@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 //[CreateAssetMenu(fileName = "Card", menuName = "Scriptable Objects/Card")]
@@ -16,6 +17,9 @@ public class Card : ScriptableObject
 
     // Advanced UI Elements
     //[SerializeField] private TextMeshProUGUI cardTypeText;
+    private void OnMouseOver()
+    {
 
+    }
     
 }

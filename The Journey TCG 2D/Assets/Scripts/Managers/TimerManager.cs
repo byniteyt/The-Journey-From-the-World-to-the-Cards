@@ -19,10 +19,12 @@ public class TimerManager : MonoBehaviour
             if (GameManager.CurrentGameState == GameState.InGame)
             {
                 GameManager.CurrentGameState = GameState.Paused;
+                timerText.text = "Paused";
             }
             else if (GameManager.CurrentGameState == GameState.Paused)
             {
                 GameManager.CurrentGameState = GameState.InGame;
+                timerText.text = "Time: " + (timer / 60).ToString("00") + " : " + (timer % 60).ToString("00");
             }
         }
         if (Input.GetKeyUp(KeyCode.M))
