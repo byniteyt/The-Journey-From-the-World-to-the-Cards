@@ -56,3 +56,31 @@ public enum InGamePhase
     SecondMainPhase,
     EndPhase
 }
+public enum ZoneType
+{
+    Deck,
+    Hand,
+    Field,
+    Graveyard,
+    Exile
+}
+public enum TurnPlayer
+{
+    Player,
+    Opponent
+}
+public enum AbilityType
+{
+    Passive,
+    Active,
+    Triggered
+}
+public enum TargetType
+{
+    SingleEnemy,
+    AllEnemies,
+    SingleAlly,
+    AllAllies,
+    Self,
+    None
+}

@@ -4,6 +4,7 @@ public class PlayGameManager : MonoBehaviour
 {
     public static PlayGameManager Instance { get; private set; }
     public static InGamePhase CurrentInGamePhase { get; set; } = InGamePhase.DrawPhase;
+    public static TurnPlayer CurrentTurnPlayer { get; set; } = TurnPlayer.Player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

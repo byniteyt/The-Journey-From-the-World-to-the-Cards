@@ -24,7 +24,7 @@ public class Card : MonoBehaviour
     protected void OnMouseExit()
     {
     }
-    protected void OnMouseDown()
+    protected virtual void OnMouseDown()
     {
         if(ManaTextManager.Instance.ChangeMana(-cost))
         {
@@ -36,5 +36,9 @@ public class Card : MonoBehaviour
             Debug.Log("Not enough mana to play: " + cardName);
         }
     }
+    protected virtual void UseCard()
+    {
 
-}
+    }
+
+    }
