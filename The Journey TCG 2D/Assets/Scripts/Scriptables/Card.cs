@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 //[CreateAssetMenu(fileName = "Card", menuName = "Scriptable Objects/Card")]
