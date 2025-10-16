@@ -18,7 +18,7 @@ public class BattlegroundArea : MonoBehaviour
     }
     public void GenerateCharacter(CharacterCard card)
     {
-        ReorderCharacters();
+        
         Debug.Log("Character "+card.name+" generated in Battleground Area");
         GameObject cardObject = Instantiate(card.gameObject,this.transform);
         soldiersAmount++;
@@ -26,9 +26,9 @@ public class BattlegroundArea : MonoBehaviour
             cardObject.transform.localPosition = new Vector3(0,0,transform.position.z);
         else
         {
-            cardObject.transform.localPosition = transform.GetChild(transform.childCount - 1).localPosition + new Vector3(characterSpacing, 0, 0);
+            cardObject.transform.localPosition = this.transform.GetChild(transform.childCount-1).localPosition + new Vector3(characterSpacing, 0, 0);
         }
-            
+        ReorderCharacters();
 
     }
     public bool IsRoomCardInArea(Card card)
@@ -55,9 +55,12 @@ public class BattlegroundArea : MonoBehaviour
 
             return;
         }
-        foreach(Transform child in transform)
+        float totalWidth = (soldiersAmount - 1) * characterSpacing;
+        float startX = -totalWidth / 2;
+        for (int i = 0; i < soldiersAmount; i++)
         {
-            child.localPosition -= new Vector3(characterSpacing/2, 0, 0);
+            Transform child = transform.GetChild(i);
+            child.localPosition = new Vector3(startX + i * characterSpacing, 0, transform.position.z);
         }
     }
 }
