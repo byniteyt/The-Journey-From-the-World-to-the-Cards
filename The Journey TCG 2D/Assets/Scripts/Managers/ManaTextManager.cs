@@ -31,7 +31,8 @@ public class ManaTextManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.CurrentGameState != GameState.InGame) return;
+        if (GameManager.CurrentGameState == GameState.MainMenu) ResetMana();
+        if (GameManager.CurrentGameState != GameState.InGame) return;
         if (actualMana == maxMana) return; 
         manaSlider.value += velocity * Time.deltaTime;
         if (manaSlider.value>=1)
@@ -63,5 +64,11 @@ public class ManaTextManager : MonoBehaviour
     {
         Debug.Log("Checking mana: " + actualMana + " / " + cost);
         return (actualMana >= cost);
+    }
+    public void ResetMana()
+    {
+        actualMana = 0;
+        manaSlider.value = 0;
+        UpdateManaText();
     }
 }
