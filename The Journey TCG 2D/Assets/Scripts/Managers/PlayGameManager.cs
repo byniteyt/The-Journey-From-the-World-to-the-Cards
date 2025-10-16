@@ -36,18 +36,27 @@ public class PlayGameManager : MonoBehaviour
     }
     void DrawingPhase()
     {
-
+        DeckManager.Instance.DrawCard(1);
+        CurrentInGamePhase = InGamePhase.FirstMainPhase;
     }
     void FirstMainPhase()
     {
+
     }
     void BattlePhase()
     {
+
     }
     void SecondMainPhase()
     {
+
     }
     void EndPhase()
     {
+
+    }
+    public void FromMainPhaseToEndPhase()
+    {
+        CurrentInGamePhase = InGamePhase.EndPhase;
     }
 }

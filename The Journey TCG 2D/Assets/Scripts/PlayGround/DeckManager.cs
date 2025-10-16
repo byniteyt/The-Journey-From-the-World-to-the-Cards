@@ -3,12 +3,21 @@ using UnityEngine;
 
 public class DeckManager : MonoBehaviour
 {
+    public static DeckManager Instance { get; private set; }
     public Card[] deck = new Card[30];
     int deckCount;
     public int DeckCount { get { return deckCount; } private set { deckCount = value; } }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
         deckCount = deck.Length;
         Debug.Log("Deck Count: " + deckCount);
         //DrawCard(5);

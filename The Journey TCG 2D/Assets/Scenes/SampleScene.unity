@@ -1438,6 +1438,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 498d0ddde12a5a947905fe25247236ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattlegroundArea
+  characterSpacing: 2
+  maxSoldiersPerRow: 6
 --- !u!1 &950666941
 GameObject:
   m_ObjectHideFlags: 0
@@ -2562,7 +2564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6990b24742a9b2545b31946a8550353c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ManaTextManager
-  velocity: 0.5
+  velocity: 1
   maxMana: 6
 --- !u!1 &1925527184
 GameObject:
