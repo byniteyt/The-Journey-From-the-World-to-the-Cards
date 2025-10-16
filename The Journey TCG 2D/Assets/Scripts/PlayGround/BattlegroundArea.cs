@@ -16,9 +16,13 @@ public class BattlegroundArea : MonoBehaviour
     {
         
     }
-    public void GenerateCharacter(CharacterCard card)
+    public bool GenerateCharacter(CharacterCard card)
     {
-        
+        if (soldiersAmount >= maxSoldiersPerRow)
+        {
+            Debug.Log("BattleGround is full");
+            return false;
+        }
         Debug.Log("Character "+card.name+" generated in Battleground Area");
         GameObject cardObject = Instantiate(card.gameObject,this.transform);
         soldiersAmount++;
@@ -29,7 +33,7 @@ public class BattlegroundArea : MonoBehaviour
             cardObject.transform.localPosition = this.transform.GetChild(transform.childCount-1).localPosition + new Vector3(characterSpacing, 0, 0);
         }
         ReorderCharacters();
-
+        return true;
     }
     public bool IsRoomCardInArea(Card card)
     {
@@ -49,10 +53,10 @@ public class BattlegroundArea : MonoBehaviour
 
     void ReorderCharacters()
     {
-        if(soldiersAmount>maxSoldiersPerRow||soldiersAmount==0)
+        if(soldiersAmount>maxSoldiersPerRow)
         {
             // Implement logic to reorder characters into multiple rows if needed
-
+            Debug.Log("Max soldiers per row reached.");
             return;
         }
         float totalWidth = (soldiersAmount - 1) * characterSpacing;

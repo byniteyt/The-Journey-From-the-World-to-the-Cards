@@ -57,22 +57,22 @@ public class Hand : MonoBehaviour
             Debug.Log("Card: " + card.cardName + " hasn't found.");
             return;
         }
-            BattlegroundArea battleground = GameObject.Find("PlayerBattleGround").GetComponent<BattlegroundArea>();
-            if (battleground != null)
-            {
-                Debug.Log("Summoning " + card.cardName + " to the battlefield.");
-                battleground.GenerateCharacter((CharacterCard) card);
-            }
-            int index = System.Array.IndexOf(cards, card);
-            cards[index] = null;
-            Destroy(card.gameObject);
-            for(int i=index;i<currentCardCount-1;i++)
-            {
-                cards[i] = cards[i + 1];
-                if(cards[i]!=null)
-                    cards[i].transform.localPosition = new Vector3(-4 + i * 2, 0, 0);
-            }
-            cards[currentCardCount - 1] = null;
-            currentCardCount--;
+        BattlegroundArea battleground = GameObject.Find("PlayerBattleGround").GetComponent<BattlegroundArea>();
+        if (battleground == null|| !battleground.GenerateCharacter((CharacterCard)card))
+        {
+            return;
+        }
+        Debug.Log("Summoning " + card.cardName + " to the battlefield.");
+        int index = System.Array.IndexOf(cards, card);
+        cards[index] = null;
+        Destroy(card.gameObject);
+        for(int i=index;i<currentCardCount-1;i++)
+        {
+            cards[i] = cards[i + 1];
+            if(cards[i]!=null)
+                cards[i].transform.localPosition = new Vector3(-4 + i * 2, 0, 0);
+        }
+        cards[currentCardCount - 1] = null;
+        currentCardCount--;
     }
 }
