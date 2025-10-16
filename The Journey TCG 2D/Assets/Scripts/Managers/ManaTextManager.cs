@@ -53,12 +53,15 @@ public class ManaTextManager : MonoBehaviour
             manaText.text = "Mana: " + actualMana;
         }
     }
-    public bool ChangeMana(int amount)
+    public void ChangeMana(int amount)
     {
-        if (actualMana + amount < 0) return false;
         actualMana += amount;
         if (actualMana > maxMana) actualMana = maxMana;
         UpdateManaText();
-        return true;
+    }
+    public bool IsEnoughMana(int cost)
+    {
+        Debug.Log("Checking mana: " + actualMana + " / " + cost);
+        return (actualMana >= cost);
     }
 }

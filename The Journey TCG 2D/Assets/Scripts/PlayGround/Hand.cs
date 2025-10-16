@@ -50,18 +50,32 @@ public class Hand : MonoBehaviour
         }
         return false;
     }   
-    public void RemoveCard(Card card)
+    public void UseCharacterCard(CharacterCard card)
     {
+        // Check if the card is in hand
         if (!HasCard(card))
         {
             Debug.Log("Card: " + card.cardName + " hasn't found.");
             return;
         }
-        BattlegroundArea battleground = GameObject.Find("PlayerBattleGround").GetComponent<BattlegroundArea>();
-        if (battleground == null|| !battleground.GenerateCharacter((CharacterCard)card))
+
+        // Check if enough mana
+        if (!ManaTextManager.Instance.IsEnoughMana(card.cost))
         {
+            Debug.Log("Not enough mana to play: " + card.cardName);
             return;
         }
+
+        // Summon to battlefield
+        BattlegroundArea battleground = GameObject.Find("PlayerBattleGround").GetComponent<BattlegroundArea>();
+        if (battleground == null|| !battleground.GenerateCharacter(card))
+        {
+            Debug.Log("Failed to summon " + card.cardName + " to the battlefield.");
+            return;
+        }
+
+
+        ManaTextManager.Instance.ChangeMana(-card.cost);
         Debug.Log("Summoning " + card.cardName + " to the battlefield.");
         int index = System.Array.IndexOf(cards, card);
         cards[index] = null;

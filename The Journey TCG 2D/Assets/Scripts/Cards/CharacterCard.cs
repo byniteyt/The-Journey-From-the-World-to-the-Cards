@@ -8,17 +8,7 @@ public class CharacterCard : Card
 
     protected override void OnMouseDown()
     {
-        if (ManaTextManager.Instance.ChangeMana(-cost))
-        {
-            Debug.Log("Character Card played: " + cardName + " with Attack: " + attack + " and Health: " + health);
-            UseCard();
-            //Destroy(this.gameObject);
-        }
-        else
-        {
-            Debug.Log("Not enough mana to play: " + cardName);
-        }
-        
+        Hand.Instance.UseCharacterCard(this);
     }
 
     protected override void UseCard()
@@ -26,6 +16,6 @@ public class CharacterCard : Card
         // Implement character-specific behavior when the card is used
         Debug.Log("Using Character Card: " + cardName);
         // For example, summon the character to the battlefield
-        Hand.Instance.RemoveCard(this);
+        Hand.Instance.UseCharacterCard(this);
     }
 }
