@@ -17,6 +17,15 @@ public class Card : MonoBehaviour
 
     // Advanced UI Elements
     //[SerializeField] private TextMeshProUGUI cardTypeText;
+   
+    protected virtual void Update()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            ShowCardDetails();
+        }
+    }
+
     protected void OnMouseOver()
     {
 
@@ -40,5 +49,8 @@ public class Card : MonoBehaviour
     {
 
     }
-
+    protected virtual void ShowCardDetails()
+    {
+        
     }
+}

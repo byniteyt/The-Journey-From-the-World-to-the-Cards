@@ -1,20 +1,24 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardText : MonoBehaviour
 {
 
     // Basic UI Elements
-    [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private TextMeshProUGUI costText;
-    [SerializeField] private TextMeshProUGUI descriptionText;
-    [SerializeField] private SpriteRenderer artworkImage;
+    protected TextMeshProUGUI nameText;
+    [SerializeField] protected TextMeshProUGUI costText;
+    [SerializeField] protected TextMeshProUGUI descriptionText;
+    [SerializeField] protected Image artworkImage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected virtual void Start()
     {
-
+        nameText = GameObject.Find("Name").GetComponent<TextMeshProUGUI>();
+        costText = GameObject.Find("Cost").GetComponent<TextMeshProUGUI>();
+        descriptionText = GameObject.Find("Description").GetComponent<TextMeshProUGUI>();
+        artworkImage = GameObject.Find("Card").GetComponent<Image>();
     }
 
     // Update is called once per frame
