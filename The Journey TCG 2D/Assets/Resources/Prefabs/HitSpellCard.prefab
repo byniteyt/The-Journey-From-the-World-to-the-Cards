@@ -155,4 +155,4 @@ MonoBehaviour:
   description: 
   cost: 1
   effectAmount: 4
-  targetType: 5
+  targetType: 3

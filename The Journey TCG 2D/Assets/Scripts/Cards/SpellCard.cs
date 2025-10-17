@@ -8,6 +8,7 @@ public class SpellCard : Card
     protected Card targetCard;
     protected SpellEffectType effect;
 
+    protected Vector2 originalPosition;
     // Regiones del campo de batalla
     protected GameObject playerBattleGround;
     protected GameObject enemyBattleGround;
@@ -18,7 +19,7 @@ public class SpellCard : Card
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        originalPosition = transform.position;
         //enemyHand;
     }
 
@@ -52,6 +53,18 @@ public class SpellCard : Card
      protected virtual void ApplyEffect()
     {
         
+    }
+    protected virtual void OnMouseDrag()
+    {
+        transform.localPosition = new Vector3(
+            Input.mousePosition.x,
+            Input.mousePosition.y,
+            transform.localPosition.z
+        );
+    }
+    protected virtual void OnMouseUp()
+    {
+        transform.position = originalPosition;
     }
     protected virtual void GetBattleZone()
     {

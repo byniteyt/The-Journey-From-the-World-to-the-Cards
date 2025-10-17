@@ -42,9 +42,9 @@ public class CharacterCard : Card
     public void ChangeHeal(int amount)
     {
         if (health==maxHealth && amount>0) return;
+        health += amount;
         if (amount < 0)
         {
-            health -= amount;
             Debug.Log(cardName + " took " + amount + " damage. Remaining health: " + Mathf.Max(0, health));
             if (health <= 0)
             {
@@ -53,7 +53,6 @@ public class CharacterCard : Card
                 return;
             }
         }
-        health += amount;
         Debug.Log(cardName + " heal " + amount + " points. Remaining health: " + Mathf.Min(maxHealth,health));
     }
 }
