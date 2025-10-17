@@ -48,6 +48,7 @@ public enum CharacterType
     Dragon,
     Undead
 }
+
 public enum InGamePhase 
 {
     DrawPhase,
@@ -56,6 +57,7 @@ public enum InGamePhase
     SecondMainPhase,
     EndPhase
 }
+
 public enum ZoneType
 {
     Deck,
@@ -64,23 +66,42 @@ public enum ZoneType
     Graveyard,
     Exile
 }
+
 public enum TurnPlayer
 {
     Player,
     Opponent
 }
+
 public enum AbilityType
 {
     Passive,
     Active,
     Triggered
 }
+
 public enum TargetType
 {
     SingleEnemy,
+    RandomEnemy,
     AllEnemies,
     SingleAlly,
+    RandomAlly,
     AllAllies,
     Self,
+    Random,
+    All,
     None
+}
+
+public enum SpellEffectType
+{
+    Damage,
+    Heal,
+    Buff,
+    Debuff,
+    DrawCards,
+    DiscardCards,
+    Summon,
+    Destroy
 }

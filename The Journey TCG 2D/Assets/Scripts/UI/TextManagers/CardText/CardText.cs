@@ -33,12 +33,4 @@ public class CardText : MonoBehaviour
         descriptionText.text = carta.description;
         artworkImage.sprite = carta.artwork;
     }
-    virtual public void UpdateAsset()
-    {
-        Card card = GetComponent<Card>();
-        if (nameText != null) nameText.text = card.cardName;
-        if (costText != null) costText.text = card.cost.ToString();
-        if (descriptionText != null) descriptionText.text = card.description;
-        if (artworkImage != null) artworkImage.sprite = card.artwork;
-    }
 }

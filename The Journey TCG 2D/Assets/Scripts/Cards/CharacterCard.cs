@@ -4,8 +4,13 @@ public class CharacterCard : Card
 {
     // Character specific attributes
     public int health;
+    int maxHealth ;
     public int attack;
 
+    void Start()
+    {
+        maxHealth = health;
+    }
     protected override void Update()
     {
         base.Update();
@@ -24,10 +29,6 @@ public class CharacterCard : Card
         // For example, summon the character to the battlefield
         Hand.Instance.UseCharacterCard(this);
     }
-    protected override bool IsShowingDetails()
-    {
-        return GameObject.Find("CharacterCardInfo(Clone)");
-    } 
         
     protected override void ShowCardDetails()
     {
@@ -37,5 +38,22 @@ public class CharacterCard : Card
         cardDetailPanel.transform.localPosition = Vector3.zero; // Center the panel
         CharCardText info = cardDetailPanel.GetComponent<CharCardText>();
         info.cardToRead = this;
+    }
+    public void ChangeHeal(int amount)
+    {
+        if (health==maxHealth && amount>0) return;
+        if (amount < 0)
+        {
+            health -= amount;
+            Debug.Log(cardName + " took " + amount + " damage. Remaining health: " + Mathf.Max(0, health));
+            if (health <= 0)
+            {
+                Debug.Log(cardName + " has been defeated!");
+                Destroy(this.gameObject);
+                return;
+            }
+        }
+        health += amount;
+        Debug.Log(cardName + " heal " + amount + " points. Remaining health: " + Mathf.Min(maxHealth,health));
     }
 }

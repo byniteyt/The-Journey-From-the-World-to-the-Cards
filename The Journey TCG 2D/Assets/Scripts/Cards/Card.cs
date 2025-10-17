@@ -57,9 +57,11 @@ public class Card : MonoBehaviour
     {
         
     }
-    protected virtual bool IsShowingDetails()
+    protected bool IsShowingDetails()
     {
-        return false;
+        return (GameObject.Find("CharacterCardInfo(Clone)")|| 
+            GameObject.Find("RoomCardInfo(Clone)")|| 
+            GameObject.Find("SpellCardInfo(Clone)"));
     }
     protected bool MouseIsInside()
     {

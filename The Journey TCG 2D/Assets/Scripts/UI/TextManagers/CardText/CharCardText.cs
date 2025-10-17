@@ -29,11 +29,4 @@ public class CharCardText : CardText
         attackText.text = characterCard.attack.ToString();
     }
 
-    override public void UpdateAsset()
-    {
-        base.UpdateAsset();
-        CharacterCard card = GetComponent<CharacterCard>(); ;
-        if (healthText != null) healthText.text = card.health.ToString();
-        if (attackText != null) attackText.text = card.attack.ToString();
-    }
 }
