@@ -20,9 +20,13 @@ public class Card : MonoBehaviour
    
     protected virtual void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1)&&!IsShowingDetails())
         {
-            ShowCardDetails();
+            if (MouseIsInside())
+            {
+                ShowCardDetails();
+            }
+                
         }
     }
 
@@ -52,5 +56,19 @@ public class Card : MonoBehaviour
     protected virtual void ShowCardDetails()
     {
         
+    }
+    protected virtual bool IsShowingDetails()
+    {
+        return false;
+    }
+    protected bool MouseIsInside()
+    {
+        Vector2 areaPosition = this.transform.position;
+        Vector2 areaSize = this.GetComponent<Collider2D>().bounds.size;
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        return (mousePosition.x >= areaPosition.x - areaSize.x / 2 &&
+                mousePosition.x <= areaPosition.x + areaSize.x / 2 &&
+                mousePosition.y >= areaPosition.y - areaSize.y / 2 &&
+                mousePosition.y <= areaPosition.y + areaSize.y / 2);
     }
 }

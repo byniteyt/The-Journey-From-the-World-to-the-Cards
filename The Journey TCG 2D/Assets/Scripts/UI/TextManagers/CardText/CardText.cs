@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CardText : MonoBehaviour
 {
-
+    public Card cardToRead;
     // Basic UI Elements
     protected TextMeshProUGUI nameText;
     [SerializeField] protected TextMeshProUGUI costText;
@@ -25,6 +25,13 @@ public class CardText : MonoBehaviour
     void Update()
     {
         
+    }
+    virtual protected void SetValues(Card carta)
+    {
+        nameText.text = carta.cardName;
+        costText.text = carta.cost.ToString();
+        descriptionText.text = carta.description;
+        artworkImage.sprite = carta.artwork;
     }
     virtual public void UpdateAsset()
     {

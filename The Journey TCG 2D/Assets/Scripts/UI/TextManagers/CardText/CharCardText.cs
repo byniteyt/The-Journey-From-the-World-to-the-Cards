@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class CharCardText : CardText
 {
-    public CharacterCard characterCard;
     // Character specific UI Elements
     private TextMeshProUGUI healthText;
     private TextMeshProUGUI attackText;
@@ -14,7 +13,7 @@ public class CharCardText : CardText
         base.Start();
         healthText = GameObject.Find("Health").GetComponent<TextMeshProUGUI>();
         attackText = GameObject.Find("Attack").GetComponent<TextMeshProUGUI>();
-        SetValues();
+        SetValues(cardToRead);
     }
 
     // Update is called once per frame
@@ -22,14 +21,12 @@ public class CharCardText : CardText
     {
         
     }
-    void SetValues()
+    override protected void SetValues(Card carta)
     {
+        base.SetValues(carta);
+        CharacterCard characterCard = (CharacterCard)carta;
         healthText.text = characterCard.health.ToString();
         attackText.text = characterCard.attack.ToString();
-        nameText.text = characterCard.cardName;
-        costText.text = characterCard.cost.ToString();
-        descriptionText.text = characterCard.description;
-        artworkImage.sprite = characterCard.artwork;
     }
 
     override public void UpdateAsset()

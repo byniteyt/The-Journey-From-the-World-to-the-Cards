@@ -24,6 +24,11 @@ public class CharacterCard : Card
         // For example, summon the character to the battlefield
         Hand.Instance.UseCharacterCard(this);
     }
+    protected override bool IsShowingDetails()
+    {
+        return GameObject.Find("CharacterCardInfo(Clone)");
+    } 
+        
     protected override void ShowCardDetails()
     {
         GameObject canvas = GameObject.Find("Canvas");
@@ -31,6 +36,6 @@ public class CharacterCard : Card
         cardDetailPanel.transform.SetAsLastSibling(); // Ensure the panel is on top
         cardDetailPanel.transform.localPosition = Vector3.zero; // Center the panel
         CharCardText info = cardDetailPanel.GetComponent<CharCardText>();
-        info.characterCard = this;
+        info.cardToRead = this;
     }
 }
