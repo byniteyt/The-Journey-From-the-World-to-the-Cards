@@ -5,7 +5,25 @@ public class EventManager : MonoBehaviour
 {
     public static EventHandler PlayCard;
 
-    public static EventHandler DrawCard;
+    public static EventHandler<int> DrawCard;
 
-    public static EventHandler SpellToCard;
+    public static EventHandler StartTurn;
+
+    public static EventHandler FirstMainTurn;
+
+    public static EventHandler BattleTurn;
+
+    public static EventHandler SecondMainTurn;
+
+    public static EventHandler EndTurn;
+
+    public static EventHandler<int> TakeDamage;
+
+    public static EventHandler<int> HealDamage;
+
+    public static EventHandler<int> ChangeLife;
+
+    public static EventHandler<int> UpdateLife;
+
+    public static EventHandler CombatTurn;
 }

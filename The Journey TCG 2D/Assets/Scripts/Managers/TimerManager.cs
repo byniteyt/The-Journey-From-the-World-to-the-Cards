@@ -23,7 +23,7 @@ public class TimerManager : MonoBehaviour
             else if (GameManager.CurrentGameState == GameState.Paused)
             {
                 GameManager.CurrentGameState = GameState.InGame;
-                timerText.text = "Time: " + timer[0].ToString("00") + " : " + timer[1].ToString("00");
+                timerText.text = $"Time:  {timer[0]} :  {timer[1]}";
             }
         }
         if (Input.GetKeyUp(KeyCode.M))
@@ -48,6 +48,6 @@ public class TimerManager : MonoBehaviour
             timer[1] = 0;
             timer[0] ++;
         }
-        timerText.text = "Time: " + timer[0].ToString("00") + " : " + timer[1].ToString("00");
+        timerText.text = $"Time:  {timer[0]} :  {timer[1]}";
     }
 }

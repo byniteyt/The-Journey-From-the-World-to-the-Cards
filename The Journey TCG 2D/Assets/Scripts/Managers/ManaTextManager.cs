@@ -25,7 +25,6 @@ public class ManaTextManager : MonoBehaviour
         }
         manaText = GameObject.Find("Mana Source").GetComponentInChildren<TextMeshProUGUI>();
         manaSlider = GameObject.Find("Mana Source").GetComponentInChildren<Slider>();
-        manaText.text = "Mana: 0";
     }
 
     // Update is called once per frame
@@ -46,12 +45,12 @@ public class ManaTextManager : MonoBehaviour
     {
         if (actualMana == maxMana)
         {
-            manaText.text = "Mana: " + actualMana + " MAX";
+            manaText.text = $"Mana: {actualMana}  MAX";
             return;
         }
         else
         {
-            manaText.text = "Mana: " + actualMana;
+            manaText.text = $"Mana: {actualMana}";
         }
     }
     public void ChangeMana(int amount)
@@ -62,7 +61,7 @@ public class ManaTextManager : MonoBehaviour
     }
     public bool IsEnoughMana(int cost)
     {
-        Debug.Log("Checking mana: " + actualMana + " / " + cost);
+        Debug.Log($"Checking mana: + {actualMana} / { cost}" );
         return (actualMana >= cost);
     }
     public void ResetMana()
