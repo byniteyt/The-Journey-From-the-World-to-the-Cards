@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
@@ -6,6 +7,8 @@ public class TurnManager : MonoBehaviour
     public static TurnManager Instance { get; private set; }
 
     public static InGamePhase CurrentInGamePhase { get; set; } = InGamePhase.DrawPhase;
+
+    GameObject button;
 
     [SerializeField] bool isPlayerTurn = true;
     public bool IsPlayerTurn => isPlayerTurn;
@@ -17,6 +20,14 @@ public class TurnManager : MonoBehaviour
 
         EventLoader();
 
+        button = GameObject.Find("PhaseChanger");
+
+    }
+    public void StartGame()
+    {
+
+        isPlayerTurn = true;
+        EventManager.StartTurn?.Invoke(this, EventArgs.Empty);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void DrawingPhase(object sender, EventArgs e)
@@ -26,32 +37,55 @@ public class TurnManager : MonoBehaviour
     }
     void FirstMainPhase()
     {
+        button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "To Battle Phase";
+        button.SetActive(true);
         CurrentInGamePhase = InGamePhase.FirstMainPhase;
     }
-    void EndCombat()
+    public void NextPhase()
     {
-        int totalDamage = 0;
-        GameObject activeBattleground = (isPlayerTurn) ? GameObject.Find("EnemyLife") : GameObject.Find("PlayerLife");
-        foreach (var child in activeBattleground.transform)
+        switch(CurrentInGamePhase)
         {
-            if (child is Transform character)
-            {
-                CharacterCard characterCard = character.GetComponent<CharacterCard>();
-                totalDamage += characterCard.attack;
-            }
+            case InGamePhase.FirstMainPhase:
+                EventManager.BattleTurn?.Invoke(this, EventArgs.Empty);
+                break;
+            case InGamePhase.BattlePhase:
+                int totalDamage = 0;
+                GameObject lifeManager = (isPlayerTurn) ? GameObject.Find("EnemyLife") : GameObject.Find("PlayerLife");
+                GameObject activeBattleground = (isPlayerTurn) ? GameObject.Find("PlayerBattleGround") : GameObject.Find("EnemyBattleGround");
+                foreach (Transform child in activeBattleground.transform)
+                {
+                        CharacterCard characterCard = child.GetComponent<CharacterCard>();
+                        Debug.Log($"Character {characterCard.cardName} attacks for {characterCard.attack} damage.");
+                        totalDamage += characterCard.attack;
+                    
+                }
+                EventManager.DealDamage?.Invoke(this, totalDamage);
+                Debug.Log($"Total damage dealt: {totalDamage}");
+                EventManager.SecondMainTurn?.Invoke(this, EventArgs.Empty);
+                break;
+            case InGamePhase.SecondMainPhase:
+                EventManager.StartTurn?.Invoke(this, EventArgs.Empty);
+                break;
+            default:
+                Debug.Log("Invalid phase transition");
+                break;
         }
+        
     }
     void BattlePhase()
     {
-
+        button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "To Second Main Phase";
+        CurrentInGamePhase = InGamePhase.BattlePhase;
     }
     void SecondMainPhase()
     {
-
+        CurrentInGamePhase = InGamePhase.SecondMainPhase;
+        button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "To End Phase";
     }
     void EndPhase()
     {
-
+        isPlayerTurn = !isPlayerTurn;
+        button.SetActive(false);
     }
     public void FromMainPhaseToEndPhase()
     {

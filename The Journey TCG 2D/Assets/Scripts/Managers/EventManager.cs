@@ -19,6 +19,8 @@ public class EventManager : MonoBehaviour
 
     public static EventHandler<int> TakeDamage;
 
+    public static EventHandler<int> DealDamage;
+
     public static EventHandler<int> HealDamage;
 
     public static EventHandler<int> ChangeLife;
