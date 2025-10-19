@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class BattlegroundArea : MonoBehaviour
@@ -23,7 +24,7 @@ public class BattlegroundArea : MonoBehaviour
             Debug.Log("BattleGround is full");
             return false;
         }
-        Debug.Log("Character "+card.name+" generated in Battleground Area");
+        Debug.Log($"Character {card.name} generated in Battleground Area");
         GameObject cardObject = Instantiate(card.gameObject,this.transform);
         soldiersAmount++;
         if (transform.childCount == 1)
@@ -38,18 +39,14 @@ public class BattlegroundArea : MonoBehaviour
     }
     public bool IsRoomCardInArea(Card card)
     {
-        if (card != null&& PlayGameManager.CurrentTurnPlayer==TurnPlayer.Player)
-        {
-            Vector2 cardPosition = card.transform.position;
-            Vector2 areaPosition = transform.position;
-            Vector2 areaSize = GetComponent<Collider2D>().bounds.size;
-            if (cardPosition.x >= areaPosition.x - areaSize.x / 2 &&
+        Vector2 cardPosition = card.transform.position;
+        Vector2 areaPosition = transform.position;
+        Vector2 areaSize = GetComponent<Collider2D>().bounds.size;
+        return (TurnManager.Instance.IsPlayerTurn&&
+                cardPosition.x >= areaPosition.x - areaSize.x / 2 &&
                 cardPosition.x <= areaPosition.x + areaSize.x / 2 &&
                 cardPosition.y >= areaPosition.y - areaSize.y / 2 &&
-                cardPosition.y <= areaPosition.y + areaSize.y / 2)
-                return true;
-        }
-        return false;
+                cardPosition.y <= areaPosition.y + areaSize.y / 2);
     }
 
     void ReorderCharacters()

@@ -67,11 +67,6 @@ public enum ZoneType
     Exile
 }
 
-public enum TurnPlayer
-{
-    Player,
-    Opponent
-}
 
 public enum AbilityType
 {

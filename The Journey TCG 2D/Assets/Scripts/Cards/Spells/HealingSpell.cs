@@ -9,11 +9,6 @@ public class HealingSpell : SpellCard
         effect = SpellEffectType.Heal;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     protected override void ApplyEffect()
     {
         Debug.Log("HealingSpell effect applied: " + cardName);
