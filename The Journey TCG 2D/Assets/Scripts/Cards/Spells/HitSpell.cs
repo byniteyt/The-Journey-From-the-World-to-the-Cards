@@ -62,39 +62,8 @@ public class HitSpell : SpellCard
                 Debug.LogWarning("HealingSpell applied to unsupported target type: " + targetType);
                 break;
         }
+        Destroy(this.gameObject);
     }
-    protected override void OnMouseDrag()
-    {
-        transform.position = new Vector3(
-            Input.mousePosition.x,
-            Input.mousePosition.y,
-            transform.localPosition.z
-        );
-    }
-    protected override void OnMouseUp()
-    {
-        if (targetType == TargetType.SingleEnemy || targetType == TargetType.SingleAlly)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
-            if (hit.collider != null)
-            {
-                if (hit.collider.transform.IsChildOf(enemyBattleGround.transform)&&targetType == TargetType.SingleEnemy||
-                    hit.collider.transform.IsChildOf(playerBattleGround.transform) && targetType == TargetType.SingleAlly)
-                {
-                    Card hitCard = hit.collider.GetComponent<Card>();
-                    if (hitCard != null)
-                    {
-                        targetCard = hitCard;
-                        ApplyEffect();
-                        Debug.Log("Target selected: " + targetCard.cardName);
-                    }
-                    return;
-                }
-                
-            }
-        }
-        // Return the card to its original position
-        transform.position = originalPosition;
-    }
+    
+    
 }

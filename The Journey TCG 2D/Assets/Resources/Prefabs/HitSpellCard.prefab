@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8438293260589914460}
   - component: {fileID: 1914177788150416304}
   - component: {fileID: 6388181286289637753}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HitSpellCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}

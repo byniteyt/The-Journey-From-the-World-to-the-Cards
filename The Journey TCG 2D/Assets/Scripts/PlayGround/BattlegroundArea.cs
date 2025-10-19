@@ -27,10 +27,11 @@ public class BattlegroundArea : MonoBehaviour
         GameObject cardObject = Instantiate(card.gameObject,this.transform);
         soldiersAmount++;
         if (transform.childCount == 1)
-            cardObject.transform.localPosition = new Vector3(0,0,transform.position.z);
+            cardObject.transform.localPosition = new Vector3(0,0,-1);
         else
         {
-            cardObject.transform.localPosition = this.transform.GetChild(transform.childCount-1).localPosition + new Vector3(characterSpacing, 0, 0);
+            cardObject.transform.localPosition = this.transform.GetChild(transform.childCount-1).localPosition 
+                + new Vector3(characterSpacing, 0, 0);
         }
         ReorderCharacters();
         return true;
@@ -64,7 +65,7 @@ public class BattlegroundArea : MonoBehaviour
         for (int i = 0; i < soldiersAmount; i++)
         {
             Transform child = transform.GetChild(i);
-            child.localPosition = new Vector3(startX + i * characterSpacing, 0, transform.position.z);
+            child.localPosition = new Vector3(startX + i * characterSpacing, 0, child.transform.localPosition.z);
         }
     }
 }

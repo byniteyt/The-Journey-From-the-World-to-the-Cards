@@ -8,7 +8,7 @@ public class SpellCard : Card
     protected Card targetCard;
     protected SpellEffectType effect;
 
-    protected Vector2 originalPosition;
+    protected Vector2 originalPosition = Vector2.zero;
     // Regiones del campo de batalla
     protected GameObject playerBattleGround;
     protected GameObject enemyBattleGround;
@@ -19,8 +19,7 @@ public class SpellCard : Card
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        originalPosition = transform.position;
-        //enemyHand;
+
     }
 
     // Update is called once per frame
@@ -31,7 +30,11 @@ public class SpellCard : Card
     override protected void OnMouseDown()
     {
         base.OnMouseDown();
-        UseCard();
+        if (this.targetType != TargetType.AllAllies &&
+            this.targetType != TargetType.AllEnemies &&
+            this.targetType != TargetType.All)
+            return;
+         UseCard();
     }
 
     override protected void UseCard()
@@ -56,15 +59,42 @@ public class SpellCard : Card
     }
     protected virtual void OnMouseDrag()
     {
-        transform.localPosition = new Vector3(
-            Input.mousePosition.x,
-            Input.mousePosition.y,
-            transform.localPosition.z
-        );
+        if (originalPosition == Vector2.zero)
+             originalPosition = transform.position;
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = new Vector2(mousePosition.x, mousePosition.y);
     }
     protected virtual void OnMouseUp()
     {
+        // Return the card to its original position
         transform.position = originalPosition;
+        originalPosition = Vector2.zero;
+        if (targetType == TargetType.SingleEnemy || targetType == TargetType.SingleAlly)
+        {
+            RaycastHit2D[] hit = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.forward, LayerMask.GetMask("Battle"));
+            if (hit.Length != 0)
+            {
+                foreach (RaycastHit2D h in hit)
+                {
+                    Card card = h.collider.GetComponent<Card>();
+                    if (card != null)
+                    {
+                        if ((targetType == TargetType.SingleEnemy &&
+                            card.gameObject.transform.parent == enemyBattleGround.transform)|| 
+                            (targetType == TargetType.SingleAlly &&
+                            card.gameObject.transform.parent == playerBattleGround.transform))
+                        {
+                            Debug.Log("Target selected: " + card.cardName);
+                            targetCard = card;
+                            ApplyEffect();
+                            return;
+                        }
+                    }
+                }
+            }
+            Debug.Log("No valid target selected.");
+            return;
+        }
     }
     protected virtual void GetBattleZone()
     {

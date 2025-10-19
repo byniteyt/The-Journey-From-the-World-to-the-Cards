@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8394587877232778769}
   - component: {fileID: 2772936716849763208}
   - component: {fileID: 151803308356800503}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RedCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}

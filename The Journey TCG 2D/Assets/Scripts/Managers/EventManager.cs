@@ -6,5 +6,6 @@ public class EventManager : MonoBehaviour
     public static EventHandler PlayCard;
 
     public static EventHandler DrawCard;
-    
+
+    public static EventHandler SpellToCard;
 }
