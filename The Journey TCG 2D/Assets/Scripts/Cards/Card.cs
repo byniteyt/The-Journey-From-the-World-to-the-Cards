@@ -39,15 +39,7 @@ public class Card : MonoBehaviour
     }
     protected virtual void OnMouseDown()
     {
-        /*if(ManaTextManager.Instance.IsEnoughMana(cost))
-        {
-            Debug.Log("Card played: " + cardName);
-            //Destroy(this.gameObject);
-        }
-        else
-        {
-            Debug.Log("Not enough mana to play: " + cardName);
-        }*/
+        UseCard();
     }
     protected virtual void UseCard()
     {

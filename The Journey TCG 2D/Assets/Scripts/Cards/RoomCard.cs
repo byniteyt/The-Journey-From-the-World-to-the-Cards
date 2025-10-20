@@ -11,7 +11,10 @@ public class RoomCard : Card
 
     public void OnDestroyRoom()
     {
-        
+        Debug.Log($"Room {cardName} is being destroyed. Removing its effects.");
     }
-
+    protected override void UseCard()
+    {
+        EventManager.SetActiveRoom?.Invoke(this, this);
+    }
 }

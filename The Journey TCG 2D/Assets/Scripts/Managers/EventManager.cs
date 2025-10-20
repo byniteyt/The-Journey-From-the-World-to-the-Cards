@@ -28,4 +28,6 @@ public class EventManager : MonoBehaviour
     public static EventHandler<int> UpdateLife;
 
     public static EventHandler CombatTurn;
+
+    public static EventHandler<RoomCard> SetActiveRoom;
 }

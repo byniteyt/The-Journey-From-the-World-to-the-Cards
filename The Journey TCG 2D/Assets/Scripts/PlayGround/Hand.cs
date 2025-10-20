@@ -19,6 +19,7 @@ public class Hand : MonoBehaviour
             Destroy(this);
         }
         cards = new Card[handLimit];
+        LoadEvents();
     }
 
     // Update is called once per frame
@@ -88,5 +89,37 @@ public class Hand : MonoBehaviour
         }
         cards[currentCardCount - 1] = null;
         currentCardCount--;
+    }
+    public void UseRoomCard(object sender, RoomCard card)
+    {
+        // Check if the card is in hand
+        if (!HasCard(card))
+        {
+            Debug.Log("Card: " + card.cardName + " hasn't found.");
+            return;
+        }
+        // Check if enough mana
+        if (!ManaTextManager.Instance.IsEnoughMana(card.cost))
+        {
+            Debug.Log("Not enough mana to play: " + card.cardName);
+            return;
+        }
+        // Set active room
+        ManaTextManager.Instance.ChangeMana(-card.cost);
+        Debug.Log("Setting active room to " + card.cardName);
+        int index = System.Array.IndexOf(cards, card);
+        cards[index] = null;
+        for (int i = index; i < currentCardCount - 1; i++)
+        {
+            cards[i] = cards[i + 1];
+            if (cards[i] != null)
+                cards[i].transform.localPosition = new Vector3(-4 + i * 2, 0, 0);
+        }
+        cards[currentCardCount - 1] = null;
+        currentCardCount--;
+    }
+    void LoadEvents()
+    {
+        EventManager.SetActiveRoom += UseRoomCard;
     }
 }

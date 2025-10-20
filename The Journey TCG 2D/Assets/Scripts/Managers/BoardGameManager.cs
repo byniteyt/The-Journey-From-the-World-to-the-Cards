@@ -16,6 +16,7 @@ public class BoardGameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        EventManager.SetActiveRoom += SetActiveRoom;
     }
 
     // Update is called once per frame
@@ -23,12 +24,9 @@ public class BoardGameManager : MonoBehaviour
     {
        
     }
-    public void SetActiveRoom(RoomCard room)
+
+    public void SetActiveRoom(object sender, RoomCard room)
     {
-        if(activeRoom != null)
-        {
-            activeRoom.OnDestroyRoom();
-        }
         activeRoom = room;
     }
 }
