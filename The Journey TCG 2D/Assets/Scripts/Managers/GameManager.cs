@@ -21,12 +21,16 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        EventManager.StartTurn+= (s, e) => StartTurn();
     }
-
     // Update is called once per frame
     void Update()
     {
         pauseMenu.SetActive(CurrentGameState == GameState.Paused);
+    }
+    void StartTurn()
+    {
+        ChangeGameState(GameState.InGame);
     }
     public void ChangeGameState(GameState newState)
     {

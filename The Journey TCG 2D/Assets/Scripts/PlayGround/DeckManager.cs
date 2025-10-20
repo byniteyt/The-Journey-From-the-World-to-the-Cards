@@ -4,7 +4,7 @@ using UnityEngine;
 public class DeckManager : MonoBehaviour
 {
     public static DeckManager Instance { get; private set; }
-    public Card[] deck = new Card[30];
+    public Card[] deck;
     int deckCount;
     public int DeckCount { get { return deckCount; } private set { deckCount = value; } }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,8 +19,10 @@ public class DeckManager : MonoBehaviour
             Destroy(this);
         }
         deckCount = deck.Length;
-        Debug.Log("Deck Count: " + deckCount);
+        Debug.Log($"Deck Count: {deckCount}");
+        ShuffleArray(deck);
         //DrawCard(5);
+
     }
 
     // Update is called once per frame
@@ -38,6 +40,16 @@ public class DeckManager : MonoBehaviour
                 deck[deckCount-1] = null;
                 deckCount--;
             }  
+        }
+    }
+    void ShuffleArray(Card[] array)
+    {
+        for (int i = array.Length - 1; i > 0; i--)
+        {
+            int randomIndex = Random.Range(0, i + 1);
+            Card temp = array[i];
+            array[i] = array[randomIndex];
+            array[randomIndex] = temp;
         }
     }
 }

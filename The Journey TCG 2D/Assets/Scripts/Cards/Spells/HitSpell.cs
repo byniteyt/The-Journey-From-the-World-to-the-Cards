@@ -19,9 +19,6 @@ public class HitSpell : SpellCard
         Debug.Log("HitSpell effect applied: " + cardName);
         switch (targetType)
         {
-            case TargetType.SingleEnemy:
-                targetCard.GetComponent<CharacterCard>()?.ChangeHeal(-effectAmount);
-                break;
             case TargetType.AllEnemies:
                 foreach (CharacterCard enemy in enemyBattleGround.transform)
                 {
@@ -36,9 +33,6 @@ public class HitSpell : SpellCard
                 }
                 break;
 
-            case TargetType.SingleAlly:
-                targetCard.GetComponent<CharacterCard>()?.ChangeHeal(-effectAmount);
-                break;
             case TargetType.AllAllies:
                 foreach (Transform ally in playerBattleGround.transform)
                 {
@@ -59,8 +53,8 @@ public class HitSpell : SpellCard
                 }
                 break;
             default:
-                Debug.LogWarning("HealingSpell applied to unsupported target type: " + targetType);
-                break;
+                Debug.Log("This spell must be dragged");
+                return;
         }
         Destroy(this.gameObject);
     }

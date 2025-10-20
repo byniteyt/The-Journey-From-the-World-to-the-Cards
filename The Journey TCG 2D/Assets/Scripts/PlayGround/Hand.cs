@@ -54,18 +54,7 @@ public class Hand : MonoBehaviour
     public void UseCharacterCard(CharacterCard card)
     {
         // Check if the card is in hand
-        if (!HasCard(card))
-        {
-            Debug.Log("Card: " + card.cardName + " hasn't found.");
-            return;
-        }
-
-        // Check if enough mana
-        if (!ManaTextManager.Instance.IsEnoughMana(card.cost))
-        {
-            Debug.Log("Not enough mana to play: " + card.cardName);
-            return;
-        }
+        Corrections(card);  
 
         // Summon to battlefield
         BattlegroundArea battleground = GameObject.Find("PlayerBattleGround").GetComponent<BattlegroundArea>();
@@ -75,39 +64,43 @@ public class Hand : MonoBehaviour
             return;
         }
 
-
         ManaTextManager.Instance.ChangeMana(-card.cost);
         Debug.Log("Summoning " + card.cardName + " to the battlefield.");
         int index = System.Array.IndexOf(cards, card);
         cards[index] = null;
         Destroy(card.gameObject);
-        for(int i=index;i<currentCardCount-1;i++)
-        {
-            cards[i] = cards[i + 1];
-            if(cards[i]!=null)
-                cards[i].transform.localPosition = new Vector3(-4 + i * 2, 0, 0);
-        }
-        cards[currentCardCount - 1] = null;
-        currentCardCount--;
+        ReorganizeHand(index);
     }
     public void UseRoomCard(object sender, RoomCard card)
     {
         // Check if the card is in hand
+       Corrections(card);
+        ManaTextManager.Instance.ChangeMana(-card.cost);
+        Debug.Log("Setting active room to " + card.cardName);
+        int index = System.Array.IndexOf(cards, card);
+        ReorganizeHand(index);
+    }
+    void LoadEvents()
+    {
+        EventManager.SetActiveRoom += UseRoomCard;
+    }
+    bool Corrections(Card card)
+    {
         if (!HasCard(card))
         {
             Debug.Log("Card: " + card.cardName + " hasn't found.");
-            return;
+            return false;
         }
         // Check if enough mana
         if (!ManaTextManager.Instance.IsEnoughMana(card.cost))
         {
             Debug.Log("Not enough mana to play: " + card.cardName);
-            return;
+            return false;
         }
-        // Set active room
-        ManaTextManager.Instance.ChangeMana(-card.cost);
-        Debug.Log("Setting active room to " + card.cardName);
-        int index = System.Array.IndexOf(cards, card);
+        return true;
+    }
+    void ReorganizeHand(int index)
+    {
         cards[index] = null;
         for (int i = index; i < currentCardCount - 1; i++)
         {
@@ -117,9 +110,5 @@ public class Hand : MonoBehaviour
         }
         cards[currentCardCount - 1] = null;
         currentCardCount--;
-    }
-    void LoadEvents()
-    {
-        EventManager.SetActiveRoom += UseRoomCard;
     }
 }

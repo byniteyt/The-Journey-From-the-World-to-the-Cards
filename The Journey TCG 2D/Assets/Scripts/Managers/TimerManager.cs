@@ -30,10 +30,10 @@ public class TimerManager : MonoBehaviour
         {
             GameManager.CurrentGameState = GameState.MainMenu;
         }
-        if (Input.GetKeyUp(KeyCode.P))
+        /*if (Input.GetKeyUp(KeyCode.P))
         {
             GameManager.CurrentGameState = GameState.InGame;
-        }
+        }*/
         if (GameManager.CurrentGameState!= GameState.InGame)
         {
             if (GameManager.CurrentGameState == GameState.MainMenu) {

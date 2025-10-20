@@ -24,7 +24,6 @@ public class SpellCard : Card
 
     override protected void OnMouseDown()
     {
-        base.OnMouseDown();
         if (this.targetType != TargetType.AllAllies &&
             this.targetType != TargetType.AllEnemies &&
             this.targetType != TargetType.All)

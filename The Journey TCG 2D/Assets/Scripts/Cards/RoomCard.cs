@@ -15,6 +15,9 @@ public class RoomCard : Card
     }
     protected override void UseCard()
     {
+        if (GameManager.CurrentGameState != GameState.InGame||
+            transform.parent.name== "RoomsArea")
+            return;
         EventManager.SetActiveRoom?.Invoke(this, this);
     }
 }
