@@ -1,9 +1,9 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class DeckManager : MonoBehaviour
+public class BattleDeckManager : MonoBehaviour
 {
-    public static DeckManager Instance { get; private set; }
+    public static BattleDeckManager Instance { get; private set; }
     public Card[] deck;
     int deckCount;
     public int DeckCount { get { return deckCount; } private set { deckCount = value; } }

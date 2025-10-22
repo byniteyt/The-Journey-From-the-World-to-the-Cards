@@ -32,7 +32,7 @@ public class TurnManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void DrawingPhase(object sender, EventArgs e)
     {
-        DeckManager.Instance.DrawCard(1);
+        BattleDeckManager.Instance.DrawCard(1);
         EventManager.FirstMainTurn?.Invoke(this, EventArgs.Empty);
     }
     void FirstMainPhase()

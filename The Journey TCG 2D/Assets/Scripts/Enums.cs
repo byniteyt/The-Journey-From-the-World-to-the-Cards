@@ -1,3 +1,20 @@
+#region Deck Data
+public enum Collection
+{
+    The_Beginning,
+    Singing_Shadows,
+    Flames_of_Fury,
+    Frozen_Throne,
+    Dark_Covenant
+}
+public enum DeckFormat
+{
+    Standard,
+    Wild
+}   
+#endregion
+
+#region CardInfo
 public enum CardType
 {
     Character,
@@ -14,6 +31,11 @@ public enum Rarity
     Legendary
 }
 
+
+
+#endregion
+
+#region CharacterStats
 public enum Element
 {
     Fire,
@@ -22,22 +44,6 @@ public enum Element
     Air,
     Light,
     Dark
-}
-
-public enum GameState
-{
-    MainMenu,
-    InGame,
-    Paused,
-    GameOver
-}
-
-public enum PlayerAction
-{
-    DrawCard,
-    PlayCard,
-    EndTurn,
-    UseAbility
 }
 
 public enum CharacterType
@@ -49,25 +55,25 @@ public enum CharacterType
     Undead
 }
 
-public enum InGamePhase 
+public enum StatusEffect
 {
-    DrawPhase,
-    FirstMainPhase,
-    BattlePhase,
-    SecondMainPhase,
-    EndPhase
+    Stunned,
+    Poisoned,
+    Burned,
+    Frozen,
+    Shielded,
+    Weakened
 }
 
-public enum ZoneType
+public enum CreatureRank
 {
-    Deck,
-    Hand,
-    Field,
-    Graveyard,
-    Exile
+    Minion,
+    Elite,
+    Boss
 }
+#endregion
 
-
+#region SpellAndAbility
 public enum AbilityType
 {
     Passive,
@@ -100,3 +106,54 @@ public enum SpellEffectType
     Summon,
     Destroy
 }
+#endregion
+
+#region RoomInfo
+public enum RoomType
+{
+    Tavern,
+    Blacksmith,
+    Alchemist,
+    Enchanter,
+    GuildHall,
+    None
+}
+#endregion
+
+#region GameData
+public enum GameState
+{
+    MainMenu,
+    InGame,
+    Paused,
+    GameOver
+}
+
+public enum PlayerAction
+{
+    DrawCard,
+    PlayCard,
+    EndTurn,
+    UseAbility
+}
+
+
+public enum InGamePhase 
+{
+    DrawPhase,
+    FirstMainPhase,
+    BattlePhase,
+    SecondMainPhase,
+    EndPhase
+}
+
+public enum ZoneType
+{
+    Deck,
+    Hand,
+    Field,
+    Graveyard,
+    Exile
+}
+
+#endregion
