@@ -6,7 +6,7 @@ public class MainMenuSelections : MonoBehaviour
     Button activeButton;
     ColorBlock lastColor;
     ColorBlock newColor;
-    int activeIndex;
+    static int activeIndex;
 
     private void Start()
     {

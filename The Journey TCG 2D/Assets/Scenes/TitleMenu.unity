@@ -850,7 +850,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 976588811}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1241224985}
+        m_TargetAssemblyTypeName: GeneralButtons, Assembly-CSharp
+        m_MethodName: Settings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: https://www.youtube.com/@byniteproyt
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &976588811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -971,7 +983,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1064549268}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1241224985}
+        m_TargetAssemblyTypeName: GeneralButtons, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1064549268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1022,6 +1046,7 @@ GameObject:
   - component: {fileID: 1241224983}
   - component: {fileID: 1241224982}
   - component: {fileID: 1241224981}
+  - component: {fileID: 1241224985}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1112,6 +1137,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1241224985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241224980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1285cd9b2a619a40a94fec8d2ebd2dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GeneralButtons
 --- !u!1 &2008748324
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,7 +1231,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2008748327}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1241224985}
+        m_TargetAssemblyTypeName: GeneralButtons, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2008748327
 MonoBehaviour:
   m_ObjectHideFlags: 0
