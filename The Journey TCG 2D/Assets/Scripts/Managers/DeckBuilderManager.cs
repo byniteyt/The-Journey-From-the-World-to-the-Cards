@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static UnityEngine.Rendering.GPUSort;
@@ -8,15 +9,23 @@ public class DeckBuilderManager : MonoBehaviour
     GameObject deckButton;
     string deckName;
     DeckFormat format;
+    GameObject deckHolder;
 
     private void Start()
     {
-        deckButton = Resources.Load<GameObject>("Prefabs/Decks/AddDeckButton");
+        deckHolder = GameObject.Find("DeckHolder");
+        deckButton = Resources.Load<GameObject>("Prefabs/Decks/DeckButton");
         foreach (Deck deck in DeckCollection.SavedDecks())
         {
-            GameObject db = Instantiate(deckButton,this.transform);
+            GameObject db = Instantiate(deckButton,deckHolder.transform);
             db.transform.SetAsFirstSibling();
             db.gameObject.name = deck.name;
+            if (db.GetComponentInChildren<TextMeshProUGUI>() == null)
+            {
+                Debug.Log("TextMeshPro component not found in Deck Button prefab.");
+                return;
+            }
+            db.GetComponentInChildren<TextMeshProUGUI>().text = $"{deck.name}\n{deck.GetFormat()}";
             if (deck.GetComponent<WildDeck>()) db.AddComponent<WildDeck>();
             else if (deck.GetComponent<StandardDeck>()) db.AddComponent<StandardDeck>();
             db.GetComponent<Deck>().SetDeckName(deck.ToString());
@@ -36,7 +45,7 @@ public class DeckBuilderManager : MonoBehaviour
 
     void AddDeck()
     {
-        GameObject newDeckObj = new GameObject(deckName); // crea un objeto vacío
+        GameObject newDeckObj = new GameObject("Deck new"); // crea un objeto vacío
         Deck deckToAdd;
 
         if (format == DeckFormat.Standard)

@@ -1,8 +1,10 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeckEditorManager : MonoBehaviour
 {
+    int index;
     Deck deckToEdit;
     GameObject deckNameText;
     private void Start()
@@ -10,7 +12,8 @@ public class DeckEditorManager : MonoBehaviour
         //Debug.Log($"La baraja se llama {DeckCollection.decks[DeckCollection.decks.Count-1].name}");
         //Debug.Log($"La baraja es de tipo {DeckCollection.decks[DeckCollection.decks.Count-1].GetFormat()}");
         Debug.Log(DeckCollection.DecksAmount());
-        Debug.Log($"La baraja es {DeckCollection.GetDeck(DeckCollection.DecksAmount() - 1).name}");
+        index = DeckCollection.GetIndexOfDeck(DeckBuilderManager.selectedDeck);
+        Debug.Log($"La baraja es {DeckCollection.GetDeck(DeckCollection.DecksAmount() - 1).GetComponent<Deck>().name}");
         deckToEdit = DeckBuilderManager.selectedDeck;
         deckNameText = GameObject.Find("DeckNameText");
         if (deckNameText== null)
@@ -29,5 +32,10 @@ public class DeckEditorManager : MonoBehaviour
             return;
         }
         deckNameText.GetComponent<TMP_Text>().text = deckToEdit.name;
+    }
+    public void SaveDeck()
+    {
+        DeckCollection.SetDeck(index,deckToEdit);
+        SceneManager.LoadScene("DeckBuilder");
     }
 }
