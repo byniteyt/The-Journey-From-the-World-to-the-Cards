@@ -1342,6 +1342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1064093115}
   - component: {fileID: 1064093116}
+  - component: {fileID: 1064093117}
   m_Layer: 5
   m_Name: DeckHolder
   m_TagString: Untagged
@@ -1393,6 +1394,18 @@ MonoBehaviour:
   m_Spacing: {x: 50, y: 50}
   m_Constraint: 1
   m_ConstraintCount: 6
+--- !u!114 &1064093117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064093114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68001e9b992018d4a8ba7b7fb876fe0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeckHolder
 --- !u!1 &1094058509
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,7 +35,8 @@ public class DeckEditorManager : MonoBehaviour
     }
     public void SaveDeck()
     {
-        DeckCollection.SetDeck(index,deckToEdit);
+        DeckCollection.RemoveDeck(deckToEdit);
+        DeckCollection.AddDeck(deckToEdit);
         SceneManager.LoadScene("DeckBuilder");
     }
 }

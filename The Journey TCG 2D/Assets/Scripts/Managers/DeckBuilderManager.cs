@@ -11,26 +11,7 @@ public class DeckBuilderManager : MonoBehaviour
     DeckFormat format;
     GameObject deckHolder;
 
-    private void Start()
-    {
-        deckHolder = GameObject.Find("DeckHolder");
-        deckButton = Resources.Load<GameObject>("Prefabs/Decks/DeckButton");
-        foreach (Deck deck in DeckCollection.SavedDecks())
-        {
-            GameObject db = Instantiate(deckButton,deckHolder.transform);
-            db.transform.SetAsFirstSibling();
-            db.gameObject.name = deck.name;
-            if (db.GetComponentInChildren<TextMeshProUGUI>() == null)
-            {
-                Debug.Log("TextMeshPro component not found in Deck Button prefab.");
-                return;
-            }
-            db.GetComponentInChildren<TextMeshProUGUI>().text = $"{deck.name}\n{deck.GetFormat()}";
-            if (deck.GetComponent<WildDeck>()) db.AddComponent<WildDeck>();
-            else if (deck.GetComponent<StandardDeck>()) db.AddComponent<StandardDeck>();
-            db.GetComponent<Deck>().SetDeckName(deck.ToString());
-        }
-    }
+    
     public void CreateDeck()
     {
         AddDeck();
@@ -67,7 +48,7 @@ public class DeckBuilderManager : MonoBehaviour
     }
     public void SelectFormat(int value)
     {
-        format = (format==DeckFormat.Standard)? DeckFormat.Standard: DeckFormat.Wild;
+        format = (value==0)? DeckFormat.Standard: DeckFormat.Wild;
     }
     public void RemoveDeck(Deck deckToDelete)
     { 
