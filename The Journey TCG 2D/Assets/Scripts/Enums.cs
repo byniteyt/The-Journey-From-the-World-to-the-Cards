@@ -1,5 +1,5 @@
 #region Deck Data
-public enum Collection
+public enum CollectionName
 {
     The_Beginning,
     Singing_Shadows,

@@ -1,15 +1,13 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEngine.Rendering.GPUSort;
 
 public class DeckBuilderManager : MonoBehaviour
 {
     public static Deck selectedDeck;
-    GameObject deckButton;
+
     string deckName;
     DeckFormat format;
-    GameObject deckHolder;
 
     
     public void CreateDeck()

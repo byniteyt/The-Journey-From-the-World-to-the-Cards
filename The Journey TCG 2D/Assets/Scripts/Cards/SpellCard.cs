@@ -17,16 +17,10 @@ public class SpellCard : Card
     protected GameObject playerHand;
     protected GameObject enemyHand;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
 
     override protected void OnMouseDown()
     {
-        if (this.targetType != TargetType.AllAllies &&
-            this.targetType != TargetType.AllEnemies &&
-            this.targetType != TargetType.All)
+        if (this.targetType == TargetType.SingleAlly || this.targetType == TargetType.SingleEnemy)
             return;
          UseCard();
     }
@@ -36,7 +30,6 @@ public class SpellCard : Card
         Debug.Log("Spell card played: " + cardName);
         // Implement spell effect here
         ApplyEffect();
-        Destroy(this.gameObject);
     }
     override protected void ShowCardDetails()
     {
@@ -48,6 +41,10 @@ public class SpellCard : Card
         info.cardToRead = this;
     }
      protected virtual void ApplyEffect()
+    {
+        
+    }
+     protected virtual void ApplyEffectToTarget()
     {
         
     }
@@ -80,7 +77,7 @@ public class SpellCard : Card
                         {
                             Debug.Log("Target selected: " + card.cardName);
                             targetCard = card;
-                            ApplyEffect();
+                            ApplyEffectToTarget();
                             return;
                         }
                     }
@@ -97,5 +94,15 @@ public class SpellCard : Card
         playerDeck = GameObject.Find("PlayerDeck");
         enemyDeck = GameObject.Find("EnemyDeck");
         playerHand = GameObject.Find("PlayerHand");
+    }
+    public void CopyValues(SpellCard card)
+    {
+        this.cardName = card.cardName;
+        this.description = card.description;
+        this.cost = card.cost;
+        this.artwork = card.artwork;
+        this.effectAmount = card.effectAmount;
+        this.targetType = card.targetType;
+        this.effect = card.effect;
     }
 }

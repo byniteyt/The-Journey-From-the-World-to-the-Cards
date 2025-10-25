@@ -17,7 +17,6 @@ public class ManaTextManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -43,25 +42,17 @@ public class ManaTextManager : MonoBehaviour
     }
     void UpdateManaText()
     {
-        if (actualMana == maxMana)
-        {
-            manaText.text = $"Mana: {actualMana}  MAX";
-            return;
-        }
-        else
-        {
-            manaText.text = $"Mana: {actualMana}";
-        }
+        manaText.text = (actualMana == maxMana)? $"Mana: {actualMana}  MAX" : $"Mana: {actualMana}";
+        
     }
     public void ChangeMana(int amount)
     {
-        actualMana += amount;
-        if (actualMana > maxMana) actualMana = maxMana;
+        actualMana = Mathf.Min( actualMana + amount, maxMana);
         UpdateManaText();
     }
     public bool IsEnoughMana(int cost)
     {
-        Debug.Log($"Checking mana: + {actualMana} / { cost}" );
+        Debug.Log($"Checking mana: {actualMana} / {cost}" );
         return (actualMana >= cost);
     }
     public void ResetMana()

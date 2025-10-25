@@ -55,7 +55,26 @@ public class HealingSpell : SpellCard
                 break;
             default:
                 Debug.LogWarning("HealingSpell applied to unsupported target type: " + targetType);
-                break;
+                return;
         }
+        Destroy(this.gameObject);
+    }
+
+    protected override void OnMouseDown()
+    {
+        base.OnMouseDown();
+    }
+
+    protected override void ApplyEffectToTarget()
+    {
+        if (targetCard is CharacterCard character)
+        {
+            character.ChangeHeal(effectAmount);
+        }
+        else
+        {
+            Debug.Log("Invalid target for HitSpell: " + targetCard.cardName);
+        }
+        Destroy(this.gameObject);
     }
 }

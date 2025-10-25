@@ -8,7 +8,7 @@ public class StandardDeck : Deck
         limitCardAmount = 30;
 
     }
-    protected override void AddCard(Card cardToAdd)
+    public override void AddCard(Card cardToAdd)
     {
         if (IsFull())
         {

@@ -20,4 +20,15 @@ public class RoomCard : Card
             return;
         EventManager.SetActiveRoom?.Invoke(this, this);
     }
+    public void CopyValues(RoomCard card)
+    {
+        this.cardName = card.cardName;
+        this.description = card.description;
+        this.cost = card.cost;
+        this.artwork = card.artwork;
+        this.buffElements = card.buffElements;
+        this.nerfElements = card.nerfElements;
+        this.buffCharacters = card.buffCharacters;
+        this.nerfCharacters = card.nerfCharacters;
+    }
 }

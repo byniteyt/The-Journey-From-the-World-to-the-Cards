@@ -8,12 +8,6 @@ public class HitSpell : SpellCard
         base.GetBattleZone();
         effect = SpellEffectType.Damage;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     protected override void ApplyEffect()
     {
         Debug.Log("HitSpell effect applied: " + cardName);
@@ -59,5 +53,16 @@ public class HitSpell : SpellCard
         Destroy(this.gameObject);
     }
     
-    
+    protected override void ApplyEffectToTarget()
+    {
+        if (targetCard is CharacterCard character)
+        {
+            character.ChangeHeal(-effectAmount);
+        }
+        else
+        {
+            Debug.Log("Invalid target for HitSpell: " + targetCard.cardName);
+        }
+        Destroy(this.gameObject);
+    }
 }

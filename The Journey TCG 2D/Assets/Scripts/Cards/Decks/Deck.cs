@@ -21,7 +21,7 @@ public class Deck : MonoBehaviour
     }
     public DeckFormat GetFormat() => this.deckFormat;
 
-    protected virtual void AddCard(Card cardToAdd)
+    public virtual void AddCard(Card cardToAdd)
     {
         if (IsFull())
         {

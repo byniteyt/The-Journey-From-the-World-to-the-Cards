@@ -10,7 +10,7 @@ public class WildDeck : Deck
         cardLimits = new Dictionary<string, int>();
     }
 
-    protected override void AddCard(Card cardToAdd)
+    public override void AddCard(Card cardToAdd)
     {
         if (IsFull())
         {

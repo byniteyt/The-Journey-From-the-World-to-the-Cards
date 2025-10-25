@@ -54,7 +54,7 @@ public class Hand : MonoBehaviour
     public void UseCharacterCard(CharacterCard card)
     {
         // Check if the card is in hand
-        Corrections(card);  
+         if (!Corrections(card)) return;
 
         // Summon to battlefield
         BattlegroundArea battleground = GameObject.Find("PlayerBattleGround").GetComponent<BattlegroundArea>();
@@ -74,9 +74,18 @@ public class Hand : MonoBehaviour
     public void UseRoomCard(object sender, RoomCard card)
     {
         // Check if the card is in hand
-       Corrections(card);
+        if (!Corrections(card)) return;
         ManaTextManager.Instance.ChangeMana(-card.cost);
         Debug.Log("Setting active room to " + card.cardName);
+        int index = System.Array.IndexOf(cards, card);
+        ReorganizeHand(index);
+    }
+    public void UseSpellCard(object sender, RoomCard card)
+    {
+        // Check if the card is in hand
+        if (!Corrections(card)) return;
+        ManaTextManager.Instance.ChangeMana(-card.cost);
+        Debug.Log("Casting spell: " + card.cardName);
         int index = System.Array.IndexOf(cards, card);
         ReorganizeHand(index);
     }

@@ -16,6 +16,16 @@ public class CharacterCard : Card
         base.Update();
         // Additional update logic for CharacterCard if needed
     }
+    public void CopyValues(CharacterCard card)
+    {
+        this.cardName = card.cardName;
+        this.description = card.description;
+        this.cost = card.cost;
+        this.artwork = card.artwork;
+        this.health = card.health;
+        this.maxHealth = card.health;
+        this.attack = card.attack;
+    }
 
     protected override void OnMouseDown()
     {
@@ -41,7 +51,7 @@ public class CharacterCard : Card
     }
     public void ChangeHeal(int amount)
     {
-        if (health==maxHealth && amount>0) return;
+        //if (health==maxHealth && amount>0) return;
         health += amount;
         if (amount < 0)
         {
@@ -50,8 +60,8 @@ public class CharacterCard : Card
             {
                 Debug.Log(cardName + " has been defeated!");
                 Destroy(this.gameObject);
-                return;
             }
+            return;
         }
         Debug.Log(cardName + " heal " + amount + " points. Remaining health: " + Mathf.Min(maxHealth,health));
     }
