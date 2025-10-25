@@ -44,6 +44,8 @@ public class EventManager : MonoBehaviour
 
     public static EventHandler EndTurn;
 
+    public static EventHandler<bool> GameOver;
+
     public static EventHandler CombatTurn;
     #endregion
 

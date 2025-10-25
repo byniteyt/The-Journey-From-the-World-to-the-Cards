@@ -57,10 +57,12 @@ public class TurnManager : MonoBehaviour
                         CharacterCard characterCard = child.GetComponent<CharacterCard>();
                         Debug.Log($"Character {characterCard.cardName} attacks for {characterCard.attack} damage.");
                         totalDamage += characterCard.attack;
-                    
                 }
-                EventManager.DealDamage?.Invoke(this, totalDamage);
-                Debug.Log($"Total damage dealt: {totalDamage}");
+                if (totalDamage > 0)
+                {
+                    EventManager.DealDamage?.Invoke(this, -totalDamage);
+                    Debug.Log($"Total damage dealt: {totalDamage}");
+                }   
                 EventManager.SecondMainTurn?.Invoke(this, EventArgs.Empty);
                 break;
             case InGamePhase.SecondMainPhase:

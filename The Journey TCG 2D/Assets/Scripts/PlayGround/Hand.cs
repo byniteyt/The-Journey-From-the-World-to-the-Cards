@@ -64,7 +64,7 @@ public class Hand : MonoBehaviour
             return;
         }
 
-        ManaTextManager.Instance.ChangeMana(-card.cost);
+        ManaTextManager.Instance.AddMana(-card.cost);
         Debug.Log("Summoning " + card.cardName + " to the battlefield.");
         int index = System.Array.IndexOf(cards, card);
         cards[index] = null;
@@ -75,16 +75,16 @@ public class Hand : MonoBehaviour
     {
         // Check if the card is in hand
         if (!Corrections(card)) return;
-        ManaTextManager.Instance.ChangeMana(-card.cost);
+        ManaTextManager.Instance.AddMana(-card.cost);
         Debug.Log("Setting active room to " + card.cardName);
         int index = System.Array.IndexOf(cards, card);
         ReorganizeHand(index);
     }
-    public void UseSpellCard(object sender, RoomCard card)
+    public void UseSpellCard(object sender, SpellCard card)
     {
         // Check if the card is in hand
         if (!Corrections(card)) return;
-        ManaTextManager.Instance.ChangeMana(-card.cost);
+        ManaTextManager.Instance.AddMana(-card.cost);
         Debug.Log("Casting spell: " + card.cardName);
         int index = System.Array.IndexOf(cards, card);
         ReorganizeHand(index);

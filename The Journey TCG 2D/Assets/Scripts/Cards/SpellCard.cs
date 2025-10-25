@@ -28,6 +28,7 @@ public class SpellCard : Card
     override protected void UseCard()
     {
         Debug.Log("Spell card played: " + cardName);
+        Hand.Instance.UseSpellCard(this,this);
         // Implement spell effect here
         ApplyEffect();
     }
@@ -62,7 +63,7 @@ public class SpellCard : Card
         originalPosition = Vector2.zero;
         if (targetType == TargetType.SingleEnemy || targetType == TargetType.SingleAlly)
         {
-            RaycastHit2D[] hit = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.forward, LayerMask.GetMask("Battle"));
+            RaycastHit2D[] hit = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, LayerMask.GetMask("Battle"));
             if (hit.Length != 0)
             {
                 foreach (RaycastHit2D h in hit)
@@ -75,6 +76,7 @@ public class SpellCard : Card
                             (targetType == TargetType.SingleAlly &&
                             card.gameObject.transform.parent == playerBattleGround.transform))
                         {
+                            Hand.Instance.UseSpellCard(this,this);
                             Debug.Log("Target selected: " + card.cardName);
                             targetCard = card;
                             ApplyEffectToTarget();

@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +7,6 @@ public class ManaTextManager : MonoBehaviour
 {
     public static ManaTextManager Instance { get; private set; }
     public static TextMeshProUGUI manaText;
-    public static Slider manaSlider;
     public float velocity = 1f; 
     public int maxMana = 100;
     int actualMana = 0;
@@ -23,7 +23,8 @@ public class ManaTextManager : MonoBehaviour
             Destroy(gameObject);
         }
         manaText = GameObject.Find("Mana Source").GetComponentInChildren<TextMeshProUGUI>();
-        manaSlider = GameObject.Find("Mana Source").GetComponentInChildren<Slider>();
+        ResetMana();
+        EventManager.StartTurn += ManaTurn;
     }
 
     // Update is called once per frame
@@ -32,33 +33,32 @@ public class ManaTextManager : MonoBehaviour
         if (GameManager.CurrentGameState == GameState.MainMenu) ResetMana();
         if (GameManager.CurrentGameState != GameState.InGame) return;
         if (actualMana == maxMana) return; 
-        manaSlider.value += velocity * Time.deltaTime;
-        if (manaSlider.value>=1)
-        {
-            actualMana++;
-            manaSlider.value = 0;
-            UpdateManaText();
-        }
     }
     void UpdateManaText()
     {
         manaText.text = (actualMana == maxMana)? $"Mana: {actualMana}  MAX" : $"Mana: {actualMana}";
         
     }
-    public void ChangeMana(int amount)
+    public void AddMana(int amount)
     {
         actualMana = Mathf.Min( actualMana + amount, maxMana);
         UpdateManaText();
     }
+
+    public void ManaTurn(object sender, EventArgs e)
+    {
+        actualMana = Mathf.Min(actualMana + 4, maxMana);
+        UpdateManaText();
+    }
+
     public bool IsEnoughMana(int cost)
     {
-        Debug.Log($"Checking mana: {actualMana} / {cost}" );
+        Debug.Log($"Checking mana: {actualMana} / {cost}");
         return (actualMana >= cost);
     }
     public void ResetMana()
     {
-        actualMana = 0;
-        manaSlider.value = 0;
+        actualMana = maxMana;
         UpdateManaText();
     }
 }

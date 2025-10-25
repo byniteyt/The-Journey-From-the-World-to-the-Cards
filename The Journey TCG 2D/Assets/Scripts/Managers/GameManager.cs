@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         EventManager.StartTurn+= (s, e) => StartTurn();
+        EventManager.GameOver += EndGame;
     }
     // Update is called once per frame
     void Update()
@@ -47,5 +49,11 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-
+    void EndGame(object sender, bool playerWon)
+    {
+        Time.timeScale = 0f;
+        ChangeGameState(GameState.GameOver);
+        GameObject result = (!playerWon)? Resources.Load<GameObject>("Prefabs/UI/GameOver"):Resources.Load<GameObject>("Prefabs/UI/YOU WIN");
+        Instantiate(result, GameObject.Find("Canvas").transform);
+    }
 }

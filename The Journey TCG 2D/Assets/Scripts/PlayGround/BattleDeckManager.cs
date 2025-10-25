@@ -41,6 +41,11 @@ public class BattleDeckManager : MonoBehaviour
                 deckCount--;
             }  
         }
+        if (deckCount == 0)
+        {
+            Debug.Log("Deck is empty!");
+            this.GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
     void ShuffleArray(Card[] array)
     {
