@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.33506, y: -3.3229716, z: 0}
-  m_LocalScale: {x: 1, y: 1.6813, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -81,8 +81,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.7584905, g: 0.35027397, b: 0.05008889, a: 1}
+  m_Sprite: {fileID: 2671582743394629751, guid: b48d196a31651944e925655959168190, type: 3}
+  m_Color: {r: 0.94716984, g: 0.5517016, b: 0.2627056, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -130,13 +130,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3.18, y: 4.6}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.18, y: 4.6}
   m_EdgeRadius: 0
 --- !u!114 &6520303133943985146
 MonoBehaviour:
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d57e44c086fd3504593e0fa73e7549aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomCard
-  artwork: {fileID: 0}
+  artwork: {fileID: 2671582743394629751, guid: b48d196a31651944e925655959168190, type: 3}
   cardName: Laboratory
   description: 
   cost: 3

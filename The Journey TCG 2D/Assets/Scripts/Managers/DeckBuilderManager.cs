@@ -19,6 +19,7 @@ public class DeckBuilderManager : MonoBehaviour
             return;
         }
         selectedDeck = DeckCollection.GetDeck(DeckCollection.DecksAmount() - 1);
+        DontDestroyOnLoad(selectedDeck);
         SceneManager.LoadScene("DeckCreator");
     }
 

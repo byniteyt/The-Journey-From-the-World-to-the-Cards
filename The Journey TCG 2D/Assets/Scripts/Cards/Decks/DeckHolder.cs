@@ -29,6 +29,7 @@ public class DeckHolder : MonoBehaviour
     void SelectDeck(Deck selectedDeck)
     {
         DeckBuilderManager.selectedDeck = selectedDeck;
+        DontDestroyOnLoad(DeckBuilderManager.selectedDeck);
         SceneManager.LoadScene("DeckCreator");
     }
 }

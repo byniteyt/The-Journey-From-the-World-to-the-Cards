@@ -28,6 +28,15 @@ public static class DeckCollection
         return decks.IndexOf(deck);
     }
 
+    public static Deck GetLastDeck()
+    {
+        if (decks.Count == 0)
+        {
+            return null;
+        }
+        return decks[decks.Count - 1];
+    }
+
     public static void SetDeck(int index, Deck deckToChange)
     {
         decks[index] = deckToChange;

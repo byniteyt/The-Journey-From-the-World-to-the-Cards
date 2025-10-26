@@ -6,7 +6,7 @@ public class WildDeck : Deck
     private void Awake()
     {
         deckFormat = DeckFormat.Wild;
-        limitCardAmount = 20;
+        limitCardAmount = 40;
         cardLimits = new Dictionary<string, int>();
     }
 
@@ -17,20 +17,22 @@ public class WildDeck : Deck
             Debug.Log("Wild Deck is full. Cannot add more cards.");
             return;
         }
-        deck.Add(cardToAdd);
         if (cardLimits.ContainsKey(cardToAdd.name))
         {
-            if (HasEnoughCards(cardToAdd))
+            if (!HasEnoughCards(cardToAdd))
             {
+                deck.Add(cardToAdd);
                 cardLimits[cardToAdd.name]++;
             }
             else
             {
                 Debug.Log("Cannot add more copies of " + cardToAdd.name + " to the Wild Deck.");
-                deck.Remove(cardToAdd);
+                //deck.Remove(cardToAdd);
             }
+            return;
         }
-            cardLimits.Add(cardToAdd.name, 1);
+        deck.Add(cardToAdd);
+        cardLimits.Add(cardToAdd.name, 1);
     }
     bool HasEnoughCards(Card cardToAdd)
     {
@@ -42,6 +44,11 @@ public class WildDeck : Deck
                 count++;
             }
         }
-        return count < 2;
+        return count == 2;
+    }
+
+    protected override bool IsFull()
+    {
+        return deck.Count >= limitCardAmount;
     }
 }

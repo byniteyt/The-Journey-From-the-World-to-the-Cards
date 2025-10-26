@@ -1,12 +1,13 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class StandardDeck : Deck
 {
     private void Awake()
     {
         deckFormat = DeckFormat.Standard;
-        limitCardAmount = 30;
-
+        limitCardAmount = 100;
+        
     }
     public override void AddCard(Card cardToAdd)
     {
@@ -15,11 +16,13 @@ public class StandardDeck : Deck
             Debug.Log("This Deck is full. Cannot add more cards.");
             return;
         }
-        deck.Add(cardToAdd);
+        Debug.Log($"Added {cardToAdd.name} to the Deck.");
+        
         if (cardLimits.ContainsKey(cardToAdd.name))
         {
-            if (cardLimits[cardToAdd.name]<4)
+            if (cardLimits[cardToAdd.name]<8)
             {
+                deck.Add(cardToAdd);
                 cardLimits[cardToAdd.name]++;
             }
             else
@@ -28,6 +31,7 @@ public class StandardDeck : Deck
             }
             return;
         }
+        deck.Add(cardToAdd);
         cardLimits.Add(cardToAdd.name, 1);
     }
 
