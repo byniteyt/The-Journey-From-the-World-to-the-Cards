@@ -26,7 +26,11 @@ MonoBehaviour:
   vertical: 0
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   controlID: 931
+=======
+  controlID: 4088
+>>>>>>> Stashed changes
 =======
   controlID: 4088
 >>>>>>> Stashed changes
@@ -161,7 +165,11 @@ MonoBehaviour:
   vertical: 1
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   controlID: 932
+=======
+  controlID: 4040
+>>>>>>> Stashed changes
 =======
   controlID: 4040
 >>>>>>> Stashed changes
@@ -195,7 +203,11 @@ MonoBehaviour:
   vertical: 0
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   controlID: 933
+=======
+  controlID: 4031
+>>>>>>> Stashed changes
 =======
   controlID: 4031
 >>>>>>> Stashed changes
@@ -272,7 +284,11 @@ MonoBehaviour:
       m_LastClickedID: 0
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       m_ExpandedIDs: 04fbffff
+=======
+      m_ExpandedIDs: 02d5ffff8adeffffece6ffff04fbffff00b8000034b80000
+>>>>>>> Stashed changes
 =======
       m_ExpandedIDs: 02d5ffff8adeffffece6ffff04fbffff00b8000034b80000
 >>>>>>> Stashed changes
@@ -995,9 +1011,15 @@ MonoBehaviour:
   m_Position:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     m_Target: {x: 960, y: 540, z: 0}
     speed: 2
     m_Value: {x: 960, y: 540, z: 0}
+=======
+    m_Target: {x: -2.7649183, y: -3.251585, z: -9.90078}
+    speed: 2
+    m_Value: {x: -2.7649183, y: -3.251585, z: -9.90078}
+>>>>>>> Stashed changes
 =======
     m_Target: {x: -2.7649183, y: -3.251585, z: -9.90078}
     speed: 2
@@ -1059,9 +1081,15 @@ MonoBehaviour:
   m_Size:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     m_Target: 1101.4536
     speed: 2
     m_Value: 1101.4536
+=======
+    m_Target: 2.2024348
+    speed: 2
+    m_Value: 2.2024348
+>>>>>>> Stashed changes
 =======
     m_Target: 2.2024348
     speed: 2
@@ -1126,10 +1154,13 @@ MonoBehaviour:
     height: 288
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_MinSize: {x: 101, y: 126}
   m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 11}
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   m_MinSize: {x: 231, y: 276}
@@ -1190,7 +1221,11 @@ MonoBehaviour:
     m_Folders:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     - Assets/Scripts/Managers
+=======
+    - Assets/Scenes
+>>>>>>> Stashed changes
 =======
     - Assets/Scenes
 >>>>>>> Stashed changes
@@ -1208,7 +1243,11 @@ MonoBehaviour:
   m_LastFolders:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - Assets/Scripts/Managers
+=======
+  - Assets/Scenes
+>>>>>>> Stashed changes
 =======
   - Assets/Scenes
 >>>>>>> Stashed changes
@@ -1224,9 +1263,15 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 34}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     m_SelectedIDs: dab20000
     m_LastClickedID: 45786
     m_ExpandedIDs: 0000000092b2000094b2000096b2000098b200009ab200009cb200009eb20000
+=======
+    m_SelectedIDs: 54b30000
+    m_LastClickedID: 45908
+    m_ExpandedIDs: 00000000e6b20000e8b20000eab20000ecb20000eeb20000f0b20000f2b2000052b3000000ca9a3b
+>>>>>>> Stashed changes
 =======
     m_SelectedIDs: 54b30000
     m_LastClickedID: 45908
@@ -1267,7 +1312,11 @@ MonoBehaviour:
     m_LastClickedID: 0
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     m_ExpandedIDs: 0000000092b2000094b2000096b2000098b200009ab200009cb200009eb20000
+=======
+    m_ExpandedIDs: 00000000e6b20000e8b20000eab20000ecb20000eeb20000f0b20000f2b2000000ca9a3b
+>>>>>>> Stashed changes
 =======
     m_ExpandedIDs: 00000000e6b20000e8b20000eab20000ecb20000eeb20000f0b20000f2b2000000ca9a3b
 >>>>>>> Stashed changes
@@ -1301,10 +1350,13 @@ MonoBehaviour:
   m_ListAreaState:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     m_SelectedInstanceIDs: dad00000
     m_LastClickedInstanceID: 53466
     m_HadKeyboardFocusLastEvent: 0
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     m_SelectedInstanceIDs: 
