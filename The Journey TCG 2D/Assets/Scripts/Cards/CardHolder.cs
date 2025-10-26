@@ -19,6 +19,8 @@ public class CardHolder : MonoBehaviour
             //cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
             cb.GetComponentInChildren<TextMeshProUGUI>().text = CardCollection.GetCollection()[card].ToString();
             cb.gameObject.name = card.name;
+            cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
+            cb.AddComponent<BoxCollider2D>();
             switch (card.GetType().ToString())
             {
                 case "RoomCard":

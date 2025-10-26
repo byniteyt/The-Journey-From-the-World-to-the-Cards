@@ -6,6 +6,7 @@ public class GeneralButtons : MonoBehaviour
 {
     public void QuitGame()
     {
+        Debug.Log("Cerrando juego...");
         Application.Quit();
     }
     public void OpenURL(string url)

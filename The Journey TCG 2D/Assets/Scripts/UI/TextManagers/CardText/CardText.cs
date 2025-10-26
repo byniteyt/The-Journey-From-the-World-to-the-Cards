@@ -18,7 +18,7 @@ public class CardText : MonoBehaviour
         nameText = GameObject.Find("Name").GetComponent<TextMeshProUGUI>();
         costText = GameObject.Find("Cost").GetComponent<TextMeshProUGUI>();
         descriptionText = GameObject.Find("Description").GetComponent<TextMeshProUGUI>();
-        artworkImage = GameObject.Find("Card").GetComponent<Image>();
+        artworkImage = GameObject.Find("Art").GetComponent<Image>();
     }
 
     // Update is called once per frame

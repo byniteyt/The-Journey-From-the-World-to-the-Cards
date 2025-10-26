@@ -26,7 +26,6 @@ public class Card : MonoBehaviour
             {
                 ShowCardDetails();
             }
-                
         }
     }
 
@@ -57,7 +56,7 @@ public class Card : MonoBehaviour
     }
     protected bool MouseIsInside()
     {
-        Vector2 areaPosition = this.transform.position;
+        Vector2 areaPosition = this.transform.position; 
         Vector2 areaSize = this.GetComponent<Collider2D>().bounds.size;
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         return (mousePosition.x >= areaPosition.x - areaSize.x / 2 &&

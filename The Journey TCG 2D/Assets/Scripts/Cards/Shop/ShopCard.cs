@@ -7,6 +7,6 @@ public class ShopCard : MonoBehaviour
     public void PurchaseCard()
     {
         CardCollection.AddCard(card);
-        Debug.Log($"Purchased card: {card.cardName} for {price} coins.");
+        Debug.Log($"Compraste {card.cardName} por {price} monedas.");
     }
 }

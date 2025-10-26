@@ -30,6 +30,8 @@ public class DeckCardHolder : MonoBehaviour
             //cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
             cb.GetComponentInChildren<TextMeshProUGUI>().text = DeckBuilderManager.selectedDeck.GetCardLimit(card).ToString();
             cb.gameObject.name = card.name;
+            cb.AddComponent<BoxCollider2D>();
+            cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
             switch (card.GetType().ToString())
             {
                 case "RoomCard":

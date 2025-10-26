@@ -7,7 +7,7 @@ public class LifeTextManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = (gameObject.name == "PlayerLifeText") ? "Player\n" : "Enemy\n";
+        player = (gameObject.name == "PlayerLife") ? "Player\n" : "Enemy\n";
         LifeManager lifeManager = this.GetComponent<LifeManager>();
         GetComponent<TextMeshProUGUI>().text = $"{player}Lives: {lifeManager.GetLives()}";
         EventManager.UpdateLife += ChangeLifeText;
