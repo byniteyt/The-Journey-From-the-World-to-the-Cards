@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 3587
+  controlID: 7428
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -47,8 +47,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 290.4
-    y: 79.200005
+    x: 291.4
+    y: 24
     width: 879.6
     height: 402.8
   m_SerializedDataModeController:
@@ -95,7 +95,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 3588
+  controlID: 7380
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 3589
+  controlID: 7371
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -244,9 +244,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 50baffff
-      m_LastClickedID: -17840
-      m_ExpandedIDs: f6baffff40cbffff42cbffffa8dcffff52e3ffffc8f6ffff04fbffffb0b30000e4b30000b8c4000058c50000d2d00000f4d00000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 28c5ffff9ccaffffdeceffff7ee5ffff8ee5ffff2ae6ffff40e7ffff04fbffff32b000004ab0000072b000004ab10000c4b9000004ba000050ba0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -961,9 +961,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 1005.48035, y: 481.21176, z: -5.1505065}
+    m_Target: {x: 1141.4224, y: 423.44833, z: -6.5117664}
     speed: 2
-    m_Value: {x: 1005.48035, y: 481.21176, z: -5.1505065}
+    m_Value: {x: 1141.4224, y: 423.44833, z: -6.5117664}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1013,9 +1013,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 673.1645
+    m_Target: 721.8875
     speed: 2
-    m_Value: 673.1645
+    m_Value: 721.8875
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1123,7 +1123,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Sounds
+    - Assets/Scenes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1133,17 +1133,17 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Resources/Sounds
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\ByNiteProYT\Desktop\Proyectos\Videojuegos\Unity\3D\The-Journey-TCG\The
     Journey TCG 2D
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 34}
-    m_SelectedIDs: ead50000
-    m_LastClickedID: 54762
-    m_ExpandedIDs: 00000000fab20000fcb20000feb2000000b3000002b3000004b3000006b3000062b3000000ca9a3b
+    scrollPos: {x: 0, y: 50}
+    m_SelectedIDs: aab30000
+    m_LastClickedID: 45994
+    m_ExpandedIDs: 0000000040b3000042b3000044b3000046b3000048b300004ab300004cb3000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1172,7 +1172,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000fab20000fcb20000feb2000000b3000002b3000004b3000006b3000000ca9a3b
+    m_ExpandedIDs: 0000000040b3000042b3000044b3000046b3000048b300004ab300004cb3000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1198,8 +1198,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 50baffff
-    m_LastClickedInstanceID: -17840
+    m_SelectedInstanceIDs: 74b70000
+    m_LastClickedInstanceID: 46964
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300001ab0000034bb000000000000
     m_RenameOverlay:
@@ -1334,7 +1334,7 @@ MonoBehaviour:
     m_CachedPref: -160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
+  m_LastInspectedObjectInstanceID: 46964
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0

@@ -49,5 +49,10 @@ public class EventManager : MonoBehaviour
     public static EventHandler CombatTurn;
     #endregion
 
+    #region Profile Events
+    public static EventHandler<int> SetPlayerLevel;
+    public static EventHandler<int> AddPlayerExp;
+    public static EventHandler<int> ChangeCoins;
+    #endregion
 
 }
