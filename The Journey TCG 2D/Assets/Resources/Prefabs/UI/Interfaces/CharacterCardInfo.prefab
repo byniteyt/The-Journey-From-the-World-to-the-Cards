@@ -510,11 +510,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2498957179390338490, guid: eb5208ff233a33e4c997a71f10a9d6b7, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 629.51
+      value: 606
       objectReference: {fileID: 0}
     - target: {fileID: 2498957179390338490, guid: eb5208ff233a33e4c997a71f10a9d6b7, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 908.85
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 2498957179390338490, guid: eb5208ff233a33e4c997a71f10a9d6b7, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -608,6 +608,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UICard
       objectReference: {fileID: 0}
+    - target: {fileID: 8018870099236775100, guid: eb5208ff233a33e4c997a71f10a9d6b7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5600167663196108449, guid: dfc5b8a535292ee44805f6971636ff5f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
