@@ -7,6 +7,7 @@ public class DeckHolder : MonoBehaviour
 {
     GameObject deckButton;
     GameObject deckHolder;
+    static Button selectedButton;
 
     
     private void Start()
@@ -22,7 +23,7 @@ public class DeckHolder : MonoBehaviour
             if (deck.GetComponent<WildDeck>()) db.AddComponent<WildDeck>();
             else if (deck.GetComponent<StandardDeck>()) db.AddComponent<StandardDeck>();
             Button selectButton = db.GetComponent<Button>();
-            selectButton.onClick.AddListener(() => SelectDeck(deck));
+            selectButton.onClick.AddListener(() => { SelectDeck(deck); selectedButton = selectButton; });
             db.GetComponent<Deck>().SetDeckName(deck.ToString());
         }
     }
@@ -30,6 +31,21 @@ public class DeckHolder : MonoBehaviour
     {
         DeckBuilderManager.selectedDeck = selectedDeck;
         DontDestroyOnLoad(DeckBuilderManager.selectedDeck);
+    }
+
+    public void EditDeck()
+    {
         SceneManager.LoadScene("DeckCreator");
+    }
+    public void DeleteDeck()
+    {
+        if (selectedButton == null)
+        {
+            Debug.Log("No hay deck seleccionada");
+            return;
+        }
+        DeckCollection.RemoveDeck(DeckBuilderManager.selectedDeck);
+        Destroy(DeckBuilderManager.selectedDeck);
+        Destroy(selectedButton.gameObject);
     }
 }

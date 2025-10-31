@@ -60,8 +60,6 @@ public abstract class Deck : MonoBehaviour
             Debug.Log("Deck is null");
             return false;
         }
-        Debug.Log(deck.Count);
-        Debug.Log(limitCardAmount);
         return !(deck.Count<limitCardAmount);
     }
     protected virtual void RemoveCard(Card cardToRemove) {
