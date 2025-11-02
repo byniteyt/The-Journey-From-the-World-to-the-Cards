@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class CreateDeck : MonoBehaviour
+public class DeckCreator : MonoBehaviour
 {
     string deckName;
     TMP_Dropdown formatDrop;
@@ -26,6 +27,7 @@ public class CreateDeck : MonoBehaviour
     {
         format = (DeckFormat)index;
     }
+
     public void AddDeck()
     {
         GameObject newDeckObj = new GameObject("Deck new"); // crea un objeto vacío
@@ -42,6 +44,14 @@ public class CreateDeck : MonoBehaviour
         deckToAdd.name = deckName;
         DontDestroyOnLoad(deckToAdd);
         DeckCollection.AddDeck(deckToAdd);
+        if (DeckCollection.DecksAmount() == 0)
+        {
+            Debug.Log("No deck was added.");
+            return;
+        }
+        DontDestroyOnLoad(DeckCollection.GetDeck(DeckCollection.DecksAmount() - 1));
+        DeckManager.selectedDeck = deckToAdd;
+        SceneManager.LoadScene("DeckCreator");
     }
 
     public void SetDeckName(string newName)
