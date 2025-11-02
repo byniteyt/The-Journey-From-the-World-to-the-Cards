@@ -9,6 +9,9 @@ public class LifeManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        PlayerHealth = GameObject.Find("PlayerLife").GetComponent<LifeManager>();
+
+        EnemyHealth = GameObject.Find("EnemyLife").GetComponent<LifeManager>();
         EventManager.ChangeLife += ChangeLife;
         EventManager.DealDamage += ChangeLife;
         EventManager.StartTurn += (object caller, System.EventArgs e) => { ChangeActiveLife(); };
@@ -16,12 +19,6 @@ public class LifeManager : MonoBehaviour
     public int GetLives()
     {
         return lives;
-    }
-    LifeManager()
-    {
-        PlayerHealth = GameObject.Find("PlayerLife").GetComponent<LifeManager>();
-        
-        EnemyHealth = GameObject.Find("EnemyLife").GetComponent<LifeManager>();
     }
     LifeManager GetLifeManager(bool Player)
     {

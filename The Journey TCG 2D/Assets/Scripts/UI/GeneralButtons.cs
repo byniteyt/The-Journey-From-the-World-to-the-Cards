@@ -23,11 +23,11 @@ public class GeneralButtons : MonoBehaviour
     }
     public void Settings()
     {
-        SceneManager.LoadScene("SettingsMenu");
+        SceneManager.LoadScene("Settings");
     }
     public void Credits()
     {
-        SceneManager.LoadScene("CreditsMenu");
+        SceneManager.LoadScene("Credits");
     }
     public void LoadScene(SceneAsset scene)
     {

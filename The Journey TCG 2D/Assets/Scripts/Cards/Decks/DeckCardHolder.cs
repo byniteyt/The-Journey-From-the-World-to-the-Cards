@@ -13,22 +13,22 @@ public class DeckCardHolder : MonoBehaviour
     {
         deckCardHolder = GameObject.Find("DeckCardHolder");
         deckCardButton = Resources.Load<GameObject>("Prefabs/Cards/CollectedCard");
-        if (DeckBuilderManager.selectedDeck == null)
+        if (DeckManager.selectedDeck == null)
         {
             Debug.Log("No deck selected.");
             return;
         }
-        if (DeckBuilderManager.selectedDeck.GetCards().Count == 0)
+        if (DeckManager.selectedDeck.GetDeck().Count == 0)
         {
             Debug.Log("Selected deck has no cards.");
             return;
         }
-        foreach (string key in DeckBuilderManager.selectedDeck.GetDictionary().Keys)
+        foreach (string key in DeckManager.selectedDeck.GetDictionary().Keys)
         {
-            Card card = DeckBuilderManager.selectedDeck.GetCardByName(key);
+            Card card = DeckManager.selectedDeck.GetCardByName(key);
             GameObject cb = Instantiate(deckCardButton, deckCardHolder.transform);
             //cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
-            cb.GetComponentInChildren<TextMeshProUGUI>().text = DeckBuilderManager.selectedDeck.GetCardLimit(card).ToString();
+            cb.GetComponentInChildren<TextMeshProUGUI>().text = DeckManager.selectedDeck.GetCardLimit(card).ToString();
             cb.gameObject.name = card.name;
             cb.AddComponent<BoxCollider2D>();
             cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;

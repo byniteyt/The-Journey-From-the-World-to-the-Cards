@@ -35,7 +35,7 @@ public class StandardDeck : Deck
         cardLimits.Add(cardToAdd.name, 1);
     }
 
-    protected override void RemoveCard(Card cardToRemove)
+    public override void RemoveCard(Card cardToRemove)
     {
         base.RemoveCard(cardToRemove);
         cardLimits[cardToRemove.name]--;
@@ -43,16 +43,5 @@ public class StandardDeck : Deck
         {
             cardLimits.Remove(cardToRemove.name);
         }
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

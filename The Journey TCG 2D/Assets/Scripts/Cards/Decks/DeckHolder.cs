@@ -29,8 +29,8 @@ public class DeckHolder : MonoBehaviour
     }
     void SelectDeck(Deck selectedDeck)
     {
-        DeckBuilderManager.selectedDeck = selectedDeck;
-        DontDestroyOnLoad(DeckBuilderManager.selectedDeck);
+        DeckManager.selectedDeck = selectedDeck;
+        DontDestroyOnLoad(DeckManager.selectedDeck);
     }
 
     public void EditDeck()
@@ -44,8 +44,8 @@ public class DeckHolder : MonoBehaviour
             Debug.Log("No hay deck seleccionada");
             return;
         }
-        DeckCollection.RemoveDeck(DeckBuilderManager.selectedDeck);
-        Destroy(DeckBuilderManager.selectedDeck);
+        DeckCollection.RemoveDeck(DeckManager.selectedDeck);
+        Destroy(DeckManager.selectedDeck);
         Destroy(selectedButton.gameObject);
     }
 }

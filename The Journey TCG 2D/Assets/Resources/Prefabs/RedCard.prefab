@@ -156,3 +156,4 @@ MonoBehaviour:
   cost: 3
   health: 6
   attack: 8
+  rank: 1

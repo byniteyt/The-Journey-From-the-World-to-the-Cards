@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -21,7 +22,8 @@ public abstract class Deck : MonoBehaviour
     }
     public DeckFormat GetFormat() => this.deckFormat;
 
-    public List<Card> GetCards()
+
+    public List<Card> GetDeck()
     {
         return deck;
     }
@@ -53,6 +55,14 @@ public abstract class Deck : MonoBehaviour
     }
 
     public abstract void AddCard(Card cardToAdd);
+
+    public Card GetCard(int index) { return deck[index]; }
+
+    public Card GetLastCard()
+    {
+        return GetCard(deck.Count - 1);
+    }
+
      protected virtual bool IsFull()
     {
         if (deck==null)
@@ -62,7 +72,7 @@ public abstract class Deck : MonoBehaviour
         }
         return !(deck.Count<limitCardAmount);
     }
-    protected virtual void RemoveCard(Card cardToRemove) {
+    public virtual void RemoveCard(Card cardToRemove) {
         deck.Remove(cardToRemove);
     }
     protected virtual bool CorrectSize()

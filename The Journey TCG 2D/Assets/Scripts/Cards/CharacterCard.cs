@@ -7,6 +7,7 @@ public class CharacterCard : Card
     int maxHealth ;
     public int attack;
 
+    public CreatureRank rank;
     void Start()
     {
         maxHealth = health;
