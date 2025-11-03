@@ -90,4 +90,9 @@ public class WildDeck : Deck
     {
         return deck.Count >= limitCardAmount;
     }
+
+    public override bool IsValidForPlay()
+    {
+        return deck.Count==limitCardAmount;
+    }   
 }

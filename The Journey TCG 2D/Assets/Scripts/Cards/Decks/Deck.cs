@@ -22,7 +22,10 @@ public abstract class Deck : MonoBehaviour
     }
     public DeckFormat GetFormat() => this.deckFormat;
 
-
+    public virtual bool IsValidForPlay()
+    {
+        return true;
+    }
     public List<Card> GetDeck()
     {
         return deck;

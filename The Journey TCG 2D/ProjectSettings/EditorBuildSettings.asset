@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleMenu.unity
     guid: fff07c086ae35814b9fded60b3989980
   - enabled: 1
+    path: Assets/Scenes/StandardMatch.unity
+    guid: 4ae6681611e43884884459969cbf4bee
+  - enabled: 1
+    path: Assets/Scenes/WildMatch.unity
+    guid: e037603329d3e754192cb8bd5cf64dc9
+  - enabled: 1
     path: Assets/Scenes/TableBoard.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1

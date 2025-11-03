@@ -33,11 +33,19 @@ public class MatchSelector : MonoBehaviour
             Debug.Log("No has elegido la baraja.");
             return;
         }
+
         if (DeckManager.selectedDeck.GetFormat() != format)
         {
             Debug.Log("La baraja no es correcta.");
             return;
         }
+
+        if (!DeckManager.selectedDeck.IsValidForPlay())
+        {
+            Debug.Log("La baraja no es válida. Asegúrate de que cumple los requisitos."); 
+            return;
+        }
+
         SceneManager.LoadScene(format.ToString() + "Match");
     }
 

@@ -44,4 +44,9 @@ public class StandardDeck : Deck
             cardLimits.Remove(cardToRemove.name);
         }
     }
+
+    public override bool IsValidForPlay()
+    {
+        return (deck.Count >= 40 && deck.Count <= 100);
+    }
 }
