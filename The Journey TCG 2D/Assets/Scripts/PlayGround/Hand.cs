@@ -5,8 +5,8 @@ public class Hand : MonoBehaviour
 {
     Card[] cards;
     public static Hand Instance { get; private set; }
-    public int handLimit = 5;
-    int currentCardCount = 0;
+    public int handLimit;
+    int currentCardCount;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

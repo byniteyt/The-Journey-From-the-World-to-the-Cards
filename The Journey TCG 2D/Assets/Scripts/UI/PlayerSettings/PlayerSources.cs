@@ -2,7 +2,7 @@ using UnityEngine;
 
 public static class PlayerSources
 {
-    private static int coins = 0;
+    private static int coins;
 
     public static int GetCoins()
     {

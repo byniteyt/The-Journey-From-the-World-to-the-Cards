@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class LifeManager : MonoBehaviour
 {
-    [SerializeField] private int lives = 3;
+    [SerializeField] private int lives;
     static public LifeManager PlayerHealth;
     static public LifeManager EnemyHealth;
     GameObject activeLife;

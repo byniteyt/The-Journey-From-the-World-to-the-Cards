@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class BattlegroundArea : MonoBehaviour
 {
-    int soldiersAmount = 0;
-    [SerializeField] float characterSpacing = 2.0f;
-    [SerializeField] float maxSoldiersPerRow = 6;
+    int soldiersAmount;
+    [SerializeField] float characterSpacing;
+    [SerializeField] float maxSoldiersPerRow;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        characterSpacing = (characterSpacing == 0.0f )?2.0f:characterSpacing;
+        maxSoldiersPerRow = (maxSoldiersPerRow == 0.0f )?2.0f: maxSoldiersPerRow;
     }
 
     // Update is called once per frame

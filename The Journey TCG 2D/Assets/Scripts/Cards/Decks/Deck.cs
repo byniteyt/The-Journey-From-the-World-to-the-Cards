@@ -10,11 +10,11 @@ public abstract class Deck : MonoBehaviour
 
     protected DeckFormat deckFormat;
 
-    protected List<Card> deck = new List<Card>();
+    protected List<Card> deck;
 
     protected int limitCardAmount;
 
-    protected Dictionary<string, int> cardLimits = new Dictionary<string, int>();
+    protected Dictionary<string, int> cardLimits;
 
     protected void OnCreate()
     {

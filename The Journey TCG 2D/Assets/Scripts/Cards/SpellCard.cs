@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SpellCard : Card
 {
-    [SerializeField] protected int effectAmount = 15;
+    [SerializeField] protected int effectAmount;
     [SerializeField] protected TargetType targetType;
     protected Card targetCard;
     protected SpellEffectType effect;

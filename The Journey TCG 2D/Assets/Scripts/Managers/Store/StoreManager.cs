@@ -9,6 +9,7 @@ public class StoreManager : MonoBehaviour
         value = Mathf.Abs(value);
         EventManager.ChangeCoins?.Invoke(this, value);
     }
+
     public void RemoveCoins(int value)
     {
         value = Mathf.Abs(value);
@@ -19,15 +20,6 @@ public class StoreManager : MonoBehaviour
         }
         EventManager.ChangeCoins?.Invoke(this, -value);
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
 
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

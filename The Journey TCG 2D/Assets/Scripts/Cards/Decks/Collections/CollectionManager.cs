@@ -4,28 +4,24 @@ public class CollectionManager : MonoBehaviour
 {
     CollectionData collectionData;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    void Start()
     {
         foreach(Collection collection in collectionData.collections)
         {
-            foreach(Card card in collection.cardsOfCollection)
+            foreach(Card card in collection.GetCollectionCards())
             {
-                if(!collection.cardDictionary.ContainsKey(card))
+                if(!collection.GetCardList().ContainsKey(card))
                 {
-                    collection.cardDictionary.Add(card, card);
+                    collection.GetCardList().Add(card, card);
                 }
                 else
                 {
-                    collection.cardsOfCollection.Remove(card);
+                    collection.GetCollectionCards().Remove(card);
                 }
             }
         }
     }
 
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()

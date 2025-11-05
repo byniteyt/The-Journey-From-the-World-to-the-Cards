@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public static GameState CurrentGameState { get; set; } = GameState.MainMenu;
+    public static GameState CurrentGameState { get; set; }
     private GameObject pauseMenu;
     private Button pauseButton;
     void Start()

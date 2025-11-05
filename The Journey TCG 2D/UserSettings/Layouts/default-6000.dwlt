@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 772.8
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 382}
   m_MaxSize: {x: 10000, y: 10000}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 101
+  controlID: 38
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 102
+  controlID: 39
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -217,8 +217,8 @@ MonoBehaviour:
     y: 0
     width: 290.4
     height: 428
-  m_MinSize: {x: 201, y: 226}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -247,10 +247,10 @@ MonoBehaviour:
   m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 15}
   m_Panes:
-  - {fileID: 15}
   - {fileID: 13}
-  m_Selected: 0
-  m_LastSelected: 1
+  - {fileID: 15}
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -296,8 +296,8 @@ MonoBehaviour:
     y: 0
     width: 364
     height: 716.8
-  m_MinSize: {x: 276, y: 76}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -397,7 +397,7 @@ MonoBehaviour:
       height: 864
     m_MinimalGUI: 1
   m_defaultScale: 0.4409722
-  m_LastWindowPixelSize: {x: 879.6, y: 402}
+  m_LastWindowPixelSize: {x: 1099.5, y: 502.5}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 24
+    y: 79.200005
     width: 289.4
     height: 402
   m_SerializedDataModeController:
@@ -443,9 +443,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 6ab00000
-      m_LastClickedID: 45162
-      m_ExpandedIDs: 04fbffff
+      m_SelectedIDs: 72b20000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 2addffff5cf7ffff04fbffffa0b20000aeb20000d2b2000012b30000aab3000002b40000aab40000d2b40000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -491,8 +491,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 291.4
-    y: 24
+    x: 290.4
+    y: 79.200005
     width: 879.6
     height: 402
   m_SerializedDataModeController:
@@ -1133,9 +1133,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 1300, y: 540, z: 0}
+    m_Target: {x: 960, y: 473.77, z: 0}
     speed: 2
-    m_Value: {x: 1300, y: 540, z: 0}
+    m_Value: {x: 960, y: 473.77, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1185,9 +1185,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 522.3983
+    m_Target: 1070.541
     speed: 2
-    m_Value: 522.3983
+    m_Value: 1070.541
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1243,7 +1243,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 452
+    y: 507.2
     width: 1171
     height: 262.8
   m_SerializedDataModeController:
@@ -1268,7 +1268,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/UI/PlayerSettings
+    - Assets/Scenes/Loaders
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1278,7 +1278,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/UI/PlayerSettings
+  - Assets/Scenes/Loaders
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\ByNiteProYT\Desktop\Proyectos\Videojuegos\Unity\3D\The-Journey-TCG\The
     Journey TCG 2D
@@ -1286,9 +1286,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 6eb20000
-    m_LastClickedID: 45678
-    m_ExpandedIDs: 00000000a0b00000a2b00000a4b00000a6b00000a8b00000aab00000acb00000aeb000004eb2000000ca9a3b
+    m_SelectedIDs: 70b20000
+    m_LastClickedID: 45680
+    m_ExpandedIDs: 00000000a8b00000aab00000acb00000aeb00000b0b00000b2b00000b4b00000b6b000005ab2000064b200006ab20000e0b5000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1317,7 +1317,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a0b00000a2b00000a4b00000a6b00000a8b00000aab00000acb00000aeb00000
+    m_ExpandedIDs: 00000000a8b00000aab00000acb00000aeb00000b0b00000b2b00000b4b00000b6b00000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1346,7 +1346,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c62300001ab0000034bb000000000000dcb300009cb20000
+    m_ExpandedInstanceIDs: c62300001ab0000034bb000000000000dcb300009cb20000fab20000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

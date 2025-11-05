@@ -9,6 +9,7 @@ public class CoinTextManager : MonoBehaviour
     {
         text = GetComponent<TextMeshProUGUI>();
         EventManager.ChangeCoins += ChangeCash;
+        text.text = "Coins: " + PlayerSources.GetCoins();
     }
 
     void ChangeCash(object sender, int value)

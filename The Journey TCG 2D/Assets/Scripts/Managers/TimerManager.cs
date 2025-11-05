@@ -4,10 +4,11 @@ using UnityEngine;
 public class TimerManager : MonoBehaviour
 {
     TextMeshProUGUI timerText;
-    float[] timer = {0, 0};
+    float[] timer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        timer = new float[2];
         timerText = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
     }
     // Update is called once per frame

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using static UnityEngine.UI.Dropdown;
 
 public class MatchSelector : MonoBehaviour
 {

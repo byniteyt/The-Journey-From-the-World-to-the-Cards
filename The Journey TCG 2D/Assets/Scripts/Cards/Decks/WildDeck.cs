@@ -5,10 +5,11 @@ using UnityEngine;
 public class WildDeck : Deck
 {
     private CharacterCard commander;
-    private string[] eliteCards = new string[4];
-    private int eliteIndex = 0;
+    private string[] eliteCards;
+    private int eliteIndex;
     private void Awake()
     {
+        eliteCards = new string[4];
         deckFormat = DeckFormat.Wild;
         limitCardAmount = 40;
         cardLimits = new Dictionary<string, int>();

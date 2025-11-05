@@ -7,9 +7,9 @@ public class ManaTextManager : MonoBehaviour
 {
     public static ManaTextManager Instance { get; private set; }
     public static TextMeshProUGUI manaText;
-    public float velocity = 1f; 
-    public int maxMana = 100;
-    int actualMana = 0;
+    public float velocity; 
+    public int maxMana;
+    int actualMana;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

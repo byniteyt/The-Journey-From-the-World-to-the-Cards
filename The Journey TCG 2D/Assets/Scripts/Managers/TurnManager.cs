@@ -6,7 +6,7 @@ public class TurnManager : MonoBehaviour
 {
     public static TurnManager Instance { get; private set; }
 
-    public static InGamePhase CurrentInGamePhase { get; set; } = InGamePhase.DrawPhase;
+    public static InGamePhase CurrentInGamePhase { get; set; }
 
     GameObject button;
 
