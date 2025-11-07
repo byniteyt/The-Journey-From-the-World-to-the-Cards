@@ -22,7 +22,6 @@ public class MatchSelector : MonoBehaviour
         }
         formatDrop.AddOptions(options);
         formatDrop.onValueChanged.AddListener(SelectMatchFormat);
-        Debug.Log((DeckFormat)3);
     }
     public void StartMatch()
     {

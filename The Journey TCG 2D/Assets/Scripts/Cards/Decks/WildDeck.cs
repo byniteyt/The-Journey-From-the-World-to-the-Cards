@@ -6,13 +6,14 @@ public class WildDeck : Deck
 {
     private CharacterCard commander;
     private string[] eliteCards;
-    private int eliteIndex;
-    private void Awake()
+    private int eliteIndex; // Llevará a cabo la cuenta de cuántos elites llevamos y cual sería el próximo a agregar
+
+    protected override void Awake()
     {
+        base.Awake();
         eliteCards = new string[4];
         deckFormat = DeckFormat.Wild;
         limitCardAmount = 40;
-        cardLimits = new Dictionary<string, int>();
     }
 
     public override void AddCard(Card cardToAdd)

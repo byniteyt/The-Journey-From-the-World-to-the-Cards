@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 public class StandardDeck : Deck
 {
-    private void Awake()
+    protected override void Awake()
     {
         deckFormat = DeckFormat.Standard;
         limitCardAmount = 100;
-        
+        base.Awake();
     }
     public override void AddCard(Card cardToAdd)
     {

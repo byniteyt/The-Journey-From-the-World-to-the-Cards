@@ -22,6 +22,13 @@ public abstract class Deck : MonoBehaviour
     }
     public DeckFormat GetFormat() => this.deckFormat;
 
+    protected virtual void Awake()
+    {
+        deckName = "New Deck";
+        deck = new List<Card>();
+        cardLimits = new Dictionary<string, int>();
+    }
+
     public virtual bool IsValidForPlay()
     {
         return true;
