@@ -35,7 +35,6 @@ public class Hand : MonoBehaviour
                 cards[currentCardCount] = cardObject.GetComponent<Card>();
                 cardObject.transform.parent = this.transform;
                 cardObject.transform.localPosition = new Vector3(-4 + currentCardCount*2, 0, 0);
-                TimeWaiter.WaitFor(0.2f);
                 currentCardCount++;
                 return true;
             }

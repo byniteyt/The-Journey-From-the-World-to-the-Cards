@@ -6,6 +6,7 @@ public class StatsLoader : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        PlayerPrefs.DeleteAll();
         EventManager.AddPlayerExp += (sender, value) =>
         {
             PlayerStats.AddExp(value);

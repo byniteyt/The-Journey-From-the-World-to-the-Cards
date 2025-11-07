@@ -8,7 +8,7 @@ public static class InitialScene
     {
         if (SceneManager.GetActiveScene().name != "PreloadScene")
         {
-            //SceneManager.LoadScene("PreloadScene");
+            SceneManager.LoadScene("PreloadScene");
         }
     }   
 }

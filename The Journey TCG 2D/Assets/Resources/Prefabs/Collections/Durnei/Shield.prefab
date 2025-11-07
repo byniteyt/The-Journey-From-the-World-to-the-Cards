@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d1132c464aa4e47a684720d68e34b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealingSpell
-  artwork: {fileID: 3756390672092201811, guid: 2e2e4f28b80dd2c44a67340003cf7580, type: 3}
+  artwork: {fileID: -6717884257390833292, guid: 63abb2f8443ef584aa79a7dd5b8c2d62, type: 3}
   cardName: 
   description: 
   cost: 3
