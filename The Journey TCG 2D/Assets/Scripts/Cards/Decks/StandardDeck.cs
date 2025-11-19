@@ -47,6 +47,7 @@ public class StandardDeck : Deck
 
     public override bool IsValidForPlay()
     {
-        return (deck.Count >= 40 && deck.Count <= 100);
+        //return (deck.Count >= 40 && deck.Count <= 100);
+        return true;
     }
 }

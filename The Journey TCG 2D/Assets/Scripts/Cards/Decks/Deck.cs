@@ -1,7 +1,5 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using System.Threading;
-using Unity.VisualScripting;
+using Unity.Collections;
 using UnityEngine;
 
 public abstract class Deck : MonoBehaviour
@@ -11,7 +9,7 @@ public abstract class Deck : MonoBehaviour
     protected DeckFormat deckFormat;
 
     protected List<Card> deck;
-
+    
     protected int limitCardAmount;
 
     protected Dictionary<string, int> cardLimits;
@@ -36,6 +34,11 @@ public abstract class Deck : MonoBehaviour
     public List<Card> GetDeck()
     {
         return deck;
+    }
+
+    public void SetDeck(List<Card> deck)
+    {
+        this.deck = deck;
     }
 
     public Dictionary<string, int> GetDictionary()
@@ -73,7 +76,7 @@ public abstract class Deck : MonoBehaviour
         return GetCard(deck.Count - 1);
     }
 
-     protected virtual bool IsFull()
+    protected virtual bool IsFull()
     {
         if (deck==null)
         {
@@ -82,13 +85,21 @@ public abstract class Deck : MonoBehaviour
         }
         return !(deck.Count<limitCardAmount);
     }
+    
     public virtual void RemoveCard(Card cardToRemove) {
         deck.Remove(cardToRemove);
     }
+
+    public virtual void RemoveLastCard()
+    {
+        deck.RemoveAt(deck.Count-1);
+    }
+
     protected virtual bool CorrectSize()
     {
         return deck.Count == limitCardAmount;
     }
+
     public void SetDeckName(string newName)
     {
         deckName = newName;

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
+    bool matchIsStarted = false;
+
     public static TurnManager Instance { get; private set; }
 
     public static InGamePhase CurrentInGamePhase { get; set; }
@@ -32,7 +34,6 @@ public class TurnManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void DrawingPhase(object sender, EventArgs e)
     {
-        BattleDeckManager.Instance.DrawCard(1);
         EventManager.FirstMainTurn?.Invoke(this, EventArgs.Empty);
     }
     void FirstMainPhase()

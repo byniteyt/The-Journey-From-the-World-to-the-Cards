@@ -19,6 +19,7 @@ public class HitSpell : SpellCard
                     enemy.ChangeHeal(-effectAmount);
                 }
                 break;
+
             case TargetType.RandomEnemy:
                 if (enemyBattleGround.transform.childCount > 0)
                 {
@@ -33,6 +34,7 @@ public class HitSpell : SpellCard
                     ally.GetComponent<CharacterCard>().ChangeHeal(-effectAmount);
                 }
                 break;
+
             case TargetType.RandomAlly:
                 if (playerBattleGround.transform.childCount > 0)
                 {
@@ -40,6 +42,7 @@ public class HitSpell : SpellCard
                     playerBattleGround.transform.GetChild(randomIndex).GetComponent<CharacterCard>().ChangeHeal(-effectAmount);
                 }
                 break;
+
             case TargetType.All:
                 foreach (CharacterCard character in Object.FindObjectsByType<CharacterCard>(FindObjectsSortMode.None))
                 {
@@ -50,6 +53,7 @@ public class HitSpell : SpellCard
                 Debug.Log("This spell must be dragged");
                 return;
         }
+        EventManager.UseCardFromHand?.Invoke(this, this);
         Destroy(this.gameObject);
     }
     

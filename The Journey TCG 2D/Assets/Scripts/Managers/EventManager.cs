@@ -16,6 +16,8 @@ public class EventManager : MonoBehaviour
     #endregion
 
     #region Card Events
+    public static EventHandler<Card> UseCardFromHand;
+
     public static EventHandler<CharacterCard> PlayCharacterCard;
 
     public static EventHandler<SpellCard> PlaySpellCard;

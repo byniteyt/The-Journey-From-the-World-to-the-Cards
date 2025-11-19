@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class BattleDeckManager : MonoBehaviour
 {
@@ -21,20 +22,21 @@ public class BattleDeckManager : MonoBehaviour
         {
             Destroy(this);
         }
+        EventManager.FirstMainTurn += StartTurn;
         deck = DeckManager.selectedDeck;
         deckCount = deck.GetDeck().Count;
         Debug.Log($"Deck Count: {deckCount}");
         
         ShuffleDeck(deck.GetDeck());
-        //DrawCard(5);
+        DrawCard(5);
 
     }
 
-    // Update is called once per frame
-    void Update()
+    void StartTurn(object sender, System.EventArgs e)
     {
-        
+        DrawCard(Hand.Instance.GetHandSize() - Hand.Instance.GetHandAmount());
     }
+
     public void DrawCard(int amount)
     {
         if(amount>DeckCount) amount = deckCount;
@@ -42,7 +44,9 @@ public class BattleDeckManager : MonoBehaviour
         {
             if (Hand.Instance.AddCard(deck.GetLastCard()))
             {
-                deck.RemoveCard(deck.GetLastCard());
+                //deck.RemoveCard(deck.GetLastCard());
+                deck.RemoveLastCard();
+                Debug.Log($"Se ha eliminado {deck.GetLastCard().name}");
                 deckCount--;
             }  
         }
@@ -50,16 +54,30 @@ public class BattleDeckManager : MonoBehaviour
         {
             Debug.Log("Deck is empty!");
             this.GetComponent<SpriteRenderer>().enabled = false;
+            return;
         }
+        Debug.Log($"Proxima carta a robar: {deck.GetLastCard().name}");
     }
+
     void ShuffleDeck(List<Card> array)
     {
+        for (int i = array.Count - 1; i > 0; i--)
+        {
+            Debug.Log($"La carta nº {i} es {array[i].name}---------------------------");
+        }
+        Debug.Log( array.ToString());
+        
         for (int i = array.Count - 1; i > 0; i--)
         {
             int randomIndex = Random.Range(0, i + 1);
             Card temp = array[i];
             array[i] = array[randomIndex];
             array[randomIndex] = temp;
+        }
+
+        for (int i = array.Count - 1; i > 0; i--)
+        {
+            Debug.Log($"------------------------La carta nº {i} es {array[i].name}");
         }
     }
 }

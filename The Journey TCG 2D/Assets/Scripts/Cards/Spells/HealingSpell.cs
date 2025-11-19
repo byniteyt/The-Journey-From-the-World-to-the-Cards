@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class HealingSpell : SpellCard
 {
@@ -27,9 +28,6 @@ public class HealingSpell : SpellCard
                 enemyBattleGround.transform.GetChild(randomIndex).GetComponent<CharacterCard>().ChangeHeal(effectAmount);
                 break;
                     
-            case TargetType.SingleAlly:
-                targetCard.GetComponent<CharacterCard>()?.ChangeHeal(effectAmount);
-                break;
             case TargetType.AllAllies:
                 if (playerBattleGround.transform.childCount == 0) return;
                 foreach (CharacterCard ally in playerBattleGround.transform)
@@ -40,7 +38,8 @@ public class HealingSpell : SpellCard
             case TargetType.RandomAlly:
                 if (playerBattleGround.transform.childCount == 0) return;
                 randomIndex = Random.Range(0, playerBattleGround.transform.childCount);
-                playerBattleGround.transform.GetChild(randomIndex).GetComponent<CharacterCard>().ChangeHeal(effectAmount);
+                playerBattleGround.transform.GetChild(randomIndex).
+                    GetComponent<CharacterCard>().ChangeHeal(effectAmount);
                 break;
             case TargetType.All:
                 if (playerBattleGround.transform.childCount == 0&& 
@@ -54,6 +53,7 @@ public class HealingSpell : SpellCard
                 Debug.LogWarning("HealingSpell applied to unsupported target type: " + targetType);
                 return;
         }
+        EventManager.UseCardFromHand?.Invoke(this, this);
         Destroy(this.gameObject);
     }
 
@@ -61,16 +61,15 @@ public class HealingSpell : SpellCard
     {
         base.OnMouseDown();
     }
-
     protected override void ApplyEffectToTarget()
     {
         if (targetCard is CharacterCard character)
         {
-            character.ChangeHeal(effectAmount);
+            character.ChangeHeal(-effectAmount);
         }
         else
         {
-            Debug.Log("Invalid target for HitSpell: " + targetCard.cardName);
+            Debug.Log("Invalid target for HealSpell: " + targetCard.cardName);
         }
         Destroy(this.gameObject);
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -21,26 +22,33 @@ public class Hand : MonoBehaviour
         cards = new Card[handLimit];
         LoadEvents();
     }
-
-    // Update is called once per frame
-    void Update()
+    public int GetHandAmount()
     {
-        
+        return currentCardCount;
     }
+
+    public int GetHandSize()
+    {
+        return handLimit;
+    }
+
     public bool AddCard(Card card)
     {
-         if(currentCardCount<handLimit)
-            {
-                GameObject cardObject = Instantiate(card.gameObject);
-                cards[currentCardCount] = cardObject.GetComponent<Card>();
-                cardObject.transform.parent = this.transform;
-                cardObject.transform.localPosition = new Vector3(-4 + currentCardCount*2, 0, 0);
-                currentCardCount++;
-                return true;
-            }
-         Debug.Log("Hand is full");
-          return false;
+        /*if(currentCardCount<handLimit)
+           {
+
+           }
+        Debug.Log("Hand is full");
+         return false;
+        */
+        GameObject cardObject = Instantiate(card.gameObject);
+        cards[currentCardCount] = cardObject.GetComponent<Card>();
+        cardObject.transform.parent = this.transform;
+        cardObject.transform.localPosition = new Vector3(-4 + currentCardCount * 2, 0, 0);
+        currentCardCount++;
+        return true;
     }
+
     public bool HasCard(Card card)
     {
         for(int i=0;i<currentCardCount;i++)
@@ -50,6 +58,7 @@ public class Hand : MonoBehaviour
         }
         return false;
     }   
+
     public void UseCharacterCard(CharacterCard card)
     {
         // Check if the card is in hand
@@ -68,8 +77,9 @@ public class Hand : MonoBehaviour
         int index = System.Array.IndexOf(cards, card);
         cards[index] = null;
         Destroy(card.gameObject);
-        ReorganizeHand(index);
+        UpdateHand(index);
     }
+
     public void UseRoomCard(object sender, RoomCard card)
     {
         // Check if the card is in hand
@@ -77,8 +87,9 @@ public class Hand : MonoBehaviour
         ManaTextManager.Instance.AddMana(-card.cost);
         Debug.Log("Setting active room to " + card.cardName);
         int index = System.Array.IndexOf(cards, card);
-        ReorganizeHand(index);
+        UpdateHand(index);
     }
+
     public void UseSpellCard(object sender, SpellCard card)
     {
         // Check if the card is in hand
@@ -86,12 +97,21 @@ public class Hand : MonoBehaviour
         ManaTextManager.Instance.AddMana(-card.cost);
         Debug.Log("Casting spell: " + card.cardName);
         int index = System.Array.IndexOf(cards, card);
-        ReorganizeHand(index);
+        UpdateHand(index);
     }
+
     void LoadEvents()
     {
+        EventManager.UseCardFromHand += ReorganizeHand;
         EventManager.SetActiveRoom += UseRoomCard;
     }
+
+    private void ReorganizeHand(object sender, Card e)
+    {
+        int index = Array.IndexOf(cards, e);
+        UpdateHand(index);
+    }
+
     bool Corrections(Card card)
     {
         if (!HasCard(card))
@@ -107,7 +127,8 @@ public class Hand : MonoBehaviour
         }
         return true;
     }
-    void ReorganizeHand(int index)
+
+    void UpdateHand(int index)
     {
         cards[index] = null;
         for (int i = index; i < currentCardCount - 1; i++)
