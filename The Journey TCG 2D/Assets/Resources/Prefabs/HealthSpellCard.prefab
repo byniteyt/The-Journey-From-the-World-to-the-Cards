@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealingSpell
   artwork: {fileID: 0}
-  cardName: 
+  cardName: Salud
   description: 
   cost: 3
   effectAmount: 2

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa64300804b77754bbd15fa310fe67c3, type: 3}
+  m_Name: Durnei
+  m_EditorClassIdentifier: Assembly-CSharp::Collection
+  collectionName: 0
+  collectionIcon: {fileID: 0}
+  cardsOfCollection:
+  - {fileID: 5478468577834400729, guid: 39d27be138ad8544bb841f34dca1d727, type: 3}
+  - {fileID: 5478468577834400729, guid: 13fecfdbdd9a59a47a173404382330be, type: 3}
+  - {fileID: 6388181286289637753, guid: 74552c6dcc8cc5c499cf9dbc373efc5a, type: 3}
+  - {fileID: 6520303133943985146, guid: 33e57cd693ba0b04b95a173b7c6e1bb9, type: 3}
+  - {fileID: 151803308356800503, guid: 75659be4276dba24c8d60c224f8d0a3b, type: 3}
+  - {fileID: 5478468577834400729, guid: 3e4ee6f147116304cb47355b51cc18bf, type: 3}

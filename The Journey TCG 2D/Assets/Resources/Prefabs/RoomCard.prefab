@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomCard
   artwork: {fileID: 2671582743394629751, guid: b48d196a31651944e925655959168190, type: 3}
-  cardName: Laboratory
+  cardName: Casa
   description: 
   cost: 3
   buffElements: 

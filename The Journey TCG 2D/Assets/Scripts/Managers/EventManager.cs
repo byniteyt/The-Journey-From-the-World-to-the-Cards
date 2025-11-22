@@ -57,4 +57,14 @@ public class EventManager : MonoBehaviour
     public static EventHandler<int> ChangeCoins;
     #endregion
 
+    #region MainMenu Events
+    public static EventHandler OpenMainMenu;
+    public static EventHandler CloseMainMenu;
+    #endregion
+
+    #region Shop Events
+    //public static EventHandler<PackShopItem> BuyPack;
+    public static EventHandler<BasePack> OpenPack;
+    #endregion
+
 }

@@ -20,4 +20,13 @@ public class Collection : ScriptableObject
     {
         return cardDictionary;
     }
+    public Card GetRandomCard()
+    {
+        int randomIndex = Random.Range(0, cardsOfCollection.Count);
+        return cardsOfCollection[randomIndex];
+    }
+    public CollectionName GetCollectionName()
+    {
+        return collectionName;
+    }
 }

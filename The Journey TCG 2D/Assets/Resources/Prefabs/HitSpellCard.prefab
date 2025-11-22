@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitSpell
   artwork: {fileID: 9012666027890481611, guid: 4aaea39098ce9d445a4044adec205ec0, type: 3}
-  cardName: 
+  cardName: Bola de fuego
   description: 
   cost: 1
   effectAmount: 4

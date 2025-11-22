@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2772936716849763208}
   - component: {fileID: 151803308356800503}
   m_Layer: 7
-  m_Name: RedCard
+  m_Name: Tropa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterCard
   artwork: {fileID: 1226154400504797314, guid: eb64d047949c5e04a9e3f89ab750ae59, type: 3}
-  cardName: Comunista
+  cardName: Tropa
   description: "Descripci\xF3n de prueba"
   cost: 3
   health: 6
