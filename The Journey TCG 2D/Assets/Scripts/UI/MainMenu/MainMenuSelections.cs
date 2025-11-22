@@ -6,25 +6,30 @@ public class MainMenuSelections : MonoBehaviour
     Button activeButton;
     ColorBlock lastColor;
     ColorBlock newColor;
-    static int activeIndex;
+    int activeIndex;
+    [SerializeField] GameObject menuName;
 
     private void Start()
     {
-        ActiveMenu(activeIndex);
+        this.ActiveMenu(activeIndex);
     }
 
     public void ActiveMenu(int index)
     {
-        GameObject menus = GameObject.Find("Menus");
+        GameObject menus = GameObject.Find(menuName.name);
         for (int i = 0; i < menus.transform.childCount; i++)
         {
             menus.transform.GetChild(i).gameObject.SetActive(i == index);
         }
-        activeIndex = index;
+        this.activeIndex = index;
     }
 
     public void SelectButton(Button selectedButton)
     {
+        if (selectedButton==this.GetComponent<Button>())
+        {
+            return;
+        }
         if (activeButton != null)
         {
             activeButton.colors = lastColor;

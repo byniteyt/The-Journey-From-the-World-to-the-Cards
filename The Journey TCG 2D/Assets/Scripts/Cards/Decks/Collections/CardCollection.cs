@@ -15,6 +15,7 @@ public static class CardCollection
         {
             cardDictionary.Add(cardToAdd, 1);
         }
+        Debug.Log($"Added card: {cardToAdd.cardName}. Total count: {cardDictionary[cardToAdd]}");
     }
     public static Dictionary<Card, int> GetCollection()
     {
