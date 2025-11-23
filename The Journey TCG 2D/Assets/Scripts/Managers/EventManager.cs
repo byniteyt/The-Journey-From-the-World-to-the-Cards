@@ -15,6 +15,23 @@ public class EventManager : MonoBehaviour
     public static EventHandler<int> UpdateLife;
     #endregion
 
+    #region IA Events
+    public static EventHandler EnemyTurn;
+    public static EventHandler<Card> IAUseCardFromHand;
+
+    public static EventHandler<CharacterCard> IAPlayCharacterCard;
+
+    public static EventHandler<SpellCard> IAPlaySpellCard;
+
+    public static EventHandler<RoomCard> IAPlayRoomCard;
+
+    public static EventHandler<int> IADrawCard;
+
+    public static EventHandler<int> IADiscardCard;
+
+    public static EventHandler<RoomCard> IASetActiveRoom;
+    #endregion
+
     #region Card Events
     public static EventHandler<Card> UseCardFromHand;
 

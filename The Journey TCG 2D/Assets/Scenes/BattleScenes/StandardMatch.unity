@@ -443,14 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3a055be00c70a4db4162308a9e9fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleDeckManager
-  deck:
-  - {fileID: 6388181286289637753, guid: 74552c6dcc8cc5c499cf9dbc373efc5a, type: 3}
-  - {fileID: 151803308356800503, guid: 75659be4276dba24c8d60c224f8d0a3b, type: 3}
-  - {fileID: 6520303133943985146, guid: 21d077939fb26f14e9215384f97c3048, type: 3}
-  - {fileID: 151803308356800503, guid: 75659be4276dba24c8d60c224f8d0a3b, type: 3}
-  - {fileID: 5478468577834400729, guid: 3e4ee6f147116304cb47355b51cc18bf, type: 3}
-  - {fileID: 6520303133943985146, guid: 33e57cd693ba0b04b95a173b7c6e1bb9, type: 3}
-  - {fileID: 5478468577834400729, guid: 3e4ee6f147116304cb47355b51cc18bf, type: 3}
+  deck: {fileID: 0}
 --- !u!1 &275937342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1716,6 +1709,7 @@ GameObject:
   m_Component:
   - component: {fileID: 626898355}
   - component: {fileID: 626898356}
+  - component: {fileID: 626898357}
   m_Layer: 0
   m_Name: EnemyHand
   m_TagString: Untagged
@@ -1796,6 +1790,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &626898357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626898354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b9e7cbac22870848b147576e0fa765d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IAPlayer
 --- !u!1 &669752128
 GameObject:
   m_ObjectHideFlags: 0
@@ -2406,8 +2412,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1073797799}
   - component: {fileID: 1073797800}
-  - component: {fileID: 1073797801}
-  - component: {fileID: 1073797802}
+  - component: {fileID: 1073797803}
+  - component: {fileID: 1073797804}
   m_Layer: 0
   m_Name: PlayerHand
   m_TagString: Untagged
@@ -2431,8 +2437,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -4}
-  m_SizeDelta: {x: 11.8155, y: 1}
+  m_AnchoredPosition: {x: 0, y: -3.9859}
+  m_SizeDelta: {x: 11.8155, y: 1.028}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1073797800
 SpriteRenderer:
@@ -2492,7 +2498,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1073797801
+--- !u!114 &1073797803
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2501,11 +2507,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1073797798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a586788f35e70d94a915568a27634f73, type: 3}
+  m_Script: {fileID: 11500000, guid: 78889c810095ae1468714ec655b84e52, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Hand
-  handLimit: 5
---- !u!114 &1073797802
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHand
+  handLimit: 7
+--- !u!114 &1073797804
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2514,21 +2520,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1073797798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
   m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 0
-  m_ConstraintCount: 2
+    m_Left: 5
+    m_Right: 5
+    m_Top: 5
+    m_Bottom: 5
+  m_ChildAlignment: 4
+  m_Spacing: 65
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &1075044309
 GameObject:
   m_ObjectHideFlags: 0

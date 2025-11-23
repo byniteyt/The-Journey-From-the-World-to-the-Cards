@@ -11,16 +11,21 @@ public class BattleRoomManager : MonoBehaviour
     {
         if (this.transform.childCount > 0)
         {
-            RoomCard oldRoom = this.transform.GetChild(0).GetComponent<RoomCard>();
+            RoomCard oldRoom = GetComponentInChildren<RoomCard>();
             if (oldRoom != null)
             {
                 oldRoom.OnDestroyRoom();
                 Destroy(oldRoom.gameObject);
             }
         }
+        GameObject newRoom= Instantiate(roomCard.gameObject, transform);
+        Destroy(roomCard.gameObject);
         Debug.Log($"Loading room: {roomCard.cardName}");
-        roomCard.transform.SetParent(this.transform);
-        roomCard.transform.localPosition = Vector3.zero;
+        newRoom.transform.localPosition = Vector3.zero;
         // Apply room effects here
+    }
+    void OnDestroy()
+    {
+        EventManager.SetActiveRoom -= LoadRoom;
     }
 }

@@ -7,7 +7,6 @@ using UnityEngine.XR;
 public class BattleDeckManager : MonoBehaviour
 {
     public static BattleDeckManager Instance { get; private set; }
-    //public Card[] deck;
     public Deck deck;
     int deckCount;
     public int DeckCount { get { return deckCount; } private set { deckCount = value; } }
@@ -28,13 +27,12 @@ public class BattleDeckManager : MonoBehaviour
         Debug.Log($"Deck Count: {deckCount}");
         
         ShuffleDeck(deck.GetDeck());
-        DrawCard(5);
 
     }
 
     void StartTurn(object sender, System.EventArgs e)
     {
-        DrawCard(Hand.Instance.GetHandSize() - Hand.Instance.GetHandAmount());
+        DrawCard(PlayerHand.Instance.GetHandSize() - PlayerHand.Instance.GetHandAmount());
     }
 
     public void DrawCard(int amount)
@@ -42,11 +40,17 @@ public class BattleDeckManager : MonoBehaviour
         if(amount>DeckCount) amount = deckCount;
         for (int i = 0; i<amount;i++)
         {
-            if (Hand.Instance.AddCard(deck.GetLastCard()))
+            if (PlayerHand.Instance==null)
+            {
+                Debug.LogError("PlayerHand instance is null!");
+                return;
+            }
+            if (PlayerHand.Instance.AddCard(deck.GetLastCard()))
             {
                 //deck.RemoveCard(deck.GetLastCard());
-                deck.RemoveLastCard();
+
                 Debug.Log($"Se ha eliminado {deck.GetLastCard().name}");
+                deck.RemoveLastCard();
                 deckCount--;
             }  
         }

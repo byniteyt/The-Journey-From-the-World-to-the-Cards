@@ -18,13 +18,6 @@ public class BoardGameManager : MonoBehaviour
         }
         EventManager.SetActiveRoom += SetActiveRoom;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
-
     public void SetActiveRoom(object sender, RoomCard room)
     {
         activeRoom = room;

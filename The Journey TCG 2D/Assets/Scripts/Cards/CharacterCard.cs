@@ -30,7 +30,7 @@ public class CharacterCard : Card
 
     protected override void OnMouseDown()
     {
-        Hand.Instance.UseCharacterCard(this);
+        PlayerHand.Instance.UseCharacterCard(this);
     }
 
     protected override void UseCard()
@@ -38,7 +38,7 @@ public class CharacterCard : Card
         // Implement character-specific behavior when the card is used
         Debug.Log("Using Character Card: " + cardName);
         // For example, summon the character to the battlefield
-        Hand.Instance.UseCharacterCard(this);
+        PlayerHand.Instance.UseCharacterCard(this);
     }
         
     protected override void ShowCardDetails()
