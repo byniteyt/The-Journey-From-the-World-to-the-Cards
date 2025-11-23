@@ -13,7 +13,7 @@ public class RoomCard : Card
     {
         Debug.Log($"Room {cardName} is being destroyed. Removing its effects.");
     }
-    protected override void UseCard()
+    public override void UseCard()
     {
         if (GameManager.CurrentGameState != GameState.InGame||
             transform.parent.name== "RoomsArea")

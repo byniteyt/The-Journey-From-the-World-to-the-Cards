@@ -40,7 +40,7 @@ public class Card : MonoBehaviour
     {
         UseCard();
     }
-    protected virtual void UseCard()
+    public virtual void UseCard()
     {
 
     }

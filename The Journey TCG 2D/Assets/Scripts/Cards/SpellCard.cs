@@ -25,7 +25,7 @@ public class SpellCard : Card
          UseCard();
     }
 
-    override protected void UseCard()
+    override public void UseCard()
     {
         Debug.Log("Spell card played: " + cardName);
         PlayerHand.Instance.UseSpellCard(this,this);

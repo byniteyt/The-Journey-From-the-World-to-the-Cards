@@ -33,7 +33,7 @@ public class CharacterCard : Card
         PlayerHand.Instance.UseCharacterCard(this);
     }
 
-    protected override void UseCard()
+    public override void UseCard()
     {
         // Implement character-specific behavior when the card is used
         Debug.Log("Using Character Card: " + cardName);
