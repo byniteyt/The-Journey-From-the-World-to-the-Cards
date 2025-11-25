@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d57e44c086fd3504593e0fa73e7549aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomCard
-  artwork: {fileID: -5005935973504864807, guid: 169ee2af22979c343bca6c177b7bd9c6, type: 3}
+  artwork: {fileID: -5600167663196108449, guid: dfc5b8a535292ee44805f6971636ff5f, type: 3}
   cardName: Ayuntamiento
   description: 
   cost: 3
