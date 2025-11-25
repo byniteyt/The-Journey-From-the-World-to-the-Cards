@@ -3,17 +3,15 @@ using UnityEngine;
 
 public class PlayerHand : Hand
 {
-    public static PlayerHand Instance { get; private set; }
-    private void Awake()
+    private static PlayerHand Instance;
+    
+    public static PlayerHand GetPlayerHand()
     {
         if (Instance == null)
         {
-            Instance = this;
+            Instance = FindFirstObjectByType<PlayerHand>();
         }
-        else
-        {
-            Destroy(this);
-        }
+        return Instance;
     }
 
     protected override void LoadEvents()

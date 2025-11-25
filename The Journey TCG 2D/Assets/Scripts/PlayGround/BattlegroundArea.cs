@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 public class BattlegroundArea : MonoBehaviour
@@ -13,10 +12,9 @@ public class BattlegroundArea : MonoBehaviour
         maxSoldiersPerRow = (maxSoldiersPerRow == 0.0f )?2.0f: maxSoldiersPerRow;
     }
 
-    // Update is called once per frame
-    void Update()
+    public int GetSoldiersAmount()
     {
-        
+        return soldiersAmount;
     }
     public bool GenerateCharacter(CharacterCard card)
     {

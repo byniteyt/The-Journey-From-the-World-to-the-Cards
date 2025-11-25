@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
-    bool matchIsStarted = false;
+    //bool matchIsStarted = false;
 
     public static TurnManager Instance { get; private set; }
 
@@ -16,6 +16,15 @@ public class TurnManager : MonoBehaviour
     public bool IsPlayerTurn => isPlayerTurn;
     private void Start()
     {
+        int index = 0;
+        foreach (Deck deck in DeckCollection.SavedDecks())
+        {
+            index++;
+            if (!deck.IsValidForPlay())
+            {
+                Debug.LogError($"Deck {index} is {deck.GetDeckName()}");
+            }
+        }
         if (Instance == null) Instance = this;
        
         else Destroy(gameObject);
@@ -28,7 +37,6 @@ public class TurnManager : MonoBehaviour
 
     public void StartGame()
     {
-
         isPlayerTurn = true;
         EventManager.StartTurn?.Invoke(this, EventArgs.Empty);
     }
@@ -38,9 +46,20 @@ public class TurnManager : MonoBehaviour
     }
     void FirstMainPhase()
     {
-        button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "To Battle Phase";
+        Cursor.lockState = CursorLockMode.None;
         button.SetActive(true);
-        CurrentInGamePhase = InGamePhase.FirstMainPhase;
+        CurrentInGamePhase = InGamePhase.FirstMainPhase; 
+        button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "To Battle Phase";
+
+        if (isPlayerTurn)
+        {
+            button.SetActive(true);
+        }
+        else
+        {
+            NextPhase();
+        }
+
     }
     void BattlePhase()
     {
@@ -55,7 +74,8 @@ public class TurnManager : MonoBehaviour
     void EndPhase()
     {
         isPlayerTurn = !isPlayerTurn;
-        button.SetActive(false);
+        button.SetActive(false); // Se reactiva al empezar el siguiente turno de combate
+        EventManager.StartIATurn?.Invoke(this, EventArgs.Empty);
     }
 
     public void NextPhase()
@@ -83,7 +103,10 @@ public class TurnManager : MonoBehaviour
                 EventManager.SecondMainTurn?.Invoke(this, EventArgs.Empty);
                 break;
             case InGamePhase.SecondMainPhase:
-                EventManager.StartTurn?.Invoke(this, EventArgs.Empty);
+                EventManager.EndTurn?.Invoke(this, EventArgs.Empty);
+                break;
+                case InGamePhase.EndPhase:
+                    EventManager.EndTurn?.Invoke(this, EventArgs.Empty);
                 break;
             default:
                 Debug.Log("Invalid phase transition");

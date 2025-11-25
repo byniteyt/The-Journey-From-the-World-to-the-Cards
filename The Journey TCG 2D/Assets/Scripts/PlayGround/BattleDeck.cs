@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class RoomCardText : CardText
+public class BattleDeck : MonoBehaviour
 {
+    public Deck deck;
+    protected int deckCount;
+    public int DeckCount { get { return deckCount; } private set { deckCount = value; } }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected override void Start()
+    void Start()
     {
-        base.Start();
+        
     }
 
     // Update is called once per frame

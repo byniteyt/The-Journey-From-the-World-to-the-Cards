@@ -18,6 +18,15 @@ public class SpellCard : Card
     protected GameObject enemyHand;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
+    public override Card Clone()
+    {
+        SpellCard spell = (SpellCard) base.Clone();
+        spell.effectAmount = this.effectAmount;
+        spell.targetType = this.targetType;
+        spell.effect = this.effect;
+        return spell;
+    }
+
     override protected void OnMouseDown()
     {
         if (this.targetType == TargetType.SingleAlly || this.targetType == TargetType.SingleEnemy)
@@ -28,7 +37,7 @@ public class SpellCard : Card
     override public void UseCard()
     {
         Debug.Log("Spell card played: " + cardName);
-        PlayerHand.Instance.UseSpellCard(this,this);
+        PlayerHand.GetPlayerHand().UseSpellCard(this,this);
         // Implement spell effect here
         ApplyEffect();
     }
@@ -76,7 +85,7 @@ public class SpellCard : Card
                             (targetType == TargetType.SingleAlly &&
                             card.gameObject.transform.parent == playerBattleGround.transform))
                         {
-                            PlayerHand.Instance.UseSpellCard(this,this);
+                            PlayerHand.GetPlayerHand().UseSpellCard(this,this);
                             Debug.Log("Target selected: " + card.cardName);
                             targetCard = card;
                             ApplyEffectToTarget();

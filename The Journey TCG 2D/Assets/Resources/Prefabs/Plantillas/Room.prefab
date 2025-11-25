@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2570648916242628358}
   - component: {fileID: 6520303133943985146}
   m_Layer: 0
-  m_Name: RoomCard 1
+  m_Name: Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.33506, y: -3.3229716, z: 0}
-  m_LocalScale: {x: 1, y: 1.6813, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -81,8 +81,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5005935973504864807, guid: 169ee2af22979c343bca6c177b7bd9c6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 2671582743394629751, guid: b48d196a31651944e925655959168190, type: 3}
+  m_Color: {r: 0.94716984, g: 0.5517016, b: 0.2627056, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -130,13 +130,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.2, y: 4.62}
+    oldSize: {x: 3.18, y: 4.6}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.18, y: 4.6}
   m_EdgeRadius: 0
 --- !u!114 &6520303133943985146
 MonoBehaviour:
@@ -150,10 +150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d57e44c086fd3504593e0fa73e7549aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomCard
-  artwork: {fileID: 0}
-  cardName: House
+  artwork: {fileID: 2671582743394629751, guid: b48d196a31651944e925655959168190, type: 3}
+  cardName: Casa
   description: 
-  cost: 2
+  cost: 3
   buffElements: 
   nerfElements: 
   buffCharacters: 

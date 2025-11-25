@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2058559715421142917
+--- !u!1 &8857691975515996894
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5827358074344882165}
-  - component: {fileID: 6276802477894391016}
-  - component: {fileID: 2570648916242628358}
-  - component: {fileID: 6520303133943985146}
-  m_Layer: 0
-  m_Name: RoomCard 1
+  - component: {fileID: 4213840246756888656}
+  - component: {fileID: 8394587877232778769}
+  - component: {fileID: 2772936716849763208}
+  - component: {fileID: 151803308356800503}
+  m_Layer: 7
+  m_Name: Tropa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5827358074344882165
+--- !u!4 &4213840246756888656
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2058559715421142917}
+  m_GameObject: {fileID: 8857691975515996894}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.33506, y: -3.3229716, z: 0}
-  m_LocalScale: {x: 1, y: 1.6813, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 99.2586, y: 0, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6276802477894391016
+--- !u!212 &8394587877232778769
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2058559715421142917}
+  m_GameObject: {fileID: 8857691975515996894}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5005935973504864807, guid: 169ee2af22979c343bca6c177b7bd9c6, type: 3}
+  m_Sprite: {fileID: 112378386898512773, guid: 6bc49b0adef648d4f8bbc94ba6ade215, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -92,13 +92,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2570648916242628358
+--- !u!61 &2772936716849763208
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2058559715421142917}
+  m_GameObject: {fileID: 8857691975515996894}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -136,25 +136,24 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.18, y: 4.6}
   m_EdgeRadius: 0
---- !u!114 &6520303133943985146
+--- !u!114 &151803308356800503
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2058559715421142917}
+  m_GameObject: {fileID: 8857691975515996894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d57e44c086fd3504593e0fa73e7549aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 73b1850d77602f14286ff6524032f07e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RoomCard
-  artwork: {fileID: 0}
-  cardName: House
-  description: 
-  cost: 2
-  buffElements: 
-  nerfElements: 
-  buffCharacters: 
-  nerfCharacters: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterCard
+  artwork: {fileID: 112378386898512773, guid: 6bc49b0adef648d4f8bbc94ba6ade215, type: 3}
+  cardName: Sapo Hechicero
+  description: "Descripci\xF3n de prueba"
+  cost: 1
+  health: 6
+  attack: 8
+  rank: 1

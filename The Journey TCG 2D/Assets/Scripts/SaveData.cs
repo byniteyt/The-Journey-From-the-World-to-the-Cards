@@ -16,8 +16,6 @@ public class SaveData : MonoBehaviour
     private string jsonWeapons;
     private List<Deck> weaponInventory = new List<Deck>
     {
-        new StandardDeck(),
-        new WildDeck()
     };
 
     private void Awake()

@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 public class StandardDeck : Deck
 {
+    public StandardDeck(Deck deckToClone) : base(deckToClone)
+    {
+
+    }
+
     protected override void Awake()
     {
         deckFormat = DeckFormat.Standard;

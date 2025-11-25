@@ -17,6 +17,7 @@ public class EventManager : MonoBehaviour
 
     #region IA Events
     public static EventHandler EnemyTurn;
+
     public static EventHandler<Card> IAUseCardFromHand;
 
     public static EventHandler<CharacterCard> IAPlayCharacterCard;
@@ -66,6 +67,20 @@ public class EventManager : MonoBehaviour
     public static EventHandler<bool> GameOver;
 
     public static EventHandler CombatTurn;
+    #endregion
+
+    #region IA Turn Events
+    public static EventHandler StartIATurn;
+
+    public static EventHandler FirstIAMainTurn;
+
+    public static EventHandler IABattleTurn;
+
+    public static EventHandler SecondIAMainTurn;
+
+    public static EventHandler EndIATurn;
+
+    public static EventHandler IACombatTurn;
     #endregion
 
     #region Profile Events

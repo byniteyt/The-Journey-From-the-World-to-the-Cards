@@ -18,8 +18,20 @@ public abstract class Deck : MonoBehaviour
     {
         this.deckName = "New Deck";
     }
+    public Deck(Deck deckToClone)
+    {
+        deckName = deckToClone.deckName;
+        deckFormat = deckToClone.deckFormat;
+        limitCardAmount = deckToClone.limitCardAmount;
+        deck = new List<Card>();
+        cardLimits = new Dictionary<string, int>(deckToClone.cardLimits);
+        foreach (Card card in deckToClone.deck)
+        {
+            AddCard(card.Clone());
+        }
+    }
     public DeckFormat GetFormat() => this.deckFormat;
-
+    public string GetDeckName() => this.deckName;
     protected virtual void Awake()
     {
         deckName = "New Deck";
@@ -73,6 +85,11 @@ public abstract class Deck : MonoBehaviour
 
     public Card GetLastCard()
     {
+        if (deck.Count == 0)
+        {
+            Debug.Log("IA Deck is empty");
+            return null;
+        }
         return GetCard(deck.Count - 1);
     }
 

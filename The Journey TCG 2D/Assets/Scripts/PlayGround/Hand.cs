@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class Hand : MonoBehaviour
 {
-    protected Card[] cards;
+    protected Card[] hand;
     protected int currentCardCount = 0;
     [SerializeField] protected int handLimit;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        cards = new Card[handLimit];
+        hand = new Card[handLimit];
         LoadEvents();
     }
     public int GetHandAmount()
@@ -26,24 +26,24 @@ public class Hand : MonoBehaviour
         if (index <0) {
             for (int i = 0; i < currentCardCount; i++)
             {
-                if (cards[i] != null)
-                    cards[i].transform.localPosition = new Vector3(-currentCardCount + 0.5f + i * 2, 0, 0);
+                if (hand[i] != null)
+                    hand[i].transform.localPosition = new Vector3(-currentCardCount + 0.5f + i * 2, 0, 0);
             }
             return;
         }
         for (int i = 0; i < index; i++)
         {
-            if (cards[i] != null)
-                cards[i].transform.localPosition = new Vector3(-(currentCardCount-1) + 0.5f + i * 2, 0, 0);
+            if (hand[i] != null)
+                hand[i].transform.localPosition = new Vector3(-(currentCardCount-1) + 0.5f + i * 2, 0, 0);
         }
-        cards[index] = null;
+        hand[index] = null;
         for (int i = index; i < currentCardCount - 1; i++)
         {
-            cards[i] = cards[i + 1];
-            if (cards[i] != null)
-                cards[i].transform.localPosition = new Vector3(-(currentCardCount-1) + 0.5f + i * 2, 0, 0);
+            hand[i] = hand[i + 1];
+            if (hand[i] != null)
+                hand[i].transform.localPosition = new Vector3(-(currentCardCount-1) + 0.5f + i * 2, 0, 0);
         }
-        cards[currentCardCount - 1] = null;
+        hand[currentCardCount - 1] = null;
         currentCardCount--;
     }
     protected virtual void LoadEvents()
@@ -52,13 +52,13 @@ public class Hand : MonoBehaviour
     }
     protected void ReorganizeHand(object sender, Card e)
     {
-        int index = Array.IndexOf(cards, e);
+        int index = Array.IndexOf(hand, e);
         UpdateHand(index);
     }
-    public bool AddCard(Card card)
+    public virtual bool AddCard(Card card)
     {
         GameObject cardObject = Instantiate(card.gameObject);
-        cards[currentCardCount] = cardObject.GetComponent<Card>();
+        hand[currentCardCount] = cardObject.GetComponent<Card>();
         cardObject.transform.parent = this.transform;
         cardObject.transform.localPosition = new Vector3(-4 + currentCardCount * 2, 0, 0);
         
@@ -66,12 +66,15 @@ public class Hand : MonoBehaviour
         UpdateHand(-1);
         return true;
     }
-
+    public bool HasMoreCards(Hand otherHand)
+    {
+        return this.currentCardCount > otherHand.currentCardCount;
+    }
     public bool HasCard(Card card)
     {
         for (int i = 0; i < currentCardCount; i++)
         {
-            if (cards[i] == card)
+            if (hand[i] == card)
                 return true;
         }
         return false;
@@ -92,7 +95,7 @@ public class Hand : MonoBehaviour
 
         ManaTextManager.Instance.AddMana(-card.cost);
         Debug.Log("Summoning " + card.cardName + " to the battlefield.");
-        int index = Array.IndexOf(cards, card);
+        int index = Array.IndexOf(hand, card);
         Destroy(card.gameObject);
         UpdateHand(index);
     }
@@ -103,7 +106,7 @@ public class Hand : MonoBehaviour
         if (!Corrections(card)) return;
         ManaTextManager.Instance.AddMana(-card.cost);
         Debug.Log("Setting active room to " + card.cardName);
-        int index = Array.IndexOf(cards, card);
+        int index = Array.IndexOf(hand, card);
         //Destroy(card.gameObject);
         UpdateHand(index);
     }
@@ -114,9 +117,10 @@ public class Hand : MonoBehaviour
         if (!Corrections(card)) return;
         ManaTextManager.Instance.AddMana(-card.cost);
         Debug.Log("Casting spell: " + card.cardName);
-        int index = Array.IndexOf(cards, card);
+        int index = Array.IndexOf(hand, card);
         UpdateHand(index);
     }
+    
     bool Corrections(Card card)
     {
         if (!HasCard(card))

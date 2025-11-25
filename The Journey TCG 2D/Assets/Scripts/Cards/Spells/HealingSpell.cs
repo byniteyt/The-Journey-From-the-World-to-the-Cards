@@ -10,6 +10,11 @@ public class HealingSpell : SpellCard
         effect = SpellEffectType.Heal;
     }
 
+    public override Card Clone()
+    {
+        return base.Clone();
+    }
+
     protected override void ApplyEffect()
     {
         Debug.Log("HealingSpell effect applied: " + cardName);

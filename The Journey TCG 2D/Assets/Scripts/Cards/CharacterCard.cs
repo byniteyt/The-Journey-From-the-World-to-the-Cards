@@ -8,6 +8,15 @@ public class CharacterCard : Card
     public int attack;
 
     public CreatureRank rank;
+
+    public override Card Clone()
+    {
+        CharacterCard card = (CharacterCard) base.Clone();
+        card.health = this.health;
+        card.attack = this.attack;
+        card.rank = this.rank;
+        return card;
+    }
     void Start()
     {
         maxHealth = health;
@@ -30,7 +39,7 @@ public class CharacterCard : Card
 
     protected override void OnMouseDown()
     {
-        PlayerHand.Instance.UseCharacterCard(this);
+        PlayerHand.GetPlayerHand().UseCharacterCard(this);
     }
 
     public override void UseCard()
@@ -38,7 +47,7 @@ public class CharacterCard : Card
         // Implement character-specific behavior when the card is used
         Debug.Log("Using Character Card: " + cardName);
         // For example, summon the character to the battlefield
-        PlayerHand.Instance.UseCharacterCard(this);
+        PlayerHand.GetPlayerHand().UseCharacterCard(this);
     }
         
     protected override void ShowCardDetails()
@@ -66,4 +75,6 @@ public class CharacterCard : Card
         }
         Debug.Log(cardName + " heal " + amount + " points. Remaining health: " + Mathf.Min(maxHealth,health));
     }
+
+    
 }

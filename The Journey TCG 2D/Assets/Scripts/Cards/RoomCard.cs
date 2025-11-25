@@ -9,6 +9,11 @@ public class RoomCard : Card
     public CharacterType[] buffCharacters;
     public CharacterType[] nerfCharacters;
 
+    public override Card Clone()
+    {
+        return (RoomCard)this.MemberwiseClone();
+    }
+
     public void OnDestroyRoom()
     {
         Debug.Log($"Room {cardName} is being destroyed. Removing its effects.");

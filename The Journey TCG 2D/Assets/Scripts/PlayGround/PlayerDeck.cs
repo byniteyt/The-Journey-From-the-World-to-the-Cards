@@ -2,15 +2,11 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.XR;
 
-public class BattleDeckManager : MonoBehaviour
+public class PlayerDeck : BattleDeck
 {
-    public static BattleDeckManager Instance { get; private set; }
-    public Deck deck;
-    int deckCount;
-    public int DeckCount { get { return deckCount; } private set { deckCount = value; } }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public static PlayerDeck Instance { get; private set; }
+   
     void Start()
     {
         if (Instance == null)
@@ -32,7 +28,7 @@ public class BattleDeckManager : MonoBehaviour
 
     void StartTurn(object sender, System.EventArgs e)
     {
-        DrawCard(PlayerHand.Instance.GetHandSize() - PlayerHand.Instance.GetHandAmount());
+        DrawCard(PlayerHand.GetPlayerHand().GetHandSize() - PlayerHand.GetPlayerHand().GetHandAmount());
     }
 
     public void DrawCard(int amount)
@@ -40,12 +36,7 @@ public class BattleDeckManager : MonoBehaviour
         if(amount>DeckCount) amount = deckCount;
         for (int i = 0; i<amount;i++)
         {
-            if (PlayerHand.Instance==null)
-            {
-                Debug.LogError("PlayerHand instance is null!");
-                return;
-            }
-            if (PlayerHand.Instance.AddCard(deck.GetLastCard()))
+            if (PlayerHand.GetPlayerHand().AddCard(deck.GetLastCard()))
             {
                 //deck.RemoveCard(deck.GetLastCard());
 
@@ -74,9 +65,7 @@ public class BattleDeckManager : MonoBehaviour
         for (int i = array.Count - 1; i > 0; i--)
         {
             int randomIndex = Random.Range(0, i + 1);
-            Card temp = array[i];
-            array[i] = array[randomIndex];
-            array[randomIndex] = temp;
+            (array[i], array[randomIndex]) = (array[randomIndex], array[i]);
         }
 
         for (int i = array.Count - 1; i > 0; i--)

@@ -8,6 +8,11 @@ public class HitSpell : SpellCard
         base.GetBattleZone();
         effect = SpellEffectType.Damage;
     }
+    public override Card Clone()
+    {
+        return (HitSpell)this.MemberwiseClone();
+    }
+
     protected override void ApplyEffect()
     {
         Debug.Log("HitSpell effect applied: " + cardName);

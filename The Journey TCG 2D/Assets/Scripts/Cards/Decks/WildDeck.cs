@@ -8,6 +8,26 @@ public class WildDeck : Deck
     private string[] eliteCards;
     private int eliteIndex; // Llevará a cabo la cuenta de cuántos elites llevamos y cual sería el próximo a agregar
 
+    public int EliteIndex
+    {
+        get { return eliteIndex; }
+    }
+    public CharacterCard Commander
+    {
+        get { return commander; }
+    }
+    public string[] EliteCards
+    {
+        get { return eliteCards; }
+    }
+    public WildDeck( Deck deckToClone) : base(deckToClone)
+    {
+        WildDeck clonedDeck = (WildDeck) deckToClone;
+        commander = clonedDeck.commander;
+        eliteCards = (string[]) clonedDeck.eliteCards.Clone();
+        eliteIndex = clonedDeck.eliteIndex;
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -96,5 +116,5 @@ public class WildDeck : Deck
     public override bool IsValidForPlay()
     {
         return deck.Count==limitCardAmount;
-    }   
+    }
 }

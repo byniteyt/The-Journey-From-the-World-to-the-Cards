@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public static class DeckCollection 
@@ -15,12 +15,15 @@ public static class DeckCollection
    
     public static Deck GetDeck(int index)
     {
+        //return new Deck(decks[index]);
         return decks[index];
     }
 
     public static Deck GetDeck(Deck deckToGet)
     {
-        return decks[GetIndexOfDeck(deckToGet)];
+        //return new Deck(deckToGet);
+        //return decks[GetIndexOfDeck(deckToGet)];
+        return deckToGet;
     }
 
     public static int GetIndexOfDeck(Deck deck)
@@ -62,6 +65,7 @@ public static class DeckCollection
     public static void AddDeck(Deck newDeck)
     {
         decks.Add(newDeck);
+        
     }
     public static void RemoveDeck(Deck deckToRemove)
     {

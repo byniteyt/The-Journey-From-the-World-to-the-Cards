@@ -17,7 +17,17 @@ public class Card : MonoBehaviour
 
     // Advanced UI Elements
     //[SerializeField] private TextMeshProUGUI cardTypeText;
-   
+
+    public virtual Card Clone()
+    {
+        Card card = new Card();
+        card.artwork = this.artwork;
+        card.cardName = this.cardName;
+        card.description = this.description;
+        card.cost = this.cost;
+        return card;
+    }
+
     protected virtual void Update()
     {
         if (Input.GetMouseButtonDown(1)&&!IsShowingDetails())
