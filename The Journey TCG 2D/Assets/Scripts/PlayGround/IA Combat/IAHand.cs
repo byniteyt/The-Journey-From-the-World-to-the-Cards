@@ -101,7 +101,6 @@ public class IAHand : Hand
     {
         //card.UseCard();
         Debug.Log($"IA jugó {card.cardName} por {card.cost}.\nLe queda {testManaAmount -= card.cost} de maná" );
-        //testManaAmount -= card.cost;
         AdaptToMana(testManaAmount);
     }
 
