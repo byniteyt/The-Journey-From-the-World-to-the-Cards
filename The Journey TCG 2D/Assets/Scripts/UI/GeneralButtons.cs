@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,7 +24,8 @@ public class GeneralButtons : MonoBehaviour
     }
     public void Settings()
     {
-        SceneManager.LoadScene("Settings");
+        Instantiate(Resources.Load<GameObject>("Prefabs/UI/Settings/GlobalSettings"), this.transform);
+        //SceneManager.LoadScene("Settings");
     }
     public void Credits()
     {

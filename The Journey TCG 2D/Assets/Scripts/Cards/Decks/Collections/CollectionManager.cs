@@ -8,7 +8,7 @@ public class CollectionManager : MonoBehaviour
     {
         foreach(Collection collection in collectionData.collections)
         {
-            foreach(Card card in collection.GetCollectionCards())
+            foreach(Card card in collection.GetSingleCards())
             {
                 if(!collection.GetCardList().ContainsKey(card))
                 {
@@ -16,7 +16,18 @@ public class CollectionManager : MonoBehaviour
                 }
                 else
                 {
-                    collection.GetCollectionCards().Remove(card);
+                    collection.GetSingleCards().Remove(card);
+                }
+            }
+            foreach (Card card in collection.GetSpecialCards())
+            {
+                if (!collection.GetCardList().ContainsKey(card)) 
+                {
+                    collection.GetCardList().Add(card, card);
+                }
+                else
+                {
+                    collection.GetSpecialCards().Remove(card);
                 }
             }
         }

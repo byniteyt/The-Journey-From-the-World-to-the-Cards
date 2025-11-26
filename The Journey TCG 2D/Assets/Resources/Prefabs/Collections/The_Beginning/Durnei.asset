@@ -14,10 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Collection
   collectionName: 0
   collectionIcon: {fileID: 0}
-  cardsOfCollection:
-  - {fileID: 5478468577834400729, guid: 39d27be138ad8544bb841f34dca1d727, type: 3}
-  - {fileID: 5478468577834400729, guid: 13fecfdbdd9a59a47a173404382330be, type: 3}
-  - {fileID: 6388181286289637753, guid: 74552c6dcc8cc5c499cf9dbc373efc5a, type: 3}
-  - {fileID: 6520303133943985146, guid: 6cc96f940bafafd4c8825d7b64911d0b, type: 3}
-  - {fileID: 5478468577834400729, guid: 3e4ee6f147116304cb47355b51cc18bf, type: 3}
+  singleCardsOfCollection:
   - {fileID: 151803308356800503, guid: 657da34daafd4e54cb01c5a59ea26a37, type: 3}
+  - {fileID: 5478468577834400729, guid: 13fecfdbdd9a59a47a173404382330be, type: 3}
+  - {fileID: 5478468577834400729, guid: 39d27be138ad8544bb841f34dca1d727, type: 3}
+  specialCardsOfCollection: []

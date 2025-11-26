@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class DestroyObject : MonoBehaviour
 {
-    public void DestroySelf()
+    public void DestroyParent()
     {
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 }

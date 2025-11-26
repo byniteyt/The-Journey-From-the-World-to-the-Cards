@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6149857046782317280}
   - component: {fileID: 1731632702420183430}
   - component: {fileID: 4435986089903927067}
-  - component: {fileID: 4396273559969299523}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -134,18 +133,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4396273559969299523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 332147150968748902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70879bc17a1469c47ad17c2276fce15a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DestroyObject
 --- !u!1 &2479187451724126043
 GameObject:
   m_ObjectHideFlags: 0
