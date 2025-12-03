@@ -30,7 +30,10 @@ public class SpellCard : Card
     override protected void OnMouseDown()
     {
         if (this.targetType == TargetType.SingleAlly || this.targetType == TargetType.SingleEnemy)
+        {
+            Debug.Log("Seleccione un objetivo para: " + cardName);
             return;
+        }
          UseCard();
     }
 

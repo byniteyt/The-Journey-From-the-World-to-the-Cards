@@ -99,4 +99,10 @@ public class EventManager : MonoBehaviour
     public static EventHandler<BasePack> OpenPack;
     #endregion
 
+    #region Warning Events
+    public static EventHandler AcceptOrder;
+    public static EventHandler<Action> GetOrder;
+    public static EventHandler<string> AddWarningDetails;
+    #endregion
+
 }

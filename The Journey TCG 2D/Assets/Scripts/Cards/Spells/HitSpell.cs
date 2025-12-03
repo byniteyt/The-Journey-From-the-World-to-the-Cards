@@ -10,7 +10,8 @@ public class HitSpell : SpellCard
     }
     public override Card Clone()
     {
-        return (HitSpell)this.MemberwiseClone();
+        HitSpell healCard = (HitSpell)base.Clone();
+        return healCard;
     }
 
     protected override void ApplyEffect()

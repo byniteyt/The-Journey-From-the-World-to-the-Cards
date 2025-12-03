@@ -43,18 +43,15 @@ public class OpenningPack : MonoBehaviour
             {
                 case "RoomCard":
                     Debug.Log($"Adding {card.name} as a RoomCard");
-                    cardAsset.AddComponent<RoomCard>();
-                    cardAsset.GetComponent<RoomCard>().CopyValues((RoomCard)card);
+                    cardAsset.AddComponent<RoomCard>().CopyValues((RoomCard)card);
                     break;
                 case string s when s.Contains("Spell"):
                     Debug.Log($"Adding {card.name} as a {card.GetType()}");
-                    cardAsset.AddComponent<SpellCard>();
-                    cardAsset.GetComponent<SpellCard>().CopyValues((SpellCard)card);
+                    cardAsset.AddComponent<SpellCard>().CopyValues((SpellCard)card);
                     break;
                 case "CharacterCard":
                     Debug.Log($"Adding {card.name} as a CharacterCard");
-                    cardAsset.AddComponent<CharacterCard>();
-                    cardAsset.GetComponent<CharacterCard>().CopyValues((CharacterCard)card);
+                    cardAsset.AddComponent<CharacterCard>().CopyValues((CharacterCard)card);
                     break;
                 default:
                     Debug.Log($"Adding {card.name} as a Unknown card type");

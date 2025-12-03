@@ -1,4 +1,7 @@
+using System;
+using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -37,7 +40,11 @@ public class DeckHolder : MonoBehaviour
     {
         SceneManager.LoadScene("DeckCreator");
     }
-    public void DeleteDeck()
+    public void PredeleteDeck()
+    {
+        StartCoroutine(ConfirmDeleteDeck());
+    }
+    void DestroyDeck()
     {
         if (selectedButton == null)
         {
@@ -48,4 +55,15 @@ public class DeckHolder : MonoBehaviour
         Destroy(DeckManager.selectedDeck);
         Destroy(selectedButton.gameObject);
     }
+    IEnumerator ConfirmDeleteDeck()
+    {
+        Action deleteAction = new Action(DestroyDeck);
+        yield return null;
+        GameObject Warning = Instantiate(Resources.Load<GameObject>("Prefabs/Warning/Warning"));
+        yield return new WaitForEndOfFrame();
+        EventManager.GetOrder?.Invoke(this, deleteAction);
+        DeleteDeck delete = new DeleteDeck(DeckManager.selectedDeck);
+        delete.Execute();
+    }
+
 }

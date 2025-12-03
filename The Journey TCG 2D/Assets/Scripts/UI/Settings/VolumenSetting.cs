@@ -42,7 +42,7 @@ public class VolumenSetting : MonoBehaviour
         sfxSlider.value = PlayerPrefs.GetFloat("EfectVolume", 1f);
         SetEfectVolume(sfxSlider.value);
     }
-    private void Start()
+    private void Awake()
     {
         LoadGeneralVolume();
         LoadMusicVolume();

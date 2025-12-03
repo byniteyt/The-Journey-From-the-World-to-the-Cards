@@ -31,6 +31,7 @@ public class GeneralButtons : MonoBehaviour
     {
         SceneManager.LoadScene("Credits");
     }
+
     public void LoadScene(SceneAsset scene)
     {
         SceneManager.LoadScene(scene.name);

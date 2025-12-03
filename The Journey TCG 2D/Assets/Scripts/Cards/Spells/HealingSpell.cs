@@ -12,7 +12,8 @@ public class HealingSpell : SpellCard
 
     public override Card Clone()
     {
-        return base.Clone();
+        HealingSpell healCard = (HealingSpell) base.Clone();
+        return healCard;
     }
 
     protected override void ApplyEffect()
@@ -70,7 +71,7 @@ public class HealingSpell : SpellCard
     {
         if (targetCard is CharacterCard character)
         {
-            character.ChangeHeal(-effectAmount);
+            character.ChangeHeal(effectAmount);
         }
         else
         {
