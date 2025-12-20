@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class WildDeck : Deck
+public class WildBattleDeck : BattleDeck
 {
     private CharacterCard commander;
     private string[] eliteCards;
@@ -20,9 +20,9 @@ public class WildDeck : Deck
     {
         get { return eliteCards; }
     }
-    public WildDeck( Deck deckToClone) : base(deckToClone)
+    public WildBattleDeck( BattleDeck deckToClone) : base(deckToClone)
     {
-        WildDeck clonedDeck = (WildDeck) deckToClone;
+        WildBattleDeck clonedDeck = (WildBattleDeck) deckToClone;
         commander = clonedDeck.commander;
         eliteCards = (string[]) clonedDeck.eliteCards.Clone();
         eliteIndex = clonedDeck.eliteIndex;

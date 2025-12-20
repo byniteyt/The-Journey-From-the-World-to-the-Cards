@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class DeckEditorManager : MonoBehaviour
 {
     int index;
-    Deck deckToEdit;
+    BattleDeck deckToEdit;
     GameObject deckNameText;
     private void Start()
     {
@@ -13,7 +13,7 @@ public class DeckEditorManager : MonoBehaviour
         //Debug.Log($"La baraja es de tipo {DeckCollection.decks[DeckCollection.decks.Count-1].GetFormat()}");
         Debug.Log(DeckCollection.DecksAmount());
         index = DeckCollection.GetIndexOfDeck(DeckManager.selectedDeck);
-        Debug.Log($"La baraja es {DeckCollection.GetDeck(DeckCollection.DecksAmount() - 1).GetComponent<Deck>().name}");
+        Debug.Log($"La baraja es {DeckCollection.GetDeck(DeckCollection.DecksAmount() - 1).GetComponent<BattleDeck>().name}");
         deckToEdit = DeckManager.selectedDeck;
         deckNameText = GameObject.Find("DeckNameText");
         if (deckNameText== null)
@@ -35,8 +35,10 @@ public class DeckEditorManager : MonoBehaviour
     }
     public void SaveDeck()
     {
-        DeckCollection.RemoveDeck(deckToEdit);
-        DeckCollection.AddDeck(deckToEdit);
+        //DeckCollection.RemoveDeck(deckToEdit);
+        //DeckCollection.AddDeck(deckToEdit);
+        PlayerProperties.properties.RemoveDeck(deckToEdit);
+        PlayerProperties.properties.AddDeck(deckToEdit);
         SceneManager.LoadScene("DeckBuilder");
     }
 }

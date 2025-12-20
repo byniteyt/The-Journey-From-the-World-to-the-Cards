@@ -13,7 +13,7 @@ public class StoreManager : MonoBehaviour
     public void RemoveCoins(int value)
     {
         value = Mathf.Abs(value);
-        if (PlayerSources.GetCoins() < value)
+        if (PlayerSources.sources.coins < value)
         {
             Debug.Log("No cuenta con suficiente dinero");
             return;

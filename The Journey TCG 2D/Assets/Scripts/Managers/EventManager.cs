@@ -50,7 +50,7 @@ public class EventManager : MonoBehaviour
     #endregion
 
     #region Deck Events
-    public static EventHandler<Deck> CreateDeck;
+    public static EventHandler<BattleDeck> CreateDeck;
     #endregion
 
     #region Turn Events
@@ -97,6 +97,8 @@ public class EventManager : MonoBehaviour
     #region Shop Events
     //public static EventHandler<PackShopItem> BuyPack;
     public static EventHandler<BasePack> OpenPack;
+
+    public static EventHandler<Card> AddCardToCollection;
     #endregion
 
     #region Warning Events

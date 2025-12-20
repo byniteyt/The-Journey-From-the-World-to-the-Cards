@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class DeleteDeck : ICommand
 {
-    Deck delete;
-    public DeleteDeck(Deck deck)
+    BattleDeck delete;
+    public DeleteDeck(BattleDeck deck)
     {
         delete = deck;
     }

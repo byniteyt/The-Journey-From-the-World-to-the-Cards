@@ -17,7 +17,7 @@ public class TurnManager : MonoBehaviour
     private void Start()
     {
         int index = 0;
-        foreach (Deck deck in DeckCollection.SavedDecks())
+        foreach (BattleDeck deck in DeckCollection.SavedDecks())
         {
             index++;
             if (!deck.IsValidForPlay())

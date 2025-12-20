@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class DeckCollection 
 {
-    static List<Deck> decks = new List<Deck>();
+    static List<BattleDeck> decks = new List<BattleDeck>();
 
     public static int DecksAmount()
     {
@@ -13,25 +13,25 @@ public static class DeckCollection
 
     ////////// Deck Getters and Setters /////////
    
-    public static Deck GetDeck(int index)
+    public static BattleDeck GetDeck(int index)
     {
         //return new Deck(decks[index]);
         return decks[index];
     }
 
-    public static Deck GetDeck(Deck deckToGet)
+    public static BattleDeck GetDeck(BattleDeck deckToGet)
     {
         //return new Deck(deckToGet);
         //return decks[GetIndexOfDeck(deckToGet)];
         return deckToGet;
     }
 
-    public static int GetIndexOfDeck(Deck deck)
+    public static int GetIndexOfDeck(BattleDeck deck)
     {
         return decks.IndexOf(deck);
     }
 
-    public static Deck GetLastDeck()
+    public static BattleDeck GetLastDeck()
     {
         if (decks.Count == 0)
         {
@@ -40,36 +40,36 @@ public static class DeckCollection
         return decks[decks.Count - 1];
     }
 
-    public static void SetDeck(int index, Deck deckToChange)
+    public static void SetDeck(int index, BattleDeck deckToChange)
     {
         decks[index] = deckToChange;
     }
 
-    public static void SetDeck(Deck deckToGet, Deck deckToChange)
+    public static void SetDeck(BattleDeck deckToGet, BattleDeck deckToChange)
     {
         decks[GetIndexOfDeck(deckToGet)] = deckToChange;
     }
 
-    public static void SetIndexOfDeck(Deck oldDeck, int deckPos)
+    public static void SetIndexOfDeck(BattleDeck oldDeck, int deckPos)
     {
         if (deckPos<0||deckPos>=decks.Count)
         {
             return;
         }
-        Deck temp = decks[deckPos];
+        BattleDeck temp = decks[deckPos];
         decks[deckPos] = oldDeck;
         decks[decks.IndexOf(oldDeck)] = temp;
     }
 
 
-    public static void AddDeck(Deck newDeck)
+    public static void AddDeck(BattleDeck newDeck)
     {
         decks.Add(newDeck);
         
     }
-    public static void RemoveDeck(Deck deckToRemove)
+    public static void RemoveDeck(BattleDeck deckToRemove)
     {
         decks.Remove(deckToRemove);
     }
-    public static List<Deck> SavedDecks() { return decks; }
+    public static List<BattleDeck> SavedDecks() { return decks; }
 }

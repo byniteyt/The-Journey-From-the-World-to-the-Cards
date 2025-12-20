@@ -7,18 +7,20 @@ public class StatsLoader : MonoBehaviour
     void Start()
     {
         PlayerPrefs.DeleteAll();
+        //PlayerStats.InitializeStats();
+        //PlayerSources.Initialize();
+        //PlayerProperties.InitializeOwnDecks();
         EventManager.AddPlayerExp += (sender, value) =>
         {
-            PlayerStats.AddExp(value);
-            PlayerStats.SaveStats();
+            //PlayerStats.AddExp(value);
+            PlayerStats.Save();
         };
         EventManager.ChangeCoins += (sender, value) =>
         {
             PlayerSources.ChangeCoins(value);
-            PlayerSources.SaveSources();
+            PlayerSources.sources.SaveSources();
         };
-        PlayerStats.LoadStats();
-        PlayerSources.LoadSources();
+        //PlayerSources.sources.LoadSources();
         SceneManager.LoadScene("TitleMenu");
     }
 }

@@ -6,24 +6,27 @@ using UnityEngine.UI;
 public class ProfileSettings : MonoBehaviour
 {
     TextMeshProUGUI playerNameText;
+    TMP_InputField newPlayerNameText;
     TextMeshProUGUI playerLevelText;
     TextMeshProUGUI playerExpText;
     Slider nextLevelSlider;
     static int currentExp;
     static int expForNextLevel;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    int actLevel;
+
+
     void Start()
     {
-        expForNextLevel = 100 + (int) MathF.Exp(PlayerPrefs.GetInt("PlayerLevel", 1));
-
+        newPlayerNameText = GameObject.Find("InputName").GetComponent<TMP_InputField>();
+        newPlayerNameText.text = null;
+        actLevel = PlayerStats.stats.playerLevel;
+        expForNextLevel = 100 + (int) MathF.Log(PlayerStats.stats.playerLevel);
+        currentExp = PlayerStats.stats.playerExp;
         playerNameText = GameObject.Find("PlayerName").GetComponent<TextMeshProUGUI>();
-        playerNameText.text = (PlayerPrefs.HasKey("PlayerName"))? 
-            PlayerPrefs.GetString("PlayerName", "Player"): "New Player";
+        playerNameText.text = PlayerStats.stats.playerName;
         
         playerLevelText = GameObject.Find("Level").GetComponent<TextMeshProUGUI>();
-        playerLevelText.text = "Level " + 
-            (PlayerPrefs.HasKey("PlayerLevel") ? 
-            PlayerPrefs.GetInt("PlayerLevel", 1) : 1).ToString();
+        playerLevelText.text = "Level " + PlayerStats.stats.playerLevel;
 
         playerExpText = GameObject.Find("Exp").GetComponent<TextMeshProUGUI>();
         playerExpText.text = $"{currentExp}/{expForNextLevel}";
@@ -37,9 +40,12 @@ public class ProfileSettings : MonoBehaviour
 
     }
 
+
     public void SetName(string newName) 
-    { 
-        PlayerPrefs.SetString("PlayerName", newName);
+    {
+        PlayerStats.stats.playerName = newName;
+        playerNameText.text = PlayerStats.stats.playerName;
+        newPlayerNameText.text = null;
     }
 
     void UpdateLevel()
@@ -58,8 +64,6 @@ public class ProfileSettings : MonoBehaviour
     
     void AddExp(object sender, int value)
     {
-        int actLevel = (PlayerPrefs.HasKey("PlayerLevel")) ? 
-            PlayerPrefs.GetInt("PlayerLevel", 1) : 1;
         currentExp += value;
         while (currentExp>=expForNextLevel)
         {
@@ -67,13 +71,25 @@ public class ProfileSettings : MonoBehaviour
             currentExp -= expForNextLevel;
         }
         UpdateLevel();
-        PlayerPrefs.SetInt("PlayerLevel", actLevel);
-        expForNextLevel = 100 + (int)MathF.Log(PlayerPrefs.GetInt("PlayerLevel", 1)-1);
-        playerLevelText.text = "Level " + PlayerPrefs.GetInt("PlayerLevel", 1);
+        expForNextLevel = 100 + 5*actLevel;
+        playerLevelText.text = "Level " + actLevel;
+    }
+
+    public void SaveProfile()
+    {
+        PlayerStats.stats.playerExp = currentExp;
+        PlayerStats.stats.playerLevel = actLevel;
+
+        PlayerStats.Save();
+        PlayerStats.Load();
     }
 
     void OnDisable()
     {
         PlayerPrefs.Save();
+    }
+    private void OnEnable()
+    {
+        Start();
     }
 }

@@ -31,19 +31,20 @@ public class DeckCreator : MonoBehaviour
     public void AddDeck()
     {
         GameObject newDeckObj = new GameObject("Deck new"); // crea un objeto vacío
-        Deck deckToAdd;
+        BattleDeck deckToAdd;
 
         if (format == DeckFormat.Standard)
         {
-            deckToAdd = newDeckObj.AddComponent<StandardDeck>();
+            deckToAdd = newDeckObj.AddComponent<StandardBattleDeck>();
         }
         else
         {
-            deckToAdd = newDeckObj.AddComponent<WildDeck>();
+            deckToAdd = newDeckObj.AddComponent<WildBattleDeck>();
         }
         deckToAdd.name = deckName;
         DontDestroyOnLoad(deckToAdd);
         DeckCollection.AddDeck(deckToAdd);
+        PlayerProperties.properties.AddDeck(deckToAdd);
         if (DeckCollection.DecksAmount() == 0)
         {
             Debug.Log("No deck was added.");

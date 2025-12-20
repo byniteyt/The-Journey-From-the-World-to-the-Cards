@@ -1,9 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class StandardDeck : Deck
+[System.Serializable]
+public class StandardBattleDeck : BattleDeck
 {
-    public StandardDeck(Deck deckToClone) : base(deckToClone)
+    public StandardBattleDeck() : base()
+    {
+
+    }
+    public StandardBattleDeck(BattleDeck deckToClone) : base(deckToClone)
     {
 
     }

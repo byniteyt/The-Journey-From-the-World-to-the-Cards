@@ -1,14 +1,16 @@
+using System;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
+[Serializable]
 public abstract class Deck : MonoBehaviour
 {
-    protected string deckName;
+    public string deckName;
 
-    protected DeckFormat deckFormat;
+    public DeckFormat deckFormat;
 
-    protected List<Card> deck;
+    public List<Card> deck;
     
     protected int limitCardAmount;
 
@@ -17,6 +19,12 @@ public abstract class Deck : MonoBehaviour
     protected void OnCreate()
     {
         this.deckName = "New Deck";
+    }
+    public Deck()
+    {
+        deckName = "New Deck";
+        deck = new List<Card>();
+        cardLimits = new Dictionary<string, int>();
     }
     public Deck(Deck deckToClone)
     {
