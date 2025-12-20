@@ -35,7 +35,7 @@ public class DeckCreator : MonoBehaviour
         deckToAdd = (format == DeckFormat.Standard)? new StandardDeck() : new WildDeck();
         deckToAdd.deckName = deckName;
         //DontDestroyOnLoad(deckToAdd);
-        DeckCollection.AddDeck(deckToAdd);
+        //DeckCollection.AddDeck(deckToAdd);
         PlayerProperties.properties.AddDeck(deckToAdd);
         if (DeckCollection.DecksAmount() == 0)
         {

@@ -67,14 +67,7 @@ public abstract class Deck
 
     public Card GetCardByName(string cardName)
     {
-        foreach (Card card in deck)
-        {
-            if (card.name == cardName)
-            {
-                return card;
-            }
-        }
-        return null;
+        return deck.Find(d => d.cardName == cardName);
     }
 
     public int GetCardLimit(Card card)
