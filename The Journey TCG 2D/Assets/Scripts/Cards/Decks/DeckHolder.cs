@@ -16,23 +16,24 @@ public class DeckHolder : MonoBehaviour
     {
         deckHolder = GameObject.Find("DeckHolder");
         deckButton = Resources.Load<GameObject>("Prefabs/Decks/DeckButton");
-        foreach (BattleDeck deck in PlayerProperties.properties.GetDecks())
+        foreach (Deck deck in PlayerProperties.properties.GetDecks())
         {
             GameObject db = Instantiate(deckButton, deckHolder.transform);
             db.transform.SetAsFirstSibling();
-            db.gameObject.name = deck.name;
-            db.GetComponentInChildren<TextMeshProUGUI>().text = $"{deck.name}\n\n{deck.GetFormat()}";
-            if (deck.GetComponent<WildBattleDeck>()) db.AddComponent<WildBattleDeck>();
-            else if (deck.GetComponent<StandardBattleDeck>()) db.AddComponent<StandardBattleDeck>();
+            db.gameObject.name = deck.deckName;
+            db.GetComponentInChildren<TextMeshProUGUI>().text = $"{deck.deckName}\n\n{deck.GetFormat()}";
+            if (deck.GetType() == typeof(WildDeck)) db.AddComponent<BattleDeck>().deck = deck;
+            else if (deck.GetType() == typeof(StandardDeck)) db.AddComponent<BattleDeck>().deck = deck;
+
             Button selectButton = db.GetComponent<Button>();
             selectButton.onClick.AddListener(() => { SelectDeck(deck); selectedButton = selectButton; });
             db.GetComponent<BattleDeck>().SetDeckName(deck.ToString());
         }
     }
-    void SelectDeck(BattleDeck selectedDeck)
+    void SelectDeck(Deck selectedDeck)
     {
         DeckManager.selectedDeck = selectedDeck;
-        DontDestroyOnLoad(DeckManager.selectedDeck);
+        //DontDestroyOnLoad(DeckManager.selectedDeck);
     }
 
     public void EditDeck()
@@ -51,7 +52,7 @@ public class DeckHolder : MonoBehaviour
             return;
         }
         DeckCollection.RemoveDeck(DeckManager.selectedDeck);
-        Destroy(DeckManager.selectedDeck);
+        //Destroy(DeckManager.selectedDeck);
         Destroy(selectedButton.gameObject);
     }
     IEnumerator ConfirmDeleteDeck()

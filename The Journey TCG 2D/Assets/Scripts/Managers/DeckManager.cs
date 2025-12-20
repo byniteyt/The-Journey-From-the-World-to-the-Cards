@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class DeckManager : MonoBehaviour
 {
-    public static BattleDeck selectedDeck;
-    public static BattleDeck IADeck;
+    public static Deck selectedDeck;
+    public static Deck IADeck;
 
-    public void RemoveDeck(BattleDeck deckToDelete)
+    public void RemoveDeck(Deck deckToDelete)
     { 
         int index = DeckCollection.GetIndexOfDeck(deckToDelete);
         Destroy(gameObject.transform.GetChild(index).gameObject);

@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class DeleteDeck : ICommand
 {
-    BattleDeck delete;
-    public DeleteDeck(BattleDeck deck)
+    Deck delete;
+    public DeleteDeck(Deck deck)
     {
         delete = deck;
     }
@@ -12,8 +12,8 @@ public class DeleteDeck : ICommand
     {
         if (delete != null)
         {
-            Debug.Log($"Eliminando el mazo: {delete.name}");
-            string detail = $"<b><color=red>Eliminar el mazo: {delete.name}</color></b>";
+            Debug.Log($"Eliminando el mazo: {delete.deckName}");
+            string detail = $"<b><color=red>Eliminar el mazo: {delete.deckName}</color></b>";
             Debug.Log(detail);
             EventManager.AddWarningDetails?.Invoke(this, detail);
         }

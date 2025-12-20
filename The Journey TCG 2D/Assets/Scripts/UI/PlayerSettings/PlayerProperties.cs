@@ -15,7 +15,7 @@ public class PlayerProperties
 
     private Dictionary<Card, int> cards;
 
-    public List<BattleDeck> decks;
+    public List<Deck> decks;
 
     public List<CardsReceived> cardsReceived;
 
@@ -29,7 +29,7 @@ public class PlayerProperties
         return properties.cards;
     }
 
-    public List<BattleDeck> GetDecks()
+    public List<Deck> GetDecks()
     {
         if (properties.decks == null)
         {
@@ -76,9 +76,9 @@ public class PlayerProperties
             {
                 new CardsReceived { card = new Card(), amount = 77 } // Placeholder card
             };
-            properties.decks = new List<BattleDeck>
+            properties.decks = new List<Deck>
             {
-                new StandardBattleDeck()
+                new StandardDeck()
             };
             SaveData<PlayerProperties>.SerializeJSON(properties, "PlayerProperties.json");
             Debug.Log("PlayerProperties file not found. Created new PlayerProperties.json");
@@ -114,12 +114,12 @@ public class PlayerProperties
         SaveData<PlayerProperties>.SerializeJSON(properties, "PlayerProperties.json");
     }
 
-    public void AddDeck(BattleDeck deckToAdd)
+    public void AddDeck(Deck deckToAdd)
     {
         properties.decks.Add(deckToAdd);
     }
 
-    public void RemoveDeck(BattleDeck deckToRemove)
+    public void RemoveDeck(Deck deckToRemove)
     {
         properties.decks.Remove(deckToRemove);
         UpdateProperties();

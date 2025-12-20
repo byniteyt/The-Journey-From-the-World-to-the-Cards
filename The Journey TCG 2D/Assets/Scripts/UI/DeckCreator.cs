@@ -31,18 +31,10 @@ public class DeckCreator : MonoBehaviour
     public void AddDeck()
     {
         GameObject newDeckObj = new GameObject("Deck new"); // crea un objeto vacío
-        BattleDeck deckToAdd;
-
-        if (format == DeckFormat.Standard)
-        {
-            deckToAdd = newDeckObj.AddComponent<StandardBattleDeck>();
-        }
-        else
-        {
-            deckToAdd = newDeckObj.AddComponent<WildBattleDeck>();
-        }
-        deckToAdd.name = deckName;
-        DontDestroyOnLoad(deckToAdd);
+        Deck deckToAdd;
+        deckToAdd = (format == DeckFormat.Standard)? new StandardDeck() : new WildDeck();
+        deckToAdd.deckName = deckName;
+        //DontDestroyOnLoad(deckToAdd);
         DeckCollection.AddDeck(deckToAdd);
         PlayerProperties.properties.AddDeck(deckToAdd);
         if (DeckCollection.DecksAmount() == 0)
@@ -50,7 +42,7 @@ public class DeckCreator : MonoBehaviour
             Debug.Log("No deck was added.");
             return;
         }
-        DontDestroyOnLoad(DeckCollection.GetDeck(DeckCollection.DecksAmount() - 1));
+        //DontDestroyOnLoad(DeckCollection.GetDeck(DeckCollection.DecksAmount() - 1));
         DeckManager.selectedDeck = deckToAdd;
         DeckManager.IADeck = DeckCollection.GetDeck(0);
         SceneManager.LoadScene("DeckCreator");

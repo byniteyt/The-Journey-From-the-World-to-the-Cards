@@ -2,22 +2,17 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class StandardBattleDeck : BattleDeck
+public class StandardDeck : Deck
 {
-    public StandardBattleDeck() : base()
-    {
-
-    }
-    public StandardBattleDeck(BattleDeck deckToClone) : base(deckToClone)
-    {
-
-    }
-
-    protected override void Awake()
+    public StandardDeck() : base()
     {
         deckFormat = DeckFormat.Standard;
         limitCardAmount = 100;
         base.Awake();
+    }
+    public StandardDeck(Deck deckToClone) : base(deckToClone)
+    {
+
     }
     public override void AddCard(Card cardToAdd)
     {

@@ -4,7 +4,7 @@ using Unity.Collections;
 using UnityEngine;
 
 [Serializable]
-public abstract class Deck : MonoBehaviour
+public abstract class Deck
 {
     public string deckName;
 
@@ -18,7 +18,9 @@ public abstract class Deck : MonoBehaviour
 
     protected void OnCreate()
     {
-        this.deckName = "New Deck";
+        deckName = "New Deck";
+        deck = new List<Card>();
+        cardLimits = new Dictionary<string, int>();
     }
     public Deck()
     {
@@ -42,9 +44,6 @@ public abstract class Deck : MonoBehaviour
     public string GetDeckName() => this.deckName;
     protected virtual void Awake()
     {
-        deckName = "New Deck";
-        deck = new List<Card>();
-        cardLimits = new Dictionary<string, int>();
     }
 
     public virtual bool IsValidForPlay()
