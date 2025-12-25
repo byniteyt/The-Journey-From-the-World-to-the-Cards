@@ -11,6 +11,13 @@ public class PlayerProperties
         public Card card;
         public int amount;
     }
+    [Serializable]
+    public struct DeckInfo 
+    { 
+        public string deckName;
+        public DeckFormat format;
+        public List<CardsReceived> deckcards;
+    }
     public static PlayerProperties properties = new PlayerProperties();
 
     private Dictionary<Card, int> cards;
@@ -18,6 +25,8 @@ public class PlayerProperties
     public List<Deck> decks;
 
     public List<CardsReceived> cardsReceived;
+
+    public List<DeckInfo> decksReceived;
 
     #region Getters
     public Dictionary<Card, int> GetCards()
@@ -117,11 +126,57 @@ public class PlayerProperties
     public void AddDeck(Deck deckToAdd)
     {
         properties.decks.Add(deckToAdd);
+        properties.decksReceived.Add(new DeckInfo
+        {
+            deckName = deckToAdd.GetDeckName(),
+            format = deckToAdd.GetFormat(),
+            deckcards = new List<CardsReceived>()
+        });
+        UpdateProperties();
     }
 
     public void RemoveDeck(Deck deckToRemove)
     {
         properties.decks.Remove(deckToRemove);
+        properties.decksReceived.RemoveAll(d => d.deckName == deckToRemove.GetDeckName());
+        UpdateProperties();
+    }
+
+    public void UpdateDeckInfo(Deck deckToUpdate)
+    {
+        var deckInfo = properties.decksReceived.Find(d => d.deckName == deckToUpdate.GetDeckName());
+        if (deckInfo.deckName != null)
+        {
+            deckInfo.format = deckToUpdate.GetFormat();
+            deckInfo.deckcards.Clear();
+            foreach (var cardEntry in deckToUpdate.GetDictionary())
+            {
+                Card newCard = deckToUpdate.GetCard(cardEntry.Value);
+                deckInfo.deckcards.Add(new CardsReceived { card = newCard, amount = cardEntry.Value });
+            }
+            UpdateProperties();
+        }
+    }
+
+    public void AddCard(Card cardToAdd, int amount)
+    {
+        if (properties.cards.ContainsKey(cardToAdd))
+        {
+            properties.cards[cardToAdd] += amount;
+        }
+        else
+        {
+            properties.cards[cardToAdd] = amount;
+        }
+        var existingCard = properties.cardsReceived.Find(c => c.card.cardName == cardToAdd.cardName);
+        if (existingCard.card != null)
+        {
+            existingCard.amount += amount;
+        }
+        else
+        {
+            properties.cardsReceived.Add(new CardsReceived { card = cardToAdd, amount = amount });
+        }
         UpdateProperties();
     }
 }

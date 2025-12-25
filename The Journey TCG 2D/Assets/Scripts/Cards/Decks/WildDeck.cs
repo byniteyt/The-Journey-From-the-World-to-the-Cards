@@ -22,6 +22,9 @@ public class WildDeck : Deck
     }
     public WildDeck() : base()
     {
+        eliteCards = new string[4];
+        deckFormat = DeckFormat.Wild;
+        limitCardAmount = 40;
     }
     public WildDeck( Deck deckToClone) : base(deckToClone)
     {
@@ -30,15 +33,6 @@ public class WildDeck : Deck
         eliteCards = (string[]) clonedDeck.eliteCards.Clone();
         eliteIndex = clonedDeck.eliteIndex;
     }
-
-    protected override void Awake()
-    {
-        base.Awake();
-        eliteCards = new string[4];
-        deckFormat = DeckFormat.Wild;
-        limitCardAmount = 40;
-    }
-
     public override void AddCard(Card cardToAdd)
     {
         // Comprobamos que la baraja tenga espacio suficiente

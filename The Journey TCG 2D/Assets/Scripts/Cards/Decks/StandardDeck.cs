@@ -21,12 +21,12 @@ public class StandardDeck : Deck
             Debug.Log("This Deck is full. Cannot add more cards.");
             return;
         }
-        Debug.Log($"Added {cardToAdd.name} to the Deck.");
         
         if (cardLimits.ContainsKey(cardToAdd.name))
         {
             if (cardLimits[cardToAdd.name]<8)
             {
+                Debug.Log($"Added {cardToAdd.name} to the Deck.");
                 deck.Add(cardToAdd);
                 cardLimits[cardToAdd.name]++;
             }

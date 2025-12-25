@@ -24,6 +24,7 @@ public abstract class Deck
     }
     public Deck()
     {
+        Debug.Log("Deck constructor called");
         deckName = "New Deck";
         deck = new List<Card>();
         cardLimits = new Dictionary<string, int>();
@@ -76,6 +77,7 @@ public abstract class Deck
         {
             return cardLimits[card.name];
         }
+        Debug.Log("Card limit not found for card: " + card.name);
         return 0;
     }
 
