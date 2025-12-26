@@ -46,7 +46,7 @@ public class EventManager : MonoBehaviour
 
     public static EventHandler<int> DiscardCard;
 
-    public static EventHandler<RoomCard> SetActiveRoom;
+    public static EventHandler<BattleRoomCard> SetActiveRoom;
     #endregion
 
     #region Deck Events

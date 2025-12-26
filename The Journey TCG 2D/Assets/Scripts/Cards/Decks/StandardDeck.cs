@@ -14,33 +14,50 @@ public class StandardDeck : Deck
     {
 
     }
-    public override void AddCard(Card cardToAdd)
+    public override void AddCard(BattleCard cardToAdd)
     {
         if (IsFull())
         {
             Debug.Log("This Deck is full. Cannot add more cards.");
             return;
         }
-        
-        if (cardLimits.ContainsKey(cardToAdd.name))
+        BattleCard cardToAddAsBattleCard = null;
+        switch (cardToAdd.GetType().Name)
         {
-            if (cardLimits[cardToAdd.name]<8)
+            case "BattleCharCard":
+                cardToAddAsBattleCard = new BattleCharCard();
+                break;
+            case "BattleSpellCard":
+                cardToAddAsBattleCard = new BattleSpellCard();
+                break;
+            case "BattleRoomCard":
+                cardToAddAsBattleCard = new BattleRoomCard();
+                break;
+            // Add other Card types here as needed
+            default:
+                Debug.LogError("Unsupported Card type.");
+                return;
+        }
+        if (cardLimits.ContainsKey(cardToAdd.GetCard().cardName))
+        {
+            if (cardLimits[cardToAdd.GetCard().cardName] < 8)
             {
-                Debug.Log($"Added {cardToAdd.name} to the Deck.");
-                deck.Add(cardToAdd);
-                cardLimits[cardToAdd.name]++;
+
+                Debug.Log($"Added {cardToAdd.GetCard().cardName} to the Deck.");
+                deck.Add(cardToAddAsBattleCard);
+                cardLimits[cardToAdd.GetCard().cardName]++;
             }
             else
             {
-                Debug.Log($"Cannot add more copies of {cardToAdd.name} to this Deck.");
+                Debug.Log($"Cannot add more copies of {cardToAdd.GetCard().cardName} to this Deck.");
             }
             return;
         }
-        deck.Add(cardToAdd);
-        cardLimits.Add(cardToAdd.name, 1);
+        deck.Add(cardToAddAsBattleCard);
+        cardLimits.Add(cardToAdd.GetCard().cardName, 1);
     }
 
-    public override void RemoveCard(Card cardToRemove)
+    public override void RemoveCard(BattleCard cardToRemove)
     {
         base.RemoveCard(cardToRemove);
         cardLimits[cardToRemove.name]--;

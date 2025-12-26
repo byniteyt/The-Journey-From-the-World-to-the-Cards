@@ -1,8 +1,9 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-//[CreateAssetMenu(fileName = "Card", menuName = "Scriptable Objects/Card")]
-public class Card : MonoBehaviour
+[Serializable]
+public class Card 
 {
     // Basic Info
     public Sprite artwork;
@@ -30,23 +31,17 @@ public class Card : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (Input.GetMouseButtonDown(1)&&!IsShowingDetails())
-        {
-            if (MouseIsInside())
-            {
-                ShowCardDetails();
-            }
-        }
+        
     }
 
-    protected void OnMouseOver()
+    public void OnMouseOver()
     {
 
     }
-    protected void OnMouseExit()
+    public void OnMouseExit()
     {
     }
-    protected virtual void OnMouseDown()
+    public virtual void OnMouseDown()
     {
         UseCard();
     }
@@ -54,24 +49,10 @@ public class Card : MonoBehaviour
     {
 
     }
-    protected virtual void ShowCardDetails()
+    public virtual void ShowCardDetails()
     {
         
     }
-    protected bool IsShowingDetails()
-    {
-        return (GameObject.Find("CharacterCardInfo(Clone)")|| 
-            GameObject.Find("RoomCardInfo(Clone)")|| 
-            GameObject.Find("SpellCardInfo(Clone)"));
-    }
-    protected bool MouseIsInside()
-    {
-        Vector2 areaPosition = this.transform.position; 
-        Vector2 areaSize = this.GetComponent<Collider2D>().bounds.size;
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        return (mousePosition.x >= areaPosition.x - areaSize.x / 2 &&
-                mousePosition.x <= areaPosition.x + areaSize.x / 2 &&
-                mousePosition.y >= areaPosition.y - areaSize.y / 2 &&
-                mousePosition.y <= areaPosition.y + areaSize.y / 2);
-    }
+    
+    
 }

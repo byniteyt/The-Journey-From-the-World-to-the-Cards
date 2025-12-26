@@ -6,7 +6,7 @@ using UnityEngine;
 public class IAHand : Hand
 {
     [SerializeField] int testManaAmount = 10;
-    List<Card> usableCards;
+    List<BattleCard> usableCards;
     int availableCardCount = 0;
     int minManaCost = 100;
     private static IAHand Instance;
@@ -15,7 +15,7 @@ public class IAHand : Hand
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        hand = new Card[handLimit];
+        hand = new BattleCard[handLimit];
         LoadEvents();
         currentCardCount = 0;
         StartOrdenatedHand(true);
@@ -47,20 +47,20 @@ public class IAHand : Hand
         usableCards = hand.ToList();
         for (int i = 0; i < currentCardCount-1; i++)
         {
-            Card card = usableCards[i];
+            BattleCard card = usableCards[i];
             for (int j = i+1; j < currentCardCount; j++)
             {
-                if ((card.cost > hand[j].cost)==toExpensive)
+                if ((card.GetCard().cost > hand[j].GetCard().cost)==toExpensive)
                 {
                     (card, usableCards[j]) = (usableCards[j], card);
                 }
             }
         }
-        minManaCost = usableCards[0].cost;
+        minManaCost = usableCards[0].GetCard().cost;
         availableCardCount = currentCardCount;
     }
 
-    public override bool AddCard(Card cardToAdd)
+    public override bool AddCard(BattleCard cardToAdd)
     {
         hand[currentCardCount] = cardToAdd;
         currentCardCount++;
@@ -73,7 +73,7 @@ public class IAHand : Hand
         if (usableCards == null || usableCards.Count == 0) return;
         for (int i = usableCards.Count-1; i >= 0; i--)
         {
-            if (usableCards[i].cost <= amount)
+            if (usableCards[i].GetCard().cost <= amount)
             {
                 availableCardCount = i + 1;
                 break;
@@ -82,7 +82,7 @@ public class IAHand : Hand
         }
         if (usableCards.Count > 0)
         {
-            minManaCost = usableCards[0].cost;
+            minManaCost = usableCards[0].GetCard().cost;
         }
         else
         {
@@ -91,22 +91,23 @@ public class IAHand : Hand
         }
     }
 
-    Card SelectRandomCard()
+    BattleCard SelectRandomCard()
     {
         int randomIndex = Random.Range(0, usableCards.Count);
         return usableCards[randomIndex];
     }
 
-    void PlayCard(Card card)
+    void PlayCard(BattleCard card)
     {
         //card.UseCard();
-        Debug.Log($"IA jugó {card.cardName} por {card.cost}.\nLe queda {testManaAmount -= card.cost} de maná" );
+        Debug.Log($"IA jugó {card.GetCard().cardName} por {card.GetCard().cost}." +
+            $"\nLe queda {testManaAmount -= card.GetCard().cost} de maná" );
         AdaptToMana(testManaAmount);
     }
 
-    Card SelectPrioritizedCard()
+    BattleCard SelectPrioritizedCard()
     {
-        Card selectedCard = usableCards[0];
+        BattleCard selectedCard = usableCards[0];
 
         return selectedCard;
     }
@@ -118,7 +119,7 @@ public class IAHand : Hand
         Debug.Log($"----------La IA cuenta con {testManaAmount} de maná-----------");
         while (usableCards.Count > 0 && testManaAmount >= minManaCost)
         {
-            Card cardToPlay = SelectRandomCard();
+            BattleCard cardToPlay = SelectRandomCard();
             PlayCard(cardToPlay);
         }
         string stop = $"La IA no puede jugar más cartas. Tiene {testManaAmount} de maná y ";

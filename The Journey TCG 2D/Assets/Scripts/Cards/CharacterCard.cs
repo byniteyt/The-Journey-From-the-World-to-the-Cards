@@ -1,5 +1,8 @@
+using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
+[Serializable]
 public class CharacterCard : Card
 {
     // Character specific attributes
@@ -37,9 +40,9 @@ public class CharacterCard : Card
         this.attack = card.attack;
     }
 
-    protected override void OnMouseDown()
+    public override void OnMouseDown()
     {
-        PlayerHand.GetPlayerHand().UseCharacterCard(this);
+
     }
 
     public override void UseCard()
@@ -47,13 +50,12 @@ public class CharacterCard : Card
         // Implement character-specific behavior when the card is used
         Debug.Log("Using Character Card: " + cardName);
         // For example, summon the character to the battlefield
-        PlayerHand.GetPlayerHand().UseCharacterCard(this);
     }
-        
-    protected override void ShowCardDetails()
+
+    public override void ShowCardDetails()
     {
         GameObject canvas = GameObject.Find("Canvas");
-        GameObject cardDetailPanel = Instantiate(Resources.Load<GameObject>("Prefabs/UI/Interfaces/CharacterCardInfo"), canvas.transform);
+        GameObject cardDetailPanel =Object.Instantiate(Resources.Load<GameObject>("Prefabs/UI/Interfaces/CharacterCardInfo"), canvas.transform);
         cardDetailPanel.transform.SetAsLastSibling(); // Ensure the panel is on top
         cardDetailPanel.transform.localPosition = Vector3.zero; // Center the panel
         CharCardText info = cardDetailPanel.GetComponent<CharCardText>();
@@ -69,7 +71,6 @@ public class CharacterCard : Card
             if (health <= 0)
             {
                 Debug.Log(cardName + " has been defeated!");
-                Destroy(this.gameObject);
             }
             return;
         }

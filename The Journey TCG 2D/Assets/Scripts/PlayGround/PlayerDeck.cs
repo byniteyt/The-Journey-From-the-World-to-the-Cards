@@ -54,11 +54,11 @@ public class PlayerDeck : BattleDeck
         Debug.Log($"Proxima carta a robar: {deck.GetLastCard().name}");
     }
 
-    void ShuffleDeck(List<Card> array)
+    void ShuffleDeck(List<BattleCard> array)
     {
         for (int i = array.Count - 1; i > 0; i--)
         {
-            Debug.Log($"La carta nº {i} es {array[i].name}---------------------------");
+            Debug.Log($"La carta nº {i} es {array[i].GetCard().cardName}---------------------------");
         }
         Debug.Log( array.ToString());
         

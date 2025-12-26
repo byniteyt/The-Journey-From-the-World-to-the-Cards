@@ -16,7 +16,7 @@ public class HealingSpell : SpellCard
         return healCard;
     }
 
-    protected override void ApplyEffect()
+    public override void ApplyEffect()
     {
         Debug.Log("HealingSpell effect applied: " + cardName);
         switch(targetType)
@@ -50,9 +50,9 @@ public class HealingSpell : SpellCard
             case TargetType.All:
                 if (playerBattleGround.transform.childCount == 0&& 
                     enemyBattleGround.transform.childCount == 0) return;
-                foreach (CharacterCard character in Object.FindObjectsByType<CharacterCard>(FindObjectsSortMode.None))
+                foreach (BattleCharCard character in Object.FindObjectsByType<BattleCharCard>(FindObjectsSortMode.None))
                 {
-                    character.ChangeHeal(effectAmount);
+                    character.GetCharacter().ChangeHeal(effectAmount);
                 }
                 break;
             default:
@@ -60,23 +60,21 @@ public class HealingSpell : SpellCard
                 return;
         }
         EventManager.UseCardFromHand?.Invoke(this, this);
-        Destroy(this.gameObject);
     }
 
-    protected override void OnMouseDown()
+    public override void OnMouseDown()
     {
         base.OnMouseDown();
     }
-    protected override void ApplyEffectToTarget()
+    public override void ApplyEffectToTarget()
     {
-        if (targetCard is CharacterCard character)
+        if (targetCard is BattleCharCard character)
         {
-            character.ChangeHeal(effectAmount);
+            character.GetCharacter().ChangeHeal(effectAmount);
         }
         else
         {
-            Debug.Log("Invalid target for HealSpell: " + targetCard.cardName);
+            Debug.Log("Invalid target for HealSpell: " + targetCard.GetCharacter().cardName);
         }
-        Destroy(this.gameObject);
     }
 }

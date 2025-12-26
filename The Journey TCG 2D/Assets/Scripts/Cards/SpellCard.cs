@@ -1,14 +1,16 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
+[Serializable]
 public class SpellCard : Card
 {
-    [SerializeField] protected int effectAmount;
-    [SerializeField] protected TargetType targetType;
-    protected Card targetCard;
-    protected SpellEffectType effect;
+    public int effectAmount;
+    public TargetType targetType;
+    public BattleCard targetCard;
+    public SpellEffectType effect;
 
-    protected Vector2 originalPosition = Vector2.zero;
     // Regiones del campo de batalla
     protected GameObject playerBattleGround;
     protected GameObject enemyBattleGround;
@@ -27,7 +29,7 @@ public class SpellCard : Card
         return spell;
     }
 
-    override protected void OnMouseDown()
+    override public void OnMouseDown()
     {
         if (this.targetType == TargetType.SingleAlly || this.targetType == TargetType.SingleEnemy)
         {
@@ -40,67 +42,28 @@ public class SpellCard : Card
     override public void UseCard()
     {
         Debug.Log("Spell card played: " + cardName);
-        PlayerHand.GetPlayerHand().UseSpellCard(this,this);
         // Implement spell effect here
         ApplyEffect();
     }
-    override protected void ShowCardDetails()
+    override public void ShowCardDetails()
     {
         GameObject canvas = GameObject.Find("Canvas");
-        GameObject cardDetailPanel = Instantiate(Resources.Load<GameObject>("Prefabs/UI/Interfaces/SpellCardInfo"), canvas.transform);
+        GameObject cardDetailPanel = Object.Instantiate(Resources.Load<GameObject>
+            ("Prefabs/UI/Interfaces/SpellCardInfo"), canvas.transform);
         cardDetailPanel.transform.SetAsLastSibling(); // Ensure the panel is on top
         cardDetailPanel.transform.localPosition = Vector3.zero; // Center the panel
         SpellCardText info = cardDetailPanel.GetComponent<SpellCardText>();
         info.cardToRead = this;
     }
-     protected virtual void ApplyEffect()
+     public virtual void ApplyEffect()
     {
         
     }
-     protected virtual void ApplyEffectToTarget()
+     public virtual void ApplyEffectToTarget()
     {
         
     }
-    protected virtual void OnMouseDrag()
-    {
-        if (originalPosition == Vector2.zero)
-             originalPosition = transform.position;
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = new Vector2(mousePosition.x, mousePosition.y);
-    }
-    protected virtual void OnMouseUp()
-    {
-        // Return the card to its original position
-        transform.position = originalPosition;
-        originalPosition = Vector2.zero;
-        if (targetType == TargetType.SingleEnemy || targetType == TargetType.SingleAlly)
-        {
-            RaycastHit2D[] hit = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, LayerMask.GetMask("Battle"));
-            if (hit.Length != 0)
-            {
-                foreach (RaycastHit2D h in hit)
-                {
-                    Card card = h.collider.GetComponent<Card>();
-                    if (card != null)
-                    {
-                        if ((targetType == TargetType.SingleEnemy &&
-                            card.gameObject.transform.parent == enemyBattleGround.transform)|| 
-                            (targetType == TargetType.SingleAlly &&
-                            card.gameObject.transform.parent == playerBattleGround.transform))
-                        {
-                            PlayerHand.GetPlayerHand().UseSpellCard(this,this);
-                            Debug.Log("Target selected: " + card.cardName);
-                            targetCard = card;
-                            ApplyEffectToTarget();
-                            return;
-                        }
-                    }
-                }
-            }
-            Debug.Log("No valid target selected.");
-            return;
-        }
-    }
+    
     protected virtual void GetBattleZone()
     {
         playerBattleGround = GameObject.Find("PlayerBattleGround");
@@ -109,6 +72,29 @@ public class SpellCard : Card
         enemyDeck = GameObject.Find("EnemyDeck");
         playerHand = GameObject.Find("PlayerHand");
     }
+
+    public GameObject GetPlayerHandZone()
+    {
+        return playerHand;
+    }
+    public GameObject GetPlayerBattleGroundZone()
+    {
+        return playerBattleGround;
+    }
+    public GameObject GetEnemyBattleGroundZone()
+    {
+        return enemyBattleGround;
+    }
+    public GameObject GetPlayerDeckZone()
+    {
+        return playerDeck;
+    }
+
+    public GameObject GetEnemyDeckZone()
+    {
+        return enemyDeck;
+    }
+
     public void CopyValues(SpellCard card)
     {
         this.cardName = card.cardName;

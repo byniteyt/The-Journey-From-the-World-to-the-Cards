@@ -151,7 +151,7 @@ public class PlayerProperties
             deckInfo.deckcards.Clear();
             foreach (var cardEntry in deckToUpdate.GetDictionary())
             {
-                Card newCard = deckToUpdate.GetCard(cardEntry.Value);
+                Card newCard = deckToUpdate.GetCard(cardEntry.Value).GetCard();
                 deckInfo.deckcards.Add(new CardsReceived { card = newCard, amount = cardEntry.Value });
             }
             UpdateProperties();

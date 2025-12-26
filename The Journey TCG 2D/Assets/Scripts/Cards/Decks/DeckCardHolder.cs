@@ -25,26 +25,26 @@ public class DeckCardHolder : MonoBehaviour
         }
         foreach (string key in DeckManager.selectedDeck.GetDictionary().Keys)
         {
-            Card card = DeckManager.selectedDeck.GetCardByName(key);
+            BattleCard card = DeckManager.selectedDeck.GetCardByName(key);
             GameObject cb = Instantiate(deckCardButton, deckCardHolder.transform);
             //cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
             cb.GetComponentInChildren<TextMeshProUGUI>().text = DeckManager.selectedDeck.GetCardLimit(card).ToString();
             cb.gameObject.name = card.name;
             cb.AddComponent<BoxCollider2D>();
-            cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
+            cb.transform.GetChild(0).GetComponent<Image>().sprite = card.GetCard().artwork;
             switch (card.GetType().ToString())
             {
                 case "RoomCard":
-                    cb.AddComponent<RoomCard>();
-                    cb.GetComponent<RoomCard>().CopyValues((RoomCard)card);
+                    cb.AddComponent<BattleRoomCard>();
+                    cb.GetComponent<BattleRoomCard>().SetCard((RoomCard)card.GetCard().Clone());
                     break;
                 case "SpellCard":
-                    cb.AddComponent<SpellCard>();
-                    cb.GetComponent<SpellCard>().CopyValues((SpellCard)card);
+                    cb.AddComponent<BattleSpellCard>();
+                    cb.GetComponent<BattleSpellCard>().SetCard((SpellCard)card.GetCard().Clone());
                     break;
                 case "CharacterCard":
-                    cb.AddComponent<CharacterCard>();
-                    cb.GetComponent<CharacterCard>().CopyValues((CharacterCard)card);
+                    cb.AddComponent<BattleCharCard>();
+                    cb.GetComponent<BattleCharCard>().SetCard((CharacterCard)card.GetCard().Clone());
                     break;
                 default:
                     Debug.Log("Unknown card type");

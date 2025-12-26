@@ -3,7 +3,7 @@ using UnityEngine;
 public class BoardGameManager : MonoBehaviour
 {
     public static BoardGameManager Instance { get; private set; }
-    RoomCard activeRoom;
+    BattleRoomCard activeRoom;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,7 +18,7 @@ public class BoardGameManager : MonoBehaviour
         }
         EventManager.SetActiveRoom += SetActiveRoom;
     }
-    public void SetActiveRoom(object sender, RoomCard room)
+    public void SetActiveRoom(object sender, BattleRoomCard room)
     {
         activeRoom = room;
     }

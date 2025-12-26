@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class IADeck : BattleDeck
@@ -56,12 +58,12 @@ public class IADeck : BattleDeck
         }
         Debug.Log($"Proxima carta a robar de la IA: {deck.GetLastCard().name}");
     }
-    void ShuffleDeck(System.Collections.Generic.List<Card> array)
+    void ShuffleDeck(List<BattleCard> array)
     {
         for (int i = array.Count - 1; i > 0; i--)
         {
             int j = Random.Range(0, i + 1);
-            Card temp = array[i];
+            BattleCard temp = array[i];
             array[i] = array[j];
             array[j] = temp;
         }

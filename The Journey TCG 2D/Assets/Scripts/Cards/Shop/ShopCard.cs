@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ShopCard : MonoBehaviour
 {
-    public Card card;
+    public BattleCard card;
     public int price;
     public void PurchaseCard()
     {
@@ -13,7 +13,7 @@ public class ShopCard : MonoBehaviour
             return;
         }
         EventManager.ChangeCoins.Invoke(this, -price);
-        CardCollection.AddCard(card);
-        Debug.Log($"Compraste {card.cardName} por {price} monedas.");
+        CardCollection.AddCard(card.GetCard());
+        Debug.Log($"Compraste {card.GetCard().cardName} por {price} monedas.");
     }
 }

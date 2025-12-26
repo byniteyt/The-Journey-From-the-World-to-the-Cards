@@ -16,7 +16,7 @@ public class BattlegroundArea : MonoBehaviour
     {
         return soldiersAmount;
     }
-    public bool GenerateCharacter(CharacterCard card)
+    public bool GenerateCharacter(BattleCharCard card)
     {
         if (soldiersAmount >= maxSoldiersPerRow)
         {
@@ -36,7 +36,7 @@ public class BattlegroundArea : MonoBehaviour
         ReorderCharacters();
         return true;
     }
-    public bool IsRoomCardInArea(Card card)
+    public bool IsRoomCardInArea(BattleCard card)
     {
         Vector2 cardPosition = card.transform.position;
         Vector2 areaPosition = transform.position;

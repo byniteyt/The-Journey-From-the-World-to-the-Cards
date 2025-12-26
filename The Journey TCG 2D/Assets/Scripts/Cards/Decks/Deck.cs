@@ -10,7 +10,7 @@ public abstract class Deck
 
     public DeckFormat deckFormat;
 
-    public List<Card> deck;
+    public List<BattleCard> deck;
     
     protected int limitCardAmount;
 
@@ -19,14 +19,14 @@ public abstract class Deck
     protected void OnCreate()
     {
         deckName = "New Deck";
-        deck = new List<Card>();
+        deck = new List<BattleCard>();
         cardLimits = new Dictionary<string, int>();
     }
     public Deck()
     {
         Debug.Log("Deck constructor called");
         deckName = "New Deck";
-        deck = new List<Card>();
+        deck = new List<BattleCard>();
         cardLimits = new Dictionary<string, int>();
     }
     public Deck(Deck deckToClone)
@@ -34,11 +34,11 @@ public abstract class Deck
         deckName = deckToClone.deckName;
         deckFormat = deckToClone.deckFormat;
         limitCardAmount = deckToClone.limitCardAmount;
-        deck = new List<Card>();
+        deck = new List<BattleCard>();
         cardLimits = new Dictionary<string, int>(deckToClone.cardLimits);
-        foreach (Card card in deckToClone.deck)
+        foreach (BattleCard card in deckToClone.deck)
         {
-            AddCard(card.Clone());
+            AddCard(card);
         }
     }
     public DeckFormat GetFormat() => this.deckFormat;
@@ -51,12 +51,12 @@ public abstract class Deck
     {
         return true;
     }
-    public List<Card> GetDeck()
+    public List<BattleCard> GetDeck()
     {
         return deck;
     }
 
-    public void SetDeck(List<Card> deck)
+    public void SetDeck(List<BattleCard> deck)
     {
         this.deck = deck;
     }
@@ -66,12 +66,12 @@ public abstract class Deck
         return cardLimits;
     }
 
-    public Card GetCardByName(string cardName)
+    public BattleCard GetCardByName(string cardName)
     {
-        return deck.Find(d => d.cardName == cardName);
+        return deck.Find(d => d.GetCard().cardName == cardName);
     }
 
-    public int GetCardLimit(Card card)
+    public int GetCardLimit(BattleCard card)
     {
         if (cardLimits.ContainsKey(card.name))
         {
@@ -81,11 +81,11 @@ public abstract class Deck
         return 0;
     }
 
-    public abstract void AddCard(Card cardToAdd);
+    public abstract void AddCard(BattleCard cardToAdd);
 
-    public Card GetCard(int index) { return deck[index]; }
+    public BattleCard GetCard(int index) { return deck[index]; }
 
-    public Card GetLastCard()
+    public BattleCard GetLastCard()
     {
         if (deck.Count == 0)
         {
@@ -104,8 +104,8 @@ public abstract class Deck
         }
         return !(deck.Count<limitCardAmount);
     }
-    
-    public virtual void RemoveCard(Card cardToRemove) {
+
+    public virtual void RemoveCard(BattleCard cardToRemove) {
         deck.Remove(cardToRemove);
     }
 

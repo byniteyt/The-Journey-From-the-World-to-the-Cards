@@ -13,40 +13,42 @@ public class CardHolder : MonoBehaviour
     {
         cardHolder = GameObject.Find("CardHolder");
         cardButton = Resources.Load<GameObject>("Prefabs/Cards/CollectedCard");
-        foreach (Card card in CardCollection.GetCollection().Keys)
+        foreach (Card newCard in CardCollection.GetCollection().Keys)
         {
             GameObject cb = Instantiate(cardButton, cardHolder.transform);
             //cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
-            cb.GetComponentInChildren<TextMeshProUGUI>().text = CardCollection.GetCollection()[card].ToString();
-            cb.gameObject.name = card.name;
-            cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
+            cb.GetComponentInChildren<TextMeshProUGUI>().text = CardCollection.GetCollection()[newCard].ToString();
+            cb.gameObject.name = newCard.cardName;
+            cb.transform.GetChild(0).GetComponent<Image>().sprite = newCard.artwork;
             cb.AddComponent<BoxCollider2D>();
-            switch (card.GetType().ToString())
+            switch (newCard.GetType().ToString())
             {
                 case "RoomCard":
-                    Debug.Log($"Adding {card.name} as a RoomCard");
-                    cb.AddComponent<RoomCard>();
-                    cb.GetComponent<RoomCard>().CopyValues((RoomCard) card);
+                    Debug.Log($"Adding {newCard.cardName} as a RoomCard");
+                    cb.AddComponent<BattleRoomCard>();
+                    cb.GetComponent<BattleRoomCard>().SetCard((RoomCard)newCard.Clone());
                     break;
                 case string s when s.Contains("Spell"):
-                    Debug.Log($"Adding {card.name} as a {card.GetType()}");
-                    cb.AddComponent<SpellCard>();
-                    cb.GetComponent<SpellCard>().CopyValues((SpellCard) card);
+                    Debug.Log($"Adding {newCard.cardName} as a {newCard.GetType()}");
+                    cb.AddComponent<BattleSpellCard>();
+                    cb.GetComponent<BattleSpellCard>().SetCard((SpellCard)newCard.Clone());
                     break;
                 case "CharacterCard":
-                    Debug.Log($"Adding {card.name} as a CharacterCard");
-                    cb.AddComponent<CharacterCard>();
-                    cb.GetComponent<CharacterCard>().CopyValues((CharacterCard) card);
+                    Debug.Log($"Adding {newCard.cardName} as a CharacterCard");
+                    cb.AddComponent<BattleCharCard>();
+                    cb.GetComponent<BattleCharCard>().SetCard((CharacterCard) newCard.Clone());
                     break;
                 default:
-                    Debug.Log($"Adding {card.name} as a Unknown card type");
+                    Debug.Log($"Adding {newCard.cardName} as a Unknown card type");
                     break;
             }
             Button selectButton = cb.GetComponent<Button>();
-            selectButton.onClick.AddListener(() => AddToDeck(card));
+            BattleCard newBattleCard = new BattleCard();
+            newBattleCard.SetCard(newCard);
+            selectButton.onClick.AddListener(() => AddToDeck(newBattleCard));
         }
     }
-    void AddToDeck(Card cardToAdd)
+    void AddToDeck(BattleCard cardToAdd)
     {
         if (DeckManager.selectedDeck == null)
         {

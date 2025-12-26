@@ -33,7 +33,7 @@ public class WildDeck : Deck
         eliteCards = (string[]) clonedDeck.eliteCards.Clone();
         eliteIndex = clonedDeck.eliteIndex;
     }
-    public override void AddCard(Card cardToAdd)
+    public override void AddCard(BattleCard cardToAdd)
     {
         // Comprobamos que la baraja tenga espacio suficiente
         if (IsFull())
@@ -43,18 +43,18 @@ public class WildDeck : Deck
         }
 
         // Comprobamos si la carta es una tropa
-        if (cardToAdd.GetComponent<CharacterCard>())
+        if (cardToAdd.GetCard().GetType() == typeof(CharacterCard))
         {
             Debug.Log("La carta es una tropa");
             // Comprobamos el rango de la tropa
-            if (cardToAdd.GetComponent<CharacterCard>().rank == CreatureRank.Boss)
+            if (((CharacterCard)cardToAdd.GetCard()).rank == CreatureRank.Boss)
             {
                 if (commander != null)
                 {
                     Debug.Log("Esta baraja ya tiene a su comandante");
                     return;
                 }
-                commander = (CharacterCard) cardToAdd;
+                commander = (CharacterCard) cardToAdd.GetCard();
             }
 
             if (cardToAdd.GetComponent<CharacterCard>().rank == CreatureRank.Elite)
@@ -91,7 +91,7 @@ public class WildDeck : Deck
         deck.Add(cardToAdd);
         cardLimits.Add(cardToAdd.name, 1);
     }
-    bool HasEnoughCards(Card cardToAdd)
+    bool HasEnoughCards(BattleCard cardToAdd)
     {/*
         int count = 0;
         foreach (var card in deck)

@@ -34,24 +34,24 @@ public class OpenningPack : MonoBehaviour
         }
         if (index < pack.GetCardsInPack().Count)
         {
-            Card card = pack.GetCardsInPack()[index];
+            BattleCard card = pack.GetCardsInPack()[index];
             GameObject cardAsset = Instantiate(cardButton, GetComponentInChildren<GridLayoutGroup>().gameObject.transform);
             cardAsset.gameObject.name = card.name;
-            cardAsset.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
+            cardAsset.transform.GetChild(0).GetComponent<Image>().sprite = card.GetCard().artwork;
             cardAsset.AddComponent<BoxCollider2D>();
             switch (card.GetType().ToString())
             {
                 case "RoomCard":
                     Debug.Log($"Adding {card.name} as a RoomCard");
-                    cardAsset.AddComponent<RoomCard>().CopyValues((RoomCard)card);
+                    cardAsset.AddComponent<BattleRoomCard>().SetCard(card.GetCard());
                     break;
                 case string s when s.Contains("Spell"):
                     Debug.Log($"Adding {card.name} as a {card.GetType()}");
-                    cardAsset.AddComponent<SpellCard>().CopyValues((SpellCard)card);
+                    cardAsset.AddComponent<BattleSpellCard>().SetCard(card.GetCard());
                     break;
                 case "CharacterCard":
                     Debug.Log($"Adding {card.name} as a CharacterCard");
-                    cardAsset.AddComponent<CharacterCard>().CopyValues((CharacterCard)card);
+                    cardAsset.AddComponent<BattleCharCard>().SetCard(card.GetCard());
                     break;
                 default:
                     Debug.Log($"Adding {card.name} as a Unknown card type");
@@ -63,7 +63,7 @@ public class OpenningPack : MonoBehaviour
                 cardAsset.transform.localScale += new Vector3(0.1f, 0, 0);
                 yield return new WaitForSeconds(0.01f);
             }
-            CardCollection.AddCard(card);
+            CardCollection.AddCard(card.GetCard());
             index++;
             yield return new WaitForSeconds(0.7f);
             StartCoroutine(ShowCard(pack, index));

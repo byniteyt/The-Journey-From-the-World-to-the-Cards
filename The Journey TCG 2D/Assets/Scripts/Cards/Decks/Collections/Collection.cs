@@ -25,10 +25,12 @@ public class Collection : ScriptableObject
     {
         return cardDictionary;
     }
-    public Card GetRandomCard()
+    public BattleCard GetRandomCard()
     {
         int randomIndex = Random.Range(0, singleCardsOfCollection.Count);
-        return singleCardsOfCollection[randomIndex];
+        BattleCard newCard = new BattleCard();
+        newCard.SetCard(singleCardsOfCollection[randomIndex]);
+        return newCard;
     }
     public CollectionName GetCollectionName()
     {
