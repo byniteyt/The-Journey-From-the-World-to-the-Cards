@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8559952819838925245}
   - component: {fileID: 8438293260589914460}
   - component: {fileID: 1914177788150416304}
-  - component: {fileID: 6388181286289637753}
+  - component: {fileID: 3258547701596380965}
   m_Layer: 6
   m_Name: HitSpellCard
   m_TagString: Untagged
@@ -138,7 +138,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.18, y: 4.6}
   m_EdgeRadius: 0
---- !u!114 &6388181286289637753
+--- !u!114 &3258547701596380965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,12 +147,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3219296448374778799}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69e922f4cade4ee4a82e298e6417a551, type: 3}
+  m_Script: {fileID: 11500000, guid: 830df02c86cdc524b890a7fe104f5037, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HitSpell
-  artwork: {fileID: 9012666027890481611, guid: 4aaea39098ce9d445a4044adec205ec0, type: 3}
-  cardName: Bola de fuego
-  description: 
-  cost: 1
-  effectAmount: 4
-  targetType: 3
+  m_EditorClassIdentifier: Assembly-CSharp::BattleSpellCard
+  card:
+    artwork: {fileID: 9012666027890481611, guid: 4aaea39098ce9d445a4044adec205ec0, type: 3}
+    cardName: 
+    description: 
+    cost: 0
+    effectAmount: 0
+    targetType: 0
+    targetCard: {fileID: 0}
+    effect: 0
