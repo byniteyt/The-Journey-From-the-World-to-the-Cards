@@ -15,7 +15,8 @@ MonoBehaviour:
   collectionName: 0
   collectionIcon: {fileID: 0}
   singleCardsOfCollection:
-  - {fileID: 151803308356800503, guid: 657da34daafd4e54cb01c5a59ea26a37, type: 3}
-  - {fileID: 5478468577834400729, guid: 13fecfdbdd9a59a47a173404382330be, type: 3}
-  - {fileID: 5478468577834400729, guid: 39d27be138ad8544bb841f34dca1d727, type: 3}
+  - artwork: {fileID: 0}
+    cardName: 
+    description: 
+    cost: 0
   specialCardsOfCollection: []

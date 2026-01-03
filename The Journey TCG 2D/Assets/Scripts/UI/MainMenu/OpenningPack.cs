@@ -26,7 +26,7 @@ public class OpenningPack : MonoBehaviour
     IEnumerator ShowCard(BasePack pack, int index = 0)
     {
         exit.GetComponent<Button>().enabled = false;
-        GameObject cardButton = Resources.Load<GameObject>($"Prefabs/Collections/{pack.GetCollection().GetCollectionName()}/plantilla");
+        GameObject cardButton = Resources.Load<GameObject>($"Prefabs/Collections/{pack.GetCollection().collectionName}/plantilla");
         if (cardButton == null)
         {
             Debug.LogError("Card button prefab not found!");

@@ -2,10 +2,20 @@ using UnityEngine;
 
 public class BattleRoomCard : BattleCard
 {
-    [SerializeField] protected RoomCard card;
+    [SerializeField] protected RoomCard card = new RoomCard();
+
+    public BattleRoomCard(RoomCard newCard)
+    {
+        card = newCard;
+    }
 
     public override Card GetCard()
     {
+        if (card == null)
+        {
+            Debug.LogWarning("Casa no tiene carta");
+            return null;
+        }
         return (RoomCard) card;
     }
 

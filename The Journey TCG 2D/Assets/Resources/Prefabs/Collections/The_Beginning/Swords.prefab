@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5827358074344882165}
   - component: {fileID: 6276802477894391016}
   - component: {fileID: 2570648916242628358}
-  - component: {fileID: 5478468577834400729}
+  - component: {fileID: 2572015305901393787}
   m_Layer: 0
   m_Name: Swords
   m_TagString: Untagged
@@ -138,7 +138,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.2, y: 4.62}
   m_EdgeRadius: 0
---- !u!114 &5478468577834400729
+--- !u!114 &2572015305901393787
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,12 +147,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2058559715421142917}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0d1132c464aa4e47a684720d68e34b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 830df02c86cdc524b890a7fe104f5037, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HealingSpell
-  artwork: {fileID: 3756390672092201811, guid: 2e2e4f28b80dd2c44a67340003cf7580, type: 3}
-  cardName: Espadas
-  description: 
-  cost: 3
-  effectAmount: 2
-  targetType: 4
+  m_EditorClassIdentifier: Assembly-CSharp::BattleSpellCard
+  card:
+    artwork: {fileID: 0}
+    cardName: Swords
+    description: 
+    cost: 0
+    effectAmount: 0
+    targetType: 0
+    effect: 0

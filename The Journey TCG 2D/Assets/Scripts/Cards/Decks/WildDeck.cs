@@ -1,12 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[Serializable]
 public class WildDeck : Deck
 {
-    private CharacterCard commander;
-    private string[] eliteCards;
-    private int eliteIndex; // Llevará a cabo la cuenta de cuántos elites llevamos y cual sería el próximo a agregar
+    private CharacterCard commander = null;
+    private string[] eliteCards = new string[4];
+    private int eliteIndex = 0; // Llevará a cabo la cuenta de cuántos elites llevamos y cual sería el próximo a agregar
 
     public int EliteIndex
     {

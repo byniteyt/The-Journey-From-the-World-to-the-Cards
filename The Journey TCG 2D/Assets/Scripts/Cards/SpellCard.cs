@@ -8,7 +8,7 @@ public class SpellCard : Card
 {
     public int effectAmount;
     public TargetType targetType;
-    public BattleCard targetCard;
+    protected BattleCard targetCard;
     public SpellEffectType effect;
 
     // Regiones del campo de batalla
@@ -38,7 +38,10 @@ public class SpellCard : Card
         }
          UseCard();
     }
-
+    public void SetTarget(BattleCard target)
+    {
+        targetCard = target;
+    }
     override public void UseCard()
     {
         Debug.Log("Spell card played: " + cardName);

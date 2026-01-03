@@ -4,6 +4,12 @@ using System.Collections.Generic;
 [System.Serializable]
 public class StandardDeck : Deck
 {
+    protected override void OnInit()
+    {
+        deckFormat = DeckFormat.Standard;
+        limitCardAmount = 100;
+        //InitLimits();   
+    }
     public StandardDeck() : base()
     {
         deckFormat = DeckFormat.Standard;
@@ -21,28 +27,37 @@ public class StandardDeck : Deck
             Debug.Log("This Deck is full. Cannot add more cards.");
             return;
         }
+        if (cardToAdd == null)
+        {
+            Debug.LogError("Cannot add a null card to the Deck.");
+            return;
+        }
         BattleCard cardToAddAsBattleCard = null;
         switch (cardToAdd.GetType().Name)
         {
             case "BattleCharCard":
-                cardToAddAsBattleCard = new BattleCharCard();
+                cardToAddAsBattleCard = new BattleCharCard((CharacterCard)cardToAdd.GetCard());
                 break;
             case "BattleSpellCard":
-                cardToAddAsBattleCard = new BattleSpellCard();
+                cardToAddAsBattleCard = new BattleSpellCard((SpellCard)cardToAdd.GetCard());
                 break;
             case "BattleRoomCard":
-                cardToAddAsBattleCard = new BattleRoomCard();
+                cardToAddAsBattleCard = new BattleRoomCard((RoomCard)cardToAdd.GetCard());
                 break;
             // Add other Card types here as needed
             default:
                 Debug.LogError("Unsupported Card type.");
                 return;
         }
+        if (cardToAdd.GetCard() == null)
+        {
+            Debug.LogError($"BattleCard.GetCard() es NULL para {cardToAdd.name}");
+            return;
+        }
         if (cardLimits.ContainsKey(cardToAdd.GetCard().cardName))
         {
             if (cardLimits[cardToAdd.GetCard().cardName] < 8)
             {
-
                 Debug.Log($"Added {cardToAdd.GetCard().cardName} to the Deck.");
                 deck.Add(cardToAddAsBattleCard);
                 cardLimits[cardToAdd.GetCard().cardName]++;
@@ -53,6 +68,7 @@ public class StandardDeck : Deck
             }
             return;
         }
+        Debug.Log($"Added {cardToAdd.GetCard().cardName} to the Deck.");
         deck.Add(cardToAddAsBattleCard);
         cardLimits.Add(cardToAdd.GetCard().cardName, 1);
     }
@@ -71,5 +87,21 @@ public class StandardDeck : Deck
     {
         //return (deck.Count >= 40 && deck.Count <= 100);
         return true;
+    }
+
+    private void InitLimits()
+    {
+        cardLimits = new Dictionary<string, int>();
+        foreach (BattleCard card in deck)
+        {
+            if (cardLimits.ContainsKey(card.GetCard().cardName))
+            {
+                cardLimits[card.GetCard().cardName]++;
+            }
+            else
+            {
+                cardLimits.Add(card.GetCard().cardName, 1);
+            }
+        }
     }
 }

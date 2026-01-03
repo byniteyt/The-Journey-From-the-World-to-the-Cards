@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class BattleSpellCard : BattleCard
 {
-    [SerializeField] protected SpellCard card;
+    [SerializeField] protected SpellCard card = new SpellCard();
+
+    public BattleSpellCard(SpellCard newCard)
+    {
+        card = newCard;
+    }
+
     protected Vector2 originalPosition = Vector2.zero;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -46,7 +52,7 @@ public class BattleSpellCard : BattleCard
                         {
                             PlayerHand.GetPlayerHand().UseSpellCard(this, this);
                             Debug.Log("Target selected: " + objectiveCard.GetCard().cardName);
-                            card.targetCard = objectiveCard;
+                            card.SetTarget(objectiveCard);
                             card.ApplyEffectToTarget();
                             return;
                         }
@@ -65,7 +71,7 @@ public class BattleSpellCard : BattleCard
 
     public override void SetCard(Card card)
     {
-        throw new System.NotImplementedException();
+        this.card = (SpellCard) card;
     }
 
     public override void ShowCardDetails()

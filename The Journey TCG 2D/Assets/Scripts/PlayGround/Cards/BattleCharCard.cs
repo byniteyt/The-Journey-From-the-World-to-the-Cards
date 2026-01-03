@@ -2,9 +2,19 @@ using UnityEngine;
 
 public class BattleCharCard : BattleCard
 {
-    [SerializeField] protected CharacterCard card;
+    [SerializeField] protected CharacterCard card = new CharacterCard();
+
+    public BattleCharCard(CharacterCard newCard)
+    {
+        card = newCard;
+    }
     public override Card GetCard()
     {
+        if (card == null)
+        {
+            Debug.LogWarning("Tropa no tiene carta");
+            return null;
+        }
         return (CharacterCard)card;
     }
 

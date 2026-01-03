@@ -16,6 +16,10 @@ public class MainMenuSelections : MonoBehaviour
 
     public void ActiveMenu(int index)
     {
+        if (index >10)
+        {
+            return;
+        }
         GameObject menus = GameObject.Find(menuName.name);
         for (int i = 0; i < menus.transform.childCount; i++)
         {

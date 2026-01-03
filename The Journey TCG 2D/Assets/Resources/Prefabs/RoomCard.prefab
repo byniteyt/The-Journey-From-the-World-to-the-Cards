@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5827358074344882165}
   - component: {fileID: 6276802477894391016}
   - component: {fileID: 2570648916242628358}
-  - component: {fileID: 6520303133943985146}
+  - component: {fileID: 5238263368808393444}
   m_Layer: 0
   m_Name: RoomCard
   m_TagString: Untagged
@@ -138,7 +138,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.18, y: 4.6}
   m_EdgeRadius: 0
---- !u!114 &6520303133943985146
+--- !u!114 &5238263368808393444
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,14 +147,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2058559715421142917}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d57e44c086fd3504593e0fa73e7549aa, type: 3}
+  m_Script: {fileID: 11500000, guid: aaca96197a0f23646a040c33edbce036, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RoomCard
-  artwork: {fileID: 2671582743394629751, guid: b48d196a31651944e925655959168190, type: 3}
-  cardName: Casa
-  description: 
-  cost: 3
-  buffElements: 
-  nerfElements: 
-  buffCharacters: 
-  nerfCharacters: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleRoomCard
+  card:
+    artwork: {fileID: 0}
+    cardName: House
+    description: 
+    cost: 0
+    buffElements: 
+    nerfElements: 
+    buffCharacters: 
+    nerfCharacters: 

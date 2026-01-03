@@ -610,9 +610,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1170657452}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -342.525}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 142.9044, y: 235.3141}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &183528940
@@ -2048,7 +2048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d307175d67e245a44b5974c7ab74c2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopCard
-  card: {fileID: 6520303133943985146, guid: 6cc96f940bafafd4c8825d7b64911d0b, type: 3}
+  card: {fileID: 1011954583096045619, guid: 6cc96f940bafafd4c8825d7b64911d0b, type: 3}
   price: 7
 --- !u!114 &458617781
 MonoBehaviour:
@@ -2765,7 +2765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d307175d67e245a44b5974c7ab74c2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopCard
-  card: {fileID: 6388181286289637753, guid: 74552c6dcc8cc5c499cf9dbc373efc5a, type: 3}
+  card: {fileID: 3258547701596380965, guid: 74552c6dcc8cc5c499cf9dbc373efc5a, type: 3}
   price: 7
 --- !u!114 &546338446
 MonoBehaviour:
@@ -3069,7 +3069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d307175d67e245a44b5974c7ab74c2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopCard
-  card: {fileID: 6520303133943985146, guid: 33e57cd693ba0b04b95a173b7c6e1bb9, type: 3}
+  card: {fileID: 5238263368808393444, guid: 33e57cd693ba0b04b95a173b7c6e1bb9, type: 3}
   price: 7
 --- !u!114 &551036217
 MonoBehaviour:
@@ -3866,7 +3866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d307175d67e245a44b5974c7ab74c2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopCard
-  card: {fileID: 5478468577834400729, guid: 13fecfdbdd9a59a47a173404382330be, type: 3}
+  card: {fileID: 7020433505828807751, guid: 13fecfdbdd9a59a47a173404382330be, type: 3}
   price: 7
 --- !u!114 &750322930
 MonoBehaviour:
@@ -4444,7 +4444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d307175d67e245a44b5974c7ab74c2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopCard
-  card: {fileID: 5478468577834400729, guid: 39d27be138ad8544bb841f34dca1d727, type: 3}
+  card: {fileID: 2572015305901393787, guid: 39d27be138ad8544bb841f34dca1d727, type: 3}
   price: 7
 --- !u!114 &832271791
 MonoBehaviour:
@@ -6087,7 +6087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1181521685
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6523,7 +6523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d307175d67e245a44b5974c7ab74c2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopCard
-  card: {fileID: 151803308356800503, guid: 75659be4276dba24c8d60c224f8d0a3b, type: 3}
+  card: {fileID: 336298119331432350, guid: 75659be4276dba24c8d60c224f8d0a3b, type: 3}
   price: 7
 --- !u!114 &1360309510
 MonoBehaviour:

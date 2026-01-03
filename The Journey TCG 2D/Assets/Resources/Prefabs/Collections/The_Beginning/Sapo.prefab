@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4213840246756888656}
   - component: {fileID: 8394587877232778769}
   - component: {fileID: 2772936716849763208}
-  - component: {fileID: 151803308356800503}
+  - component: {fileID: 5896159631913634334}
   m_Layer: 7
   m_Name: Sapo
   m_TagString: Untagged
@@ -138,7 +138,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.18, y: 4.6}
   m_EdgeRadius: 0
---- !u!114 &151803308356800503
+--- !u!114 &5896159631913634334
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,14 +147,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8857691975515996894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73b1850d77602f14286ff6524032f07e, type: 3}
+  m_Script: {fileID: 11500000, guid: aaca96197a0f23646a040c33edbce036, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterCard
-  artwork: {fileID: 9166967575229275697, guid: dc60ed78a631c2e4ba657eb557292287, type: 3}
-  cardName: Sapo Hechicero
-  description: "Dale un abrazo al sapo y tendr\xE1s todo un a\xF1o de suerte.\\nRechaza
-    su oferta y morir\xE1s hoy."
-  cost: 1
-  health: 6
-  attack: 8
-  rank: 1
+  m_EditorClassIdentifier: Assembly-CSharp::BattleRoomCard
+  card:
+    artwork: {fileID: 0}
+    cardName: Sappy
+    description: 
+    cost: 0
+    buffElements: 
+    nerfElements: 
+    buffCharacters: 
+    nerfCharacters: 

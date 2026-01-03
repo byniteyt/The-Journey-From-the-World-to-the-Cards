@@ -152,10 +152,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BattleSpellCard
   card:
     artwork: {fileID: 9012666027890481611, guid: 4aaea39098ce9d445a4044adec205ec0, type: 3}
-    cardName: 
+    cardName: Fire Ball
     description: 
     cost: 0
     effectAmount: 0
     targetType: 0
-    targetCard: {fileID: 0}
     effect: 0

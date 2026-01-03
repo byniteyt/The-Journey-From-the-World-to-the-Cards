@@ -3,10 +3,14 @@ using UnityEngine;
 
 public static class CardCollection  
 {
-    [SerializeField] static Dictionary<Card, int> cardDictionary = new Dictionary<Card, int>();
+    [SerializeField] static Dictionary<Card, int> cardDictionary;
     
     public static void AddCard(Card cardToAdd)
     {
+        if (cardDictionary == null)
+        {
+            cardDictionary = Player.player.Properties().GetCards();
+        }
         if (cardDictionary.ContainsKey(cardToAdd))
         {
             cardDictionary[cardToAdd]++;
@@ -15,10 +19,20 @@ public static class CardCollection
         {
             cardDictionary.Add(cardToAdd, 1);
         }
+        if (cardToAdd == null)
+        {
+            Debug.Log("La carta a añadir es nula.");
+            return;
+        }
+        Player.player.Properties().AddCard(cardToAdd, 1);
         Debug.Log($"Added card: {cardToAdd.cardName}. Total count: {cardDictionary[cardToAdd]}");
     }
     public static Dictionary<Card, int> GetCollection()
     {
+        if (cardDictionary == null)
+        {
+            cardDictionary = Player.player.Properties().GetCards();
+        }
         return cardDictionary;
     }
 }

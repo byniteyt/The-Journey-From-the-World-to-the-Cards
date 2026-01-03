@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4213840246756888656}
   - component: {fileID: 8394587877232778769}
   - component: {fileID: 2772936716849763208}
-  - component: {fileID: 151803308356800503}
+  - component: {fileID: 336298119331432350}
   m_Layer: 7
   m_Name: Tropa
   m_TagString: Untagged
@@ -138,7 +138,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.18, y: 4.6}
   m_EdgeRadius: 0
---- !u!114 &151803308356800503
+--- !u!114 &336298119331432350
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,13 +147,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8857691975515996894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73b1850d77602f14286ff6524032f07e, type: 3}
+  m_Script: {fileID: 11500000, guid: e15e3c33eb0005c47ba0250bf601869d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterCard
-  artwork: {fileID: 1226154400504797314, guid: eb64d047949c5e04a9e3f89ab750ae59, type: 3}
-  cardName: Tropa
-  description: "Descripci\xF3n de prueba"
-  cost: 3
-  health: 6
-  attack: 8
-  rank: 0
+  m_EditorClassIdentifier: Assembly-CSharp::BattleCharCard
+  card:
+    artwork: {fileID: 0}
+    cardName: Human
+    description: 
+    cost: 0
+    health: 0
+    attack: 0
+    rank: 0

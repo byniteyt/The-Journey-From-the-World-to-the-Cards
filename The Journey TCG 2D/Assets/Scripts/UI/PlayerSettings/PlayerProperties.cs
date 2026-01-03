@@ -6,27 +6,21 @@ using UnityEngine;
 public class PlayerProperties
 {
     [Serializable] public
-    struct CardsReceived
+    class CardsReceived
     {
         public Card card;
         public int amount;
     }
-    [Serializable]
-    public struct DeckInfo 
-    { 
-        public string deckName;
-        public DeckFormat format;
-        public List<CardsReceived> deckcards;
-    }
+    
     public static PlayerProperties properties = new PlayerProperties();
 
-    private Dictionary<Card, int> cards;
+    private Dictionary<Card, int> cards = new Dictionary<Card, int>();
 
-    public List<Deck> decks;
+    public List<Deck> decks = new List<Deck>();
 
-    public List<CardsReceived> cardsReceived;
+    public List<CardsReceived> cardsReceived = new List<CardsReceived>();
 
-    public List<DeckInfo> decksReceived;
+    public List<Deck> decksReceived = new List<Deck>();
 
     #region Getters
     public Dictionary<Card, int> GetCards()
@@ -79,23 +73,24 @@ public class PlayerProperties
         {
             properties.cards = new Dictionary<Card, int>
             {
-                { new Card(), 77 } // Placeholder card
             };
             properties.cardsReceived = new List<CardsReceived>
             {
-                new CardsReceived { card = new Card(), amount = 77 } // Placeholder card
             };
             properties.decks = new List<Deck>
             {
-                new StandardDeck()
             };
             SaveData<PlayerProperties>.SerializeJSON(properties, "PlayerProperties.json");
-            Debug.Log("PlayerProperties file not found. Created new PlayerProperties.json");
+            Debug.LogWarning("PlayerProperties file not found. Created new PlayerProperties.json");
         }
         else
         {
-            properties = SaveData<PlayerProperties>.DeserializeJSON("PlayerProperties.json");
-            Debug.Log("PlayerProperties loaded.");
+            PlayerProperties props = SaveData<PlayerProperties>.DeserializeJSON("PlayerProperties.json");
+            properties.cards = props.cards;
+            properties.cardsReceived = props.cardsReceived;
+            properties.decks = props.decks;
+            properties.decksReceived = props.decksReceived;
+            Debug.LogWarning("PlayerProperties loaded.");
         }
     }
     public static void InitializePrefabDecks()
@@ -120,18 +115,18 @@ public class PlayerProperties
 
     public void UpdateProperties()
     {
-        SaveData<PlayerProperties>.SerializeJSON(properties, "PlayerProperties.json");
+        SaveData<PlayerProperties>.SerializeJSON(Player.player.Properties(), "PlayerProperties.json");
     }
 
     public void AddDeck(Deck deckToAdd)
     {
-        properties.decks.Add(deckToAdd);
-        properties.decksReceived.Add(new DeckInfo
+        Player.player.Properties().decks.Add(deckToAdd);
+        /*properties.decksReceived.Add(new DeckInfo
         {
             deckName = deckToAdd.GetDeckName(),
             format = deckToAdd.GetFormat(),
             deckcards = new List<CardsReceived>()
-        });
+        });*/
         UpdateProperties();
     }
 
@@ -142,7 +137,7 @@ public class PlayerProperties
         UpdateProperties();
     }
 
-    public void UpdateDeckInfo(Deck deckToUpdate)
+    /*public void UpdateDeckInfo(Deck deckToUpdate)
     {
         var deckInfo = properties.decksReceived.Find(d => d.deckName == deckToUpdate.GetDeckName());
         if (deckInfo.deckName != null)
@@ -156,26 +151,31 @@ public class PlayerProperties
             }
             UpdateProperties();
         }
-    }
+    }*/
 
     public void AddCard(Card cardToAdd, int amount)
     {
-        if (properties.cards.ContainsKey(cardToAdd))
+        if (Player.player.Properties().cards.ContainsKey(cardToAdd))
         {
-            properties.cards[cardToAdd] += amount;
+            Player.player.Properties().cards[cardToAdd] += amount;
+            Debug.Log("Increased amount of card: " + cardToAdd.cardName + " by " + amount);
         }
         else
         {
-            properties.cards[cardToAdd] = amount;
+            Player.player.Properties().cards[cardToAdd] = amount;
+            Debug.Log("Added new card: " + cardToAdd.cardName + " with amount " + amount);
         }
-        var existingCard = properties.cardsReceived.Find(c => c.card.cardName == cardToAdd.cardName);
-        if (existingCard.card != null)
+        Debug.Log("Added " + amount + " of card: " + cardToAdd.cardName);
+        var existingCard = Player.player.Properties().cardsReceived.Find(c => c.card == cardToAdd);
+        if (existingCard != null)
         {
+            Debug.Log("Card already exists in cardsReceived. Increasing amount by " + amount);
             existingCard.amount += amount;
         }
         else
         {
-            properties.cardsReceived.Add(new CardsReceived { card = cardToAdd, amount = amount });
+            Debug.Log("Card does not exist in cardsReceived. Adding new entry.");
+            Player.player.Properties().cardsReceived.Add(new CardsReceived { card = cardToAdd, amount = amount });
         }
         UpdateProperties();
     }

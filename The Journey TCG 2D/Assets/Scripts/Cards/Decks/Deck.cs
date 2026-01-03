@@ -3,19 +3,51 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
-[Serializable]
+
 public abstract class Deck
 {
+
+
     public string deckName;
 
-    public DeckFormat deckFormat;
+    [HideInInspector] public DeckFormat deckFormat;
 
-    public List<BattleCard> deck;
+    public List<BattleCard> deck = new List<BattleCard>();
     
     protected int limitCardAmount;
 
-    protected Dictionary<string, int> cardLimits;
+    protected Dictionary<string, int> cardLimits = new Dictionary<string, int>();
+    #region Serialization
+    public void OnAfterDeserialize()
+    {
+        if (deck == null)
+            deck = new List<BattleCard>();
 
+        if (cardLimits == null)
+            cardLimits = new Dictionary<string, int>();
+
+        OnInit();
+    }
+
+    public void OnBeforeSerialize() { }
+
+    protected virtual void OnInit() { }
+    /*
+    #if UNITY_EDITOR
+    protected virtual void OnValidate()
+    {
+        if (deck == null)
+            deck = new List<BattleCard>();
+
+        if (deck.Count > limitCardAmount)
+        {
+            Debug.LogWarning("Deck excede el límite, se truncará.");
+            deck.RemoveRange(limitCardAmount, deck.Count - limitCardAmount);
+        }
+    }
+    #endif*/
+
+    #endregion
     protected void OnCreate()
     {
         deckName = "New Deck";
@@ -68,11 +100,22 @@ public abstract class Deck
 
     public BattleCard GetCardByName(string cardName)
     {
-        return deck.Find(d => d.GetCard().cardName == cardName);
+        BattleCard card = deck.Find(d => d.GetCard().cardName == cardName);
+        if (card == null)
+        {
+            Debug.Log("Card not found: " + cardName);
+            return null;
+        }
+        return card;
     }
 
     public int GetCardLimit(BattleCard card)
     {
+        if (card == null)
+        {
+            Debug.Log("Card is null");
+            return 0;
+        }
         if (cardLimits.ContainsKey(card.name))
         {
             return cardLimits[card.name];

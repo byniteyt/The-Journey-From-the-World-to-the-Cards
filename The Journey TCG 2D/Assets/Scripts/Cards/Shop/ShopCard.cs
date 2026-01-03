@@ -14,6 +14,12 @@ public class ShopCard : MonoBehaviour
         }
         EventManager.ChangeCoins.Invoke(this, -price);
         CardCollection.AddCard(card.GetCard());
+
+        if (card.GetCard() == null)
+        {
+            Debug.Log("La carta comprada no contiene nada.");
+            return;
+        }
         Debug.Log($"Compraste {card.GetCard().cardName} por {price} monedas.");
     }
 }

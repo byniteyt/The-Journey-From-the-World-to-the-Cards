@@ -18,51 +18,46 @@ public class Player : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        this.playerSources = Player.Sources;
-        this.playerProperties = Player.Properties;
-        this.playerStats = Player.Stats;
+        InitPlayer();
     }
 
-    public static PlayerSources Sources
+    void InitPlayer()
     {
-        get
+        Debug.Log("Initializing Player Sources");
+        PlayerSources.Initialize();
+        player.playerSources = PlayerSources.sources;
+
+        Debug.Log("Initializing Player Stats");
+        PlayerStats.InitializeStats();
+        player.playerStats = PlayerStats.stats;
+
+        Debug.Log("Initializing Player Properties");
+        player.playerProperties = PlayerProperties.properties;
+        player.playerProperties.Initialize();
+        
+        if (player.playerProperties.cardsReceived == null || player.playerProperties.cardsReceived.Count == 0)
         {
-            if (player.playerSources==null)
-            {
-                Debug.Log("Initializing Player Sources");
-                PlayerSources.Initialize();
-                player.playerSources = PlayerSources.sources;
-            }
-            return PlayerSources.sources;
+            Debug.Log("No tenemos cartas recibidas");
+        }
+        foreach (var card in player.playerProperties.cardsReceived)
+        {
+            Debug.Log($"Card received: {card.card.cardName}, Amount: {card.amount}");
         }
     }
 
-    public static PlayerStats Stats
+    public PlayerSources Sources()
     {
-        get
-        {
-            if (player.playerStats==null)
-            {
-                Debug.Log("Initializing Player Stats");
-                PlayerStats.InitializeStats();
-                player.playerStats = PlayerStats.stats;
-            }
-            return PlayerStats.stats;
-        }
+        return player.playerSources;
     }
 
-    public static PlayerProperties Properties
+    public PlayerStats Stats()
     {
-        get
-        {
-            if (player.playerProperties==null)
-            {
-                Debug.Log("Initializing Player Properties");
-                player.playerProperties = PlayerProperties.properties;
-                player.playerProperties.Initialize();
-            }
-            return PlayerProperties.properties;
-        }
+        return player.playerStats;
+    }
+
+    public PlayerProperties Properties()
+    {
+        return player.playerProperties;
     }
 
     // Update is called once per frame
