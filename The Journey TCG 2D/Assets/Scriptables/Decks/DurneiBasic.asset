@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: DurneiBasic
   m_EditorClassIdentifier: Assembly-CSharp::PrefabStandDeck
   standardDeck:
-    deckName: New Deck
+    deckName: Presentation
     deckFormat: 0
     deck: []

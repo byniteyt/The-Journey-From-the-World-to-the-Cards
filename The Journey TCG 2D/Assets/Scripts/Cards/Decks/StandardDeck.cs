@@ -8,13 +8,12 @@ public class StandardDeck : Deck
     {
         deckFormat = DeckFormat.Standard;
         limitCardAmount = 100;
-        //InitLimits();   
+        InitLimits();   
     }
     public StandardDeck() : base()
     {
         deckFormat = DeckFormat.Standard;
         limitCardAmount = 100;
-        base.Awake();
     }
     public StandardDeck(Deck deckToClone) : base(deckToClone)
     {
@@ -54,23 +53,8 @@ public class StandardDeck : Deck
             Debug.LogError($"BattleCard.GetCard() es NULL para {cardToAdd.name}");
             return;
         }
-        if (cardLimits.ContainsKey(cardToAdd.GetCard().cardName))
-        {
-            if (cardLimits[cardToAdd.GetCard().cardName] < 8)
-            {
-                Debug.Log($"Added {cardToAdd.GetCard().cardName} to the Deck.");
-                deck.Add(cardToAddAsBattleCard);
-                cardLimits[cardToAdd.GetCard().cardName]++;
-            }
-            else
-            {
-                Debug.Log($"Cannot add more copies of {cardToAdd.GetCard().cardName} to this Deck.");
-            }
-            return;
-        }
-        Debug.Log($"Added {cardToAdd.GetCard().cardName} to the Deck.");
+        AddCardToDictionary(cardToAddAsBattleCard);
         deck.Add(cardToAddAsBattleCard);
-        cardLimits.Add(cardToAdd.GetCard().cardName, 1);
     }
 
     public override void RemoveCard(BattleCard cardToRemove)

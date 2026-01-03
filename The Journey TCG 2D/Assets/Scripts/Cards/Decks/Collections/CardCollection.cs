@@ -11,6 +11,12 @@ public static class CardCollection
         {
             cardDictionary = Player.player.Properties().GetCards();
         }
+
+        if (cardToAdd == null)
+        {
+            Debug.Log("La carta a añadir es nula.");
+            return;
+        }
         if (cardDictionary.ContainsKey(cardToAdd))
         {
             cardDictionary[cardToAdd]++;
@@ -18,11 +24,6 @@ public static class CardCollection
         else
         {
             cardDictionary.Add(cardToAdd, 1);
-        }
-        if (cardToAdd == null)
-        {
-            Debug.Log("La carta a añadir es nula.");
-            return;
         }
         Player.player.Properties().AddCard(cardToAdd, 1);
         Debug.Log($"Added card: {cardToAdd.cardName}. Total count: {cardDictionary[cardToAdd]}");

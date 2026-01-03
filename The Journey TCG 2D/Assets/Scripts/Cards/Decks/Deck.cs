@@ -32,28 +32,10 @@ public abstract class Deck
     public void OnBeforeSerialize() { }
 
     protected virtual void OnInit() { }
-    /*
-    #if UNITY_EDITOR
-    protected virtual void OnValidate()
-    {
-        if (deck == null)
-            deck = new List<BattleCard>();
-
-        if (deck.Count > limitCardAmount)
-        {
-            Debug.LogWarning("Deck excede el límite, se truncará.");
-            deck.RemoveRange(limitCardAmount, deck.Count - limitCardAmount);
-        }
-    }
-    #endif*/
 
     #endregion
-    protected void OnCreate()
-    {
-        deckName = "New Deck";
-        deck = new List<BattleCard>();
-        cardLimits = new Dictionary<string, int>();
-    }
+
+    #region Constructors
     public Deck()
     {
         Debug.Log("Deck constructor called");
@@ -61,6 +43,7 @@ public abstract class Deck
         deck = new List<BattleCard>();
         cardLimits = new Dictionary<string, int>();
     }
+
     public Deck(Deck deckToClone)
     {
         deckName = deckToClone.deckName;
@@ -73,25 +56,16 @@ public abstract class Deck
             AddCard(card);
         }
     }
+    #endregion
+
+    #region Getters
     public DeckFormat GetFormat() => this.deckFormat;
     public string GetDeckName() => this.deckName;
-    protected virtual void Awake()
-    {
-    }
-
-    public virtual bool IsValidForPlay()
-    {
-        return true;
-    }
     public List<BattleCard> GetDeck()
     {
         return deck;
     }
 
-    public void SetDeck(List<BattleCard> deck)
-    {
-        this.deck = deck;
-    }
 
     public Dictionary<string, int> GetDictionary()
     {
@@ -121,10 +95,8 @@ public abstract class Deck
             return cardLimits[card.name];
         }
         Debug.Log("Card limit not found for card: " + card.name);
-        return 0;
+        return 1;
     }
-
-    public abstract void AddCard(BattleCard cardToAdd);
 
     public BattleCard GetCard(int index) { return deck[index]; }
 
@@ -137,6 +109,33 @@ public abstract class Deck
         }
         return GetCard(deck.Count - 1);
     }
+
+    public int GetMaxLimit()
+    {
+        return limitCardAmount;
+    }
+    #endregion
+    protected void OnCreate()
+    {
+        deckName = "New Deck";
+        deck = new List<BattleCard>();
+        cardLimits = new Dictionary<string, int>();
+    }
+    protected virtual void Awake()
+    {
+    }
+
+    public virtual bool IsValidForPlay()
+    {
+        return true;
+    }
+
+    public void SetDeck(List<BattleCard> deck)
+    {
+        this.deck = deck;
+    }
+
+    public abstract void AddCard(BattleCard cardToAdd);
 
     protected virtual bool IsFull()
     {
@@ -165,5 +164,27 @@ public abstract class Deck
     public void SetDeckName(string newName)
     {
         deckName = newName;
+    }
+
+    public void AddCardToDictionary(BattleCard cardToAdd)
+    {
+        if (cardToAdd == null) return;
+
+        string key = cardToAdd.name;
+
+        if (!cardLimits.ContainsKey(key))
+        {
+            cardLimits[key] = 1;
+            Debug.Log($"Added {cardToAdd.GetCard().cardName} to the Deck.");
+        }
+        else if (cardLimits[key] < GetMaxLimit())
+        {
+            cardLimits[key]++;
+            Debug.Log($"Added {cardToAdd.GetCard().cardName} to the Deck. Total: {cardLimits[key]}");
+        }
+        else
+        {
+            Debug.LogWarning($"Cannot add more cards of this type: {cardToAdd.GetCard().cardName}");
+        }
     }
 }
