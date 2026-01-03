@@ -12,11 +12,11 @@ public abstract class Deck
 
     [HideInInspector] public DeckFormat deckFormat;
 
-    public List<BattleCard> deck = new List<BattleCard>();
+    public List<BattleCard> deck;
     
     protected int limitCardAmount;
 
-    protected Dictionary<string, int> cardLimits = new Dictionary<string, int>();
+    protected Dictionary<string, int> cardLimits;
     #region Serialization
     public void OnAfterDeserialize()
     {

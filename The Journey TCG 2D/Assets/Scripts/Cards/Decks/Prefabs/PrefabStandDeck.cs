@@ -4,13 +4,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StandardDeck", menuName = "Prefabs/StandardDeck")]
 public class PrefabStandDeck : ScriptableObject
 {
-    public StandardDeck standardDeck = new StandardDeck();
+    public StandardDeck standardDeck;
 
 #if UNITY_EDITOR
     private void OnValidate()
     {
         if (standardDeck == null)
+        {
+            Debug.LogWarning("El deck estándar es nulo.");
             return;
+        }
 
         if (standardDeck.deck == null)
             standardDeck.deck = new List<BattleCard>();
