@@ -7,7 +7,7 @@ public class StandardDeck : Deck
     protected override void OnInit()
     {
         deckFormat = DeckFormat.Standard;
-        limitCardAmount = 100;
+        limitCardAmount = 10;
         InitLimits();   
     }
     public StandardDeck() : base()

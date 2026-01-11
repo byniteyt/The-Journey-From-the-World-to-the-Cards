@@ -443,7 +443,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3a055be00c70a4db4162308a9e9fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleDeckManager
-  deck: {fileID: 0}
 --- !u!1 &275937342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1816,7 +1815,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfaa04ec0eff6c941ae91b19df3c3e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IADeck
-  deck: {fileID: 0}
 --- !u!114 &626898359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3755,7 +3753,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2037550171
 RectTransform:
   m_ObjectHideFlags: 0

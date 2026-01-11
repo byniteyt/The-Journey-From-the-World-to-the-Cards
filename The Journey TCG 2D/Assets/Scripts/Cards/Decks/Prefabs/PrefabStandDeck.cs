@@ -5,6 +5,7 @@ using UnityEngine;
 public class PrefabStandDeck : ScriptableObject
 {
     public StandardDeck standardDeck;
+    int index = 0;
 
 #if UNITY_EDITOR
     private void OnValidate()
@@ -28,30 +29,9 @@ public class PrefabStandDeck : ScriptableObject
                 standardDeck.deck.Count - limit
             );
         }
-
-        for (int i = standardDeck.deck.Count - 1; i >= 0; i--)
+        if (standardDeck.GetLastCard() == null)
         {
-            if (standardDeck.deck[i] == null)
-            {
-                standardDeck.deck.RemoveAt(i);
-                continue;
-            }
-            if (standardDeck.GetCardLimit(standardDeck.deck[i]) > standardDeck.GetMaxLimit())
-            {
-                standardDeck.deck.RemoveAt(i);
-                Debug.LogWarning("Se ha eliminado una carta que excedía el límite permitido.");
-                continue;
-            }
-
-            if (standardDeck.deck[i] != null)
-            {
-                string key = standardDeck.deck[i].name;
-                if (!standardDeck.GetDictionary().ContainsKey(key))
-                    standardDeck.GetDictionary()[key] = 1;
-                else
-                    standardDeck.GetDictionary()[key]++;
-            }
-
+            standardDeck.deck.RemoveAt(standardDeck.deck.Count - 1);
         }
     }
 

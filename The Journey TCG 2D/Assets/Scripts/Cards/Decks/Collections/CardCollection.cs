@@ -1,10 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class CardCollection  
+public class CardCollection  
 {
     [SerializeField] static Dictionary<Card, int> cardDictionary;
-    
+    public Dictionary<Card, int> GetCardCollection()
+    {
+        if (cardDictionary == null) cardDictionary = new Dictionary<Card, int>();
+        return cardDictionary;
+    }
     public static void AddCard(Card cardToAdd)
     {
         if (cardDictionary == null)

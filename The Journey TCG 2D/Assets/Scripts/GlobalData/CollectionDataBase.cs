@@ -24,6 +24,7 @@ public class CollectionDataBase : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        LoadAllCollections();
     }
 
     /// <summary>
