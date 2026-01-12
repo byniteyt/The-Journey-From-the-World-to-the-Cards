@@ -14,14 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Collections
   m_GUID: 6c8551f2e7cead4479d3553658ad30da
-  m_SerializeEntries:
-  - m_GUID: d2225a9fff713c24cb864f8128c05d51
-    m_Address: Assets/Scriptables/Collections/Durnei.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Collection
-    - Durnei
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a4cdba5ba996f1940922007de06b8a45, type: 2}
   m_SchemaSet:

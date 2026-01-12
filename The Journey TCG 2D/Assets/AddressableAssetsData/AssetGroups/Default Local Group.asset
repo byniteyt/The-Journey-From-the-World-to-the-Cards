@@ -14,7 +14,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Default Local Group
   m_GUID: 14a809b6066266b48bbf94c2bb7be7f0
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 13fecfdbdd9a59a47a173404382330be
+    m_Address: Durnei/1.1- The arrival/Shield.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Card
+    - Durnei
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 39d27be138ad8544bb841f34dca1d727
+    m_Address: Durnei/1.1- The arrival/Swords.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Card
+    - Durnei
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3facca91265fc8d4c91be4ad5b5ca690
+    m_Address: Durnei/1.1- The arrival
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Collection
+    - Durnei
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 657da34daafd4e54cb01c5a59ea26a37
+    m_Address: Durnei/1.1- The arrival/Sapo.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Card
+    - Durnei
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6cc96f940bafafd4c8825d7b64911d0b
+    m_Address: Durnei/1.1- The arrival/Ayuntamiento.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Card
+    - Durnei
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a4cdba5ba996f1940922007de06b8a45, type: 2}
   m_SchemaSet:

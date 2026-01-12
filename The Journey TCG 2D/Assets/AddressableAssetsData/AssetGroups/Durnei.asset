@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: 31fa34e5456941f45be2d5bbdb5898b8
   m_SerializeEntries:
   - m_GUID: 99cf53497f908b1419fa4fb4288b50c8
-    m_Address: Assets/Sources/Cards/1- Durnei
+    m_Address: Durnei
     m_ReadOnly: 0
     m_SerializedLabels:
     - Collection
