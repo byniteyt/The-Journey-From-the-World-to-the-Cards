@@ -1,24 +1,20 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player 
 {
-    public static Player player;
+    private static Player player;
     PlayerSources playerSources;
     PlayerProperties playerProperties;
     PlayerStats playerStats;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    { 
+    public static Player GetPlayer()
+    {
         if (player == null)
         {
-            player = this;
-            DontDestroyOnLoad(gameObject);
+            player = new Player();
+            player.InitPlayer();
         }
-        else if (player != this)
-        {
-            Destroy(gameObject);
-        }
-        InitPlayer();
+        return player;
     }
 
     void InitPlayer()

@@ -14,7 +14,7 @@ public class PlayerProperties
     
     public static PlayerProperties properties = new PlayerProperties();
 
-    private Dictionary<Card, int> cards = new Dictionary<Card, int>();
+    private Dictionary<string, int> cards = new Dictionary<string, int>();
 
     public List<Deck> decks = new List<Deck>();
 
@@ -23,7 +23,7 @@ public class PlayerProperties
     public List<Deck> decksReceived = new List<Deck>();
 
     #region Getters
-    public Dictionary<Card, int> GetCards()
+    public Dictionary<string, int> GetCards()
     {
         if (properties.cards == null)
         {
@@ -71,7 +71,7 @@ public class PlayerProperties
     {
         if (!SaveData<PlayerProperties>.SaveDataExists("PlayerProperties.json"))
         {
-            properties.cards = new Dictionary<Card, int>
+            properties.cards = new Dictionary<string, int>
             {
             };
             properties.cardsReceived = new List<CardsReceived>
@@ -115,12 +115,12 @@ public class PlayerProperties
 
     public void UpdateProperties()
     {
-        SaveData<PlayerProperties>.SerializeJSON(Player.player.Properties(), "PlayerProperties.json");
+        SaveData<PlayerProperties>.SerializeJSON(Player.GetPlayer().Properties(), "PlayerProperties.json");
     }
 
     public void AddDeck(Deck deckToAdd)
     {
-        Player.player.Properties().decks.Add(deckToAdd);
+        Player.GetPlayer().Properties().decks.Add(deckToAdd);
         /*properties.decksReceived.Add(new DeckInfo
         {
             deckName = deckToAdd.GetDeckName(),
@@ -155,18 +155,18 @@ public class PlayerProperties
 
     public void AddCard(Card cardToAdd, int amount)
     {
-        if (Player.player.Properties().cards.ContainsKey(cardToAdd))
+        if (Player.GetPlayer().Properties().cards.ContainsKey(cardToAdd.cardName))
         {
-            Player.player.Properties().cards[cardToAdd] += amount;
+            Player.GetPlayer().Properties().cards[cardToAdd.cardName] += amount;
             Debug.Log("Increased amount of card: " + cardToAdd.cardName + " by " + amount);
         }
         else
         {
-            Player.player.Properties().cards[cardToAdd] = amount;
+            Player.GetPlayer().Properties().cards[cardToAdd.cardName] = amount;
             Debug.Log("Added new card: " + cardToAdd.cardName + " with amount " + amount);
         }
         Debug.Log("Added " + amount + " of card: " + cardToAdd.cardName);
-        var existingCard = Player.player.Properties().cardsReceived.Find(c => c.card == cardToAdd);
+        var existingCard = Player.GetPlayer().Properties().cardsReceived.Find(c => c.card == cardToAdd);
         if (existingCard != null)
         {
             Debug.Log("Card already exists in cardsReceived. Increasing amount by " + amount);
@@ -175,7 +175,7 @@ public class PlayerProperties
         else
         {
             Debug.Log("Card does not exist in cardsReceived. Adding new entry.");
-            Player.player.Properties().cardsReceived.Add(new CardsReceived { card = cardToAdd, amount = amount });
+            Player.GetPlayer().Properties().cardsReceived.Add(new CardsReceived { card = cardToAdd, amount = amount });
         }
         UpdateProperties();
     }

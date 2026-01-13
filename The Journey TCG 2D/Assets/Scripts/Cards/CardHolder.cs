@@ -14,8 +14,8 @@ public class CardHolder : MonoBehaviour
     {
         cardHolder = GameObject.Find("CardHolder");
         cardButton = Resources.Load<GameObject>("Prefabs/Cards/CollectedCard");
-        if (Player.player.Properties().cardsReceived.Count == 0) Debug.Log("No hay cartas guardadas para mostrar");
-        foreach (CardsReceived newCard in Player.player.Properties().cardsReceived)
+        if (Player.GetPlayer().Properties().cardsReceived.Count == 0) Debug.Log("No hay cartas guardadas para mostrar");
+        foreach (CardsReceived newCard in Player.GetPlayer().Properties().cardsReceived)
         {
             GameObject cb = Instantiate(cardButton, cardHolder.transform);
             //cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
