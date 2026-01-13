@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4213840246756888656}
   - component: {fileID: 8394587877232778769}
   - component: {fileID: 2772936716849763208}
-  - component: {fileID: 5896159631913634334}
+  - component: {fileID: 2067219747995669786}
   m_Layer: 7
   m_Name: Sapo
   m_TagString: Untagged
@@ -138,7 +138,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.18, y: 4.6}
   m_EdgeRadius: 0
---- !u!114 &5896159631913634334
+--- !u!114 &2067219747995669786
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,15 +147,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8857691975515996894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaca96197a0f23646a040c33edbce036, type: 3}
+  m_Script: {fileID: 11500000, guid: e15e3c33eb0005c47ba0250bf601869d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BattleRoomCard
+  m_EditorClassIdentifier: Assembly-CSharp::BattleCharCard
   card:
-    artwork: {fileID: 0}
+    artwork: {fileID: 112378386898512773, guid: 6bc49b0adef648d4f8bbc94ba6ade215, type: 3}
     cardName: Sappy
     description: 
-    cost: 0
-    buffElements: 
-    nerfElements: 
-    buffCharacters: 
-    nerfCharacters: 
+    cost: 2
+    health: 3
+    attack: 2
+    rank: 1

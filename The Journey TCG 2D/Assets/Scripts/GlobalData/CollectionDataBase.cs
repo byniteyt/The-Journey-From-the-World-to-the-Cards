@@ -2,10 +2,11 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using System.Collections.Generic;
+using System;
 
-public class CollectionDataBase : MonoBehaviour
+public class CollectionDataBase
 {
-    public static CollectionDataBase Instance { get; private set; }
+    private static CollectionDataBase Instance;
 
     // Cache de colecciones cargadas
     private Dictionary<string, Collection> collections =
@@ -14,23 +15,19 @@ public class CollectionDataBase : MonoBehaviour
     // Handle SOLO para la carga masiva
     private AsyncOperationHandle<IList<Collection>> loadAllHandle;
 
-    private void Awake()
+    public static CollectionDataBase GetDataBase()
     {
-        if (Instance != null)
+        if (Instance == null)
         {
-            Destroy(gameObject);
-            return;
+            Instance = new CollectionDataBase();
         }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-        LoadAllCollections();
+        return Instance;
     }
 
     /// <summary>
     /// Carga todas las colecciones marcadas con la label "Collection"
     /// </summary>
-    public void LoadAllCollections(System.Action onComplete = null)
+    public void LoadAllCollections(Action onComplete = null)
     {
         // Evitar recargar todo dos veces
         if (loadAllHandle.IsValid())
@@ -43,7 +40,7 @@ public class CollectionDataBase : MonoBehaviour
             "Collection",
             collection =>
             {
-                string id = collection.collectionName.ToString(); // ignorando ToString
+                string id = collection.collectionName.ToString(); 
 
                 if (!collections.ContainsKey(id))
                 {

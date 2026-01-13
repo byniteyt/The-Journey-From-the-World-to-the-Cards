@@ -5,7 +5,7 @@ using UnityEngine;
 public class PrefabStandDeck : ScriptableObject
 {
     public StandardDeck standardDeck;
-    int index = 0;
+    readonly int index = 0;
 
 #if UNITY_EDITOR
     private void OnValidate()
@@ -16,8 +16,7 @@ public class PrefabStandDeck : ScriptableObject
             return;
         }
 
-        if (standardDeck.deck == null)
-            standardDeck.deck = new List<BattleCard>();
+        standardDeck.deck ??= new List<BattleCard>();
 
         int limit = standardDeck.GetMaxLimit();
 

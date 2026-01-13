@@ -29,7 +29,7 @@ public class DeckCardHolder : MonoBehaviour
             GameObject cb = Instantiate(deckCardButton, deckCardHolder.transform);
             //cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
             cb.GetComponentInChildren<TextMeshProUGUI>().text = DeckManager.selectedDeck.GetCardLimit(card).ToString();
-            cb.gameObject.name = card.name;
+            cb.name = card.name;
             cb.AddComponent<BoxCollider2D>();
             cb.transform.GetChild(0).GetComponent<Image>().sprite = card.GetCard().artwork;
             switch (card.GetType().ToString())

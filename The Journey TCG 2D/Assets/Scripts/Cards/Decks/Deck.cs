@@ -20,11 +20,9 @@ public abstract class Deck
     #region Serialization
     public void OnAfterDeserialize()
     {
-        if (deck == null)
-            deck = new List<BattleCard>();
+        deck ??= new List<BattleCard>();
 
-        if (cardLimits == null)
-            cardLimits = new Dictionary<string, int>();
+        cardLimits ??= new Dictionary<string, int>();
 
         OnInit();
     }

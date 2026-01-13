@@ -3,41 +3,43 @@ using UnityEngine;
 
 public class CardCollection  
 {
-    [SerializeField] static Dictionary<Card, int> cardDictionary;
-    public Dictionary<Card, int> GetCardCollection()
+    [SerializeField] static Dictionary<string, int> cardDictionary;
+    public Dictionary<string, int> GetCardCollection()
     {
-        if (cardDictionary == null) cardDictionary = new Dictionary<Card, int>();
+        cardDictionary ??= new Dictionary<string, int>();
         return cardDictionary;
     }
-    public static void AddCard(Card cardToAdd)
+    public static void AddCard(BattleCard cardToAdd)
     {
-        if (cardDictionary == null)
-        {
-            cardDictionary = Player.player.Properties().GetCards();
-        }
+        cardDictionary ??= Player.GetPlayer().Properties().GetCards();
 
         if (cardToAdd == null)
         {
             Debug.Log("La carta a añadir es nula.");
             return;
         }
-        if (cardDictionary.ContainsKey(cardToAdd))
+        if (cardDictionary.ContainsKey(cardToAdd.GetCard().cardName))
         {
-            cardDictionary[cardToAdd]++;
+            cardDictionary[cardToAdd.GetCard().cardName]++;
         }
         else
         {
-            cardDictionary.Add(cardToAdd, 1);
+            cardDictionary.Add(cardToAdd.GetCard().cardName, 1);
         }
-        Player.player.Properties().AddCard(cardToAdd, 1);
-        Debug.Log($"Added card: {cardToAdd.cardName}. Total count: {cardDictionary[cardToAdd]}");
+        Player.GetPlayer().Properties().AddCard(cardToAdd, 1);
+        Debug.Log($"Added card: {cardToAdd.GetCard().cardName}. Total count: {cardDictionary[cardToAdd.GetCard().cardName]}");
     }
-    public static Dictionary<Card, int> GetCollection()
+    public static Dictionary<string, int> GetCollection()
     {
-        if (cardDictionary == null)
-        {
-            cardDictionary = Player.player.Properties().GetCards();
-        }
+        cardDictionary ??= Player.GetPlayer().Properties().GetCards();
         return cardDictionary;
+    }
+    public static Card GetCard(string id)
+    {
+        Card cardData = CardDataBase.Instance
+            .GetCard(id)
+            .GetComponent<BattleCard>()
+            .GetCard();
+        return cardData;
     }
 }

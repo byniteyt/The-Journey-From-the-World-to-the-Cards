@@ -20,7 +20,7 @@ public class DeckHolder : MonoBehaviour
         {
             GameObject db = Instantiate(deckButton, deckHolder.transform);
             db.transform.SetAsFirstSibling();
-            db.gameObject.name = deck.deckName;
+            db.name = deck.deckName;
             db.GetComponentInChildren<TextMeshProUGUI>().text = $"{deck.deckName}\n\n{deck.GetFormat()}";
             if (deck.GetType() == typeof(WildDeck)) db.AddComponent<BattleDeck>().deck = deck;
             else if (deck.GetType() == typeof(StandardDeck)) db.AddComponent<BattleDeck>().deck = deck;
@@ -57,12 +57,12 @@ public class DeckHolder : MonoBehaviour
     }
     IEnumerator ConfirmDeleteDeck()
     {
-        Action deleteAction = new Action(DestroyDeck);
+        Action deleteAction = new(DestroyDeck);
         yield return null;
         GameObject Warning = Instantiate(Resources.Load<GameObject>("Prefabs/Warning/Warning"));
         yield return new WaitForEndOfFrame();
         EventManager.GetOrder?.Invoke(this, deleteAction);
-        DeleteDeck delete = new DeleteDeck(DeckManager.selectedDeck);
+        DeleteDeck delete = new(DeckManager.selectedDeck);
         delete.Execute();
     }
 

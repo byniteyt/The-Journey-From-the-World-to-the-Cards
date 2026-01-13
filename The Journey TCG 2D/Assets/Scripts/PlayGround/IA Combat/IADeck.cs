@@ -53,7 +53,7 @@ public class IADeck : BattleDeck
         if (deckCount == 0)
         {
             Debug.Log("IA Deck is empty!");
-            this.GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<SpriteRenderer>().enabled = false;
             return;
         }
         Debug.Log($"Proxima carta a robar de la IA: {deck.GetLastCard().name}");

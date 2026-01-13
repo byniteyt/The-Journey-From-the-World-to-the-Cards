@@ -30,7 +30,7 @@ public class HitSpell : SpellCard
                 if (enemyBattleGround.transform.childCount > 0)
                 {
                     int randomIndex = Random.Range(0, enemyBattleGround.transform.childCount);
-                    enemyBattleGround.transform.GetChild(randomIndex).GetComponent<CharacterCard>().ChangeHeal(-effectAmount);
+                    enemyBattleGround.transform.GetChild(randomIndex).GetComponent<BattleCharCard>().GetCharacter().ChangeHeal(-effectAmount);
                 }
                 break;
 

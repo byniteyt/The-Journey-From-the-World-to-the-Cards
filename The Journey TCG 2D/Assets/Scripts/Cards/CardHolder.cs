@@ -20,24 +20,24 @@ public class CardHolder : MonoBehaviour
             GameObject cb = Instantiate(cardButton, cardHolder.transform);
             //cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
             cb.GetComponentInChildren<TextMeshProUGUI>().text = newCard.amount.ToString();
-            cb.gameObject.name = newCard.card.GetCard().cardName;
+            cb.name = newCard.card.GetCard().cardName;
             cb.transform.GetChild(0).GetComponent<Image>().sprite = newCard.card.GetCard().artwork;
             cb.AddComponent<BoxCollider2D>();
-            switch (newCard.GetType().ToString())
+            switch (newCard.card.GetType().ToString())
             {
-                case "RoomCard":
+                case "BattleRoomCard":
                     Debug.Log($"Adding {newCard.card.GetCard().cardName} as a RoomCard");
                     cb.AddComponent<BattleRoomCard>();
                     cb.GetComponent<BattleRoomCard>().SetCard((RoomCard)newCard.card.GetCard());
                     //cb.GetComponent<BattleRoomCard>().SetCard((RoomCard)newCard.Clone());
                     break;
                 case string s when s.Contains("Spell"):
-                    Debug.Log($"Adding {newCard.card.GetCard().cardName} as a {newCard.GetType()}");
+                    Debug.Log($"Adding {newCard.card.GetCard().cardName} as a {newCard.card.GetType()}");
                     cb.AddComponent<BattleSpellCard>();
                     cb.GetComponent<BattleSpellCard>().SetCard((SpellCard)newCard.card.GetCard());
                     //cb.GetComponent<BattleSpellCard>().SetCard((SpellCard)newCard.Clone());
                     break;
-                case "CharacterCard":
+                case "BattleCharCard":
                     Debug.Log($"Adding {newCard.card.GetCard().cardName} as a CharacterCard");
                     cb.AddComponent<BattleCharCard>();
                     cb.GetComponent<BattleCharCard>().SetCard((CharacterCard)newCard.card.GetCard());
@@ -47,7 +47,7 @@ public class CardHolder : MonoBehaviour
                     Debug.Log($"Adding {newCard.card.GetCard().cardName} as a Card");
                     break; 
                 default:
-                    Debug.Log($"Adding {newCard.card.GetCard().cardName} as a Unknown card type");
+                    Debug.Log($"Adding {newCard.card.GetCard().cardName} as a {newCard.card.GetType()} card type");
                     break;
             }
             Button selectButton = cb.GetComponent<Button>();

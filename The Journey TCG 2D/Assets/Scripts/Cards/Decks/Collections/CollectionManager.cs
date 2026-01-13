@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CollectionManager : MonoBehaviour
 {
-    CollectionData collectionData;
+    readonly CollectionData collectionData;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

@@ -31,17 +31,20 @@ public class StandardDeck : Deck
             Debug.LogError("Cannot add a null card to the Deck.");
             return;
         }
-        BattleCard cardToAddAsBattleCard = null;
+        BattleCard cardToAddAsBattleCard;
         switch (cardToAdd.GetType().Name)
         {
             case "BattleCharCard":
-                cardToAddAsBattleCard = new BattleCharCard((CharacterCard)cardToAdd.GetCard());
+                BattleCharCard battleCharCard = new((CharacterCard)cardToAdd.GetCard());
+                cardToAddAsBattleCard = battleCharCard;
                 break;
             case "BattleSpellCard":
-                cardToAddAsBattleCard = new BattleSpellCard((SpellCard)cardToAdd.GetCard());
+                BattleSpellCard battleSpellCard = new((SpellCard)cardToAdd.GetCard());
+                cardToAddAsBattleCard = battleSpellCard;
                 break;
             case "BattleRoomCard":
-                cardToAddAsBattleCard = new BattleRoomCard((RoomCard)cardToAdd.GetCard());
+                BattleRoomCard battleRoomCard = new((RoomCard)cardToAdd.GetCard());
+                cardToAddAsBattleCard = battleRoomCard;
                 break;
             // Add other Card types here as needed
             default:

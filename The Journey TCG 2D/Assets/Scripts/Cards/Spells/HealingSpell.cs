@@ -31,7 +31,7 @@ public class HealingSpell : SpellCard
             case TargetType.RandomEnemy:
                 if (enemyBattleGround.transform.childCount == 0) return;
                 int randomIndex = Random.Range(0, enemyBattleGround.transform.childCount);
-                enemyBattleGround.transform.GetChild(randomIndex).GetComponent<CharacterCard>().ChangeHeal(effectAmount);
+                enemyBattleGround.transform.GetChild(randomIndex).GetComponent<BattleCharCard>().GetCharacter().ChangeHeal(effectAmount);
                 break;
                     
             case TargetType.AllAllies:
@@ -45,7 +45,7 @@ public class HealingSpell : SpellCard
                 if (playerBattleGround.transform.childCount == 0) return;
                 randomIndex = Random.Range(0, playerBattleGround.transform.childCount);
                 playerBattleGround.transform.GetChild(randomIndex).
-                    GetComponent<CharacterCard>().ChangeHeal(effectAmount);
+                    GetComponent<BattleCharCard>().GetCharacter().ChangeHeal(effectAmount);
                 break;
             case TargetType.All:
                 if (playerBattleGround.transform.childCount == 0&& 

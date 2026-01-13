@@ -686,7 +686,7 @@ MonoBehaviour:
   packName: Base Pack
   cardsAmount: 4
   packPrice: 0
-  collection: {fileID: 11400000, guid: d2225a9fff713c24cb864f8128c05d51, type: 2}
+  collectionName: 0
 --- !u!114 &183528942
 MonoBehaviour:
   m_ObjectHideFlags: 0

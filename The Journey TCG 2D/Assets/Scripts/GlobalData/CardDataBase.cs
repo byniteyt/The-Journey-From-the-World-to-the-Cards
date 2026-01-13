@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -8,11 +9,11 @@ public class CardDataBase : MonoBehaviour
     public static CardDataBase Instance { get; private set; }
 
     // Cache de colecciones cargadas
-    private Dictionary<string, Card> cards =
-        new Dictionary<string, Card>();
+    private readonly Dictionary<string, GameObject> cards =
+        new();
 
     // Handle SOLO para la carga masiva
-    private AsyncOperationHandle<IList<Card>> loadAllHandle;
+    private AsyncOperationHandle<IList<GameObject>> loadAllHandle;
 
     private void Awake()
     {
@@ -24,7 +25,7 @@ public class CardDataBase : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        LoadCardsFromFolder("Durnei", () =>
+        LoadCardsFromFolder("Card", () =>
         {
             Debug.Log("Todas las cartas de Durnei cargadas");
         });
@@ -42,11 +43,24 @@ public class CardDataBase : MonoBehaviour
             return;
         }
 
-        loadAllHandle = Addressables.LoadAssetsAsync<Card>(
+        loadAllHandle = Addressables.LoadAssetsAsync<GameObject>(
             "Card",
             collection =>
             {
-                string id = collection.cardName.ToString(); // ignorando ToString
+                BattleCard battleCard = collection.GetComponent<BattleCard>();
+                if (battleCard == null)
+                {
+                    Debug.LogWarning($"{collection.name} no tiene BattleCard");
+                    return;
+                }
+
+                Card cardData = battleCard.GetCard();
+                if (cardData == null)
+                {
+                    Debug.LogWarning($"{collection.name} no tiene Card asignada");
+                    return;
+                }
+                string id = cardData.cardName; 
 
                 if (!cards.ContainsKey(id))
                 {
@@ -61,13 +75,13 @@ public class CardDataBase : MonoBehaviour
     /// <summary>
     /// Obtiene una colección ya cargada
     /// </summary>
-    public Card GetCard(string id)
+    public GameObject GetCard(string id)
     {
         cards.TryGetValue(id, out var card);
         return card;
     }
 
-    public IEnumerable<Card> GetAllCards()
+    public IEnumerable<GameObject> GetAllCards()
     {
         return cards.Values;
     }
@@ -75,7 +89,7 @@ public class CardDataBase : MonoBehaviour
     /// <summary>
     /// Carga una colección concreta por ID (Address)
     /// </summary>
-    public void LoadCollectionById(string id, System.Action<Card> onLoaded)
+    public void LoadCollectionById(string id, System.Action<GameObject> onLoaded)
     {
         // Ya cargada
         if (cards.TryGetValue(id, out var cached))
@@ -84,7 +98,7 @@ public class CardDataBase : MonoBehaviour
             return;
         }
 
-        var handle = Addressables.LoadAssetAsync<Card>(id);
+        var handle = Addressables.LoadAssetAsync<GameObject>(id);
 
         handle.Completed += h =>
         {
@@ -105,20 +119,20 @@ public class CardDataBase : MonoBehaviour
     /// </summary>
     public void LoadCardsFromFolder(string label, System.Action onComplete = null)
     {
-        Addressables.LoadAssetsAsync<Card>(
+        Addressables.LoadAssetsAsync<GameObject>(
             label,
             card =>
             {
                 if (card == null)
                     return;
-
-                string id = card.cardName;
+                Card basic = card.GetComponent<BattleCard>().GetCard();
+                string id = basic.cardName;
 
                 if (!cards.ContainsKey(id))
                 {
                     cards.Add(id, card);
                 }
-                CardCollection.AddCard(card);
+                CardCollection.AddCard(card.GetComponent<BattleCard>());
             }
         ).Completed += handle =>
         {
@@ -133,7 +147,7 @@ public class CardDataBase : MonoBehaviour
             }
         };
     }
-
+    /*
     private void OnDestroy()
     {
         // Liberar carga masiva
@@ -147,5 +161,5 @@ public class CardDataBase : MonoBehaviour
         }
 
         cards.Clear();
-    }
+    }*/
 }

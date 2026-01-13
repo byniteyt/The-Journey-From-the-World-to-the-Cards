@@ -7,7 +7,7 @@ using UnityEngine;
 public class WildDeck : Deck
 {
     private CharacterCard commander = null;
-    private string[] eliteCards = new string[4];
+    private readonly string[] eliteCards = new string[4];
     private int eliteIndex = 0; // Llevará a cabo la cuenta de cuántos elites llevamos y cual sería el próximo a agregar
 
     public int EliteIndex
@@ -59,7 +59,7 @@ public class WildDeck : Deck
                 commander = (CharacterCard) cardToAdd.GetCard();
             }
 
-            if (cardToAdd.GetComponent<CharacterCard>().rank == CreatureRank.Elite)
+            if (cardToAdd.GetComponent<BattleCharCard>().GetCharacter().rank == CreatureRank.Elite)
             {
                 if (eliteCards.Contains(cardToAdd.name))
                 {

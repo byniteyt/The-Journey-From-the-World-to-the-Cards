@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class DeckCollection 
 {
-    static List<Deck> decks = new List<Deck>();
+    static readonly List<Deck> decks = new();
 
     public static int DecksAmount()
     {
@@ -37,7 +37,7 @@ public static class DeckCollection
         {
             return null;
         }
-        return decks[decks.Count - 1];
+        return decks[^1]; // primero desde el final
     }
 
     public static void SetDeck(int index, Deck deckToChange)

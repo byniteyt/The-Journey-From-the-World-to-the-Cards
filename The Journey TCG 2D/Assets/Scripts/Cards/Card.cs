@@ -21,11 +21,13 @@ public class Card
 
     public virtual Card Clone()
     {
-        Card card = new Card();
-        card.artwork = this.artwork;
-        card.cardName = this.cardName;
-        card.description = this.description;
-        card.cost = this.cost;
+        Card card = new()
+        {
+            artwork = this.artwork,
+            cardName = this.cardName,
+            description = this.description,
+            cost = this.cost
+        };
         return card;
     }
 

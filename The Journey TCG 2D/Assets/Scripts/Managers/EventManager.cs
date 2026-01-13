@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class EventManager : MonoBehaviour
+public class EventManager
 {
     #region Combat Events
     public static EventHandler<int> TakeDamage;
