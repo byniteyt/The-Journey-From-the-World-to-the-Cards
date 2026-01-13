@@ -8,7 +8,7 @@ public class PlayerProperties
     [Serializable] public
     class CardsReceived
     {
-        public Card card;
+        public BattleCard card;
         public int amount;
     }
     
@@ -153,20 +153,20 @@ public class PlayerProperties
         }
     }*/
 
-    public void AddCard(Card cardToAdd, int amount)
+    public void AddCard(BattleCard cardToAdd, int amount)
     {
-        if (Player.GetPlayer().Properties().cards.ContainsKey(cardToAdd.cardName))
+        if (Player.GetPlayer().Properties().cards.ContainsKey(cardToAdd.GetCard().cardName))
         {
-            Player.GetPlayer().Properties().cards[cardToAdd.cardName] += amount;
-            Debug.Log("Increased amount of card: " + cardToAdd.cardName + " by " + amount);
+            Player.GetPlayer().Properties().cards[cardToAdd.GetCard().cardName] += amount;
+            Debug.Log("Increased amount of card: " + cardToAdd.GetCard().cardName + " by " + amount);
         }
         else
         {
-            Player.GetPlayer().Properties().cards[cardToAdd.cardName] = amount;
-            Debug.Log("Added new card: " + cardToAdd.cardName + " with amount " + amount);
+            Player.GetPlayer().Properties().cards[cardToAdd.GetCard().cardName] = amount;
+            Debug.Log("Added new card: " + cardToAdd.GetCard().cardName + " with amount " + amount);
         }
-        Debug.Log("Added " + amount + " of card: " + cardToAdd.cardName);
-        var existingCard = Player.GetPlayer().Properties().cardsReceived.Find(c => c.card == cardToAdd);
+        Debug.Log("Added " + amount + " of card: " + cardToAdd.GetCard().cardName);
+        var existingCard = Player.GetPlayer().Properties().cardsReceived.Find(c => c.card.GetCard().cardName == cardToAdd.GetCard().cardName);
         if (existingCard != null)
         {
             Debug.Log("Card already exists in cardsReceived. Increasing amount by " + amount);

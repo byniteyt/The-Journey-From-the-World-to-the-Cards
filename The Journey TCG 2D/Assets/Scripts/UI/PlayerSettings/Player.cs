@@ -37,7 +37,7 @@ public class Player
         }
         foreach (var card in player.playerProperties.cardsReceived)
         {
-            Debug.Log($"Card received: {card.card.cardName}, Amount: {card.amount}");
+            Debug.Log($"Card received: {card.card.GetCard().cardName}, Amount: {card.amount}");
         }
     }
 

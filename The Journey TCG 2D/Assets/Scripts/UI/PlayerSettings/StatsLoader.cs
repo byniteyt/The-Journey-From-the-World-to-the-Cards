@@ -7,6 +7,7 @@ public class StatsLoader : MonoBehaviour
     void Start()
     {
         PlayerPrefs.DeleteAll();
+        Player.GetPlayer();
         //PlayerStats.InitializeStats();
         //PlayerSources.Initialize();
         //PlayerProperties.InitializeOwnDecks();

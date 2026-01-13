@@ -13,7 +13,7 @@ public class ShopCard : MonoBehaviour
             return;
         }
         EventManager.ChangeCoins.Invoke(this, -price);
-        CardCollection.AddCard(card.GetCard());
+        CardCollection.AddCard(card);
 
         if (card.GetCard() == null)
         {

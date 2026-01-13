@@ -63,7 +63,7 @@ public class OpenningPack : MonoBehaviour
                 cardAsset.transform.localScale += new Vector3(0.1f, 0, 0);
                 yield return new WaitForSeconds(0.01f);
             }
-            CardCollection.AddCard(card.GetCard());
+            CardCollection.AddCard(card);
             index++;
             yield return new WaitForSeconds(0.7f);
             StartCoroutine(ShowCard(pack, index));
