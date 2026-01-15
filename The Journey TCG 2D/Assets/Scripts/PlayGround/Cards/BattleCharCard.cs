@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BattleCharCard : BattleCard
 {
-    [SerializeField] protected CharacterCard card = new CharacterCard();
+    [SerializeField] protected CharacterCard card = new();
 
     public BattleCharCard(CharacterCard newCard)
     {
@@ -16,6 +16,10 @@ public class BattleCharCard : BattleCard
             return null;
         }
         return (CharacterCard)card;
+    }
+    public override CharacterCard GetCharacter()
+    {
+        return card;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,7 +37,7 @@ public class BattleCharCard : BattleCard
 
     public override void SetCard(Card card)
     {
-        card = (CharacterCard) card;
+        this.card = (CharacterCard) card;
     }
 
     public override void ShowCardDetails()

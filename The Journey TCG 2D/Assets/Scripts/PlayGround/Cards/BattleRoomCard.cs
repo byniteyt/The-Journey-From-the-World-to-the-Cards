@@ -2,13 +2,17 @@ using UnityEngine;
 
 public class BattleRoomCard : BattleCard
 {
-    [SerializeField] protected RoomCard card = new RoomCard();
+    [SerializeField] protected RoomCard card = new();
 
     public BattleRoomCard(RoomCard newCard)
     {
         card = newCard;
     }
 
+    public override RoomCard GetRoom()
+    {
+        return card;
+    }
     public override Card GetCard()
     {
         if (card == null)

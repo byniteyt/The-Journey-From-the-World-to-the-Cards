@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BattleSpellCard : BattleCard
 {
-    [SerializeField] protected SpellCard card = new SpellCard();
+    [SerializeField] protected SpellCard card = new();
 
     public BattleSpellCard(SpellCard newCard)
     {
@@ -21,7 +21,10 @@ public class BattleSpellCard : BattleCard
     {
         
     }
-
+    public override SpellCard GetSpell()
+    {
+        return card;
+    }
     protected virtual void OnMouseDrag()
     {
         if (originalPosition == Vector2.zero)
