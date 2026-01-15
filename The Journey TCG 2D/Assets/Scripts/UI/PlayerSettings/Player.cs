@@ -11,7 +11,7 @@ public class Player
     {
         if (player == null)
         {
-            player = new Player();
+            player = new();
             player.InitPlayer();
         }
         return player;
@@ -37,6 +37,18 @@ public class Player
         }
         foreach (var card in player.playerProperties.cardsReceived)
         {
+            if (card.card == null)
+            {
+                Debug.LogWarning("La carta recibida es nula"); continue;
+            }
+            if (card.card.GetCard()== null)
+            {
+                Debug.LogWarning("No hay carta"); continue;
+            }
+            if (card.card.GetCard().cardName == null)
+            {
+                Debug.LogWarning("No hay nombre de carta"); continue;
+            }
             Debug.Log($"Card received: {card.card.GetCard().cardName}, Amount: {card.amount}");
         }
     }

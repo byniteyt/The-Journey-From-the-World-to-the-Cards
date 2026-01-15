@@ -36,7 +36,7 @@ public class CardCollection
     }
     public static Card GetCard(string id)
     {
-        Card cardData = CardDataBase.Instance
+        Card cardData = CardDataBase.GetDataBase()
             .GetCard(id)
             .GetComponent<BattleCard>()
             .GetCard();

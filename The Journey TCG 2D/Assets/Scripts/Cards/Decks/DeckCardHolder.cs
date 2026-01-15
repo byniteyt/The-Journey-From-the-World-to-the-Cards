@@ -26,6 +26,11 @@ public class DeckCardHolder : MonoBehaviour
         foreach (string key in DeckManager.selectedDeck.GetDictionary().Keys)
         {
             BattleCard card = DeckManager.selectedDeck.GetCardByName(key);
+            if (card == null)
+            {
+                Debug.Log($"No hay carta para nombre {key}");
+                continue;
+            } 
             GameObject cb = Instantiate(deckCardButton, deckCardHolder.transform);
             //cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
             cb.GetComponentInChildren<TextMeshProUGUI>().text = DeckManager.selectedDeck.GetCardLimit(card).ToString();

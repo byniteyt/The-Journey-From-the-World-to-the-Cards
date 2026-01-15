@@ -1,4 +1,3 @@
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +13,8 @@ public class CardHolder : MonoBehaviour
     {
         cardHolder = GameObject.Find("CardHolder");
         cardButton = Resources.Load<GameObject>("Prefabs/Cards/CollectedCard");
-        if (Player.GetPlayer().Properties().cardsReceived.Count == 0) Debug.Log("No hay cartas guardadas para mostrar");
+        if (Player.GetPlayer().Properties().cardsReceived.Count == 0) 
+            Debug.Log("No hay cartas guardadas para mostrar");
         foreach (CardsReceived newCard in Player.GetPlayer().Properties().cardsReceived)
         {
             GameObject cb = Instantiate(cardButton, cardHolder.transform);
@@ -26,22 +26,25 @@ public class CardHolder : MonoBehaviour
             switch (newCard.card.GetType().ToString())
             {
                 case "BattleRoomCard":
-                    Debug.Log($"Adding {newCard.card.GetCard().cardName} as a RoomCard");
+                    Debug.Log($"Adding {newCard.card.GetCard().cardName} as a RoomCard\n" +
+                        $"La carta vale {newCard.card.GetCard().cost} y su descripcion es: \n" +
+                        $"\\ {newCard.card.GetCard().description}");
                     cb.AddComponent<BattleRoomCard>();
-                    cb.GetComponent<BattleRoomCard>().SetCard((RoomCard)newCard.card.GetCard());
+                    cb.GetComponent<BattleRoomCard>().SetCard(newCard.card.GetRoom());
                     //cb.GetComponent<BattleRoomCard>().SetCard((RoomCard)newCard.Clone());
                     break;
                 case string s when s.Contains("Spell"):
                     Debug.Log($"Adding {newCard.card.GetCard().cardName} as a {newCard.card.GetType()}");
                     cb.AddComponent<BattleSpellCard>();
-                    cb.GetComponent<BattleSpellCard>().SetCard((SpellCard)newCard.card.GetCard());
+                    cb.GetComponent<BattleSpellCard>().SetCard(newCard.card.GetSpell());
                     //cb.GetComponent<BattleSpellCard>().SetCard((SpellCard)newCard.Clone());
                     break;
                 case "BattleCharCard":
-                    Debug.Log($"Adding {newCard.card.GetCard().cardName} as a CharacterCard");
+                    Debug.Log($"Adding {newCard.card.GetCard().cardName} as a CharacterCard.\n" +
+                        $"La carta vale {newCard.card.GetCard().cost} y su descripcion es: \n" +
+                        $"\\ {newCard.card.GetCard().description}");
                     cb.AddComponent<BattleCharCard>();
-                    cb.GetComponent<BattleCharCard>().SetCard((CharacterCard)newCard.card.GetCard());
-                    //cb.GetComponent<BattleCharCard>().SetCard((CharacterCard) newCard.Clone());
+                    cb.GetComponent<BattleCharCard>().SetCard(newCard.card.GetCharacter());
                     break;
                 case "Card":
                     Debug.Log($"Adding {newCard.card.GetCard().cardName} as a Card");
@@ -50,8 +53,8 @@ public class CardHolder : MonoBehaviour
                     Debug.Log($"Adding {newCard.card.GetCard().cardName} as a {newCard.card.GetType()} card type");
                     break;
             }
-            Button selectButton = cb.GetComponent<Button>();
-            selectButton.onClick.AddListener(() => AddToDeck(cb.GetComponent<BattleCard>()));
+            Debug.Log("Se accede al botón");
+            cb.GetComponent<Button>().onClick.AddListener(() => AddToDeck(cb.GetComponent<BattleCard>()));
         }
     }
     void AddToDeck(BattleCard cardToAdd)

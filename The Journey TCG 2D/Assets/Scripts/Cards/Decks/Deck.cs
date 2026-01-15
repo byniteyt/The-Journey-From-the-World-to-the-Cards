@@ -12,7 +12,7 @@ public abstract class Deck
 
     [HideInInspector] public DeckFormat deckFormat;
 
-    public List<BattleCard> deck;
+    public List<BattleCard> deck = new();
     
     protected int limitCardAmount;
 

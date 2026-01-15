@@ -4,31 +4,27 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class CardDataBase : MonoBehaviour
+public class CardDataBase
 {
-    public static CardDataBase Instance { get; private set; }
+    private static CardDataBase Instance { get; set; }
 
     // Cache de colecciones cargadas
-    private readonly Dictionary<string, GameObject> cards =
+    private Dictionary<string, GameObject> cards =
         new();
 
     // Handle SOLO para la carga masiva
     private AsyncOperationHandle<IList<GameObject>> loadAllHandle;
-
-    private void Awake()
+    public static CardDataBase GetDataBase() 
     {
-        if (Instance != null)
+        if (Instance == null)
         {
-            Destroy(gameObject);
-            return;
+            Instance = new();
+            Instance.LoadCardsFromFolder("Card", () =>
+            {
+                Debug.Log("Todas las cartas de Durnei cargadas");
+            });
         }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-        LoadCardsFromFolder("Card", () =>
-        {
-            Debug.Log("Todas las cartas de Durnei cargadas");
-        });
+        return Instance; 
     }
 
     /// <summary>
@@ -119,6 +115,7 @@ public class CardDataBase : MonoBehaviour
     /// </summary>
     public void LoadCardsFromFolder(string label, System.Action onComplete = null)
     {
+        Debug.Log("Se inicia la carga de cartas de " + label);
         Addressables.LoadAssetsAsync<GameObject>(
             label,
             card =>

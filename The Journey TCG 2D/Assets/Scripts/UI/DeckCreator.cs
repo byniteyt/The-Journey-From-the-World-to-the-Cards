@@ -30,7 +30,7 @@ public class DeckCreator : MonoBehaviour
 
     public void AddDeck()
     {
-        GameObject newDeckObj = new GameObject("Deck new"); // crea un objeto vacío
+        GameObject newDeckObj = new("Deck new"); // crea un objeto vacío
         Deck deckToAdd;
         deckToAdd = (format == DeckFormat.Standard)? new StandardDeck() : new WildDeck();
         deckToAdd.deckName = deckName;

@@ -31,33 +31,38 @@ public class StandardDeck : Deck
             Debug.LogError("Cannot add a null card to the Deck.");
             return;
         }
-        BattleCard cardToAddAsBattleCard;
+        Card cardOfBattleCard = cardToAdd.GetCard();
+        /*
         switch (cardToAdd.GetType().Name)
         {
             case "BattleCharCard":
                 BattleCharCard battleCharCard = new((CharacterCard)cardToAdd.GetCard());
-                cardToAddAsBattleCard = battleCharCard;
+                cardToAdd = battleCharCard;
+                cardOfBattleCard = cardToAdd.GetCharacter();
                 break;
             case "BattleSpellCard":
                 BattleSpellCard battleSpellCard = new((SpellCard)cardToAdd.GetCard());
-                cardToAddAsBattleCard = battleSpellCard;
+                cardToAdd = battleSpellCard;
+                cardOfBattleCard = cardToAdd.GetSpell();
                 break;
             case "BattleRoomCard":
                 BattleRoomCard battleRoomCard = new((RoomCard)cardToAdd.GetCard());
-                cardToAddAsBattleCard = battleRoomCard;
+                cardToAdd = battleRoomCard;
+                cardOfBattleCard = cardToAdd.GetRoom();
                 break;
             // Add other Card types here as needed
             default:
                 Debug.LogError("Unsupported Card type.");
                 return;
         }
-        if (cardToAdd.GetCard() == null)
+        */
+        if (cardOfBattleCard == null)
         {
             Debug.LogError($"BattleCard.GetCard() es NULL para {cardToAdd.name}");
             return;
         }
-        AddCardToDictionary(cardToAddAsBattleCard);
-        deck.Add(cardToAddAsBattleCard);
+        AddCardToDictionary(cardToAdd);
+        deck.Add(cardToAdd);
     }
 
     public override void RemoveCard(BattleCard cardToRemove)

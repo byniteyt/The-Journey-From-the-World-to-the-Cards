@@ -27,7 +27,7 @@ public class PlayerProperties
     {
         if (properties.cards == null)
         {
-            properties.cards = CardCollection.GetCollection();
+            properties.cards = new();
         }
         return properties.cards;
     }
@@ -39,6 +39,10 @@ public class PlayerProperties
             properties.decks = DeckCollection.SavedDecks();
         }
         return properties.decks;
+    }
+    public int GetIndexOfDeck(Deck deck)
+    {
+        return properties.decks.IndexOf(deck);
     }
     /*
     public static List<Deck> GetOwnDecks()
@@ -71,15 +75,9 @@ public class PlayerProperties
     {
         if (!SaveData<PlayerProperties>.SaveDataExists("PlayerProperties.json"))
         {
-            properties.cards = new Dictionary<string, int>
-            {
-            };
-            properties.cardsReceived = new List<CardsReceived>
-            {
-            };
-            properties.decks = new List<Deck>
-            {
-            };
+            properties.cards = new();
+            properties.cardsReceived = new();
+            properties.decks = new();
             SaveData<PlayerProperties>.SerializeJSON(properties, "PlayerProperties.json");
             Debug.LogWarning("PlayerProperties file not found. Created new PlayerProperties.json");
         }
