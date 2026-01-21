@@ -19,10 +19,6 @@ public class CardDataBase
         if (Instance == null)
         {
             Instance = new();
-            Instance.LoadCardsFromFolder("Card", () =>
-            {
-                Debug.Log("Todas las cartas de Durnei cargadas");
-            });
         }
         return Instance; 
     }

@@ -1,14 +1,26 @@
-using UnityEngine;
-
-public class DeckManager : MonoBehaviour
+public sealed class DeckManager
 {
-    public static Deck selectedDeck;
-    public static Deck IADeck;
+    private static DeckManager _instance;
+    public static DeckManager Instance => _instance ??= new DeckManager();
 
-    public void RemoveDeck(Deck deckToDelete)
-    { 
-        int index = DeckCollection.GetIndexOfDeck(deckToDelete);
-        Destroy(gameObject.transform.GetChild(index).gameObject);
-        DeckCollection.RemoveDeck(deckToDelete);
+    public Deck SelectedDeck { get; set; }
+    public Deck IADeck { get; set; }
+
+    private DeckManager() { }
+
+    public void SetSelectedDeck(Deck deck)
+    {
+        SelectedDeck = deck;
+    }
+
+    public void SetIADeck(Deck deck)
+    {
+        IADeck = deck;
+    }
+
+    public void Clear()
+    {
+        SelectedDeck = null;
+        IADeck = null;
     }
 }

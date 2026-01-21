@@ -32,7 +32,7 @@ public class DeckHolder : MonoBehaviour
     }
     void SelectDeck(Deck selectedDeck)
     {
-        DeckManager.selectedDeck = selectedDeck;
+        DeckManager.Instance.SelectedDeck = selectedDeck;
         //DontDestroyOnLoad(DeckManager.selectedDeck);
     }
 
@@ -51,7 +51,7 @@ public class DeckHolder : MonoBehaviour
             Debug.Log("No hay deck seleccionada");
             return;
         }
-        DeckCollection.RemoveDeck(DeckManager.selectedDeck);
+        DeckCollection.RemoveDeck(DeckManager.Instance.SelectedDeck);
         //Destroy(DeckManager.selectedDeck);
         Destroy(selectedButton.gameObject);
     }
@@ -62,7 +62,7 @@ public class DeckHolder : MonoBehaviour
         GameObject Warning = Instantiate(Resources.Load<GameObject>("Prefabs/Warning/Warning"));
         yield return new WaitForEndOfFrame();
         EventManager.GetOrder?.Invoke(this, deleteAction);
-        DeleteDeck delete = new(DeckManager.selectedDeck);
+        DeleteDeck delete = new(DeckManager.Instance.SelectedDeck);
         delete.Execute();
     }
 

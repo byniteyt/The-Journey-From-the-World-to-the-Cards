@@ -25,19 +25,19 @@ public class MatchSelector : MonoBehaviour
     }
     public void StartMatch()
     {
-        if (DeckManager.selectedDeck == null)
+        if (DeckManager.Instance.SelectedDeck == null)
         {
             Debug.Log("No has elegido la baraja.");
             return;
         }
 
-        if (DeckManager.selectedDeck.GetFormat() != format)
+        if (DeckManager.Instance.SelectedDeck.GetFormat() != format)
         {
             Debug.Log("La baraja no es correcta.");
             return;
         }
 
-        if (!DeckManager.selectedDeck.IsValidForPlay())
+        if (!DeckManager.Instance.SelectedDeck.IsValidForPlay())
         {
             Debug.Log("La baraja no es válida. Asegúrate de que cumple los requisitos."); 
             return;

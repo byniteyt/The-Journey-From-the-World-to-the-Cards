@@ -59,11 +59,11 @@ public class CardHolder : MonoBehaviour
     }
     void AddToDeck(BattleCard cardToAdd)
     {
-        if (DeckManager.selectedDeck == null)
+        if (DeckManager.Instance.SelectedDeck == null)
         {
             Debug.Log("No deck selected.");
             return;
         }
-        DeckManager.selectedDeck.AddCard(cardToAdd);
+        DeckManager.Instance.SelectedDeck.AddCard(cardToAdd);
     }
 }

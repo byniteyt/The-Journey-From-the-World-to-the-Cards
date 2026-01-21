@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 282562244}
   - component: {fileID: 282562243}
   m_Layer: 5
-  m_Name: SaveDeck (1)
+  m_Name: EditDeck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

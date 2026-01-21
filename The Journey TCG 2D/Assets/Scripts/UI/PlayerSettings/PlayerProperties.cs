@@ -69,8 +69,8 @@ public class PlayerProperties
         InitializePlayerProperties();
         /*InitializeOwnDecks();
         InitializePrefabDecks();*/
-
     }
+
     public static void InitializePlayerProperties()
     {
         if (!SaveData<PlayerProperties>.SaveDataExists("PlayerProperties.json"))
@@ -78,8 +78,27 @@ public class PlayerProperties
             properties.cards = new();
             properties.cardsReceived = new();
             properties.decks = new();
+            CardDataBase.GetDataBase().LoadCardsFromFolder("Card", () =>
+            {
+                foreach (var card in Player.GetPlayer().Properties().cardsReceived)
+                {
+                    if (card.card == null)
+                    {
+                        Debug.LogWarning("La carta recibida es nula"); continue;
+                    }
+                    if (card.card.GetCard() == null)
+                    {
+                        Debug.LogWarning("No hay carta"); continue;
+                    }
+                    if (card.card.GetCard().cardName == null)
+                    {
+                        Debug.LogWarning("No hay nombre de carta"); continue;
+                    }
+                    Debug.Log($"Card received: {card.card.GetCard().cardName}, Amount: {card.amount}");
+                }
+                Debug.Log("Todas las cartas de Durnei cargadas");
+            });
             SaveData<PlayerProperties>.SerializeJSON(properties, "PlayerProperties.json");
-            Debug.LogWarning("PlayerProperties file not found. Created new PlayerProperties.json");
         }
         else
         {
@@ -88,7 +107,6 @@ public class PlayerProperties
             properties.cardsReceived = props.cardsReceived;
             properties.decks = props.decks;
             properties.decksReceived = props.decksReceived;
-            Debug.LogWarning("PlayerProperties loaded.");
         }
     }
     public static void InitializePrefabDecks()

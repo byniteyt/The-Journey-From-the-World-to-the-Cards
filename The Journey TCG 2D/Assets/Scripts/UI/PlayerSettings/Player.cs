@@ -31,26 +31,6 @@ public class Player
         player.playerProperties = PlayerProperties.properties;
         player.playerProperties.Initialize();
         
-        if (player.playerProperties.cardsReceived == null || player.playerProperties.cardsReceived.Count == 0)
-        {
-            Debug.Log("No tenemos cartas recibidas");
-        }
-        foreach (var card in player.playerProperties.cardsReceived)
-        {
-            if (card.card == null)
-            {
-                Debug.LogWarning("La carta recibida es nula"); continue;
-            }
-            if (card.card.GetCard()== null)
-            {
-                Debug.LogWarning("No hay carta"); continue;
-            }
-            if (card.card.GetCard().cardName == null)
-            {
-                Debug.LogWarning("No hay nombre de carta"); continue;
-            }
-            Debug.Log($"Card received: {card.card.GetCard().cardName}, Amount: {card.amount}");
-        }
     }
 
     public PlayerSources Sources()
@@ -66,11 +46,5 @@ public class Player
     public PlayerProperties Properties()
     {
         return player.playerProperties;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

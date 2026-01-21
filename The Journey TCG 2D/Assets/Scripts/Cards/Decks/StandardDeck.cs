@@ -13,7 +13,7 @@ public class StandardDeck : Deck
     public StandardDeck() : base()
     {
         deckFormat = DeckFormat.Standard;
-        limitCardAmount = 100;
+        limitCardAmount = 5;
     }
     public StandardDeck(Deck deckToClone) : base(deckToClone)
     {

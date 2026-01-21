@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Collections;
 using UnityEngine;
 
@@ -88,11 +89,11 @@ public abstract class Deck
             Debug.Log("Card is null");
             return 0;
         }
-        if (cardLimits.ContainsKey(card.name))
+        if (cardLimits.ContainsKey(card.GetCard().cardName))
         {
-            return cardLimits[card.name];
+            return cardLimits[card.GetCard().cardName];
         }
-        Debug.Log("Card limit not found for card: " + card.name);
+        Debug.Log("Card limit not found for card: " + card.GetCard().cardName);
         return 1;
     }
 
@@ -166,18 +167,29 @@ public abstract class Deck
 
     public void AddCardToDictionary(BattleCard cardToAdd)
     {
-        if (cardToAdd == null) return;
+        if (cardToAdd == null)
+        {
+            Debug.LogWarning("Cannot add null card to the Deck.");
+            return;
+        }
+        if (cardToAdd.GetCard() == null)
+        {
+            Debug.LogWarning("La carta a introducir contiene una que es nula.");
+            return;
+        }
 
-        string key = cardToAdd.name;
+        string key = cardToAdd.GetCard().cardName;
 
         if (!cardLimits.ContainsKey(key))
         {
             cardLimits[key] = 1;
             Debug.Log($"Added {cardToAdd.GetCard().cardName} to the Deck.");
+            deck.Add(cardToAdd);
         }
         else if (cardLimits[key] < GetMaxLimit())
         {
             cardLimits[key]++;
+            deck.Add(cardToAdd);
             Debug.Log($"Added {cardToAdd.GetCard().cardName} to the Deck. Total: {cardLimits[key]}");
         }
         else

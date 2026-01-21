@@ -16,7 +16,7 @@ public class IADeck : BattleDeck
         {
             Destroy(this);
         }
-        deck = DeckManager.IADeck;
+        deck = DeckManager.Instance.IADeck;
         //deck = DeckCollection.GetDeck(Mathf.Min(1, DeckCollection.DecksAmount())); // Si solo hay un mazo, usa ese
         deckCount = deck.GetDeck().Count;
         Debug.Log($"IA Deck Count: {deckCount}");

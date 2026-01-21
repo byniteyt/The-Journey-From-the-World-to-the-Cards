@@ -12,9 +12,9 @@ public class DeckEditorManager : MonoBehaviour
         //Debug.Log($"La baraja se llama {DeckCollection.decks[DeckCollection.decks.Count-1].name}");
         //Debug.Log($"La baraja es de tipo {DeckCollection.decks[DeckCollection.decks.Count-1].GetFormat()}");
         Debug.Log(PlayerProperties.properties.GetDecks().Count);
-        index = PlayerProperties.properties.GetIndexOfDeck(DeckManager.selectedDeck);
+        index = PlayerProperties.properties.GetIndexOfDeck(DeckManager.Instance.SelectedDeck);
         Debug.Log($"La baraja es {PlayerProperties.properties.GetDecks()[^1].deckName}");
-        deckToEdit = DeckManager.selectedDeck;
+        deckToEdit = DeckManager.Instance.SelectedDeck;
         deckNameText = GameObject.Find("DeckNameText");
         if (deckNameText== null)
         {

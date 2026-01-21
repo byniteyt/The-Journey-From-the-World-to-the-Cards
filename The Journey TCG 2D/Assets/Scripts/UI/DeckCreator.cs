@@ -40,8 +40,8 @@ public class DeckCreator : MonoBehaviour
             Debug.Log("No deck was added.");
             return;
         }
-        DeckManager.selectedDeck = deckToAdd;
-        DeckManager.IADeck = PlayerProperties.properties.GetDecks()[0];
+        DeckManager.Instance.SelectedDeck = deckToAdd;
+        DeckManager.Instance.IADeck = PlayerProperties.properties.GetDecks()[0];
         SceneManager.LoadScene("DeckCreator");
     }
 

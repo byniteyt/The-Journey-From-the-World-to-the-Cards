@@ -18,7 +18,7 @@ public class PlayerDeck : BattleDeck
             Destroy(this);
         }
         EventManager.FirstMainTurn += StartTurn;
-        deck = DeckManager.selectedDeck;
+        deck = DeckManager.Instance.SelectedDeck;
         deckCount = deck.GetDeck().Count;
         Debug.Log($"Deck Count: {deckCount}");
         

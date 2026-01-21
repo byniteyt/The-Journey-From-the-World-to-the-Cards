@@ -13,27 +13,29 @@ public class DeckCardHolder : MonoBehaviour
     {
         deckCardHolder = GameObject.Find("DeckCardHolder");
         deckCardButton = Resources.Load<GameObject>("Prefabs/Cards/CollectedCard");
-        if (DeckManager.selectedDeck == null)
+        if (DeckManager.Instance.SelectedDeck == null)
         {
             Debug.Log("No deck selected.");
             return;
         }
-        if (DeckManager.selectedDeck.GetDeck().Count == 0)
+        if (DeckManager.Instance.SelectedDeck.GetDeck().Count == 0)
         {
             Debug.Log("Selected deck has no cards.");
             return;
         }
-        foreach (string key in DeckManager.selectedDeck.GetDictionary().Keys)
+
+        foreach (string key in DeckManager.Instance.SelectedDeck.GetDictionary().Keys)
         {
-            BattleCard card = DeckManager.selectedDeck.GetCardByName(key);
+            BattleCard card = DeckManager.Instance.SelectedDeck.GetCardByName(key);
             if (card == null)
             {
                 Debug.Log($"No hay carta para nombre {key}");
+                ShowCards(DeckManager.Instance.SelectedDeck);
                 continue;
             } 
             GameObject cb = Instantiate(deckCardButton, deckCardHolder.transform);
             //cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
-            cb.GetComponentInChildren<TextMeshProUGUI>().text = DeckManager.selectedDeck.GetCardLimit(card).ToString();
+            cb.GetComponentInChildren<TextMeshProUGUI>().text = DeckManager.Instance.SelectedDeck.GetCardLimit(card).ToString();
             cb.name = card.name;
             cb.AddComponent<BoxCollider2D>();
             cb.transform.GetChild(0).GetComponent<Image>().sprite = card.GetCard().artwork;
@@ -55,6 +57,14 @@ public class DeckCardHolder : MonoBehaviour
                     Debug.Log("Unknown card type");
                     break;
             }
+        }
+    }
+
+    void ShowCards(Deck deck)
+    {
+        foreach (string key in deck.GetDictionary().Keys)
+        {
+            Debug.Log("la baraja contiene de " + key + " " + deck.GetCardLimit(deck.GetCardByName(key)) + " copias ");
         }
     }
 }
