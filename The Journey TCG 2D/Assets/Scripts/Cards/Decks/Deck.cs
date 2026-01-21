@@ -17,7 +17,7 @@ public abstract class Deck
     
     protected int limitCardAmount;
 
-    protected Dictionary<string, int> cardLimits;
+    protected Dictionary<string, int> cardLimits = new();
     #region Serialization
     public void OnAfterDeserialize()
     {
@@ -73,7 +73,8 @@ public abstract class Deck
 
     public BattleCard GetCardByName(string cardName)
     {
-        BattleCard card = deck.Find(d => d.GetCard().cardName == cardName);
+        BattleCard card = deck.FirstOrDefault(c => c.GetCard().cardName == cardName);
+        //BattleCard card = deck.Find(d => d.GetCard().cardName == cardName);
         if (card == null)
         {
             Debug.Log("Card not found: " + cardName);

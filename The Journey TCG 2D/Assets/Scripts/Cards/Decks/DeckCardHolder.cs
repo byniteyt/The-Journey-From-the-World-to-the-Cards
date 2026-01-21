@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,7 +24,42 @@ public class DeckCardHolder : MonoBehaviour
             Debug.Log("Selected deck has no cards.");
             return;
         }
+        Debug.Log($"Deck count: {DeckManager.Instance.SelectedDeck.GetDeck().Count}");
+        /*foreach (var c in DeckManager.Instance.SelectedDeck.GetDeck())
+        {
+            if (c.GetCard() == null)
+                Debug.LogWarning($"Found BattleCard with null Card! Name: {c.name}");
+            else
+                Debug.Log($"BattleCard: {c.GetCard().cardName}");
+        }*/
+        foreach (var kvp in DeckManager.Instance.SelectedDeck.GetDictionary())
+        {
+            string cardName = kvp.Key;
+            BattleCard card = DeckManager.Instance.SelectedDeck.GetDeck()
+                                .FirstOrDefault(c => c.GetCard() != null && c.GetCard().cardName == cardName);
+            if (card == null)
+                Debug.LogError($"Cannot find card in deck with name {cardName}");
+        }
+        foreach (var kvp in DeckManager.Instance.SelectedDeck.GetDictionary())
+        {
+            string cardName = kvp.Key;
+            int amount = kvp.Value;
 
+            BattleCard card = DeckManager.Instance.SelectedDeck.GetCardByName(cardName);
+            if (card == null) continue;
+
+            GameObject cb = Instantiate(deckCardButton, deckCardHolder.transform);
+            cb.GetComponentInChildren<TextMeshProUGUI>().text = amount.ToString();
+            cb.name = cardName;
+            cb.transform.GetChild(0).GetComponent<Image>().sprite = card.GetCard().artwork;
+            cb.AddComponent<BoxCollider2D>();
+
+            var cardData = card.GetCard();
+            if (cardData is RoomCard room) { cb.AddComponent<BattleRoomCard>().SetCard((RoomCard)room.Clone()); }
+            else if (cardData is SpellCard spell) { cb.AddComponent<BattleSpellCard>().SetCard((SpellCard)spell.Clone()); }
+            else if (cardData is CharacterCard character) { cb.AddComponent<BattleCharCard>().SetCard((CharacterCard)character.Clone()); }
+        }
+        /*
         foreach (string key in DeckManager.Instance.SelectedDeck.GetDictionary().Keys)
         {
             BattleCard card = DeckManager.Instance.SelectedDeck.GetCardByName(key);
@@ -36,28 +72,29 @@ public class DeckCardHolder : MonoBehaviour
             GameObject cb = Instantiate(deckCardButton, deckCardHolder.transform);
             //cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
             cb.GetComponentInChildren<TextMeshProUGUI>().text = DeckManager.Instance.SelectedDeck.GetCardLimit(card).ToString();
-            cb.name = card.name;
+            cb.name = card.GetCard().cardName;
             cb.AddComponent<BoxCollider2D>();
             cb.transform.GetChild(0).GetComponent<Image>().sprite = card.GetCard().artwork;
-            switch (card.GetType().ToString())
+            if (card.GetCard() is RoomCard room)
             {
-                case "RoomCard":
-                    cb.AddComponent<BattleRoomCard>();
-                    cb.GetComponent<BattleRoomCard>().SetCard((RoomCard)card.GetCard().Clone());
-                    break;
-                case "SpellCard":
-                    cb.AddComponent<BattleSpellCard>();
-                    cb.GetComponent<BattleSpellCard>().SetCard((SpellCard)card.GetCard().Clone());
-                    break;
-                case "CharacterCard":
-                    cb.AddComponent<BattleCharCard>();
-                    cb.GetComponent<BattleCharCard>().SetCard((CharacterCard)card.GetCard().Clone());
-                    break;
-                default:
-                    Debug.Log("Unknown card type");
-                    break;
+                var bc = cb.AddComponent<BattleRoomCard>();
+                bc.SetCard((RoomCard)card.GetCard().Clone());
             }
-        }
+            else if (card.GetCard() is SpellCard spell)
+            {
+                var bc = cb.AddComponent<BattleSpellCard>();
+                bc.SetCard((SpellCard)card.GetCard().Clone());
+            }
+            else if (card.GetCard() is CharacterCard character)
+            {
+                var bc = cb.AddComponent<BattleCharCard>();
+                bc.SetCard((CharacterCard)card.GetCard().Clone());
+            }
+            else
+            {
+                Debug.LogWarning($"Unknown card type: {card.GetCard().GetType()}");
+            }
+        }*/
     }
 
     void ShowCards(Deck deck)

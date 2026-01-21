@@ -62,18 +62,21 @@ public class StandardDeck : Deck
             return;
         }
         AddCardToDictionary(cardToAdd);
-        deck.Add(cardToAdd);
     }
 
     public override void RemoveCard(BattleCard cardToRemove)
     {
-        base.RemoveCard(cardToRemove);
-        cardLimits[cardToRemove.name]--;
-        if (cardLimits[cardToRemove.name] == 0)
+        string key = cardToRemove.GetCard().cardName;
+
+        cardLimits[key]--;
+
+        if (cardLimits[key] == 0)
         {
-            cardLimits.Remove(cardToRemove.name);
+            cardLimits.Remove(key);
+            deck.Remove(cardToRemove);
         }
     }
+
 
     public override bool IsValidForPlay()
     {
