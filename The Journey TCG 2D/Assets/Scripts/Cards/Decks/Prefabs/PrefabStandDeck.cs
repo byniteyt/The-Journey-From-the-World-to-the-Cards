@@ -16,21 +16,20 @@ public class PrefabStandDeck : ScriptableObject
             return;
         }
 
-        standardDeck.deck ??= new List<BattleCard>();
 
         int limit = standardDeck.GetMaxLimit();
 
-        if (standardDeck.deck.Count > limit)
+        if (standardDeck.GetDeck().Count > limit)
         {
             Debug.LogWarning("El deck supera el límite. Se truncará.");
-            standardDeck.deck.RemoveRange(
+            standardDeck.GetDeck().RemoveRange(
                 limit,
-                standardDeck.deck.Count - limit
+                standardDeck.GetDeck().Count - limit
             );
         }
         if (standardDeck.GetLastCard() == null)
         {
-            standardDeck.deck.RemoveAt(standardDeck.deck.Count - 1);
+            standardDeck.GetDeck().RemoveAt(standardDeck.GetDeck().Count - 1);
         }
     }
 

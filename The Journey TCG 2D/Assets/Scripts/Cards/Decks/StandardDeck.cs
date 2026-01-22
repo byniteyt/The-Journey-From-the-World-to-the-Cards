@@ -26,55 +26,28 @@ public class StandardDeck : Deck
             Debug.Log("This Deck is full. Cannot add more cards.");
             return;
         }
-        if (cardToAdd == null)
+        if (cardToAdd == null || cardToAdd.GetCard() == null)
         {
-            Debug.LogError("Cannot add a null card to the Deck.");
+            Debug.LogWarning("Cannot add null card to the Deck.");
             return;
         }
-        Card cardOfBattleCard = cardToAdd.GetCard();
-        /*
-        switch (cardToAdd.GetType().Name)
-        {
-            case "BattleCharCard":
-                BattleCharCard battleCharCard = new((CharacterCard)cardToAdd.GetCard());
-                cardToAdd = battleCharCard;
-                cardOfBattleCard = cardToAdd.GetCharacter();
-                break;
-            case "BattleSpellCard":
-                BattleSpellCard battleSpellCard = new((SpellCard)cardToAdd.GetCard());
-                cardToAdd = battleSpellCard;
-                cardOfBattleCard = cardToAdd.GetSpell();
-                break;
-            case "BattleRoomCard":
-                BattleRoomCard battleRoomCard = new((RoomCard)cardToAdd.GetCard());
-                cardToAdd = battleRoomCard;
-                cardOfBattleCard = cardToAdd.GetRoom();
-                break;
-            // Add other Card types here as needed
-            default:
-                Debug.LogError("Unsupported Card type.");
-                return;
-        }
-        */
-        if (cardOfBattleCard == null)
-        {
-            Debug.LogError($"BattleCard.GetCard() es NULL para {cardToAdd.name}");
-            return;
-        }
+
         AddCardToDictionary(cardToAdd);
     }
 
     public override void RemoveCard(BattleCard cardToRemove)
     {
         string key = cardToRemove.GetCard().cardName;
-
-        cardLimits[key]--;
-
-        if (cardLimits[key] == 0)
+        if (cardLimits.ContainsKey(key))
         {
-            cardLimits.Remove(key);
-            deck.Remove(cardToRemove);
+            cardLimits[key]--;
+            if (cardLimits[key] == 0)
+            {
+                cardLimits.Remove(key);
+                deck.Remove(cardToRemove);
+            }
         }
+
     }
 
 

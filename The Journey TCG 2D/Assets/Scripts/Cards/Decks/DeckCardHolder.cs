@@ -59,42 +59,6 @@ public class DeckCardHolder : MonoBehaviour
             else if (cardData is SpellCard spell) { cb.AddComponent<BattleSpellCard>().SetCard((SpellCard)spell.Clone()); }
             else if (cardData is CharacterCard character) { cb.AddComponent<BattleCharCard>().SetCard((CharacterCard)character.Clone()); }
         }
-        /*
-        foreach (string key in DeckManager.Instance.SelectedDeck.GetDictionary().Keys)
-        {
-            BattleCard card = DeckManager.Instance.SelectedDeck.GetCardByName(key);
-            if (card == null)
-            {
-                Debug.Log($"No hay carta para nombre {key}");
-                ShowCards(DeckManager.Instance.SelectedDeck);
-                continue;
-            } 
-            GameObject cb = Instantiate(deckCardButton, deckCardHolder.transform);
-            //cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
-            cb.GetComponentInChildren<TextMeshProUGUI>().text = DeckManager.Instance.SelectedDeck.GetCardLimit(card).ToString();
-            cb.name = card.GetCard().cardName;
-            cb.AddComponent<BoxCollider2D>();
-            cb.transform.GetChild(0).GetComponent<Image>().sprite = card.GetCard().artwork;
-            if (card.GetCard() is RoomCard room)
-            {
-                var bc = cb.AddComponent<BattleRoomCard>();
-                bc.SetCard((RoomCard)card.GetCard().Clone());
-            }
-            else if (card.GetCard() is SpellCard spell)
-            {
-                var bc = cb.AddComponent<BattleSpellCard>();
-                bc.SetCard((SpellCard)card.GetCard().Clone());
-            }
-            else if (card.GetCard() is CharacterCard character)
-            {
-                var bc = cb.AddComponent<BattleCharCard>();
-                bc.SetCard((CharacterCard)card.GetCard().Clone());
-            }
-            else
-            {
-                Debug.LogWarning($"Unknown card type: {card.GetCard().GetType()}");
-            }
-        }*/
     }
 
     void ShowCards(Deck deck)

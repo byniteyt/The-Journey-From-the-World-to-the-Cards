@@ -13,7 +13,7 @@ public abstract class Deck
 
     [HideInInspector] public DeckFormat deckFormat;
 
-    public List<BattleCard> deck = new();
+    protected List<BattleCard> deck = new();
     
     protected int limitCardAmount;
 
@@ -73,30 +73,17 @@ public abstract class Deck
 
     public BattleCard GetCardByName(string cardName)
     {
-        BattleCard card = deck.FirstOrDefault(c => c.GetCard().cardName == cardName);
-        //BattleCard card = deck.Find(d => d.GetCard().cardName == cardName);
-        if (card == null)
-        {
-            Debug.Log("Card not found: " + cardName);
-            return null;
-        }
-        return card;
+        return deck.FirstOrDefault(c => c.GetCard().cardName == cardName);
     }
 
     public int GetCardLimit(BattleCard card)
     {
-        if (card == null)
-        {
-            Debug.Log("Card is null");
-            return 0;
-        }
-        if (cardLimits.ContainsKey(card.GetCard().cardName))
-        {
-            return cardLimits[card.GetCard().cardName];
-        }
-        Debug.Log("Card limit not found for card: " + card.GetCard().cardName);
-        return 1;
+        if (card == null || card.GetCard() == null) return 0;
+
+        string key = card.GetCard().cardName;
+        return cardLimits.ContainsKey(key) ? cardLimits[key] : 0;
     }
+
 
     public BattleCard GetCard(int index) { return deck[index]; }
 
@@ -182,20 +169,16 @@ public abstract class Deck
         string key = cardToAdd.GetCard().cardName;
 
         if (!cardLimits.ContainsKey(key))
+            cardLimits[key] = 0;
+
+        if (cardLimits[key] >= GetMaxLimit())
         {
-            cardLimits[key] = 1;
-            Debug.Log($"Added {cardToAdd.GetCard().cardName} to the Deck.");
-            deck.Add(cardToAdd);
+            Debug.LogWarning($"Cannot add more copies of {key}");
+            return;
         }
-        else if (cardLimits[key] < GetMaxLimit())
-        {
-            cardLimits[key]++;
-            deck.Add(cardToAdd);
-            Debug.Log($"Added {cardToAdd.GetCard().cardName} to the Deck. Total: {cardLimits[key]}");
-        }
-        else
-        {
-            Debug.LogWarning($"Cannot add more cards of this type: {cardToAdd.GetCard().cardName}");
-        }
+
+        deck.Add(cardToAdd);
+        cardLimits[key]++;
+
     }
 }

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class Card 
+public abstract class Card 
 {
     // Basic Info
     public Sprite artwork;
@@ -20,14 +20,7 @@ public class Card
 
     public virtual Card Clone()
     {
-        Card card = new()
-        {
-            artwork = this.artwork,
-            cardName = this.cardName,
-            description = this.description,
-            cost = this.cost
-        };
-        return card;
+        return (Card)this.MemberwiseClone();
     }
 
     protected virtual void Update()
