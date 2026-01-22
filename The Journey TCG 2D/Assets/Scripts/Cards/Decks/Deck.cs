@@ -4,16 +4,16 @@ using System.Linq;
 using Unity.Collections;
 using UnityEngine;
 
-
-public abstract class Deck
+[Serializable]
+public class Deck
 {
 
-
+    protected int limitPerCard;
     public string deckName;
 
     [HideInInspector] public DeckFormat deckFormat;
 
-    protected List<BattleCard> deck = new();
+    [SerializeField] protected List<BattleCard> deck = new();
     
     protected int limitCardAmount;
 
@@ -38,7 +38,6 @@ public abstract class Deck
     public Deck()
     {
         Debug.Log("Deck constructor called");
-        deckName = "New Deck";
         deck = new List<BattleCard>();
         cardLimits = new Dictionary<string, int>();
     }
@@ -102,15 +101,6 @@ public abstract class Deck
         return limitCardAmount;
     }
     #endregion
-    protected void OnCreate()
-    {
-        deckName = "New Deck";
-        deck = new List<BattleCard>();
-        cardLimits = new Dictionary<string, int>();
-    }
-    protected virtual void Awake()
-    {
-    }
 
     public virtual bool IsValidForPlay()
     {
@@ -122,7 +112,7 @@ public abstract class Deck
         this.deck = deck;
     }
 
-    public abstract void AddCard(BattleCard cardToAdd);
+    public virtual void AddCard(BattleCard cardToAdd) { }
 
     protected virtual bool IsFull()
     {

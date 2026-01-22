@@ -13,7 +13,8 @@ public class StandardDeck : Deck
     public StandardDeck() : base()
     {
         deckFormat = DeckFormat.Standard;
-        limitCardAmount = 5;
+        limitCardAmount = 100;
+        limitPerCard = 8;
     }
     public StandardDeck(Deck deckToClone) : base(deckToClone)
     {
@@ -50,6 +51,10 @@ public class StandardDeck : Deck
 
     }
 
+    protected override bool IsFull()
+    {
+        return base.IsFull();
+    }
 
     public override bool IsValidForPlay()
     {

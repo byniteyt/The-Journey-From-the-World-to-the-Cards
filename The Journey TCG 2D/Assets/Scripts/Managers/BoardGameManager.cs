@@ -4,6 +4,8 @@ public class BoardGameManager : MonoBehaviour
 {
     public static BoardGameManager Instance { get; private set; }
     BattleRoomCard activeRoom;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,4 +24,5 @@ public class BoardGameManager : MonoBehaviour
     {
         activeRoom = room;
     }
+
 }

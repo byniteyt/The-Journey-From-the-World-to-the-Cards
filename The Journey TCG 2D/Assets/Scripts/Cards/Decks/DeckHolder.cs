@@ -16,18 +16,19 @@ public class DeckHolder : MonoBehaviour
     {
         deckHolder = GameObject.Find("DeckHolder");
         deckButton = Resources.Load<GameObject>("Prefabs/Decks/DeckButton");
-        foreach (Deck deck in PlayerProperties.properties.GetDecks())
+        foreach (Deck deck in Player.GetPlayer().Properties().GetDecks())
         {
+            Debug.Log($"Cargando deck: {deck.deckName}");
             GameObject db = Instantiate(deckButton, deckHolder.transform);
             db.transform.SetAsFirstSibling();
             db.name = deck.deckName;
             db.GetComponentInChildren<TextMeshProUGUI>().text = $"{deck.deckName}\n\n{deck.GetFormat()}";
-            if (deck.GetType() == typeof(WildDeck)) db.AddComponent<BattleDeck>().deck = deck;
-            else if (deck.GetType() == typeof(StandardDeck)) db.AddComponent<BattleDeck>().deck = deck;
-
+            if (deck.deckFormat == DeckFormat.Wild) { db.AddComponent<BattleDeck>().deck = (WildDeck)deck; db.GetComponentInChildren<Image>().color = Color.darkOrange; }
+            else if (deck.deckFormat == DeckFormat.Standard) { db.AddComponent<BattleDeck>().deck = (StandardDeck)deck; db.GetComponentInChildren<Image>().color = Color.darkOliveGreen;}
+            else Debug.LogError($"Tipo de deck desconocido: {deck.deckFormat}");
             Button selectButton = db.GetComponent<Button>();
             selectButton.onClick.AddListener(() => { SelectDeck(deck); selectedButton = selectButton; });
-            db.GetComponent<BattleDeck>().SetDeckName(deck.ToString());
+            db.GetComponent<BattleDeck>().SetDeckName(deck.deckName);
         }
     }
     void SelectDeck(Deck selectedDeck)
@@ -51,7 +52,7 @@ public class DeckHolder : MonoBehaviour
             Debug.Log("No hay deck seleccionada");
             return;
         }
-        DeckCollection.RemoveDeck(DeckManager.Instance.SelectedDeck);
+        Player.GetPlayer().Properties().RemoveDeck(DeckManager.Instance.SelectedDeck);
         //Destroy(DeckManager.selectedDeck);
         Destroy(selectedButton.gameObject);
     }

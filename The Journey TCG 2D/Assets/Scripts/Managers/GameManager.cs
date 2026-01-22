@@ -1,18 +1,17 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public static GameState CurrentGameState { get; set; }
+    DeckFormat format;
     private GameObject pauseMenu;
     private Button pauseButton;
     void Start()
     {
-        pauseMenu = GameObject.Find("PauseMenu");
-        pauseButton = pauseMenu.transform.Find("PauseButton").gameObject.GetComponent<Button>();
-        pauseButton.onClick.AddListener(() => ChangeGameState(GameState.InGame));
         if (Instance == null)
         {
             Instance = this;
@@ -22,12 +21,23 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        format = (SceneManager.GetActiveScene().name == "StandardMatch") ? DeckFormat.Standard : DeckFormat.Wild;
+
+        pauseMenu = GameObject.Find("PauseMenu");
+        pauseButton = GameObject.Find("Start").GetComponent<Button>();
+        pauseButton.onClick.AddListener(() => ChangeGameState(GameState.InGame));
+        
         EventManager.StartTurn+= (s, e) => StartTurn();
         EventManager.GameOver += EndGame;
     }
     // Update is called once per frame
     void Update()
     {
+        if (pauseMenu == null)
+        {
+            Debug.LogWarning("Pause menu not found in the scene.");
+            return;
+        }
         pauseMenu.SetActive(CurrentGameState == GameState.Paused);
     }
     void StartTurn()
@@ -51,9 +61,13 @@ public class GameManager : MonoBehaviour
     }
     void EndGame(object sender, bool playerWon)
     {
-        Time.timeScale = 0f;
         ChangeGameState(GameState.GameOver);
         GameObject result = (!playerWon)? Resources.Load<GameObject>("Prefabs/UI/GameOver"):Resources.Load<GameObject>("Prefabs/UI/YOU WIN");
         Instantiate(result, GameObject.Find("Canvas").transform);
+    }
+
+    public DeckFormat GetCurrentFormat()
+    {
+        return format;
     }
 }

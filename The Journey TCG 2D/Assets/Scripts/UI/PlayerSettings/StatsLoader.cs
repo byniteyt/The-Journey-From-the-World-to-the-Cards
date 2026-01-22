@@ -6,7 +6,7 @@ public class StatsLoader : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Player.GetPlayer();
+        //Player.GetPlayer();
         //PlayerStats.InitializeStats();
         //PlayerSources.Initialize();
         //PlayerProperties.InitializeOwnDecks();

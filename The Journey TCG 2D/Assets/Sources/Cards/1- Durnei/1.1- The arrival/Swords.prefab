@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleSpellCard
   card:
-    artwork: {fileID: 0}
+    artwork: {fileID: 4942803658038726614, guid: 9c8f30747e4eacc40a0fc14a7efb34c6, type: 3}
     cardName: Swords
     description: 
     cost: 0

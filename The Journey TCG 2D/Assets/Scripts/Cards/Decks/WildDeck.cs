@@ -27,6 +27,7 @@ public class WildDeck : Deck
         eliteCards = new string[4];
         deckFormat = DeckFormat.Wild;
         limitCardAmount = 40;
+        limitPerCard = 1;
     }
     public WildDeck( Deck deckToClone) : base(deckToClone)
     {
@@ -81,8 +82,7 @@ public class WildDeck : Deck
         {
             if (!HasEnoughCards(cardToAdd))
             {
-                deck.Add(cardToAdd);
-                cardLimits[cardToAdd.name]++;
+                AddCardToDictionary(cardToAdd);
             }
             else
             {
@@ -90,21 +90,11 @@ public class WildDeck : Deck
             }
             return;
         }
-        deck.Add(cardToAdd);
-        cardLimits.Add(cardToAdd.name, 1);
+        AddCardToDictionary(cardToAdd);
     }
     bool HasEnoughCards(BattleCard cardToAdd)
-    {/*
-        int count = 0;
-        foreach (var card in deck)
-        {
-            if (card.name == cardToAdd.name)
-            {
-                count++;
-            }
-        }
-        */
-        return cardLimits[cardToAdd.name] == 10;
+    {
+        return cardLimits[cardToAdd.name] == limitPerCard;
     }
 
     protected override bool IsFull()

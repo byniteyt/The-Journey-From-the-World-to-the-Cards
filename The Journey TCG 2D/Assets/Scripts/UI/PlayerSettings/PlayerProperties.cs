@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor.Callbacks;
 using UnityEngine;
 [Serializable]
 
@@ -16,7 +18,13 @@ public class PlayerProperties
 
     private Dictionary<string, int> cards = new Dictionary<string, int>();
 
-    public List<Deck> decks = new List<Deck>();
+    private List<Deck> decks = new();
+
+    public List<StandardDeck> StandardDecks = new();
+
+    public List<WildDeck> WildDecks = new();
+
+    public List<DeckData> deckDataList = new();
 
     public List<CardsReceived> cardsReceived = new List<CardsReceived>();
 
@@ -51,9 +59,18 @@ public class PlayerProperties
     {
         if (properties.decks == null)
         {
+            Debug.Log("Loading saved decks for the player.");
             properties.decks = DeckCollection.SavedDecks();
         }
         return properties.decks;
+    }
+    public List<StandardDeck> GetStandardDecks()
+    {
+        return StandardDecks;
+    }
+    public List<WildDeck> GetWildDecks()
+    {
+        return WildDecks;
     }
     public int GetIndexOfDeck(Deck deck)
     {
@@ -118,10 +135,37 @@ public class PlayerProperties
         else
         {
             PlayerProperties props = SaveData<PlayerProperties>.DeserializeJSON("PlayerProperties.json");
+            props.decks = new List<Deck>();
+
+            foreach (var data in props.deckDataList)
+            {
+                Deck newDeck = data.deckFormat switch
+                {
+                    DeckFormat.Standard => new StandardDeck(),
+                    DeckFormat.Wild => new WildDeck(),
+                    _ => throw new Exception("Unknown deck type: " + data.deckFormat)
+                };
+
+                newDeck.SetDeckName(data.deckName);
+                newDeck.deckFormat = data.deckFormat;
+
+                foreach (var cardName in data.cardNames)
+                {
+                    var card = CardDataBase.GetDataBase().GetCard(cardName);
+                    newDeck.AddCard(card.GetComponent<BattleCard>());
+                }
+
+                props.decks.Add(newDeck);
+            }
+
             properties.cards = props.cards;
+            Debug.Log("Cards loaded: " + properties.cards.Count);
             properties.cardsReceived = props.cardsReceived;
+            Debug.Log("CardsReceived loaded: " + properties.cardsReceived.Count);
             properties.decks = props.decks;
+            Debug.Log("Decks loaded: " + properties.decks.Count);
             properties.decksReceived = props.decksReceived;
+            Debug.Log("DecksReceived loaded: " + properties.decksReceived.Count);
         }
     }
     public static void InitializePrefabDecks()
@@ -146,25 +190,34 @@ public class PlayerProperties
 
     public void UpdateProperties()
     {
+        deckDataList = decks.Select(d => new DeckData
+        {
+            deckName = d.GetDeckName(),
+            deckFormat = d.GetFormat(),
+            cardNames = d.GetDeck().Select(c => c.GetCard().cardName).ToList()
+        }).ToList();
+
         SaveData<PlayerProperties>.SerializeJSON(Player.GetPlayer().Properties(), "PlayerProperties.json");
     }
 
     public void AddDeck(Deck deckToAdd)
     {
         Player.GetPlayer().Properties().decks.Add(deckToAdd);
-        /*properties.decksReceived.Add(new DeckInfo
+        if (deckToAdd.deckFormat == DeckFormat.Standard)
         {
-            deckName = deckToAdd.GetDeckName(),
-            format = deckToAdd.GetFormat(),
-            deckcards = new List<CardsReceived>()
-        });*/
+            StandardDecks.Add((StandardDeck)deckToAdd);
+        }
+        else if (deckToAdd.deckFormat == DeckFormat.Wild)
+        {
+            WildDecks.Add((WildDeck)deckToAdd);
+        }
         UpdateProperties();
     }
 
     public void RemoveDeck(Deck deckToRemove)
     {
-        properties.decks.Remove(deckToRemove);
-        properties.decksReceived.RemoveAll(d => d.deckName == deckToRemove.GetDeckName());
+        Player.GetPlayer().Properties().decks.Remove(deckToRemove);
+        Player.GetPlayer().Properties().decksReceived.RemoveAll(d => d.deckName == deckToRemove.GetDeckName());
         UpdateProperties();
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PrefabStandDeck : ScriptableObject
 {
     public StandardDeck standardDeck;
-    readonly int index = 0;
+    //int index = 0;
 
 #if UNITY_EDITOR
     private void OnValidate()

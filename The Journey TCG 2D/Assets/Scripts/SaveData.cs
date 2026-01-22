@@ -1,21 +1,21 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
 public static class SaveData<T>
 {
     private static string dataPath = Application.persistentDataPath + "/Player_Data/";//lo usaremos para crear una nueva carpeta
-    
+
     public static void SerializeJSON(T itemToSave, string fileName)
     {
-        //Unity no soporta listas en JSON por lo que pasamos un objeto de una clase que tenga de atributo una lista
+        if (!Directory.Exists(dataPath))
+            Directory.CreateDirectory(dataPath);
+
         string jsonString = JsonUtility.ToJson(itemToSave, true);
-        using (StreamWriter stream = File.CreateText(dataPath+fileName))
+        using (StreamWriter stream = File.CreateText(dataPath + fileName))
         {
             stream.WriteLine(jsonString);
         }
-        Debug.Log("Data saved to: " + dataPath + fileName);
     }
 
     public static void DeserializeJSON(T itemToLoad, string fileName)

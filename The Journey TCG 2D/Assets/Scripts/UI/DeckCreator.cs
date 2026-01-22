@@ -34,14 +34,14 @@ public class DeckCreator : MonoBehaviour
         Deck deckToAdd;
         deckToAdd = (format == DeckFormat.Standard)? new StandardDeck() : new WildDeck();
         deckToAdd.deckName = deckName;
-        PlayerProperties.properties.AddDeck(deckToAdd);
-        if (PlayerProperties.properties.GetDecks().Count == 0)
+        Player.GetPlayer().Properties().AddDeck(deckToAdd);
+        if (Player.GetPlayer().Properties().GetDecks().Count == 0)
         {
             Debug.Log("No deck was added.");
             return;
         }
         DeckManager.Instance.SelectedDeck = deckToAdd;
-        DeckManager.Instance.IADeck = PlayerProperties.properties.GetDecks()[0];
+        DeckManager.Instance.IADeck = Player.GetPlayer().Properties().GetDecks()[0];
         SceneManager.LoadScene("DeckCreator");
     }
 

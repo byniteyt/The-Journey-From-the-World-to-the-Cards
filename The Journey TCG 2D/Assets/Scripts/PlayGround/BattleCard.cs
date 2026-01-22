@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[Serializable]
 public class BattleCard : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
