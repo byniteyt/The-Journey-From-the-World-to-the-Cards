@@ -23,38 +23,44 @@ public class CardHolder : MonoBehaviour
             cb.name = newCard.card.GetCard().cardName;
             cb.transform.GetChild(0).GetComponent<Image>().sprite = newCard.card.GetCard().artwork;
             cb.AddComponent<BoxCollider2D>();
+            string nameOfCard = cb.name;
             switch (newCard.card.GetType().ToString())
             {
                 case "BattleRoomCard":
-                    Debug.Log($"Adding {newCard.card.GetCard().cardName} as a RoomCard\n" +
-                        $"La carta vale {newCard.card.GetCard().cost} y su descripcion es: \n" +
-                        $"\\ {newCard.card.GetCard().description}");
                     cb.AddComponent<BattleRoomCard>();
                     cb.GetComponent<BattleRoomCard>().SetCard(newCard.card.GetRoom());
-                    //cb.GetComponent<BattleRoomCard>().SetCard((RoomCard)newCard.Clone());
+                    Debug.Log($"Adding {cb.name}  with the card {newCard.card.GetRoom().cardName} as a Room");
+                    nameOfCard = newCard.card.GetRoom().cardName;
                     break;
                 case string s when s.Contains("Spell"):
-                    Debug.Log($"Adding {newCard.card.GetCard().cardName} as a {newCard.card.GetType()}");
                     cb.AddComponent<BattleSpellCard>();
                     cb.GetComponent<BattleSpellCard>().SetCard(newCard.card.GetSpell());
-                    //cb.GetComponent<BattleSpellCard>().SetCard((SpellCard)newCard.Clone());
+                    Debug.Log($"Adding {cb.name}  with the card {newCard.card.GetSpell().cardName} as a Spell");
+                    nameOfCard = newCard.card.GetSpell().cardName;
                     break;
                 case "BattleCharCard":
-                    Debug.Log($"Adding {newCard.card.GetCard().cardName} as a CharacterCard.\n" +
-                        $"La carta vale {newCard.card.GetCard().cost} y su descripcion es: \n" +
-                        $"\\ {newCard.card.GetCard().description}");
                     cb.AddComponent<BattleCharCard>();
                     cb.GetComponent<BattleCharCard>().SetCard(newCard.card.GetCharacter());
+                    Debug.Log($"Adding {cb.name}  with the card {newCard.card.GetCharacter().cardName} as a Character");
+                    nameOfCard = newCard.card.GetCharacter().cardName;
                     break;
                 case "Card":
                     Debug.Log($"Adding {newCard.card.GetCard().cardName} as a Card");
-                    break; 
+                    break;
                 default:
                     Debug.Log($"Adding {newCard.card.GetCard().cardName} as a {newCard.card.GetType()} card type");
                     break;
             }
-            Debug.Log("Se accede al botón");
-            cb.GetComponent<Button>().onClick.AddListener(() => AddToDeck(cb.GetComponent<BattleCard>()));
+            cb.GetComponent<Button>().onClick.AddListener(() => {
+                Debug.Log($"Adding {nameOfCard} to deck.");
+                if (Player.GetPlayer().Properties().GetCard(nameOfCard) == null)
+                {
+                    Debug.LogError($"Card {nameOfCard} not found in player properties.");
+                    return;
+                }
+                AddToDeck(Player.GetPlayer().Properties().GetCard(nameOfCard).GetComponent<BattleCard>());
+            });
+            //cb.GetComponent<Button>().onClick.AddListener(() => AddToDeck(cb.GetComponent<BattleCard>()));
         }
     }
     void AddToDeck(BattleCard cardToAdd)

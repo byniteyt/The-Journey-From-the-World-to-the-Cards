@@ -32,6 +32,21 @@ public class PlayerProperties
         return properties.cards;
     }
 
+    public BattleCard GetCard(string name)
+    {
+        if (string.IsNullOrEmpty(name))
+            return null;
+
+        var cardEntry = properties.cardsReceived.Find(c =>
+            c.card != null &&
+            c.card.GetCard() != null &&
+            c.card.GetCard().cardName == name
+        );
+
+        return cardEntry != null ? cardEntry.card : null;
+    }
+
+
     public List<Deck> GetDecks()
     {
         if (properties.decks == null)

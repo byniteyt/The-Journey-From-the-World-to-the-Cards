@@ -1,12 +1,23 @@
-public sealed class DeckManager
+using UnityEngine;
+
+public sealed class DeckManager : MonoBehaviour
 {
-    private static DeckManager _instance;
-    public static DeckManager Instance => _instance ??= new DeckManager();
+    public static DeckManager Instance { get; private set; }
 
     public Deck SelectedDeck { get; set; }
     public Deck IADeck { get; set; }
 
-    private DeckManager() { }
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     public void SetSelectedDeck(Deck deck)
     {
