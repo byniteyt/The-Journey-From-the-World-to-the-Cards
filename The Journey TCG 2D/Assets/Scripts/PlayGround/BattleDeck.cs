@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BattleDeck : MonoBehaviour
 {
-    public Deck deck;
+    [HideInInspector] public Deck deck;
     protected int deckCount;
     public int DeckCount { get { return deckCount; } private set { deckCount = value; } }
     // Start is called once before the first execution of Update after the MonoBehaviour is created

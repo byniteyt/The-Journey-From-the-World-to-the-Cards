@@ -6,7 +6,6 @@ public class DontDestroyObject : MonoBehaviour
 {
     void Awake()
     {
-        Debug.Log("DontDestroyObject Awake called on " + this.gameObject.name);
         DontDestroyOnLoad(this.gameObject);
     }
 }

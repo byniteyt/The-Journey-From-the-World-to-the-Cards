@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 
+[Serializable]
 public class BattleRoomCard : BattleCard
 {
     [SerializeField] protected RoomCard card = new();

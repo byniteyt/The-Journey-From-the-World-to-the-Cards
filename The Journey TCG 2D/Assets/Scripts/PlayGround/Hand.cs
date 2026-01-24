@@ -4,7 +4,7 @@ using UnityEngine;
 public class Hand : MonoBehaviour
 {
     protected BattleCard[] hand;
-    protected int currentCardCount = 0;
+    protected int actualHandSize = 0;
     [SerializeField] protected int handLimit;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,7 +14,7 @@ public class Hand : MonoBehaviour
     }
     public int GetHandAmount()
     {
-        return currentCardCount;
+        return actualHandSize;
     }
 
     public int GetHandSize()
@@ -24,27 +24,27 @@ public class Hand : MonoBehaviour
     protected void UpdateHand(int index)
     {
         if (index <0) {
-            for (int i = 0; i < currentCardCount; i++)
+            for (int i = 0; i < actualHandSize; i++)
             {
                 if (hand[i] != null)
-                    hand[i].transform.localPosition = new Vector3(-currentCardCount + 0.5f + i * 2, 0, 0);
+                    hand[i].transform.localPosition = new Vector3(-actualHandSize + 0.5f + i * 2, 0, 0);
             }
             return;
         }
         for (int i = 0; i < index; i++)
         {
             if (hand[i] != null)
-                hand[i].transform.localPosition = new Vector3(-(currentCardCount-1) + 0.5f + i * 2, 0, 0);
+                hand[i].transform.localPosition = new Vector3(-(actualHandSize-1) + 0.5f + i * 2, 0, 0);
         }
         hand[index] = null;
-        for (int i = index; i < currentCardCount - 1; i++)
+        for (int i = index; i < actualHandSize - 1; i++)
         {
             hand[i] = hand[i + 1];
             if (hand[i] != null)
-                hand[i].transform.localPosition = new Vector3(-(currentCardCount-1) + 0.5f + i * 2, 0, 0);
+                hand[i].transform.localPosition = new Vector3(-(actualHandSize-1) + 0.5f + i * 2, 0, 0);
         }
-        hand[currentCardCount - 1] = null;
-        currentCardCount--;
+        hand[actualHandSize - 1] = null;
+        actualHandSize--;
     }
     protected virtual void LoadEvents()
     {
@@ -58,21 +58,21 @@ public class Hand : MonoBehaviour
     public virtual bool AddCard(BattleCard card)
     {
         GameObject cardObject = Instantiate(card.gameObject);
-        hand[currentCardCount] = cardObject.GetComponent<BattleCard>();
+        hand[actualHandSize] = cardObject.GetComponent<BattleCard>();
         cardObject.transform.parent = this.transform;
-        cardObject.transform.localPosition = new Vector3(-4 + currentCardCount * 2, 0, 0);
+        cardObject.transform.localPosition = new Vector3(-4 + actualHandSize * 2, 0, 0);
         
-        currentCardCount++;
+        actualHandSize++;
         UpdateHand(-1);
         return true;
     }
     public bool HasMoreCards(Hand otherHand)
     {
-        return this.currentCardCount > otherHand.currentCardCount;
+        return this.actualHandSize > otherHand.actualHandSize;
     }
     public bool HasCard(BattleCard card)
     {
-        for (int i = 0; i < currentCardCount; i++)
+        for (int i = 0; i < actualHandSize; i++)
         {
             if (hand[i] == card)
                 return true;

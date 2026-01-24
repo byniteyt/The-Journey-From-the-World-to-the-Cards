@@ -5,7 +5,6 @@ public sealed class DeckManager : MonoBehaviour
     public static DeckManager Instance { get; private set; }
 
     public Deck SelectedDeck { get; set; }
-    public Deck IADeck { get; set; }
 
     private void Awake()
     {
@@ -24,14 +23,8 @@ public sealed class DeckManager : MonoBehaviour
         SelectedDeck = deck;
     }
 
-    public void SetIADeck(Deck deck)
-    {
-        IADeck = deck;
-    }
-
     public void Clear()
     {
         SelectedDeck = null;
-        IADeck = null;
     }
 }

@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class IADeck : BattleDeck
@@ -16,9 +17,11 @@ public class IADeck : BattleDeck
         {
             Destroy(this);
         }
-        deck = DeckManager.Instance.IADeck;
-        //deck = DeckCollection.GetDeck(Mathf.Min(1, DeckCollection.DecksAmount())); // Si solo hay un mazo, usa ese
-        deckCount = deck.GetDeck().Count;
+        deck = (GameManager.Instance.GetCurrentFormat()== DeckFormat.Standard)? 
+            Player.GetPlayer().Properties().GetStandardDecks()[Random.Range(0, Player.GetPlayer().Properties().GetStandardDecks().Count)]
+            : Player.GetPlayer().Properties().GetWildDecks()[Random.Range(0, Player.GetPlayer().Properties().GetWildDecks().Count)];
+        //deckCount = deck.GetDeck().Count;
+        deckCount = deck.GetDeck().Where(c => c != null).ToList().Count;
         Debug.Log($"IA Deck Count: {deckCount}");
         
         ShuffleDeck(deck.GetDeck());

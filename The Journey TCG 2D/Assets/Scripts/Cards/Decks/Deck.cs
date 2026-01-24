@@ -37,7 +37,6 @@ public class Deck
     #region Constructors
     public Deck()
     {
-        Debug.Log("Deck constructor called");
         deck = new List<BattleCard>();
         cardLimits = new Dictionary<string, int>();
     }
@@ -161,14 +160,13 @@ public class Deck
         if (!cardLimits.ContainsKey(key))
             cardLimits[key] = 0;
 
-        if (cardLimits[key] >= GetMaxLimit())
+        if (cardLimits[key] >= limitPerCard)
         {
             Debug.LogWarning($"Cannot add more copies of {key}");
             return;
         }
-
+        Debug.Log($"Adding card {key} to the deck."); 
         deck.Add(cardToAdd);
         cardLimits[key]++;
-
     }
 }

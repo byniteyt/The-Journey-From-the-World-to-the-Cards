@@ -30,7 +30,6 @@ public class DeckCreator : MonoBehaviour
 
     public void AddDeck()
     {
-        GameObject newDeckObj = new("Deck new"); // crea un objeto vacío
         Deck deckToAdd;
         deckToAdd = (format == DeckFormat.Standard)? new StandardDeck() : new WildDeck();
         deckToAdd.deckName = deckName;
@@ -41,7 +40,6 @@ public class DeckCreator : MonoBehaviour
             return;
         }
         DeckManager.Instance.SelectedDeck = deckToAdd;
-        DeckManager.Instance.IADeck = Player.GetPlayer().Properties().GetDecks()[0];
         SceneManager.LoadScene("DeckCreator");
     }
 

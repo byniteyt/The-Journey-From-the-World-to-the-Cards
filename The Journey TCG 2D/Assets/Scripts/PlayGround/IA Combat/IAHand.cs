@@ -7,7 +7,7 @@ public class IAHand : Hand
 {
     [SerializeField] int testManaAmount = 10;
     List<BattleCard> usableCards;
-    int availableCardCount = 0;
+    int availableCardCount;
     int minManaCost = 100;
     private static IAHand Instance;
     
@@ -15,9 +15,10 @@ public class IAHand : Hand
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        availableCardCount = handLimit;
         hand = new BattleCard[handLimit];
         LoadEvents();
-        currentCardCount = 0;
+        actualHandSize = 0;
         StartOrdenatedHand(true);
     }
     protected override void LoadEvents()
@@ -44,26 +45,27 @@ public class IAHand : Hand
 
     void StartOrdenatedHand(bool toExpensive)
     {
-        usableCards = hand.ToList();
-        for (int i = 0; i < currentCardCount-1; i++)
+        usableCards = hand
+            .Where(c => c != null)
+            .OrderBy(c => c.GetCard().cost * (toExpensive ? 1 : -1))
+            .ToList();
+
+        if (usableCards.Count == 0)
         {
-            BattleCard card = usableCards[i];
-            for (int j = i+1; j < currentCardCount; j++)
-            {
-                if ((card.GetCard().cost > hand[j].GetCard().cost)==toExpensive)
-                {
-                    (card, usableCards[j]) = (usableCards[j], card);
-                }
-            }
+            Debug.LogWarning("La IA no tiene cartas en la mano.");
+            minManaCost = 100;
+            availableCardCount = 0;
+            return;
         }
+
         minManaCost = usableCards[0].GetCard().cost;
-        availableCardCount = currentCardCount;
+        availableCardCount = usableCards.Count;
     }
 
     public override bool AddCard(BattleCard cardToAdd)
     {
-        hand[currentCardCount] = cardToAdd;
-        currentCardCount++;
+        hand[actualHandSize] = cardToAdd;
+        actualHandSize++;
         StartOrdenatedHand(true);
         return true;
     }
@@ -129,7 +131,7 @@ public class IAHand : Hand
     }
     #endregion
 
-        #region Combat Turn
+    #region Combat Turn
     void IABattleTurn(object sender, System.EventArgs e)
     {
         Debug.Log("-----------------IA Combat Turn------------------");

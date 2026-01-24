@@ -136,7 +136,10 @@ public class PlayerProperties
         {
             PlayerProperties props = SaveData<PlayerProperties>.DeserializeJSON("PlayerProperties.json");
             props.decks = new List<Deck>();
-
+            foreach (var cardEntry in props.cards)
+            {
+                Debug.Log("Card loaded of data base: " + cardEntry.Key + " with amount " + cardEntry.Value);
+            }
             foreach (var data in props.deckDataList)
             {
                 Deck newDeck = data.deckFormat switch
@@ -152,6 +155,11 @@ public class PlayerProperties
                 foreach (var cardName in data.cardNames)
                 {
                     var card = CardDataBase.GetDataBase().GetCard(cardName);
+                    if (card == null)
+                    {
+                        Debug.LogWarning("Card not found in database: " + cardName);
+                        continue;
+                    }
                     newDeck.AddCard(card.GetComponent<BattleCard>());
                 }
 
