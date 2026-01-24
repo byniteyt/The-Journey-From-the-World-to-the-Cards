@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Collections;
 using UnityEngine;
 
 [Serializable]
@@ -13,7 +12,7 @@ public class Deck
 
     [HideInInspector] public DeckFormat deckFormat;
 
-    [SerializeField] protected List<BattleCard> deck = new();
+    [SerializeField] protected List<Card> deck = new();
     
     protected int limitCardAmount;
 
@@ -21,7 +20,7 @@ public class Deck
     #region Serialization
     public void OnAfterDeserialize()
     {
-        deck ??= new List<BattleCard>();
+        deck ??= new List<Card>();
 
         cardLimits ??= new Dictionary<string, int>();
 
@@ -37,7 +36,7 @@ public class Deck
     #region Constructors
     public Deck()
     {
-        deck = new List<BattleCard>();
+        deck = new List<Card>();
         cardLimits = new Dictionary<string, int>();
     }
 
@@ -46,9 +45,9 @@ public class Deck
         deckName = deckToClone.deckName;
         deckFormat = deckToClone.deckFormat;
         limitCardAmount = deckToClone.limitCardAmount;
-        deck = new List<BattleCard>();
+        deck = new List<Card>();
         cardLimits = new Dictionary<string, int>(deckToClone.cardLimits);
-        foreach (BattleCard card in deckToClone.deck)
+        foreach (Card card in deckToClone.deck)
         {
             AddCard(card);
         }
@@ -58,7 +57,7 @@ public class Deck
     #region Getters
     public DeckFormat GetFormat() => this.deckFormat;
     public string GetDeckName() => this.deckName;
-    public List<BattleCard> GetDeck()
+    public List<Card> GetDeck()
     {
         return deck;
     }
@@ -69,9 +68,9 @@ public class Deck
         return cardLimits;
     }
 
-    public BattleCard GetCardByName(string cardName)
+    public Card GetCardByName(string cardName)
     {
-        return deck.FirstOrDefault(c => c.GetCard().cardName == cardName);
+        return deck.FirstOrDefault(c => c.cardName == cardName);
     }
 
     public int GetCardLimit(BattleCard card)
@@ -83,9 +82,9 @@ public class Deck
     }
 
 
-    public BattleCard GetCard(int index) { return deck[index]; }
+    public Card GetCard(int index) { return deck[index]; }
 
-    public BattleCard GetLastCard()
+    public Card GetLastCard()
     {
         if (deck.Count == 0)
         {
@@ -106,12 +105,12 @@ public class Deck
         return true;
     }
 
-    public void SetDeck(List<BattleCard> deck)
+    public void SetDeck(List<Card> deck)
     {
         this.deck = deck;
     }
 
-    public virtual void AddCard(BattleCard cardToAdd) { }
+    public virtual void AddCard(Card cardToAdd) { }
 
     protected virtual bool IsFull()
     {
@@ -123,7 +122,7 @@ public class Deck
         return !(deck.Count<limitCardAmount);
     }
 
-    public virtual void RemoveCard(BattleCard cardToRemove) {
+    public virtual void RemoveCard(Card cardToRemove) {
         deck.Remove(cardToRemove);
     }
 
@@ -142,20 +141,15 @@ public class Deck
         deckName = newName;
     }
 
-    public void AddCardToDictionary(BattleCard cardToAdd)
+    public void AddCardToDictionary(Card cardToAdd)
     {
         if (cardToAdd == null)
         {
-            Debug.LogWarning("Cannot add null card to the Deck.");
-            return;
-        }
-        if (cardToAdd.GetCard() == null)
-        {
-            Debug.LogWarning("La carta a introducir contiene una que es nula.");
+            Debug.LogWarning("La carta a introducir es nula.");
             return;
         }
 
-        string key = cardToAdd.GetCard().cardName;
+        string key = cardToAdd.cardName;
 
         if (!cardLimits.ContainsKey(key))
             cardLimits[key] = 0;

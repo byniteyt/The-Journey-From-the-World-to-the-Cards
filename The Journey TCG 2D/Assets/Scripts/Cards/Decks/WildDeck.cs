@@ -36,7 +36,7 @@ public class WildDeck : Deck
         eliteCards = (string[]) clonedDeck.eliteCards.Clone();
         eliteIndex = clonedDeck.eliteIndex;
     }
-    public override void AddCard(BattleCard cardToAdd)
+    public override void AddCard(Card cardToAdd)
     {
         // Comprobamos que la baraja tenga espacio suficiente
         if (IsFull())
@@ -46,23 +46,23 @@ public class WildDeck : Deck
         }
 
         // Comprobamos si la carta es una tropa
-        if (cardToAdd.GetCard().GetType() == typeof(CharacterCard))
+        if (cardToAdd.GetType() == typeof(CharacterCard))
         {
             Debug.Log("La carta es una tropa");
             // Comprobamos el rango de la tropa
-            if (((CharacterCard)cardToAdd.GetCard()).rank == CreatureRank.Boss)
+            if (((CharacterCard)cardToAdd).rank == CreatureRank.Boss)
             {
                 if (commander != null)
                 {
                     Debug.Log("Esta baraja ya tiene a su comandante");
                     return;
                 }
-                commander = (CharacterCard) cardToAdd.GetCard();
+                commander = (CharacterCard) cardToAdd;
             }
 
-            if (cardToAdd.GetComponent<BattleCharCard>().GetCharacter().rank == CreatureRank.Elite)
+            if (((CharacterCard)cardToAdd).rank == CreatureRank.Elite)
             {
-                if (eliteCards.Contains(cardToAdd.name))
+                if (eliteCards.Contains(cardToAdd.cardName))
                 {
                     Debug.Log("Este capitan ya fue agregado.");
                     return;
@@ -72,13 +72,13 @@ public class WildDeck : Deck
                     Debug.Log("No hay hueco para más capitanes.");
                     return;
                 }
-                eliteCards[eliteIndex] = cardToAdd.name;
+                eliteCards[eliteIndex] = cardToAdd.cardName;
                 eliteIndex++;
             }
         }
         
         // Revisamos cuántas copias de esa carta hay en la baraja
-        if (cardLimits.ContainsKey(cardToAdd.name))
+        if (cardLimits.ContainsKey(cardToAdd.cardName))
         {
             if (!HasEnoughCards(cardToAdd))
             {
@@ -86,15 +86,15 @@ public class WildDeck : Deck
             }
             else
             {
-                Debug.Log("No se puede añadir más copias de " + cardToAdd.name + " a la baraja.");
+                Debug.Log("No se puede añadir más copias de " + cardToAdd.cardName + " a la baraja.");
             }
             return;
         }
         AddCardToDictionary(cardToAdd);
     }
-    bool HasEnoughCards(BattleCard cardToAdd)
+    bool HasEnoughCards(Card cardToAdd)
     {
-        return cardLimits[cardToAdd.name] == limitPerCard;
+        return cardLimits[cardToAdd.cardName] == limitPerCard;
     }
 
     protected override bool IsFull()

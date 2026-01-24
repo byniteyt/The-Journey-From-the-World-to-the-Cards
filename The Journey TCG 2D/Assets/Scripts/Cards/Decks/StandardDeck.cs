@@ -20,14 +20,14 @@ public class StandardDeck : Deck
     {
 
     }
-    public override void AddCard(BattleCard cardToAdd)
+    public override void AddCard(Card cardToAdd)
     {
         if (IsFull())
         {
             Debug.Log("This Deck is full. Cannot add more cards.");
             return;
         }
-        if (cardToAdd == null || cardToAdd.GetCard() == null)
+        if (cardToAdd == null)
         {
             Debug.LogWarning("Cannot add null card to the Deck.");
             return;
@@ -36,9 +36,9 @@ public class StandardDeck : Deck
         AddCardToDictionary(cardToAdd);
     }
 
-    public override void RemoveCard(BattleCard cardToRemove)
+    public override void RemoveCard(Card cardToRemove)
     {
-        string key = cardToRemove.GetCard().cardName;
+        string key = cardToRemove.cardName;
         if (cardLimits.ContainsKey(key))
         {
             cardLimits[key]--;
@@ -65,15 +65,15 @@ public class StandardDeck : Deck
     private void InitLimits()
     {
         cardLimits = new Dictionary<string, int>();
-        foreach (BattleCard card in deck)
+        foreach (Card card in deck)
         {
-            if (cardLimits.ContainsKey(card.GetCard().cardName))
+            if (cardLimits.ContainsKey(card.cardName))
             {
-                cardLimits[card.GetCard().cardName]++;
+                cardLimits[card.cardName]++;
             }
             else
             {
-                cardLimits.Add(card.GetCard().cardName, 1);
+                cardLimits.Add(card.cardName, 1);
             }
         }
     }

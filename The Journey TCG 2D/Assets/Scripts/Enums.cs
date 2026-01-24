@@ -1,4 +1,6 @@
 #region Deck Data
+using System;
+
 public enum CollectionName
 {
     The_Beginning,
@@ -65,6 +67,7 @@ public enum StatusEffect
     Weakened
 }
 
+[Serializable]
 public enum CreatureRank
 {
     Minion,
@@ -81,6 +84,7 @@ public enum AbilityType
     Triggered
 }
 
+[Serializable]
 public enum TargetType
 {
     SingleEnemy,
@@ -95,6 +99,7 @@ public enum TargetType
     None
 }
 
+[Serializable]
 public enum SpellEffectType
 {
     Damage,

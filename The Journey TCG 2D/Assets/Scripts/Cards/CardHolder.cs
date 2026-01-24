@@ -58,12 +58,11 @@ public class CardHolder : MonoBehaviour
                     Debug.LogError($"Card {nameOfCard} not found in player properties.");
                     return;
                 }
-                AddToDeck(Player.GetPlayer().Properties().GetCard(nameOfCard).GetComponent<BattleCard>());
+                AddToDeck(Player.GetPlayer().Properties().GetCard(nameOfCard).GetComponent<BattleCard>().GetCard());
             });
-            //cb.GetComponent<Button>().onClick.AddListener(() => AddToDeck(cb.GetComponent<BattleCard>()));
         }
     }
-    void AddToDeck(BattleCard cardToAdd)
+    void AddToDeck(Card cardToAdd)
     {
         if (DeckManager.Instance.SelectedDeck == null)
         {

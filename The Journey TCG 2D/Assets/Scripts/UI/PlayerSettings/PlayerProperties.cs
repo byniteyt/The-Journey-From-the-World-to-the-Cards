@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Callbacks;
 using UnityEngine;
 [Serializable]
 
@@ -19,10 +18,6 @@ public class PlayerProperties
     private Dictionary<string, int> cards = new Dictionary<string, int>();
 
     private List<Deck> decks = new();
-
-    public List<StandardDeck> StandardDecks = new();
-
-    public List<WildDeck> WildDecks = new();
 
     public List<DeckData> deckDataList = new();
 
@@ -66,11 +61,11 @@ public class PlayerProperties
     }
     public List<StandardDeck> GetStandardDecks()
     {
-        return StandardDecks;
+        return (List<StandardDeck>)decks.Where(d => d.deckFormat == DeckFormat.Standard);
     }
     public List<WildDeck> GetWildDecks()
     {
-        return WildDecks;
+        return (List<WildDeck>)decks.Where(d => d.deckFormat == DeckFormat.Wild);
     }
     public int GetIndexOfDeck(Deck deck)
     {
@@ -160,7 +155,7 @@ public class PlayerProperties
                         Debug.LogWarning("Card not found in database: " + cardName);
                         continue;
                     }
-                    newDeck.AddCard(card.GetComponent<BattleCard>());
+                    newDeck.AddCard(card.GetComponent<BattleCard>().GetCard());
                 }
 
                 props.decks.Add(newDeck);
@@ -202,7 +197,7 @@ public class PlayerProperties
         {
             deckName = d.GetDeckName(),
             deckFormat = d.GetFormat(),
-            cardNames = d.GetDeck().Select(c => c.GetCard().cardName).ToList()
+            cardNames = d.GetDeck().Select(c => c.cardName).ToList()
         }).ToList();
 
         SaveData<PlayerProperties>.SerializeJSON(Player.GetPlayer().Properties(), "PlayerProperties.json");
@@ -211,14 +206,7 @@ public class PlayerProperties
     public void AddDeck(Deck deckToAdd)
     {
         Player.GetPlayer().Properties().decks.Add(deckToAdd);
-        if (deckToAdd.deckFormat == DeckFormat.Standard)
-        {
-            StandardDecks.Add((StandardDeck)deckToAdd);
-        }
-        else if (deckToAdd.deckFormat == DeckFormat.Wild)
-        {
-            WildDecks.Add((WildDeck)deckToAdd);
-        }
+        
         UpdateProperties();
     }
 

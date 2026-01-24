@@ -8,7 +8,7 @@ public class SpellCard : Card
 {
     public int effectAmount;
     public TargetType targetType;
-    protected BattleCard targetCard;
+    [SerializeField]protected BattleCard targetCard;
     public SpellEffectType effect;
 
     // Regiones del campo de batalla

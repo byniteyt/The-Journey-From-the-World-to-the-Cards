@@ -31,20 +31,20 @@ public class DeckCardHolder : MonoBehaviour
             int amount = kvp.Value;
 
             // Obtenemos el template de BattleCard
-            BattleCard templateBattleCard = DeckManager.Instance.SelectedDeck.GetDeck()
-                .Find(c => c.GetCard().cardName == cardName);
+            Card templateBattleCard = DeckManager.Instance.SelectedDeck.GetDeck()
+                .Find(c => c.cardName == cardName);
 
             if (templateBattleCard == null)
             {
                 foreach (var c in DeckManager.Instance.SelectedDeck.GetDeck())
                 {
-                    Debug.Log($"Carta en el deck:{c.name} con la carta {c.GetCard().cardName}");
+                    Debug.Log($"Carta en el deck:{c.cardName} ");
                 }
                 Debug.LogWarning($"No se pudo encontrar BattleCard para {cardName}");
                 continue;
             }
 
-            Card cardData = templateBattleCard.GetCard();
+            Card cardData = templateBattleCard;
             if (cardData == null)
             {
                 Debug.LogWarning($"Los datos de la carta son nulos para {cardName}");

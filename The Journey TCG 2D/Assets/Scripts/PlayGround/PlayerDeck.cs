@@ -36,11 +36,11 @@ public class PlayerDeck : BattleDeck
         if(amount>DeckCount) amount = deckCount;
         for (int i = 0; i<amount;i++)
         {
-            if (PlayerHand.GetPlayerHand().AddCard(deck.GetLastCard()))
+            if (PlayerHand.GetPlayerHand().AddCard(CardDataBase.GetDataBase().GetCard(deck.GetLastCard().cardName).GetComponent<BattleCard>()))
             {
                 //deck.RemoveCard(deck.GetLastCard());
 
-                Debug.Log($"Se ha eliminado {deck.GetLastCard().name}");
+                Debug.Log($"Se ha eliminado {deck.GetLastCard().cardName}");
                 deck.RemoveLastCard();
                 deckCount--;
             }  
@@ -51,14 +51,14 @@ public class PlayerDeck : BattleDeck
             this.GetComponent<SpriteRenderer>().enabled = false;
             return;
         }
-        Debug.Log($"Proxima carta a robar: {deck.GetLastCard().name}");
+        Debug.Log($"Proxima carta a robar: {deck.GetLastCard().cardName}");
     }
 
-    void ShuffleDeck(List<BattleCard> array)
+    void ShuffleDeck(List<Card> array)
     {
         for (int i = array.Count - 1; i > 0; i--)
         {
-            Debug.Log($"La carta nº {i} es {array[i].GetCard().cardName}---------------------------");
+            Debug.Log($"La carta nº {i} es {array[i].cardName}---------------------------");
         }
         Debug.Log( array.ToString());
         
@@ -70,7 +70,7 @@ public class PlayerDeck : BattleDeck
 
         for (int i = array.Count - 1; i > 0; i--)
         {
-            Debug.Log($"------------------------La carta nº {i} es {array[i].name}");
+            Debug.Log($"------------------------La carta nº {i} es {array[i].cardName}");
         }
     }
 }
