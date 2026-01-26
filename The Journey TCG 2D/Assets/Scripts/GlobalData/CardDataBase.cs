@@ -66,10 +66,22 @@ public class CardDataBase
     /// <summary>
     /// Obtiene una colección ya cargada
     /// </summary>
-    public GameObject GetCard(string id)
+    public GameObject GetObjectCard(string id)
     {
         cards.TryGetValue(id, out var card);
         return card;
+    }
+
+    public BattleCard GetBattleCard(string id)
+    {
+        cards.TryGetValue(id, out var card);
+        return card?.GetComponent<BattleCard>();
+    }
+
+    public Card GetCard(string id)
+    {
+        cards.TryGetValue(id, out var card);
+        return card?.GetComponent<BattleCard>()?.GetCard();
     }
 
     public IEnumerable<GameObject> GetAllCards()
@@ -123,8 +135,9 @@ public class CardDataBase
                 if (!cards.ContainsKey(id))
                 {
                     cards.Add(id, card);
+                    Debug.Log($"Carta cargada a la base de datos: {id}");
                 }
-                CardCollection.AddCard(card.GetComponent<BattleCard>());
+                CardCollection.AddCard(basic);
             }
         ).Completed += handle =>
         {

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public abstract class Card 
+public class Card 
 {
     // Basic Info
     public Sprite artwork;

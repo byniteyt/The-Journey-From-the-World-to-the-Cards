@@ -45,7 +45,7 @@ public class IADeck : BattleDeck
                 Debug.Log("No more cards to draw for IA!");
                 return;
             }
-            if (IAHand.GetIAHand().AddCard(CardDataBase.GetDataBase().GetCard(deck.GetLastCard().cardName).GetComponent<BattleCard>()))
+            if (IAHand.GetIAHand().AddCard(CardDataBase.GetDataBase().GetObjectCard(deck.GetLastCard().cardName).GetComponent<BattleCard>()))
             {
                 //deck.RemoveCard(deck.GetLastCard());
                 Debug.Log($"Una carta de {deck.GetLastCard().cardName}");

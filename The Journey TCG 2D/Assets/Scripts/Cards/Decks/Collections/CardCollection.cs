@@ -3,41 +3,35 @@ using UnityEngine;
 
 public class CardCollection  
 {
-    [SerializeField] static Dictionary<string, int> cardDictionary;
-    public Dictionary<string, int> GetCardCollection()
+    public List<CardAmount> GetCardCollection()
     {
-        cardDictionary ??= new Dictionary<string, int>();
-        return cardDictionary;
+        return Player.GetPlayer().Properties().GetCards();
     }
-    public static void AddCard(BattleCard cardToAdd)
+    public static void AddCard(Card cardToAdd)
     {
-        cardDictionary ??= Player.GetPlayer().Properties().GetCards();
-
         if (cardToAdd == null)
         {
             Debug.Log("La carta a añadir es nula.");
             return;
         }
-        if (cardDictionary.ContainsKey(cardToAdd.GetCard().cardName))
+        var existingCard = Player.GetPlayer().Properties().GetCards().Find(c => c.cardName == cardToAdd.cardName);
+        if (existingCard != null)
         {
-            cardDictionary[cardToAdd.GetCard().cardName]++;
+            existingCard.amount++;
         }
         else
         {
-            cardDictionary.Add(cardToAdd.GetCard().cardName, 1);
+            Player.GetPlayer().Properties().GetCards().Add(new CardAmount { cardName = cardToAdd.cardName, amount = 1 });
         }
-        Player.GetPlayer().Properties().AddCard(cardToAdd, 1);
-        Debug.Log($"Added card: {cardToAdd.GetCard().cardName}. Total count: {cardDictionary[cardToAdd.GetCard().cardName]}");
     }
-    public static Dictionary<string, int> GetCollection()
+    public static List<CardAmount> GetCollection()
     {
-        cardDictionary ??= Player.GetPlayer().Properties().GetCards();
-        return cardDictionary;
+        return Player.GetPlayer().Properties().GetCards();
     }
     public static Card GetCard(string id)
     {
         Card cardData = CardDataBase.GetDataBase()
-            .GetCard(id)
+            .GetObjectCard(id)
             .GetComponent<BattleCard>()
             .GetCard();
         return cardData;

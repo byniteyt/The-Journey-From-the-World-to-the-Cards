@@ -42,15 +42,12 @@ public class OpenningPack : MonoBehaviour
             switch (card.GetType().ToString())
             {
                 case "RoomCard":
-                    Debug.Log($"Adding {card.name} as a RoomCard");
                     cardAsset.AddComponent<BattleRoomCard>().SetCard(card.GetCard());
                     break;
                 case string s when s.Contains("Spell"):
-                    Debug.Log($"Adding {card.name} as a {card.GetType()}");
                     cardAsset.AddComponent<BattleSpellCard>().SetCard(card.GetCard());
                     break;
                 case "CharacterCard":
-                    Debug.Log($"Adding {card.name} as a CharacterCard");
                     cardAsset.AddComponent<BattleCharCard>().SetCard(card.GetCard());
                     break;
                 default:
@@ -63,7 +60,7 @@ public class OpenningPack : MonoBehaviour
                 cardAsset.transform.localScale += new Vector3(0.1f, 0, 0);
                 yield return new WaitForSeconds(0.01f);
             }
-            CardCollection.AddCard(card);
+            CardCollection.AddCard(card.GetCard());
             index++;
             yield return new WaitForSeconds(0.7f);
             StartCoroutine(ShowCard(pack, index));

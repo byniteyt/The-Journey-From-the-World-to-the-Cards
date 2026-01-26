@@ -56,15 +56,11 @@ public class BasePack : MonoBehaviour
         EventManager.ChangeCoins.Invoke(this, -packPrice);
         cardsInPack = new List<BattleCard>(); // Reiniciamos el sobre para que no se acumulen cartas si se abre varias veces
         Debug.Log($"Has abierto un {packName} de la colección {collectionName} que contiene {cardsAmount} cartas!!");
-        /*foreach (Card card in cardsInPack)
-        {
-            Debug.Log($"Recibiste: {card.cardName}");
-        }*/
+        
         for (int i = 0; i < cardsAmount; i++)
         {
             BattleCard newCard = collection.GetRandomCard();
             cardsInPack.Add(newCard);
-            Debug.Log($"Recibiste: {newCard.GetCard().cardName}");
         }
         GameObject ui = Resources.Load<GameObject>("Prefabs/UI/Shop/PackOpenedUI");
         Instantiate(ui,GameObject.Find("Canvas").transform);
