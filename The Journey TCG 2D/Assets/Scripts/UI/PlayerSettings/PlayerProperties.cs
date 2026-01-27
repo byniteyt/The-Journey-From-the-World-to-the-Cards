@@ -2,19 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-[Serializable]
-public class CardAmount
-{
-    public string cardName;
-    public int amount;
-}
 
 [Serializable]
 public class PlayerProperties
 {
     public static PlayerProperties properties = new PlayerProperties();
-
-    
 
     public List<CardAmount> cards = new();
 
@@ -26,6 +18,11 @@ public class PlayerProperties
     #region Getters
     public List<CardAmount> GetCards()
     {
+        if (cards.Count == 0)
+        {
+            Debug.Log("No cards found in player properties. Initializing empty card list.");
+            cards = new List<CardAmount>();
+        }
         return cards;
     }
 
@@ -35,7 +32,7 @@ public class PlayerProperties
         if (string.IsNullOrEmpty(name))
             return null;
 
-        var cardEntry = CardDataBase.GetDataBase().GetCard(name);
+        var cardEntry = CardDataBase.Instance.GetCard(name);
 
         return cardEntry != null ? cardEntry : null;
     }
@@ -76,21 +73,17 @@ public class PlayerProperties
         if (!SaveData<PlayerProperties>.SaveDataExists("PlayerProperties.json"))
         {
             properties.cards = new();
-            properties.decks = new();
-            CardDataBase.GetDataBase().LoadCardsFromFolder("Card", () =>
+            foreach (var card in CardDataBase.Instance.GetAllCards())
             {
-                Debug.Log("Todas las cartas de Durnei cargadas");
-            });
+                properties.cards.Add(new CardAmount { cardName = card.GetComponent<BattleCard>().GetCard().cardName, amount = 1 });
+            }
+            properties.decks = new();
             SaveData<PlayerProperties>.SerializeJSON(properties, "PlayerProperties.json");
         }
         else
         {
             PlayerProperties props = SaveData<PlayerProperties>.DeserializeJSON("PlayerProperties.json");
             props.decks = new List<Deck>();
-            foreach (var cardEntry in props.cards)
-            {
-                Debug.Log("Card loaded of data base: " + cardEntry.cardName + " with amount " + cardEntry.amount);
-            }
             foreach (var data in props.deckDataList)
             {
                 Deck newDeck = data.deckFormat switch
@@ -105,7 +98,7 @@ public class PlayerProperties
 
                 foreach (var cardName in data.cardNames)
                 {
-                    var card = CardDataBase.GetDataBase().GetObjectCard(cardName);
+                    var card = CardDataBase.Instance.GetObjectCard(cardName);
                     if (card == null)
                     {
                         Debug.LogWarning("Card not found in database: " + cardName);

@@ -36,10 +36,8 @@ public class PlayerDeck : BattleDeck
         if(amount>DeckCount) amount = deckCount;
         for (int i = 0; i<amount;i++)
         {
-            if (PlayerHand.GetPlayerHand().AddCard(CardDataBase.GetDataBase().GetObjectCard(deck.GetLastCard().cardName).GetComponent<BattleCard>()))
+            if (PlayerHand.GetPlayerHand().AddCard(CardDataBase.Instance.GetBattleCard(deck.GetLastCard().cardName)))
             {
-                //deck.RemoveCard(deck.GetLastCard());
-
                 Debug.Log($"Se ha eliminado {deck.GetLastCard().cardName}");
                 deck.RemoveLastCard();
                 deckCount--;

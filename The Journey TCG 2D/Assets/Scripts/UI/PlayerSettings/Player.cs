@@ -29,30 +29,34 @@ public class Player: MonoBehaviour
     {
         Debug.Log("Initializing Player Sources");
         PlayerSources.Initialize();
-        player.playerSources = PlayerSources.sources;
+        playerSources = PlayerSources.sources;
 
         Debug.Log("Initializing Player Stats");
         PlayerStats.InitializeStats();
-        player.playerStats = PlayerStats.stats;
-
-        Debug.Log("Initializing Player Properties");
-        player.playerProperties = PlayerProperties.properties;
-        player.playerProperties.Initialize();
+        playerStats = PlayerStats.stats;
         
+        CardDataBase.Instance.LoadAllCards(() =>
+        {
+            Debug.Log("Todas las cartas de Durnei cargadas");
+            Debug.Log("Initializing Player Properties");
+            playerProperties = PlayerProperties.properties;
+            playerProperties.Initialize();
+        });
+
     }
 
     public PlayerSources Sources()
     {
-        return player.playerSources;
+        return playerSources;
     }
 
     public PlayerStats Stats()
     {
-        return player.playerStats;
+        return playerStats;
     }
 
     public PlayerProperties Properties()
     {
-        return player.playerProperties;
+        return playerProperties;
     }
 }

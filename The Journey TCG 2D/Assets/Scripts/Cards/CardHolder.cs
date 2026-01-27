@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static PlayerProperties;
 
 public class CardHolder : MonoBehaviour
 {
@@ -17,8 +16,15 @@ public class CardHolder : MonoBehaviour
             Debug.Log("No hay cartas guardadas para mostrar");
         foreach (CardAmount newCardId in Player.GetPlayer().Properties().GetCards())
         {
+            Card newCard = CardDataBase.Instance.GetCard(newCardId.cardName);
+            if (newCard == null)
+            {
+                Debug.LogError($"Card {newCardId.cardName} not found in CardDataBase.");
+                continue;
+            }
+
             GameObject cb = Instantiate(cardButton, cardHolder.transform);
-            Card newCard = CardDataBase.GetDataBase().GetCard(newCardId.cardName);
+            
             //cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
             cb.GetComponentInChildren<TextMeshProUGUI>().text = newCardId.amount.ToString();
             cb.name = newCard.cardName;

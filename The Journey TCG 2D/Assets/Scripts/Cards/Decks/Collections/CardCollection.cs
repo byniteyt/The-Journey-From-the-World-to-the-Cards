@@ -1,13 +1,21 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardCollection  
+[Serializable]
+public class CardAmount
+{
+    public string cardName;
+    public int amount;
+}
+
+public class CardCollection
 {
     public List<CardAmount> GetCardCollection()
     {
         return Player.GetPlayer().Properties().GetCards();
     }
-    public static void AddCard(Card cardToAdd)
+    public void AddCard(Card cardToAdd)
     {
         if (cardToAdd == null)
         {
@@ -24,13 +32,10 @@ public class CardCollection
             Player.GetPlayer().Properties().GetCards().Add(new CardAmount { cardName = cardToAdd.cardName, amount = 1 });
         }
     }
-    public static List<CardAmount> GetCollection()
+
+    public Card GetCard(string id)
     {
-        return Player.GetPlayer().Properties().GetCards();
-    }
-    public static Card GetCard(string id)
-    {
-        Card cardData = CardDataBase.GetDataBase()
+        Card cardData = CardDataBase.Instance
             .GetObjectCard(id)
             .GetComponent<BattleCard>()
             .GetCard();

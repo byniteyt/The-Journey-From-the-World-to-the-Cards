@@ -60,21 +60,18 @@ public class OpenningPack : MonoBehaviour
                 cardAsset.transform.localScale += new Vector3(0.1f, 0, 0);
                 yield return new WaitForSeconds(0.01f);
             }
-            CardCollection.AddCard(card.GetCard());
+            Player.GetPlayer().Properties().AddCard(card.GetCard(), 1);
             index++;
             yield return new WaitForSeconds(0.7f);
             StartCoroutine(ShowCard(pack, index));
-            StopCoroutine(ShowCard(pack, index-1));
         }
         else
         {
             Debug.Log("All cards shown");
             exit.GetComponent<Button>().enabled = true;
-            StopCoroutine(ShowCard(pack, index));
         }
-            
-        yield return null;
     }
+
     public void Close()
     {
         //gameObject.SetActive(false);

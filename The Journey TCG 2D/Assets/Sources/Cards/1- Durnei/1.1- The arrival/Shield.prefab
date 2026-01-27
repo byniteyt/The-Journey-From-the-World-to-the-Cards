@@ -151,10 +151,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleSpellCard
   card:
-    artwork: {fileID: 0}
+    artwork: {fileID: -6717884257390833292, guid: 63abb2f8443ef584aa79a7dd5b8c2d62, type: 3}
     cardName: Shield
     description: 
     cost: 0
     effectAmount: 0
     targetType: 0
+    targetCard: {fileID: 0}
     effect: 0

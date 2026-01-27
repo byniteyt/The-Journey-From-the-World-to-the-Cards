@@ -1,87 +1,70 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class CardDataBase
 {
-    private static CardDataBase Instance { get; set; }
+    private static CardDataBase instance;
+    public static CardDataBase Instance => instance ??= new CardDataBase();
 
-    // Cache de colecciones cargadas
-    private Dictionary<string, GameObject> cards =
-        new();
+    private Dictionary<string, GameObject> cards = new();
 
-    // Handle SOLO para la carga masiva
+    public List<string> cardNames = new();
+
     private AsyncOperationHandle<IList<GameObject>> loadAllHandle;
-    public static CardDataBase GetDataBase() 
-    {
-        if (Instance == null)
-        {
-            Instance = new();
-        }
-        return Instance; 
-    }
+    private bool isLoaded = false;
+
+    private const string SAVE_FILE = "CardDatabase.json";
+    private const string CARD_LABEL = "Durnei";
+
+    private CardDataBase() { }
+
+    #region Public API
 
     /// <summary>
-    /// Carga todas las colecciones marcadas con la label "Collection"
+    /// Carga todas las cartas desde Addressables (una sola vez).
     /// </summary>
-    public void LoadAllCards(System.Action onComplete = null)
+    public void LoadAllCards(Action onComplete = null)
     {
-        // Evitar recargar todo dos veces
-        if (loadAllHandle.IsValid())
+        if (isLoaded)
         {
+            Debug.Log("Las cartas ya están cargadas.");
             onComplete?.Invoke();
             return;
         }
 
         loadAllHandle = Addressables.LoadAssetsAsync<GameObject>(
-            "Card",
-            collection =>
-            {
-                BattleCard battleCard = collection.GetComponent<BattleCard>();
-                if (battleCard == null)
-                {
-                    Debug.LogWarning($"{collection.name} no tiene BattleCard");
-                    return;
-                }
-
-                Card cardData = battleCard.GetCard();
-                if (cardData == null)
-                {
-                    Debug.LogWarning($"{collection.name} no tiene Card asignada");
-                    return;
-                }
-                string id = cardData.cardName; 
-
-                if (!cards.ContainsKey(id))
-                {
-                    cards.Add(id, collection);
-                }
-            }
+            CARD_LABEL,
+            OnCardLoaded
         );
 
-        loadAllHandle.Completed += _ => onComplete?.Invoke();
+        loadAllHandle.Completed += handle =>
+        {
+            OnLoadAllCompleted(handle);
+            onComplete?.Invoke(); // <- ahora se llama siempre
+        };
     }
 
     /// <summary>
-    /// Obtiene una colección ya cargada
+    /// Devuelve un prefab cargado por Address.
     /// </summary>
-    public GameObject GetObjectCard(string id)
+    public GameObject GetObjectCard(string address)
     {
-        cards.TryGetValue(id, out var card);
-        return card;
+        cards.TryGetValue(address, out var obj);
+        return obj;
     }
 
-    public BattleCard GetBattleCard(string id)
+    public BattleCard GetBattleCard(string address)
     {
-        cards.TryGetValue(id, out var card);
-        return card?.GetComponent<BattleCard>();
+        return GetObjectCard(address)?.GetComponent<BattleCard>();
     }
 
-    public Card GetCard(string id)
+    public Card GetCard(string address)
     {
-        cards.TryGetValue(id, out var card);
-        return card?.GetComponent<BattleCard>()?.GetCard();
+        return GetBattleCard(address)?.GetCard();
     }
 
     public IEnumerable<GameObject> GetAllCards()
@@ -89,82 +72,134 @@ public class CardDataBase
         return cards.Values;
     }
 
-    /// <summary>
-    /// Carga una colección concreta por ID (Address)
-    /// </summary>
-    public void LoadCollectionById(string id, System.Action<GameObject> onLoaded)
+    #endregion
+
+    #region Loaders
+
+    private void OnCardLoaded(GameObject prefab)
     {
-        // Ya cargada
-        if (cards.TryGetValue(id, out var cached))
+        if (prefab == null)
+        {
+            Debug.LogWarning("Prefab de carta es null");
+            return;
+        }
+
+        var battleCard = prefab.GetComponent<BattleCard>();
+        if (battleCard == null)
+        {
+            Debug.LogWarning($"{prefab.name} no tiene BattleCard");
+            return;
+        }
+
+        // IMPORTANTE: usamos el Address, no el nombre lógico
+        string address = prefab.GetComponent<BattleCard>().GetCard().cardName;
+
+        if (!cards.ContainsKey(address))
+        {
+            cards.Add(address, prefab);
+        }
+    }
+
+    private void OnLoadAllCompleted(AsyncOperationHandle<IList<GameObject>> handle)
+    {
+        if (handle.Status != AsyncOperationStatus.Succeeded)
+        {
+            Debug.LogError("Error cargando cartas desde Addressables");
+            return;
+        }
+
+        isLoaded = true;
+
+        Debug.Log($"Cartas cargadas correctamente: {cards.Count}");
+
+        if (cards.Count > 0)
+        {
+            SaveDatabase();
+        }
+    }
+
+    #endregion
+
+    #region Save / Load
+
+    private void SaveDatabase()
+    {
+        cardNames = cards.Keys.ToList();
+        Debug.Log($"Guardando base de datos de cartas ({cardNames.Count})");
+        foreach (var id in cardNames)
+        {
+            Debug.Log($" - {id}");
+        }
+        SaveData<CardDataBase>.SerializeJSON(this, SAVE_FILE);
+    }
+
+    public void LoadDatabaseFromFile(Action onComplete = null)
+    {
+        if (!SaveData<List<string>>.SaveDataExists(SAVE_FILE))
+        {
+            onComplete?.Invoke();
+            return;
+        }
+
+        var ids = SaveData<List<string>>.DeserializeJSON(SAVE_FILE);
+        if (ids == null || ids.Count == 0)
+        {
+            onComplete?.Invoke();
+            return;
+        }
+
+        int pending = ids.Count;
+
+        foreach (var address in ids)
+        {
+            LoadCardByAddress(address, _ =>
+            {
+                pending--;
+                if (pending == 0)
+                {
+                    onComplete?.Invoke();
+                }
+            });
+        }
+    }
+
+    private void LoadCardByAddress(string address, Action<GameObject> onLoaded)
+    {
+        if (cards.TryGetValue(address, out var cached))
         {
             onLoaded?.Invoke(cached);
             return;
         }
 
-        var handle = Addressables.LoadAssetAsync<GameObject>(id);
-
+        var handle = Addressables.LoadAssetAsync<GameObject>(address);
         handle.Completed += h =>
         {
             if (h.Status == AsyncOperationStatus.Succeeded)
             {
-                cards[id] = h.Result;
+                cards[address] = h.Result;
                 onLoaded?.Invoke(h.Result);
             }
             else
             {
-                Debug.LogError($"No se pudo cargar la colección {id}");
+                Debug.LogError($"No se pudo cargar la carta con address: {address}");
             }
         };
     }
 
-    /// <summary>
-    /// Carga todas las cartas que tengan una Label concreta (ej: una carpeta)
-    /// </summary>
-    public void LoadCardsFromFolder(string label, System.Action onComplete = null)
-    {
-        Debug.Log("Se inicia la carga de cartas de " + label);
-        Addressables.LoadAssetsAsync<GameObject>(
-            label,
-            card =>
-            {
-                if (card == null)
-                    return;
-                Card basic = card.GetComponent<BattleCard>().GetCard();
-                string id = basic.cardName;
+    #endregion
 
-                if (!cards.ContainsKey(id))
-                {
-                    cards.Add(id, card);
-                    Debug.Log($"Carta cargada a la base de datos: {id}");
-                }
-                CardCollection.AddCard(basic);
-            }
-        ).Completed += handle =>
-        {
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
-                onComplete?.Invoke();
-                Debug.Log("Cargado de cartas exitoso");
-            }
-            else
-            {
-                Debug.LogError($"Error cargando cartas de la carpeta/label {label}");
-            }
-        };
-    }
-    /*
-    private void OnDestroy()
+    #region Cleanup (opcional)
+
+    public void Clear()
     {
-        // Liberar carga masiva
         if (loadAllHandle.IsValid())
-            Addressables.Release(loadAllHandle);
-
-        // Liberar colecciones cargadas individualmente
-        foreach (var collection in cards.Values)
         {
-            Addressables.Release(collection);
+            Addressables.Release(loadAllHandle);
         }
 
         cards.Clear();
-    }*/
+        isLoaded = false;
+    }
+
+    #endregion
 }
