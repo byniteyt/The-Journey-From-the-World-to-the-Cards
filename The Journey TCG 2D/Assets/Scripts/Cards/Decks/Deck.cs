@@ -52,6 +52,11 @@ public class Deck
             AddCard(card);
         }
     }
+
+    public virtual Deck Clone()
+    {
+        return new Deck(this);  
+    }
     #endregion
 
     #region Getters

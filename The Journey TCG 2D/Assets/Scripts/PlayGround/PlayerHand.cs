@@ -1,4 +1,4 @@
-using System;
+
 using UnityEngine;
 
 public class PlayerHand : Hand
@@ -10,15 +10,46 @@ public class PlayerHand : Hand
         if (Instance == null)
         {
             Instance = FindFirstObjectByType<PlayerHand>();
+            Instance.battleground = GameObject.Find("PlayerBattleGround").GetComponent<BattlegroundArea>();
         }
         return Instance;
+    }
+    public override void UseCharacterCard(BattleCharCard card)
+    {
+        // Check if the card is in hand
+        if (!Corrections(card)) return;
+
+
+        base.UseCharacterCard(card);
+        ManaTextManager.Instance.AddMana(-card.GetCharacter().cost);
+        Destroy(card.gameObject);
+    }
+
+    public override void UseRoomCard(object sender, BattleRoomCard card)
+    {
+        // Check if the card is in hand
+        if (!Corrections(card)) return;
+        ManaTextManager.Instance.AddMana(-card.GetRoom().cost);
+        base.UseRoomCard(sender, card);
+        Destroy(card.gameObject);
+    }
+
+    public override void UseSpellCard(object sender, BattleSpellCard card)
+    {
+        // Check if the card is in hand
+        if (!Corrections(card)) return;
+        ManaTextManager.Instance.AddMana(-card.GetSpell().cost);
+        base.UseSpellCard(sender, card);
+        Destroy(card.gameObject);
     }
 
     protected override void LoadEvents()
     {
+
         base.LoadEvents();
         EventManager.UseCardFromHand += ReorganizeHand;
         EventManager.SetActiveRoom += UseRoomCard;
     }
+
     
 }

@@ -1,3 +1,4 @@
+using Auxiliares;
 using System;
 using TMPro;
 using UnityEngine;
@@ -97,8 +98,8 @@ public class TurnManager : MonoBehaviour
                 }
                 if (totalDamage > 0)
                 {
-                    EventManager.DealDamage?.Invoke(this, -totalDamage);
-                    Debug.Log($"Total damage dealt: {totalDamage}");
+                    //EventManager.DealDamage?.Invoke(this, -totalDamage);
+                    new DamagePlayerCommand(LifeManager.EnemyHealth, totalDamage).Execute();
                 }
                 EventManager.SecondMainTurn?.Invoke(this, EventArgs.Empty);
                 break;

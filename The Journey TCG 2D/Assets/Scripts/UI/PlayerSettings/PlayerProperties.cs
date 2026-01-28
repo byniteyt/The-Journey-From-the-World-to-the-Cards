@@ -52,9 +52,22 @@ public class PlayerProperties
         return decks.OfType<StandardDeck>().ToList();
     }
 
+    public List<StandardDeck> GetValidStandardDecks()
+    {
+        return decks
+            .OfType<StandardDeck>()
+            .Where(d => d.IsValidForPlay())
+            .ToList();
+    }
+
     public List<WildDeck> GetWildDecks()
     {
         return decks.OfType<WildDeck>().ToList();
+    }
+
+    public List<WildDeck> GetValidWildDecks()
+    {
+        return decks.OfType<WildDeck>().Where(d => d.IsValidForPlay()).ToList();
     }
 
     public int GetIndexOfDeck(Deck deck)

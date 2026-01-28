@@ -15,7 +15,7 @@ public sealed class DeckManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void SetSelectedDeck(Deck deck)

@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         }
         format = (SceneManager.GetActiveScene().name == "StandardMatch") ? DeckFormat.Standard : DeckFormat.Wild;
 
-        pauseMenu = GameObject.Find("PauseMenu");
+        pauseMenu = GameObject.Find("Canvas").transform.Find("PauseMenu").gameObject;
         pauseButton = GameObject.Find("Start").GetComponent<Button>();
         pauseButton.onClick.AddListener(() => ChangeGameState(GameState.InGame));
         

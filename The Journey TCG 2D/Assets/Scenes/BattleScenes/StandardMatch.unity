@@ -443,6 +443,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3a055be00c70a4db4162308a9e9fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleDeckManager
+  deck:
+    deckName: 
+    deckFormat: 0
+    deck: []
 --- !u!1 &275937342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1815,6 +1819,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfaa04ec0eff6c941ae91b19df3c3e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IADeck
+  deck:
+    deckName: 
+    deckFormat: 0
+    deck: []
 --- !u!114 &626898359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3024,7 +3032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5313e1abc37781848b0ef0f5f69b576c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LifeManager
-  lives: 30
+  lives: 40
 --- !u!114 &1113610328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3082,6 +3090,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1186733614}
   - component: {fileID: 1186733615}
+  - component: {fileID: 1186733616}
   m_Layer: 0
   m_Name: EnemyBattleGround
   m_TagString: Untagged
@@ -3162,6 +3171,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1186733616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186733613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 498d0ddde12a5a947905fe25247236ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattlegroundArea
+  characterSpacing: 2
+  maxSoldiersPerRow: 6
 --- !u!1 &1209168956
 GameObject:
   m_ObjectHideFlags: 0

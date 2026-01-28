@@ -29,14 +29,13 @@ public class LifeManager : MonoBehaviour
             activeLife = GameObject.Find("EnemyLife");
             return;
         }
-        activeLife = (activeLife == GameObject.Find("PlayerLife")) ? 
+        activeLife = (activeLife.name == "PlayerLife") ? 
             GameObject.Find("EnemyLife") 
             : GameObject.Find("PlayerLife");
         Debug.Log($"Active life changed to {activeLife.name}");
     }
     public void ChangeLife(object caller, int amount)
     {
-        if (this.gameObject != activeLife) return;
         lives = Mathf.Clamp(lives + amount, 0, int.MaxValue);
         EventManager.UpdateLife?.Invoke(this, lives);
         if (lives <= 0)

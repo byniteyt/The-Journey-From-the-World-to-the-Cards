@@ -56,19 +56,8 @@ public class PlayerDeck : BattleDeck
     {
         for (int i = array.Count - 1; i > 0; i--)
         {
-            Debug.Log($"La carta nº {i} es {array[i].cardName}---------------------------");
-        }
-        Debug.Log( array.ToString());
-        
-        for (int i = array.Count - 1; i > 0; i--)
-        {
             int randomIndex = Random.Range(0, i + 1);
             (array[i], array[randomIndex]) = (array[randomIndex], array[i]);
-        }
-
-        for (int i = array.Count - 1; i > 0; i--)
-        {
-            Debug.Log($"------------------------La carta nº {i} es {array[i].cardName}");
         }
     }
 }

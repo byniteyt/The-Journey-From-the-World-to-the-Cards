@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
+using static UnityEngine.Rendering.GPUSort;
 
 [System.Serializable]
 public class StandardDeck : Deck
@@ -20,6 +21,15 @@ public class StandardDeck : Deck
     {
 
     }
+    public override Deck Clone()
+    {
+        var clone = new StandardDeck();
+        clone.deckFormat = deckFormat;
+        clone.SetDeckName(GetDeckName());
+        clone.deck = new List<Card>(deck);
+        return clone;
+    }
+
     public override void AddCard(Card cardToAdd)
     {
         if (IsFull())
@@ -58,8 +68,7 @@ public class StandardDeck : Deck
 
     public override bool IsValidForPlay()
     {
-        //return (deck.Count >= 40 && deck.Count <= 100);
-        return true;
+        return (deck.Count >= 40 && deck.Count <= 100);
     }
 
     private void InitLimits()

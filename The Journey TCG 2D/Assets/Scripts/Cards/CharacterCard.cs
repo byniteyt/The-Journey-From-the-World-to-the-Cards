@@ -74,7 +74,7 @@ public class CharacterCard : Card
             }
             return;
         }
-        Debug.Log(cardName + " heal " + amount + " points. Remaining health: " + Mathf.Min(maxHealth,health));
+        Debug.Log(cardName + " heal " + amount + " points. Remaining health: " + health);
     }
 
     public void ChangeAttack(int amount)
@@ -82,7 +82,7 @@ public class CharacterCard : Card
         attack = Math.Max(1, attack + amount);
         if (amount < 0)
         {
-            Debug.Log(cardName + " lost " + amount + " attack. Current attack: " + Mathf.Max(1, attack));
+            Debug.Log(cardName + " lost " + amount + " attack. Current attack: " +  attack);
             return;
         }
         Debug.Log(cardName + " gained " + amount + " attack. Current attack: " + attack);

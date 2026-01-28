@@ -18,10 +18,9 @@ public class IADeck : BattleDeck
             Destroy(this);
         }
         deck = (GameManager.Instance.GetCurrentFormat()== DeckFormat.Standard)? 
-            Player.GetPlayer().Properties().GetStandardDecks()[Random.Range(0, Player.GetPlayer().Properties().GetStandardDecks().Count)]
-            : Player.GetPlayer().Properties().GetWildDecks()[Random.Range(0, Player.GetPlayer().Properties().GetWildDecks().Count)];
+            Player.GetPlayer().Properties().GetValidStandardDecks()[Random.Range(0, Player.GetPlayer().Properties().GetValidStandardDecks().Count)].Clone()
+            : Player.GetPlayer().Properties().GetValidWildDecks()[Random.Range(0, Player.GetPlayer().Properties().GetValidWildDecks().Count)].Clone();
         deckCount = deck.GetDeck().Where(c => c != null).ToList().Count;
-        Debug.Log($"IA Deck Count: {deckCount}");
         
         ShuffleDeck(deck.GetDeck());
 

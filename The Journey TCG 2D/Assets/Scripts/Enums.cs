@@ -146,8 +146,8 @@ public enum PlayerAction
 public enum InGamePhase 
 {
     DrawPhase,
-    FirstMainPhase,
-    BattlePhase,
+    FirstMainPhase, 
+    BattlePhase, 
     SecondMainPhase,
     EndPhase
 }

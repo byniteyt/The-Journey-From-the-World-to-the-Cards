@@ -1,7 +1,9 @@
-using NUnit.Framework;
+using Auxiliares;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class IAHand : Hand
 {
@@ -20,6 +22,7 @@ public class IAHand : Hand
         LoadEvents();
         actualHandSize = 0;
         StartOrdenatedHand(true);
+        battleground = GameObject.Find("EnemyBattleGround").GetComponent<BattlegroundArea>();
     }
     protected override void LoadEvents()
     {
@@ -99,11 +102,27 @@ public class IAHand : Hand
 
     void PlayCard(BattleCard card)
     {
-        //card.UseCard();
+        switch (card.GetType().ToString())
+        {
+            case "BattleRoomCard":
+                UseRoomCard(this,(BattleRoomCard) card);
+                break;
+            case string s when s.Contains("Spell"):
+                UseSpellCard(this,(BattleSpellCard) card);
+                break;
+            case "BattleCharCard":
+                UseCharacterCard((BattleCharCard) card);
+                break;
+            default:
+                return;
+        }
         Debug.Log($"IA jugó {card.GetCard().cardName} por {card.GetCard().cost}." +
-            $"\nLe queda {testManaAmount -= card.GetCard().cost} de maná" );
+            $"\nLe queda {testManaAmount -= card.GetCard().cost} de maná");
         AdaptToMana(testManaAmount);
+        new WaiterCommand(0.5f).Execute();
     }
+
+
 
     BattleCard SelectPrioritizedCard()
     {
@@ -125,7 +144,7 @@ public class IAHand : Hand
             RemoveCard(cardToPlay);
         }
         string stop = $"La IA no puede jugar más cartas. Tiene {testManaAmount} de maná y ";
-        stop += (usableCards.Count> 0)? $"la más barata es de {minManaCost}":"no le quedan más cartas";
+        stop += (actualHandSize>0) ? $"la más barata es de {minManaCost}":"no le quedan más cartas";
         Debug.Log(stop);
         EventManager.IABattleTurn?.Invoke(this, System.EventArgs.Empty);
     }
@@ -135,6 +154,20 @@ public class IAHand : Hand
     void IABattleTurn(object sender, System.EventArgs e)
     {
         Debug.Log("-----------------IA Combat Turn------------------");
+
+        int totalDamage = 0;
+        GameObject lifeManager =GameObject.Find("PlayerLife");
+        GameObject activeBattleground =  GameObject.Find("EnemyBattleGround");
+        foreach (Transform child in activeBattleground.transform)
+        {
+            CharacterCard characterCard = child.gameObject.GetComponent<BattleCharCard>().GetCharacter();
+            Debug.Log($"Character {characterCard.cardName} attacks for {characterCard.attack} damage.");
+            totalDamage += characterCard.attack;
+        }
+        if (totalDamage > 0)
+        {
+            new DamagePlayerCommand(LifeManager.PlayerHealth, totalDamage).Execute();
+        }
         EventManager.EndIATurn?.Invoke(this, System.EventArgs.Empty);
     }
     #endregion

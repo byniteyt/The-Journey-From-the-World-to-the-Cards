@@ -35,7 +35,7 @@ public class BattleRoomCard : BattleCard
         if (GameManager.CurrentGameState != GameState.InGame ||
             transform.parent.name == "RoomsArea")
             return;
-        EventManager.SetActiveRoom?.Invoke(this, this);
+        PlayerHand.GetPlayerHand().UseRoomCard(this, this);
     }
 
     public override void ShowCardDetails()

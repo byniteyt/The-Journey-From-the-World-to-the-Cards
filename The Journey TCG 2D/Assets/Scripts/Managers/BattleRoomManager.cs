@@ -19,7 +19,6 @@ public class BattleRoomManager : MonoBehaviour
             }
         }
         GameObject newRoom= Instantiate(roomCard.gameObject, transform);
-        Destroy(roomCard.gameObject);
         Debug.Log($"Loading room: {roomCard.GetRoom().cardName}");
         newRoom.transform.localPosition = Vector3.zero;
         // Apply room effects here
