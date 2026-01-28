@@ -10,6 +10,7 @@ namespace Auxiliares
         }
         public void Execute()
         {
+            Debug.LogWarning($"WaiterCommand created to wait for {delay} seconds.");
             while (delay > 0)
             {
                 delay -= Time.deltaTime;

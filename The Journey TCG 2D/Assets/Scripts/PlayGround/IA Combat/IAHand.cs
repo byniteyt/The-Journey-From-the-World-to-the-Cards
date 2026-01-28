@@ -1,5 +1,6 @@
 using Auxiliares;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -26,7 +27,11 @@ public class IAHand : Hand
     }
     protected override void LoadEvents()
     {
-        EventManager.FirstIAMainTurn += FirstIAMainTurn;
+        EventManager.FirstIAMainTurn += (s, e) =>
+        {
+            StartCoroutine(FirstIAMainTurnCoroutine());
+        };
+
         EventManager.IABattleTurn+= IABattleTurn;
         EventManager.EndIATurn+= EndIATurn;
         /*
@@ -109,6 +114,9 @@ public class IAHand : Hand
                 break;
             case string s when s.Contains("Spell"):
                 UseSpellCard(this,(BattleSpellCard) card);
+                SpellCard spell = ((BattleSpellCard)card).GetSpell();
+                spell.SetTarget(TargetToSpell(spell));
+                spell.ApplyEffectToTarget();
                 break;
             case "BattleCharCard":
                 UseCharacterCard((BattleCharCard) card);
@@ -119,7 +127,6 @@ public class IAHand : Hand
         Debug.Log($"IA jugó {card.GetCard().cardName} por {card.GetCard().cost}." +
             $"\nLe queda {testManaAmount -= card.GetCard().cost} de maná");
         AdaptToMana(testManaAmount);
-        new WaiterCommand(0.5f).Execute();
     }
 
 
@@ -131,22 +138,61 @@ public class IAHand : Hand
         return selectedCard;
     }
     #region First Main Turn
-    void FirstIAMainTurn(object sender, System.EventArgs e)
+    IEnumerator FirstIAMainTurnCoroutine()
     {
         testManaAmount = 10;
         AdaptToMana(testManaAmount);
-        Debug.Log($"----------La IA cuenta con {testManaAmount} de maná-----------");
+
         while (usableCards.Count > 0 && testManaAmount >= minManaCost)
         {
             BattleCard cardToPlay = SelectRandomCard();
+            if(cardToPlay.GetType().ToString().Contains("Spell"))
+            {
+                SpellCard spell = ((BattleSpellCard)cardToPlay).GetSpell();
+                if (spell.targetType == TargetType.SingleAlly ||
+                    spell.targetType == TargetType.SingleEnemy||
+                    spell.targetType == TargetType.RandomAlly||
+                    spell.targetType == TargetType.RandomEnemy)
+                {
+                    BattleCard target = TargetToSpell(spell);
+                    if (target == null)
+                    {
+                        usableCards.Remove(cardToPlay);
+                        continue;
+                    }
+                }
+            }
             PlayCard(cardToPlay);
+
             usableCards.Remove(cardToPlay);
             RemoveCard(cardToPlay);
+
+            yield return new WaitForSeconds(1f);
         }
-        string stop = $"La IA no puede jugar más cartas. Tiene {testManaAmount} de maná y ";
-        stop += (actualHandSize>0) ? $"la más barata es de {minManaCost}":"no le quedan más cartas";
-        Debug.Log(stop);
-        EventManager.IABattleTurn?.Invoke(this, System.EventArgs.Empty);
+
+        EventManager.IABattleTurn?.Invoke(this, EventArgs.Empty);
+    }
+    BattleCard TargetToSpell(SpellCard spell)
+    {
+        BattleCard targetCard = null;
+        switch (spell.targetType)
+        {
+            case TargetType.SingleAlly:
+            case TargetType.RandomAlly:
+                targetCard = battleground.transform.GetChild(Random.Range
+                    (0, battleground.transform.childCount)).GetComponent<BattleCard>();
+                break;
+            case TargetType.SingleEnemy:
+            case TargetType.RandomEnemy:
+                BattlegroundArea playerBattleground = GameObject.Find("PlayerBattleGround")
+                    .GetComponent<BattlegroundArea>();
+                targetCard = playerBattleground.transform.GetChild(Random.Range
+                    (0, playerBattleground.transform.childCount)).GetComponent<BattleCard>();
+                break;
+            default:
+                break;
+        }
+        return targetCard;
     }
     #endregion
 
@@ -156,7 +202,6 @@ public class IAHand : Hand
         Debug.Log("-----------------IA Combat Turn------------------");
 
         int totalDamage = 0;
-        GameObject lifeManager =GameObject.Find("PlayerLife");
         GameObject activeBattleground =  GameObject.Find("EnemyBattleGround");
         foreach (Transform child in activeBattleground.transform)
         {

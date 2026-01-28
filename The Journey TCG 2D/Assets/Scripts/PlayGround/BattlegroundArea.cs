@@ -5,7 +5,6 @@ public class BattlegroundArea : MonoBehaviour
     int soldiersAmount;
     [SerializeField] float characterSpacing;
     [SerializeField] float maxSoldiersPerRow;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         characterSpacing = (characterSpacing == 0.0f )?2.0f:characterSpacing;

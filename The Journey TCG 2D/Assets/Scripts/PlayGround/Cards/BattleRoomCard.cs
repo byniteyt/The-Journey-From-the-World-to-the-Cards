@@ -42,7 +42,6 @@ public class BattleRoomCard : BattleCard
     {
         throw new System.NotImplementedException();
     }
-    // Update is called once per frame
     protected override void Update()
     {
         base.Update();

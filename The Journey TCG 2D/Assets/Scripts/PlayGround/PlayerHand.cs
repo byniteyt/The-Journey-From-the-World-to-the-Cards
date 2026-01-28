@@ -48,7 +48,6 @@ public class PlayerHand : Hand
 
         base.LoadEvents();
         EventManager.UseCardFromHand += ReorganizeHand;
-        EventManager.SetActiveRoom += UseRoomCard;
     }
 
     

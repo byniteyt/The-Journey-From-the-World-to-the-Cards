@@ -88,8 +88,7 @@ public class TurnManager : MonoBehaviour
                 break;
             case InGamePhase.BattlePhase:
                 int totalDamage = 0;
-                GameObject lifeManager = (isPlayerTurn) ? GameObject.Find("EnemyLife") : GameObject.Find("PlayerLife");
-                GameObject activeBattleground = (isPlayerTurn) ? GameObject.Find("PlayerBattleGround") : GameObject.Find("EnemyBattleGround");
+                GameObject activeBattleground = GameObject.Find("PlayerBattleGround");
                 foreach (Transform child in activeBattleground.transform)
                 {
                     CharacterCard characterCard = child.gameObject.GetComponent<BattleCharCard>().GetCharacter();

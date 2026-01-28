@@ -116,12 +116,10 @@ public class Hand : MonoBehaviour
         //Destroy(card.gameObject);
         UpdateHand(index);
         EventManager.SetActiveRoom(this, card);
-        Destroy(card.gameObject);
     }
 
     public virtual void UseSpellCard(object sender, BattleSpellCard card)
     {
-        Debug.Log("Casting spell: " + card.GetSpell().cardName);
         int index = Array.IndexOf(hand, card);
         UpdateHand(index);
     }

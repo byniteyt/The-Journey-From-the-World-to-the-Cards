@@ -8,9 +8,6 @@ public class EventManager
 
     public static EventHandler<int> DealDamage;
 
-    public static event Action<LifeManager, int> DealDamageToTarget;
-
-
     public static EventHandler<int> HealDamage;
 
     public static EventHandler<int> ChangeLife;

@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2058559715421142917}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.33506, y: -3.3229716, z: 0}
+  m_LocalPosition: {x: 4.5, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -154,8 +154,8 @@ MonoBehaviour:
     artwork: {fileID: -6717884257390833292, guid: 63abb2f8443ef584aa79a7dd5b8c2d62, type: 3}
     cardName: Shield
     description: 
-    cost: 0
-    effectAmount: 0
-    targetType: 0
+    cost: 1
+    effectAmount: 1
+    targetType: 3
     targetCard: {fileID: 0}
-    effect: 0
+    effect: 1

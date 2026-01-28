@@ -6,7 +6,7 @@ public class ActionWarning : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI warning;
     Action actionToComplete;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         transform.SetParent(GameObject.Find("Canvas").transform);
