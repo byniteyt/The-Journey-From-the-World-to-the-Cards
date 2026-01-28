@@ -66,6 +66,21 @@ public class Hand : MonoBehaviour
         UpdateHand(-1);
         return true;
     }
+
+    public virtual void RemoveCard(BattleCard card)
+    {
+        for (int i = 0; i < hand.Length; i++)
+        {
+            if (hand[i] == card)
+            {
+                hand[i] = null;
+                actualHandSize--;
+                break;
+            }
+        }
+    }
+
+
     public bool HasMoreCards(Hand otherHand)
     {
         return this.actualHandSize > otherHand.actualHandSize;
@@ -119,6 +134,7 @@ public class Hand : MonoBehaviour
         Debug.Log("Casting spell: " + card.GetSpell().cardName);
         int index = Array.IndexOf(hand, card);
         UpdateHand(index);
+        Destroy(card.gameObject);
     }
     
     bool Corrections(BattleCard card)

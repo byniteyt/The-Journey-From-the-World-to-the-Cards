@@ -24,7 +24,6 @@ public class IAPlayer : MonoBehaviour
     }
     private void Start()
     {
-
         EventManager.StartIATurn+=StartIATurn;
     }
 

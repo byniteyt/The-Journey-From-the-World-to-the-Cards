@@ -49,12 +49,14 @@ public class PlayerProperties
     }
     public List<StandardDeck> GetStandardDecks()
     {
-        return (List<StandardDeck>)decks.Where(d => d.deckFormat == DeckFormat.Standard);
+        return decks.OfType<StandardDeck>().ToList();
     }
+
     public List<WildDeck> GetWildDecks()
     {
-        return (List<WildDeck>)decks.Where(d => d.deckFormat == DeckFormat.Wild);
+        return decks.OfType<WildDeck>().ToList();
     }
+
     public int GetIndexOfDeck(Deck deck)
     {
         return properties.decks.IndexOf(deck);

@@ -91,7 +91,7 @@ public class TurnManager : MonoBehaviour
                 GameObject activeBattleground = (isPlayerTurn) ? GameObject.Find("PlayerBattleGround") : GameObject.Find("EnemyBattleGround");
                 foreach (Transform child in activeBattleground.transform)
                 {
-                    CharacterCard characterCard = child.GetComponent<CharacterCard>();
+                    CharacterCard characterCard = child.gameObject.GetComponent<BattleCharCard>().GetCharacter();
                     Debug.Log($"Character {characterCard.cardName} attacks for {characterCard.attack} damage.");
                     totalDamage += characterCard.attack;
                 }

@@ -23,7 +23,6 @@ public class BattlegroundArea : MonoBehaviour
             Debug.Log("BattleGround is full");
             return false;
         }
-        Debug.Log($"Character {card.name} generated in Battleground Area");
         GameObject cardObject = Instantiate(card.gameObject,this.transform);
         soldiersAmount++;
         if (transform.childCount == 1)

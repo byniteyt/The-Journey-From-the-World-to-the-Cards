@@ -61,7 +61,7 @@ public class CharacterCard : Card
         CharCardText info = cardDetailPanel.GetComponent<CharCardText>();
         info.cardToRead = this;
     }
-    public void ChangeHeal(int amount)
+    public void ChangeHealth(int amount)
     {
         //if (health==maxHealth && amount>0) return;
         health += amount;
@@ -77,5 +77,16 @@ public class CharacterCard : Card
         Debug.Log(cardName + " heal " + amount + " points. Remaining health: " + Mathf.Min(maxHealth,health));
     }
 
-    
+    public void ChangeAttack(int amount)
+    {
+        attack = Math.Max(1, attack + amount);
+        if (amount < 0)
+        {
+            Debug.Log(cardName + " lost " + amount + " attack. Current attack: " + Mathf.Max(1, attack));
+            return;
+        }
+        Debug.Log(cardName + " gained " + amount + " attack. Current attack: " + attack);
+    }
+
+
 }

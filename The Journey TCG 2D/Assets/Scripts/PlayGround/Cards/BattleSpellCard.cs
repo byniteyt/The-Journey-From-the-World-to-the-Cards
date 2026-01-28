@@ -15,7 +15,7 @@ public class BattleSpellCard : BattleCard
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -42,18 +42,19 @@ public class BattleSpellCard : BattleCard
         originalPosition = Vector2.zero;
         if (card.targetType == TargetType.SingleEnemy || card.targetType == TargetType.SingleAlly)
         {
-            RaycastHit2D[] hit = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, LayerMask.GetMask("Battle"));
+            Collider2D[] hit = Physics2D.OverlapPointAll( Camera.main.ScreenToWorldPoint(Input.mousePosition),
+    LayerMask.GetMask("Battle"));
             if (hit.Length != 0)
             {
-                foreach (RaycastHit2D h in hit)
+                foreach (Collider2D h in hit)
                 {
-                    BattleCard objectiveCard = h.collider.GetComponent<BattleCard>();
+                    BattleCard objectiveCard = h.GetComponent<BattleCard>();
                     if (objectiveCard != null)
                     {
                         if ((card.targetType == TargetType.SingleEnemy &&
-                            objectiveCard.gameObject.transform.parent == card.GetEnemyBattleGroundZone().transform) ||
+                            objectiveCard.gameObject.transform.IsChildOf(card.GetEnemyBattleGroundZone().transform)) ||
                             (card.targetType == TargetType.SingleAlly &&
-                            objectiveCard.gameObject.transform.parent == card.GetPlayerBattleGroundZone().transform))
+                            objectiveCard.gameObject.transform.IsChildOf(card.GetPlayerBattleGroundZone().transform)))
                         {
                             PlayerHand.GetPlayerHand().UseSpellCard(this, this);
                             Debug.Log("Target selected: " + objectiveCard.GetCard().cardName);
@@ -67,6 +68,7 @@ public class BattleSpellCard : BattleCard
             Debug.Log("No valid target selected.");
             return;
         }
+        PlayerHand.GetPlayerHand().UseSpellCard(this, this);
     }
 
     public override Card GetCard()
@@ -92,7 +94,10 @@ public class BattleSpellCard : BattleCard
     }
     private void OnMouseDown()
     {
-        PlayerHand.GetPlayerHand().UseSpellCard(this, this);
+        if (card.targetType == TargetType.SingleEnemy ||
+            card.targetType == TargetType.SingleAlly)
+            return;
+
         card.OnMouseDown();
     }
 }

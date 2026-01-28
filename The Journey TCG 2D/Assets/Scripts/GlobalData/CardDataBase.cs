@@ -7,6 +7,15 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class CardDataBase
 {
+    public class CardDataBaseSave
+    {
+        public List<string> cardNames = new();
+    }
+    public class CollectionData
+    {
+        public string universe;
+        public List<string> universeCollections = new();
+    }
     private static CardDataBase instance;
     public static CardDataBase Instance => instance ??= new CardDataBase();
 
@@ -73,6 +82,12 @@ public class CardDataBase
     }
 
     #endregion
+    public bool HasNewCards(IEnumerable<string> loadedCardNames)
+    {
+        return loadedCardNames.Any(name => !cardNames.Contains(name));
+    }
+
+
 
     #region Loaders
 
@@ -124,13 +139,14 @@ public class CardDataBase
 
     private void SaveDatabase()
     {
-        cardNames = cards.Keys.ToList();
-        Debug.Log($"Guardando base de datos de cartas ({cardNames.Count})");
-        foreach (var id in cardNames)
+        var data = new CardDataBaseSave
         {
-            Debug.Log($" - {id}");
-        }
-        SaveData<CardDataBase>.SerializeJSON(this, SAVE_FILE);
+            cardNames = cards.Keys.ToList()
+        };
+
+        Debug.Log($"Guardando base de datos de cartas ({data.cardNames.Count})");
+
+        SaveData<CardDataBaseSave>.SerializeJSON(data, SAVE_FILE);
     }
 
     public void LoadDatabaseFromFile(Action onComplete = null)
@@ -161,6 +177,7 @@ public class CardDataBase
                 }
             });
         }
+
     }
 
     private void LoadCardByAddress(string address, Action<GameObject> onLoaded)

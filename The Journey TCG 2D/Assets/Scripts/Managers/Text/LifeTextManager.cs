@@ -16,7 +16,6 @@ public class LifeTextManager : MonoBehaviour
     void ChangeLifeText(object caller, int lives)
     {
         Debug.Log(caller);
-        Debug.Log("Life Text Manager Change Life Text Invoked");
         if ((caller as LifeManager).gameObject.name != this.gameObject.name) return;
         GetComponent<TextMeshProUGUI>().text = $"{player}Lives: {lives}";
     }

@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -60,11 +59,73 @@ public class SpellCard : Card
     }
      public virtual void ApplyEffect()
     {
-        
+        switch(this.effect)
+        {
+            case SpellEffectType.Damage:
+                Debug.Log($"Applying {effect} of {effectAmount}.");
+                break;
+            case SpellEffectType.Heal:
+                Debug.Log($"Applying {effect} of {effectAmount}.");
+                break;
+            case SpellEffectType.Buff:
+                Debug.Log($"Applying {effect} of {effectAmount}.");
+                break;
+            case SpellEffectType.Debuff:
+                Debug.Log($"Applying {effect} of {effectAmount}.");
+                break;
+            case SpellEffectType.Summon:
+                Debug.Log($"Applying {effect} of {effectAmount} to self");
+                // Implement self-effect logic here
+                break;
+            case SpellEffectType.Destroy:
+                Debug.Log($"Applying {effect} to target card {targetCard.GetCard().cardName}");
+                // Implement destroy logic here
+                break;
+            case SpellEffectType.DiscardCards:
+                break;
+            case SpellEffectType.DrawCards:
+                break;
+        }
     }
      public virtual void ApplyEffectToTarget()
     {
-        
+        switch(this.effect)
+        {
+            case SpellEffectType.Damage:
+                Debug.Log($"Applying {effect} of {effectAmount} to target card {targetCard.GetCard().cardName}");
+                targetCard.GetCharacter().ChangeHealth(-effectAmount);
+                break;
+
+            case SpellEffectType.Heal:
+                Debug.Log($"Applying {effect} of {effectAmount} to target card {targetCard.GetCard().cardName}");
+                targetCard.GetCharacter().ChangeHealth(effectAmount);
+                break;
+
+            case SpellEffectType.Buff:
+                Debug.Log($"Applying {effect} of {effectAmount} to target card {targetCard.GetCard().cardName}");
+                targetCard.GetCharacter().ChangeAttack(effectAmount);
+                break;
+
+            case SpellEffectType.Debuff:
+                Debug.Log($"Applying {effect} of {effectAmount} to target card {targetCard.GetCard().cardName}");
+                targetCard.GetCharacter().ChangeAttack(effectAmount);
+                break;
+
+            case SpellEffectType.Summon:
+                Debug.Log($"Applying {effect} of {effectAmount} to self");
+                // Implement self-effect logic here
+                break;
+            case SpellEffectType.Destroy:
+                Debug.Log($"Applying {effect} to target card {targetCard.GetCard().cardName}");
+                // Implement destroy logic here
+                break;
+            case SpellEffectType.DiscardCards:
+                break;
+            case SpellEffectType.DrawCards:
+                break;
+            default:
+                break;
+        }
     }
     
     protected virtual void GetBattleZone()
@@ -82,10 +143,18 @@ public class SpellCard : Card
     }
     public GameObject GetPlayerBattleGroundZone()
     {
+        if (playerBattleGround == null)
+        {
+            GetBattleZone();
+        }
         return playerBattleGround;
     }
     public GameObject GetEnemyBattleGroundZone()
     {
+        if (enemyBattleGround == null)
+        {
+            GetBattleZone();
+        }
         return enemyBattleGround;
     }
     public GameObject GetPlayerDeckZone()

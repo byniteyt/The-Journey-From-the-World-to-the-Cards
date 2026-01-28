@@ -15,14 +15,11 @@ public class LifeManager : MonoBehaviour
         EventManager.ChangeLife += ChangeLife;
         EventManager.DealDamage += ChangeLife;
         EventManager.StartTurn += (object caller, System.EventArgs e) => { ChangeActiveLife(); };
+        EventManager.StartIATurn += (object caller, System.EventArgs e) => { ChangeActiveLife(); }; 
     }
     public int GetLives()
     {
         return lives;
-    }
-    LifeManager GetLifeManager(bool Player)
-    {
-        return (Player) ? PlayerHealth : EnemyHealth;
     }
     // Update is called once per frame
     void ChangeActiveLife()
@@ -44,7 +41,7 @@ public class LifeManager : MonoBehaviour
         EventManager.UpdateLife?.Invoke(this, lives);
         if (lives <= 0)
         {
-            bool playerWon = !(gameObject.name == "PlayerLife");
+            bool playerWon = (gameObject.name != "PlayerLife");
             EventManager.GameOver?.Invoke(this, playerWon);
         }
     }

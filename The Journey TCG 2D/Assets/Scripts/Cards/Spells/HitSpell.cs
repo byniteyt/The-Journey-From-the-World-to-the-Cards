@@ -22,7 +22,7 @@ public class HitSpell : SpellCard
             case TargetType.AllEnemies:
                 foreach (CharacterCard enemy in enemyBattleGround.transform)
                 {
-                    enemy.ChangeHeal(-effectAmount);
+                    enemy.ChangeHealth(-effectAmount);
                 }
                 break;
 
@@ -30,14 +30,14 @@ public class HitSpell : SpellCard
                 if (enemyBattleGround.transform.childCount > 0)
                 {
                     int randomIndex = Random.Range(0, enemyBattleGround.transform.childCount);
-                    enemyBattleGround.transform.GetChild(randomIndex).GetComponent<BattleCharCard>().GetCharacter().ChangeHeal(-effectAmount);
+                    enemyBattleGround.transform.GetChild(randomIndex).GetComponent<BattleCharCard>().GetCharacter().ChangeHealth(-effectAmount);
                 }
                 break;
 
             case TargetType.AllAllies:
                 foreach (Transform ally in playerBattleGround.transform)
                 {
-                    ally.GetComponent<CharacterCard>().ChangeHeal(-effectAmount);
+                    ally.GetComponent<CharacterCard>().ChangeHealth(-effectAmount);
                 }
                 break;
 
@@ -45,14 +45,14 @@ public class HitSpell : SpellCard
                 if (playerBattleGround.transform.childCount > 0)
                 {
                     int randomIndex = Random.Range(0, playerBattleGround.transform.childCount);
-                    playerBattleGround.transform.GetChild(randomIndex).GetComponent<CharacterCard>().ChangeHeal(-effectAmount);
+                    playerBattleGround.transform.GetChild(randomIndex).GetComponent<CharacterCard>().ChangeHealth(-effectAmount);
                 }
                 break;
 
             case TargetType.All:
                 foreach (BattleCharCard character in Object.FindObjectsByType<BattleCharCard>(FindObjectsSortMode.None))
                 {
-                    character.GetCharacter().ChangeHeal(-effectAmount);
+                    character.GetCharacter().ChangeHealth(-effectAmount);
                 }
                 break;
             default:
@@ -66,7 +66,7 @@ public class HitSpell : SpellCard
     {
         if (targetCard is BattleCharCard character)
         {
-            character.GetCharacter().ChangeHeal(-effectAmount);
+            character.GetCharacter().ChangeHealth(-effectAmount);
         }
         else
         {

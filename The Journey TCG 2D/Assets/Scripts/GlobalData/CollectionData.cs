@@ -5,5 +5,4 @@ using UnityEngine.AddressableAssets;
 public class CollectionData : ScriptableObject
 {
     public AssetReferenceT<Collection>[] collections;
-
 }

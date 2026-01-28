@@ -79,18 +79,16 @@ public class IAHand : Hand
             {
                 availableCardCount = i + 1;
                 break;
-                //usableCards.RemoveAt(i);
             }
+            usableCards.RemoveAt(i);
         }
         if (usableCards.Count > 0)
         {
             minManaCost = usableCards[0].GetCard().cost;
         }
         else
-        {
             minManaCost = 100;
             //EventManager.EndIATurn?.Invoke(this, System.EventArgs.Empty);
-        }
     }
 
     BattleCard SelectRandomCard()
@@ -116,16 +114,18 @@ public class IAHand : Hand
     #region First Main Turn
     void FirstIAMainTurn(object sender, System.EventArgs e)
     {
-        //testManaAmount = IABattlefield.GetIABattlefield().GetCurrentMana();
-        //AdaptToMana(testManaAmount);
+        testManaAmount = 10;
+        AdaptToMana(testManaAmount);
         Debug.Log($"----------La IA cuenta con {testManaAmount} de maná-----------");
         while (usableCards.Count > 0 && testManaAmount >= minManaCost)
         {
             BattleCard cardToPlay = SelectRandomCard();
             PlayCard(cardToPlay);
+            usableCards.Remove(cardToPlay);
+            RemoveCard(cardToPlay);
         }
         string stop = $"La IA no puede jugar más cartas. Tiene {testManaAmount} de maná y ";
-        stop += (availableCardCount>0)? $"la más barata es de {minManaCost}":"no le quedan más cartas";
+        stop += (usableCards.Count> 0)? $"la más barata es de {minManaCost}":"no le quedan más cartas";
         Debug.Log(stop);
         EventManager.IABattleTurn?.Invoke(this, System.EventArgs.Empty);
     }

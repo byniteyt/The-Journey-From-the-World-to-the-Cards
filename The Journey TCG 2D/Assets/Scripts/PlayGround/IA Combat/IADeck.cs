@@ -20,7 +20,6 @@ public class IADeck : BattleDeck
         deck = (GameManager.Instance.GetCurrentFormat()== DeckFormat.Standard)? 
             Player.GetPlayer().Properties().GetStandardDecks()[Random.Range(0, Player.GetPlayer().Properties().GetStandardDecks().Count)]
             : Player.GetPlayer().Properties().GetWildDecks()[Random.Range(0, Player.GetPlayer().Properties().GetWildDecks().Count)];
-        //deckCount = deck.GetDeck().Count;
         deckCount = deck.GetDeck().Where(c => c != null).ToList().Count;
         Debug.Log($"IA Deck Count: {deckCount}");
         
@@ -36,8 +35,7 @@ public class IADeck : BattleDeck
     }
     public void DrawCard(int amount)
     {
-        Debug.Log("IA robó:");
-        if(amount>DeckCount) amount = deckCount;
+        if(amount>deckCount) amount = deckCount;
         for (int i = 0; i<amount;i++)
         {
             if (deck.GetLastCard()==null)
@@ -47,7 +45,6 @@ public class IADeck : BattleDeck
             }
             if (IAHand.GetIAHand().AddCard(CardDataBase.Instance.GetObjectCard(deck.GetLastCard().cardName).GetComponent<BattleCard>()))
             {
-                //deck.RemoveCard(deck.GetLastCard());
                 Debug.Log($"Una carta de {deck.GetLastCard().cardName}");
                 deck.RemoveLastCard();
                 deckCount--;
