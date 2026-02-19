@@ -93,12 +93,12 @@ public class SpellCard : Card
         {
             case SpellEffectType.Damage:
                 Debug.Log($"Applying {effect} of {effectAmount} to target card {targetCard.GetCard().cardName}");
-                targetCard.GetCharacter().ChangeHealth(-effectAmount);
+                ((BattleCharCard)targetCard).DamageCard(effectAmount);
                 break;
 
             case SpellEffectType.Heal:
                 Debug.Log($"Applying {effect} of {effectAmount} to target card {targetCard.GetCard().cardName}");
-                targetCard.GetCharacter().ChangeHealth(effectAmount);
+                ((BattleCharCard)targetCard).GetCharacter().ChangeHealth(effectAmount);
                 break;
 
             case SpellEffectType.Buff:

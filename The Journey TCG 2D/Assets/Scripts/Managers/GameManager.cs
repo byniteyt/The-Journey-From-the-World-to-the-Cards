@@ -59,6 +59,12 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+
+    public void ReanudarGame()
+    {
+        ChangeGameState(GameState.InGame);
+    }
+
     void EndGame(object sender, bool playerWon)
     {
         ChangeGameState(GameState.GameOver);

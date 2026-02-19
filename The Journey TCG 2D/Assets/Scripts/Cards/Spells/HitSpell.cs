@@ -20,9 +20,9 @@ public class HitSpell : SpellCard
         switch (targetType)
         {
             case TargetType.AllEnemies:
-                foreach (CharacterCard enemy in enemyBattleGround.transform)
+                foreach (BattleCharCard enemy in enemyBattleGround.transform)
                 {
-                    enemy.ChangeHealth(-effectAmount);
+                    enemy.DamageCard(effectAmount);
                 }
                 break;
 
@@ -66,7 +66,7 @@ public class HitSpell : SpellCard
     {
         if (targetCard is BattleCharCard character)
         {
-            character.GetCharacter().ChangeHealth(-effectAmount);
+            character.DamageCard(effectAmount);
         }
         else
         {

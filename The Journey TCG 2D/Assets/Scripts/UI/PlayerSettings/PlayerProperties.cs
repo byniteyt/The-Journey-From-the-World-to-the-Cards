@@ -47,6 +47,7 @@ public class PlayerProperties
         }
         return properties.decks;
     }
+
     public List<StandardDeck> GetStandardDecks()
     {
         return decks.OfType<StandardDeck>().ToList();

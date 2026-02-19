@@ -363,7 +363,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a9ed9baac874d4e83f4ea2a793351e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharCardText
-  cardToRead: {fileID: 0}
+  cardToRead:
+    artwork: {fileID: 0}
+    cardName: 
+    description: 
+    cost: 0
   costText: {fileID: 0}
   descriptionText: {fileID: 0}
   artworkImage: {fileID: 0}
@@ -977,7 +981,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 4942803658038726614, guid: 9c8f30747e4eacc40a0fc14a7efb34c6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

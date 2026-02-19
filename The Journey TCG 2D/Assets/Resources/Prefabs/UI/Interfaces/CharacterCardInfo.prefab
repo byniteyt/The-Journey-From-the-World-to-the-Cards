@@ -91,7 +91,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a9ed9baac874d4e83f4ea2a793351e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharCardText
-  cardToRead: {fileID: 0}
+  cardToRead:
+    artwork: {fileID: 0}
+    cardName: 
+    description: 
+    cost: 0
   costText: {fileID: 0}
   descriptionText: {fileID: 0}
   artworkImage: {fileID: 0}
@@ -508,6 +512,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7216434717635420601}
     m_Modifications:
+    - target: {fileID: 2218666443985047160, guid: eb5208ff233a33e4c997a71f10a9d6b7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2498957179390338490, guid: eb5208ff233a33e4c997a71f10a9d6b7, type: 3}
       propertyPath: m_SizeDelta.x
       value: 606
@@ -523,6 +531,10 @@ PrefabInstance:
     - target: {fileID: 2498957179390338490, guid: eb5208ff233a33e4c997a71f10a9d6b7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.00096893
+      objectReference: {fileID: 0}
+    - target: {fileID: 5869574710742446312, guid: eb5208ff233a33e4c997a71f10a9d6b7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7029672462481619967, guid: eb5208ff233a33e4c997a71f10a9d6b7, type: 3}
       propertyPath: m_Pivot.x
@@ -611,7 +623,7 @@ PrefabInstance:
     - target: {fileID: 8018870099236775100, guid: eb5208ff233a33e4c997a71f10a9d6b7, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -5600167663196108449, guid: dfc5b8a535292ee44805f6971636ff5f, type: 3}
+      objectReference: {fileID: 9166967575229275697, guid: dc60ed78a631c2e4ba657eb557292287, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

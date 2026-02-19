@@ -14,9 +14,7 @@ public class IAHand : Hand
     int minManaCost = 100;
     private static IAHand Instance;
     
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+void Start()
     {
         availableCardCount = handLimit;
         hand = new BattleCard[handLimit];
@@ -107,6 +105,7 @@ public class IAHand : Hand
 
     void PlayCard(BattleCard card)
     {
+        StackManager.Instance.AddToStack(card);
         switch (card.GetType().ToString())
         {
             case "BattleRoomCard":
@@ -129,8 +128,6 @@ public class IAHand : Hand
         AdaptToMana(testManaAmount);
     }
 
-
-
     BattleCard SelectPrioritizedCard()
     {
         BattleCard selectedCard = usableCards[0];
@@ -140,6 +137,7 @@ public class IAHand : Hand
     #region First Main Turn
     IEnumerator FirstIAMainTurnCoroutine()
     {
+        yield return new WaitUntil(() => StackManager.Instance != null);
         testManaAmount = 10;
         AdaptToMana(testManaAmount);
 
@@ -167,7 +165,7 @@ public class IAHand : Hand
             usableCards.Remove(cardToPlay);
             RemoveCard(cardToPlay);
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
         }
 
         EventManager.IABattleTurn?.Invoke(this, EventArgs.Empty);
@@ -179,6 +177,8 @@ public class IAHand : Hand
         {
             case TargetType.SingleAlly:
             case TargetType.RandomAlly:
+                if (battleground.transform.childCount == 0)
+                    return null;
                 targetCard = battleground.transform.GetChild(Random.Range
                     (0, battleground.transform.childCount)).GetComponent<BattleCard>();
                 break;
@@ -186,6 +186,8 @@ public class IAHand : Hand
             case TargetType.RandomEnemy:
                 BattlegroundArea playerBattleground = GameObject.Find("PlayerBattleGround")
                     .GetComponent<BattlegroundArea>();
+                if (playerBattleground.transform.childCount == 0)
+                    return null;
                 targetCard = playerBattleground.transform.GetChild(Random.Range
                     (0, playerBattleground.transform.childCount)).GetComponent<BattleCard>();
                 break;
@@ -197,7 +199,7 @@ public class IAHand : Hand
     #endregion
 
     #region Combat Turn
-    void IABattleTurn(object sender, System.EventArgs e)
+    void IABattleTurn(object sender, EventArgs e)
     {
         Debug.Log("-----------------IA Combat Turn------------------");
 
@@ -206,22 +208,21 @@ public class IAHand : Hand
         foreach (Transform child in activeBattleground.transform)
         {
             CharacterCard characterCard = child.gameObject.GetComponent<BattleCharCard>().GetCharacter();
-            Debug.Log($"Character {characterCard.cardName} attacks for {characterCard.attack} damage.");
             totalDamage += characterCard.attack;
         }
         if (totalDamage > 0)
         {
             new DamagePlayerCommand(LifeManager.PlayerHealth, totalDamage).Execute();
         }
-        EventManager.EndIATurn?.Invoke(this, System.EventArgs.Empty);
+        EventManager.EndIATurn?.Invoke(this, EventArgs.Empty);
     }
     #endregion
 
     #region End Turn
-    void EndIATurn(object sender, System.EventArgs e)
+    void EndIATurn(object sender, EventArgs e)
     {
         Debug.Log("-----------------IA Turn Ended-------------------");
-        EventManager.StartTurn?.Invoke(this, System.EventArgs.Empty);
+        EventManager.StartTurn?.Invoke(this, EventArgs.Empty);
     }
     #endregion
 }

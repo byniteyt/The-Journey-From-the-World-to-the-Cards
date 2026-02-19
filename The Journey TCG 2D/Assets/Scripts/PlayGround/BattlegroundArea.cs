@@ -46,7 +46,7 @@ public class BattlegroundArea : MonoBehaviour
                 cardPosition.y <= areaPosition.y + areaSize.y / 2);
     }
 
-    void ReorderCharacters()
+    public void ReorderCharacters()
     {
         if(soldiersAmount>maxSoldiersPerRow)
         {

@@ -39,23 +39,23 @@ public class IADeck : BattleDeck
         {
             if (deck.GetLastCard()==null)
             {
-                Debug.Log("No more cards to draw for IA!");
+                //Debug.Log("No more cards to draw for IA!");
                 return;
             }
             if (IAHand.GetIAHand().AddCard(CardDataBase.Instance.GetObjectCard(deck.GetLastCard().cardName).GetComponent<BattleCard>()))
             {
-                Debug.Log($"Una carta de {deck.GetLastCard().cardName}");
+                //Debug.Log($"Una carta de {deck.GetLastCard().cardName}");
                 deck.RemoveLastCard();
                 deckCount--;
             }  
         }
         if (deckCount == 0)
         {
-            Debug.Log("IA Deck is empty!");
+            //Debug.Log("IA Deck is empty!");
             GetComponent<SpriteRenderer>().enabled = false;
             return;
         }
-        Debug.Log($"Proxima carta a robar de la IA: {deck.GetLastCard().cardName}");
+        //Debug.Log($"Proxima carta a robar de la IA: {deck.GetLastCard().cardName}");
     }
     void ShuffleDeck(List<Card> array)
     {
