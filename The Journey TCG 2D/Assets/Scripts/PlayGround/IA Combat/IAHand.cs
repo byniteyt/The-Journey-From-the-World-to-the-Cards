@@ -161,11 +161,15 @@ void Start()
                 }
             }
             PlayCard(cardToPlay);
-
+            yield return new WaitForEndOfFrame();
             usableCards.Remove(cardToPlay);
             RemoveCard(cardToPlay);
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1.5f);
+
+            StackManager.Instance.EndCard();
+
+            yield return new WaitForSeconds(1.5f);
         }
 
         EventManager.IABattleTurn?.Invoke(this, EventArgs.Empty);

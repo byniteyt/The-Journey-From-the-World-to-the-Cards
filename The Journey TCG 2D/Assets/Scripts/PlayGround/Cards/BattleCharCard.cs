@@ -24,11 +24,6 @@ public class BattleCharCard : BattleCard
         return card;
     }
 
-    void Start()
-    {
-        
-    }
-
     protected override void Update() 
     {
         base.Update();
@@ -60,6 +55,7 @@ public class BattleCharCard : BattleCard
         {
             GameObject ground = gameObject.transform.parent.gameObject;
             gameObject.transform.SetParent(null);
+            ground.GetComponent<BattlegroundArea>().soldiersAmount--;
             ground.GetComponent<BattlegroundArea>().ReorderCharacters();
             Destroy(this.gameObject);
         }

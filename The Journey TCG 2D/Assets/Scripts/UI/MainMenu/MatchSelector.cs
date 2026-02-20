@@ -27,7 +27,23 @@ public class MatchSelector : MonoBehaviour
     {
         if (DeckManager.Instance.SelectedDeck == null)
         {
-            Debug.Log("No has elegido la baraja.");
+            switch (format)
+            {
+                case DeckFormat.Standard:
+                    DeckManager.Instance.SelectedDeck =Player.GetPlayer().Properties().GetValidStandardDecks()[0];
+                    break;
+                case DeckFormat.Wild:
+                    DeckManager.Instance.SelectedDeck = Player.GetPlayer().Properties().GetValidWildDecks()[0];
+                    break;
+                default:
+                    break;
+            }
+            if (DeckManager.Instance.SelectedDeck == null)
+            {
+                Debug.Log("No valid deck available.");
+                return;
+            }
+            SceneManager.LoadScene(format.ToString() + "Match");
             return;
         }
 

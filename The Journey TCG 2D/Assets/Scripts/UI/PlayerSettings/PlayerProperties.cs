@@ -47,7 +47,10 @@ public class PlayerProperties
         }
         return properties.decks;
     }
-
+    public List<Deck> GetValidDecks()
+    {
+        return decks.Where(d => d.IsValidForPlay()).ToList();
+    }
     public List<StandardDeck> GetStandardDecks()
     {
         return decks.OfType<StandardDeck>().ToList();

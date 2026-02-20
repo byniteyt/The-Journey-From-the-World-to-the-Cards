@@ -22,12 +22,19 @@ public class StackManager : MonoBehaviour
     public void AddToStack(BattleCard card)
     {
         GetComponentInChildren<Image>().enabled = true;
+        GetComponentInChildren<Animator>().SetBool("Added", true);
         // Implement logic to add the effect to the stack
         Debug.Log($"Added {card.name} to the stack.");
         GetComponentInChildren<Image>().sprite = card.GetCard().artwork;
+        //GetComponentInChildren<Animator>().SetBool("Added", false);
     }
     void DesactivatedSprite()
     {
         GetComponentInChildren<Image>().enabled = false;
     }
+
+    public void EndCard()
+    {
+        GetComponentInChildren<Animator>().SetBool("Added", false);
+    }   
 }

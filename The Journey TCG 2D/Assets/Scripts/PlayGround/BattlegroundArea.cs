@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BattlegroundArea : MonoBehaviour
 {
-    int soldiersAmount;
+    public int soldiersAmount;
     [SerializeField] float characterSpacing;
     [SerializeField] float maxSoldiersPerRow;
     void Start()
@@ -24,13 +24,7 @@ public class BattlegroundArea : MonoBehaviour
         }
         GameObject cardObject = Instantiate(card.gameObject,this.transform);
         soldiersAmount++;
-        if (transform.childCount == 1)
-            cardObject.transform.localPosition = new Vector3(0,0,-1);
-        else
-        {
-            cardObject.transform.localPosition = this.transform.GetChild(transform.childCount-1).localPosition 
-                + new Vector3(characterSpacing, 0, 0);
-        }
+        cardObject.transform.localPosition = new Vector3(0,0,-1);
         ReorderCharacters();
         return true;
     }
