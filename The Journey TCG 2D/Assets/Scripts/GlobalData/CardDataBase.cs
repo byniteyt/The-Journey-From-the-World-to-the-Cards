@@ -27,7 +27,7 @@ public class CardDataBase
     private bool isLoaded = false;
 
     private const string SAVE_FILE = "CardDatabase.json";
-    private const string CARD_LABEL = "Collection";
+    private const string CARD_LABEL = "Collection";         // Revisar que este label exista en Groups: Windows -> Asset Management -> Addressables -> Groups 
 
     private CardDataBase() { }
 
@@ -120,6 +120,7 @@ public class CardDataBase
         if (handle.Status != AsyncOperationStatus.Succeeded)
         {
             Debug.LogError("Error cargando cartas desde Addressables");
+            Debug.LogError(handle.OperationException);
             return;
         }
 
@@ -213,6 +214,7 @@ public class CardDataBase
             if (handle.Status != AsyncOperationStatus.Succeeded)
             {
                 Debug.LogError("Error sincronizando base de datos");
+                Debug.LogError(handle.OperationException);
                 onComplete?.Invoke();
                 return;
             }

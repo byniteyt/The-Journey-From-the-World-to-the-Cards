@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/UIs/TitleMenu.unity
     guid: fff07c086ae35814b9fded60b3989980
   - enabled: 1
+    path: Assets/Scenes/UIs/Credits.unity
+    guid: c124e88aad8858240b4ccd8b23f4d043
+  - enabled: 1
     path: Assets/Scenes/BattleScenes/StandardMatch.unity
     guid: 4ae6681611e43884884459969cbf4bee
   - enabled: 1

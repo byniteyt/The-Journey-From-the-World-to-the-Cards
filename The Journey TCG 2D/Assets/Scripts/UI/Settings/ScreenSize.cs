@@ -16,6 +16,7 @@ public class ScreenSize : MonoBehaviour
         Revisar();
         AplicarFullScreen(PlayerPrefs.GetInt("PantallaCompleta", 0)==1);
         AplicarConfiguracionInicial();
+        gameObject.SetActive(false);
     }
 
     void Revisar()
