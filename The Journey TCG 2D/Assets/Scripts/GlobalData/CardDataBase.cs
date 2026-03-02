@@ -27,7 +27,7 @@ public class CardDataBase
     private bool isLoaded = false;
 
     private const string SAVE_FILE = "CardDatabase.json";
-    private const string CARD_LABEL = "Durnei";
+    private const string CARD_LABEL = "Collection";
 
     private CardDataBase() { }
 
@@ -203,6 +203,51 @@ public class CardDataBase
         };
     }
 
+    public void SyncDataBaseWithAddressables(Action onComplete = null)
+    {
+        Addressables.LoadAssetsAsync<GameObject>(
+            CARD_LABEL,
+            null
+        ).Completed += handle =>
+        {
+            if (handle.Status != AsyncOperationStatus.Succeeded)
+            {
+                Debug.LogError("Error sincronizando base de datos");
+                onComplete?.Invoke();
+                return;
+            }
+
+            var loadedAddresses = handle.Result
+                .Select(prefab => prefab.GetComponent<BattleCard>().GetCard().cardName)
+                .ToList();
+
+            var savedData = SaveData<CardDataBaseSave>.DeserializeJSON(SAVE_FILE);
+
+            List<string> savedAddresses = savedData?.cardNames ?? new List<string>();
+
+            var newCards = loadedAddresses.Except(savedAddresses).ToList();
+
+            if (newCards.Count > 0)
+            {
+                Debug.Log($"Se detectaron {newCards.Count} cartas nuevas.");
+
+                foreach (var prefab in handle.Result)
+                {
+                    string address = prefab.GetComponent<BattleCard>().GetCard().cardName;
+
+                    if (newCards.Contains(address))
+                    {
+                        cards[address] = prefab;
+                    }
+                }
+
+                SaveDatabase(); // actualiza JSON
+            }
+
+            Addressables.Release(handle);
+            onComplete?.Invoke();
+        };
+    }
     #endregion
 
     #region Cleanup (opcional)
