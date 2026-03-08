@@ -1,78 +1,111 @@
 using System;
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameStarter : MonoBehaviour
 {
     int status;
-    [SerializeField] TextMeshProUGUI text;
     int index = 0;
+
+    InputAction anyInput;
+
+    [SerializeField] TextMeshProUGUI text;
+
     public event EventHandler LoadGame;
+
     public static GameStarter Instance;
-    private void Start()
+
+    void Awake()
     {
         if (Instance == null)
-        {
             Instance = this;
-        }
         else if (Instance != this)
-        {
             Destroy(gameObject);
-        }
+
+        // detectar cualquier botón de cualquier dispositivo
+        anyInput = new InputAction(
+            type: InputActionType.Button,
+            binding: "*/{Press}"
+        );
+
+        anyInput.performed += OnAnyInput;
     }
-    void Update()
+
+    void OnEnable()
     {
-        if (Input.anyKeyDown)
+        anyInput.Enable();
+    }
+
+    void OnDisable()
+    {
+        anyInput.Disable();
+    }
+
+    void OnAnyInput(InputAction.CallbackContext ctx)
+    {
+        //Debug.Log("Input detectado: " + ctx.control.device);
+
+        switch (status)
         {
-            switch (status)
-            {
-                case 0:
-                    InitGame();
-                    LoadGame?.Invoke(this, EventArgs.Empty);
-                    break;
-                default:
-                    Debug.Log("Status: " + status);
-                    if (status == transform.childCount)
-                    {
-                        StartCoroutine(StartGame());
-                    }
-                    break;
-            }
+            case 0:
+
+                InitGame();
+                LoadGame?.Invoke(this, EventArgs.Empty);
+
+                break;
+
+            default:
+
+                if (status < transform.childCount)
+                {
+                    NextLoad();
+                }
+                else if (status == transform.childCount)
+                {
+                    StartCoroutine(StartGame());
+                }
+
+                break;
         }
     }
+
     IEnumerator StartGame()
     {
-        // Aquí puedes cargar la escena del juego o realizar cualquier otra acción para iniciar el juego
+        anyInput.Disable(); // bloquear input real
+
         Debug.Log("Iniciando el juego...");
         text.text = "Iniciando el juego...";
-        yield return new WaitForSeconds(2f); // Espera 2 segundos antes de cargar la escena
+
+        yield return new WaitForSeconds(2f);
+
         SceneManager.LoadScene("TitleMenu");
     }
 
     void InitGame()
     {
         transform.GetChild(0).gameObject.SetActive(true);
+        status = 1;
     }
 
     public void NextLoad()
     {
         index++;
         status++;
-        if (index == transform.childCount)
+
+        if (index >= transform.childCount)
         {
             text.text = "Start Game";
-            //StartCoroutine(StartGame());
             return;
         }
-        transform.GetChild(index).gameObject.SetActive(true);
 
+        transform.GetChild(index).gameObject.SetActive(true);
     }
 
-    public void TextInfo(string text)
+    public void TextInfo(string t)
     {
-        this.text.text = text;
+        text.text = t;
     }
 }
