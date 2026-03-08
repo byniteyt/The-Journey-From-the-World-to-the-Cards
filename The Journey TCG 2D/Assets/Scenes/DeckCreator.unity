@@ -1900,9 +1900,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2028443245155422709}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b178f0ca085a1ad4fa833b1a9cc708e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 4002d13edd5499e49b1e65e327fb6261, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DeckCardHolder
+  m_EditorClassIdentifier: Assembly-CSharp::DeckCardEditor
 --- !u!224 &5491639132698349141 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2783654010689200165, guid: e33d1f8d88ccc1a429d359ac6faad547, type: 3}

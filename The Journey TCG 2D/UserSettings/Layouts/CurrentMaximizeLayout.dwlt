@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 890
+  controlID: 4214
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -46,8 +46,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: -1572
-    y: -6
+    x: 349
+    y: 24
     width: 1111
     height: 454
   m_SerializedDataModeController:
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 891
+  controlID: 4215
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 867
+  controlID: 4216
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 868
+  controlID: 4172
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -225,8 +225,8 @@ MonoBehaviour:
     y: 0
     width: 348
     height: 480
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 226}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 7}
   m_Panes:
   - {fileID: 7}
@@ -273,10 +273,21 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: []
+      m_SelectedIDs:
+      - m_Data: 41334
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
+      - m_Data: -13818
+      - m_Data: -11174
+      - m_Data: -10966
+      - m_Data: -10656
+      - m_Data: -10286
+      - m_Data: -10078
+      - m_Data: -9880
+      - m_Data: -9666
+      - m_Data: -9466
+      - m_Data: -8538
       - m_Data: -6452
       - m_Data: -5026
       - m_Data: -4358
@@ -288,6 +299,18 @@ MonoBehaviour:
       - m_Data: 56904
       - m_Data: 56914
       - m_Data: 56934
+      - m_Data: 59426
+      - m_Data: 59470
+      - m_Data: 59480
+      - m_Data: 60214
+      - m_Data: 60268
+      - m_Data: 60286
+      - m_Data: 60316
+      - m_Data: 60564
+      - m_Data: 60618
+      - m_Data: 64342
+      - m_Data: 64362
+      - m_Data: 64420
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1034,9 +1057,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 755.7459, y: 511.9403, z: -3.3509047}
+    m_Target: {x: 960, y: 540, z: 0}
     speed: 2
-    m_Value: {x: 755.7459, y: 511.9403, z: -3.3509047}
+    m_Value: {x: 960, y: 540, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1086,9 +1109,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 616.092
+    m_Target: 1101.4536
     speed: 2
-    m_Value: 616.092
+    m_Value: 1101.4536
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1224,7 +1247,7 @@ MonoBehaviour:
   - {fileID: 14}
   - {fileID: 15}
   m_Selected: 0
-  m_LastSelected: 2
+  m_LastSelected: 1
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1274,7 +1297,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes/Loaders
+    - Assets/Scenes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1284,7 +1307,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes/Loaders
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\ByNiteProYT\Desktop\Proyectos\Videojuegos\Unity\3D\The-Journey-TCG\The
     Journey TCG 2D
@@ -1294,9 +1317,9 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
     m_SelectedIDs:
-    - m_Data: 52178
+    - m_Data: 52024
     m_LastClickedID:
-      m_Data: 52178
+      m_Data: 52024
     m_ExpandedIDs:
     - m_Data: 0
     - m_Data: 52002
@@ -1323,6 +1346,7 @@ MonoBehaviour:
     - m_Data: 52044
     - m_Data: 52046
     - m_Data: 52048
+    - m_Data: 52184
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1408,9 +1432,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 57000
-    m_LastClickedInstanceID: 57000
-    m_HadKeyboardFocusLastEvent: 0
+    - m_Data: 64428
+    m_LastClickedInstanceID: 64428
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 53236
     m_RenameOverlay:
@@ -1463,10 +1487,10 @@ MonoBehaviour:
     m_TextWithWhitespace: "Audio Mixer\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 0
-    y: 448
-    width: 1167.8
-    height: 322
+    x: -1920
+    y: 474
+    width: 1460
+    height: 427
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1603,12 +1627,12 @@ MonoBehaviour:
       oldMaxSizes: 
       oldSplitSize: 0
     m_HorizontalSplitter:
-      ID: 1644
+      ID: 1326
       splitterInitialOffset: 0
       currentActiveSplitter: -1
       realSizes:
-      - 350.4
-      - 817.6
+      - 438
+      - 1022
       relativeSizes:
       - 0.3
       - 0.7
@@ -1618,7 +1642,7 @@ MonoBehaviour:
       maxSizes:
       - 0
       - 0
-      lastTotalSize: 1168
+      lastTotalSize: 1460
       splitSize: 6
       xOffset: 0
       m_Version: 1
@@ -1710,7 +1734,7 @@ MonoBehaviour:
     m_DynamicPanelBehavior: 0
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 0
+  m_LastSelectedObjectID: 41334
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1730,8 +1754,8 @@ MonoBehaviour:
     y: 0
     width: 459
     height: 933
-  m_MinSize: {x: 276, y: 76}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -1781,7 +1805,7 @@ MonoBehaviour:
     m_CachedPref: 160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
+  m_LastInspectedObjectInstanceID: 64428
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
