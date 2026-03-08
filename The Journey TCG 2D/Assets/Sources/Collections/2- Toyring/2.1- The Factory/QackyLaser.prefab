@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4213840246756888656}
   - component: {fileID: 8394587877232778769}
   - component: {fileID: 2772936716849763208}
-  - component: {fileID: 2067219747995669786}
+  - component: {fileID: 2260761224905705651}
   m_Layer: 7
-  m_Name: AgentePatologico
+  m_Name: QackyLaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5866266371813336958, guid: 6cf58c257fb6a7f47a81766d0ff1f01c, type: 3}
+  m_Sprite: {fileID: 7843334816099491766, guid: a77f9b5d6ab71174dba0310806651d74, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -139,7 +139,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.18, y: 4.6}
   m_EdgeRadius: 0
---- !u!114 &2067219747995669786
+--- !u!114 &2260761224905705651
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,14 +148,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8857691975515996894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e15e3c33eb0005c47ba0250bf601869d, type: 3}
+  m_Script: {fileID: 11500000, guid: 830df02c86cdc524b890a7fe104f5037, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BattleCharCard
+  m_EditorClassIdentifier: Assembly-CSharp::BattleSpellCard
   card:
-    artwork: {fileID: 5866266371813336958, guid: 6cf58c257fb6a7f47a81766d0ff1f01c, type: 3}
-    cardName: "Agente Patol\xE9gico"
-    description: <i>Cuack Cuack</i>\n\t\t\t ~The Duck
+    artwork: {fileID: 7843334816099491766, guid: a77f9b5d6ab71174dba0310806651d74, type: 3}
+    cardName: Qaky Laser
+    description: 
     cost: 1
-    health: 2
-    attack: 4
-    rank: 1
+    effectAmount: 1
+    targetType: 0
+    targetCard: {fileID: 0}
+    effect: 0

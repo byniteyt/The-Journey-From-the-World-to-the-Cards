@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardHolder : MonoBehaviour
+public class DeckCardEditor : MonoBehaviour
 {
     GameObject cardButton;
     GameObject cardHolder;
@@ -14,6 +14,7 @@ public class CardHolder : MonoBehaviour
         cardButton = Resources.Load<GameObject>("Prefabs/Cards/CollectedCard");
         if (Player.GetPlayer().Properties().GetCards().Count == 0) 
             Debug.Log("No hay cartas guardadas para mostrar");
+        if(Player.GetPlayer().Properties().GetCards().Count == 0) Debug.Log("No hay cartas guardadas para mostrar");
         foreach (CardAmount newCardId in Player.GetPlayer().Properties().GetCards())
         {
             Card newCard = CardDataBase.Instance.GetCard(newCardId.cardName);
@@ -24,7 +25,8 @@ public class CardHolder : MonoBehaviour
             }
 
             GameObject cb = Instantiate(cardButton, cardHolder.transform);
-            
+            Debug.Log($"Instantiated card button for {newCard.cardName} with amount {newCardId.amount}");
+
             //cb.transform.GetChild(0).GetComponent<Image>().sprite = card.artwork;
             cb.GetComponentInChildren<TextMeshProUGUI>().text = newCardId.amount.ToString();
             cb.name = newCard.cardName;
@@ -64,9 +66,24 @@ public class CardHolder : MonoBehaviour
                     break;
             }
             cb.GetComponent<Button>().onClick.AddListener(() => {
-                newCard.ShowCardDetails();
+                Debug.Log($"Adding {nameOfCard} to deck.");
+                if (Player.GetPlayer().Properties().GetCard(nameOfCard) == null)
+                {
+                    Debug.LogError($"Card {nameOfCard} not found in player properties.");
+                    return;
+                }
+                AddToDeck(Player.GetPlayer().Properties().GetCard(nameOfCard));
             });
         }
     
+    }
+    void AddToDeck(Card cardToAdd)
+    {
+        if (DeckManager.Instance.SelectedDeck == null)
+        {
+            Debug.Log("No deck selected.");
+            return;
+        }
+        DeckManager.Instance.SelectedDeck.AddCard(cardToAdd);
     }
 }

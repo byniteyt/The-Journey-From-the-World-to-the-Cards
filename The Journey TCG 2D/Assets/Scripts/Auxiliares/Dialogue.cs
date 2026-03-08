@@ -30,7 +30,8 @@ public class Dialogue : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
-        {if (text.text == dialogues[index].dialogue)
+        {
+            if (text.text == dialogues[index].dialogue)
             {
                 Next();
             }
@@ -39,7 +40,6 @@ public class Dialogue : MonoBehaviour
                 StopAllCoroutines();
                 text.text = dialogues[index].dialogue;
             }
-
         }
     }
     private void StartDialogue()

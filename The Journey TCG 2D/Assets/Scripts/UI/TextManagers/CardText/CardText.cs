@@ -7,7 +7,7 @@ public class CardText : MonoBehaviour
 {
     public Card cardToRead;
     // Basic UI Elements
-    protected TextMeshProUGUI nameText;
+    [SerializeField] protected TextMeshProUGUI nameText;
     [SerializeField] protected TextMeshProUGUI costText;
     [SerializeField] protected TextMeshProUGUI descriptionText;
     [SerializeField] protected Image artworkImage;
@@ -15,10 +15,6 @@ public class CardText : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
-        nameText = GameObject.Find("Name").GetComponent<TextMeshProUGUI>();
-        costText = GameObject.Find("Cost").GetComponent<TextMeshProUGUI>();
-        descriptionText = GameObject.Find("Description").GetComponent<TextMeshProUGUI>();
-        artworkImage = GameObject.Find("Art").GetComponent<Image>();
     }
 
     // Update is called once per frame

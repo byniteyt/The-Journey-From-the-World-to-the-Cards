@@ -57,6 +57,28 @@ public class CardDataBase
         };
     }
 
+    public void LoadCollection(string collectionLabel, Action onComplete = null)
+    {
+        if (isLoaded)
+        {
+            SyncDataBaseWithAddressables(collectionLabel);
+            Debug.Log("Las cartas ya están cargadas.");
+            onComplete?.Invoke();
+            return;
+        }
+
+        loadAllHandle = Addressables.LoadAssetsAsync<GameObject>(
+            collectionLabel,
+            OnCardLoaded
+        );
+
+        loadAllHandle.Completed += handle =>
+        {
+            OnLoadAllCompleted(handle);
+            onComplete?.Invoke(); // <- ahora se llama siempre
+        };
+    }
+
     /// <summary>
     /// Devuelve un prefab cargado por Address.
     /// </summary>
@@ -204,17 +226,16 @@ public class CardDataBase
         };
     }
 
-    public void SyncDataBaseWithAddressables(Action onComplete = null)
+    public void SyncDataBaseWithAddressables(string collection = null, Action onComplete = null)
     {
         Addressables.LoadAssetsAsync<GameObject>(
-            CARD_LABEL,
+            (collection ?? CARD_LABEL),
             null
         ).Completed += handle =>
         {
             if (handle.Status != AsyncOperationStatus.Succeeded)
             {
-                Debug.LogError("Error sincronizando base de datos");
-                Debug.LogError(handle.OperationException);
+                Debug.LogError($"Error sincronizando base de datos para {(collection ?? CARD_LABEL)}");
                 onComplete?.Invoke();
                 return;
             }

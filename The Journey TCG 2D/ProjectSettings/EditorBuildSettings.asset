@@ -38,6 +38,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CardCollection.unity
     guid: 07278cb458cbf1b428a2a113a063c375
+  - enabled: 1
+    path: Assets/Scenes/BattleScenes/TutorialCombat.unity
+    guid: e1f77a02784024a409a9d45eb4ec4098
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: a71c5ff1988053e469fa1b8ba4444387, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

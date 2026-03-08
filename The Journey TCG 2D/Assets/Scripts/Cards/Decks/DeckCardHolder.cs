@@ -9,7 +9,7 @@ public class DeckCardHolder : MonoBehaviour
 
     private void Start()
     {
-        deckCardHolder = GameObject.Find("DeckCardHolder");
+        deckCardHolder = this.gameObject;
         deckCardButton = Resources.Load<GameObject>("Prefabs/Cards/CollectedCard");
 
         if (DeckManager.Instance.SelectedDeck == null)

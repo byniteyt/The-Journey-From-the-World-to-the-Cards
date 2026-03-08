@@ -3,8 +3,8 @@ using System;
 
 public enum CollectionName
 {
-    The_Beginning,
-    Singing_Shadows,
+    Durnei,
+    Toyring,
     Flames_of_Fury,
     Frozen_Throne,
     Dark_Covenant

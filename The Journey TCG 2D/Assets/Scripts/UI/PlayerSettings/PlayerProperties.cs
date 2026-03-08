@@ -129,7 +129,9 @@ public class PlayerProperties
                 props.decks.Add(newDeck);
             }
 
-            properties.cards = props.cards;
+            //properties.cards = props.cards;
+            properties.cards = CardDataBase.Instance.GetAllCards()
+                .Select(c => new CardAmount { cardName = c.GetComponent<BattleCard>().GetCard().cardName, amount = 1 }).ToList();
             Debug.Log("Cards loaded: " + properties.cards.Count);
             properties.decks = props.decks;
         }

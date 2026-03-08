@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class Player: MonoBehaviour 
@@ -14,6 +15,7 @@ public class Player: MonoBehaviour
             player = this;
             DontDestroyOnLoad(gameObject);
             player.InitPlayer();
+            GameStarter.Instance.NextLoad();
         }
         else if (player != this)
         {
@@ -34,20 +36,10 @@ public class Player: MonoBehaviour
         Debug.Log("Initializing Player Stats");
         PlayerStats.InitializeStats();
         playerStats = PlayerStats.stats;
-        
-        CardDataBase.Instance.LoadAllCards(() =>
-        {
-            Debug.Log("Todas las cartas cargadas");
-            Debug.Log("Sincronizando base de datos con posibles nuevas cartas");
-            CardDataBase.Instance.SyncDataBaseWithAddressables(() =>
-            {
-                Debug.Log("Base de datos sincronizada.");
-                Debug.Log("Initializing Player Properties");
-                playerProperties = PlayerProperties.properties;
-                playerProperties.Initialize();
-            });
-        });
 
+        Debug.Log("Initializing Player Properties");
+        playerProperties = PlayerProperties.properties;
+        playerProperties.Initialize();
     }
 
     public PlayerSources Sources()
