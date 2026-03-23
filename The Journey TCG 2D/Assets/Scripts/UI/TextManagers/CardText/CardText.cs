@@ -12,21 +12,15 @@ public class CardText : MonoBehaviour
     [SerializeField] protected TextMeshProUGUI descriptionText;
     [SerializeField] protected Image artworkImage;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected virtual void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     virtual protected void SetValues(Card carta)
     {
         nameText.text = carta.cardName;
         costText.text = carta.cost.ToString();
         descriptionText.text = carta.description;
         artworkImage.sprite = carta.artwork;
+    }
+    public virtual void UpdatePanel(Card card)
+    {
+        SetValues(card);
     }
 }

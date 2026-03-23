@@ -18,6 +18,41 @@ public class DeckCardEditor : MonoBehaviour
         foreach (CardAmount newCardId in Player.GetPlayer().Properties().GetCards())
         {
             Card newCard = CardDataBase.Instance.GetCard(newCardId.cardName);
+            if (newCard == null) continue;
+
+            GameObject cb = Instantiate(cardButton, cardHolder.transform);
+            cb.name = newCard.cardName;
+
+            cb.transform.GetChild(0).GetComponent<Image>().sprite = newCard.artwork;
+            cb.GetComponentInChildren<TextMeshProUGUI>().text = newCardId.amount.ToString();
+
+            // Añadir BoxCollider2D si es necesario
+            cb.AddComponent<BoxCollider2D>();
+
+            // Añadir la lógica de clic izquierdo/derecho
+            var handler = cb.AddComponent<CardButtonHandler>();
+            handler.SetCard(newCard, newCardId.amount);
+
+            // Añadir componente específico según tipo de carta
+            switch (newCard.GetType().ToString())
+            {
+                case "BattleRoomCard":
+                    var room = cb.AddComponent<BattleRoomCard>();
+                    room.SetCard(newCard);
+                    break;
+                case string s when s.Contains("Spell"):
+                    var spell = cb.AddComponent<BattleSpellCard>();
+                    spell.SetCard(newCard);
+                    break;
+                case "BattleCharCard":
+                    var character = cb.AddComponent<BattleCharCard>();
+                    character.SetCard(newCard);
+                    break;
+            }
+        }
+        /*foreach (CardAmount newCardId in Player.GetPlayer().Properties().GetCards())
+        {
+            Card newCard = CardDataBase.Instance.GetCard(newCardId.cardName);
             if (newCard == null)
             {
                 Debug.LogError($"Card {newCardId.cardName} not found in CardDataBase.");
@@ -75,7 +110,7 @@ public class DeckCardEditor : MonoBehaviour
                 AddToDeck(Player.GetPlayer().Properties().GetCard(nameOfCard));
             });
         }
-    
+    */
     }
     void AddToDeck(Card cardToAdd)
     {

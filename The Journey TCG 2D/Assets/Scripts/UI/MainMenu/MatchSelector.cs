@@ -30,18 +30,23 @@ public class MatchSelector : MonoBehaviour
             switch (format)
             {
                 case DeckFormat.Standard:
+                    if(Player.GetPlayer().Properties().GetValidStandardDecks().Count == 0)
+                    {
+                        Debug.Log("No valid standard deck available.");
+                        return;
+                    }
                     DeckManager.Instance.SelectedDeck =Player.GetPlayer().Properties().GetValidStandardDecks()[0];
                     break;
                 case DeckFormat.Wild:
+                    if(Player.GetPlayer().Properties().GetValidWildDecks().Count == 0)
+                    {
+                        Debug.Log("No valid wild deck available.");
+                        return;
+                    }
                     DeckManager.Instance.SelectedDeck = Player.GetPlayer().Properties().GetValidWildDecks()[0];
                     break;
                 default:
                     break;
-            }
-            if (DeckManager.Instance.SelectedDeck == null)
-            {
-                Debug.Log("No valid deck available.");
-                return;
             }
             SceneManager.LoadScene(format.ToString() + "Match");
             return;

@@ -14,7 +14,7 @@ public class GameStarter : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI text;
 
-    public event EventHandler LoadGame;
+    //public event EventHandler LoadGame;
 
     public static GameStarter Instance;
 
@@ -25,12 +25,14 @@ public class GameStarter : MonoBehaviour
         else if (Instance != this)
             Destroy(gameObject);
 
-        // detectar cualquier botón de cualquier dispositivo
-        anyInput = new InputAction(
-            type: InputActionType.Button,
-            binding: "*/{Press}"
-        );
+        anyInput = new InputAction(type: InputActionType.Button);
 
+        // bindings seguros
+        anyInput.AddBinding("<Keyboard>/anyKey"); // Aseguramos que lea todas las teclas del teclado
+        anyInput.AddBinding("<Mouse>/leftButton"); // Aseguramos que lea el botón izquierdo del ratón
+        anyInput.AddBinding("<Mouse>/rightButton"); // Aseguramos que lea el botón derecho del ratón
+        anyInput.AddBinding("<Mouse>/middleButton"); // Aseguramos que lea el botón central del ratón
+        anyInput.AddBinding("<Gamepad>/*"); // Aseguramos que lea todos los botones del gamepad
         anyInput.performed += OnAnyInput;
     }
 
@@ -46,24 +48,23 @@ public class GameStarter : MonoBehaviour
 
     void OnAnyInput(InputAction.CallbackContext ctx)
     {
-        //Debug.Log("Input detectado: " + ctx.control.device);
+        //Debug.Log("Input: " + ctx.control);
 
         switch (status)
         {
             case 0:
 
                 InitGame();
-                LoadGame?.Invoke(this, EventArgs.Empty);
 
                 break;
 
             default:
-
+                Debug.Log("Status: " + status + " / " + transform.childCount);
                 if (status < transform.childCount)
                 {
                     NextLoad();
                 }
-                else if (status == transform.childCount)
+                else if (status >= transform.childCount)
                 {
                     StartCoroutine(StartGame());
                 }
@@ -74,9 +75,8 @@ public class GameStarter : MonoBehaviour
 
     IEnumerator StartGame()
     {
-        anyInput.Disable(); // bloquear input real
+        anyInput.Disable();
 
-        Debug.Log("Iniciando el juego...");
         text.text = "Iniciando el juego...";
 
         yield return new WaitForSeconds(2f);
@@ -87,7 +87,7 @@ public class GameStarter : MonoBehaviour
     void InitGame()
     {
         transform.GetChild(0).gameObject.SetActive(true);
-        status = 1;
+        status = 0;
     }
 
     public void NextLoad()

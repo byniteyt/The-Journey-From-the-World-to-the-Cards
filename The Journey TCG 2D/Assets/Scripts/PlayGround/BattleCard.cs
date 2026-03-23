@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [Serializable]
 public class BattleCard : MonoBehaviour
@@ -11,10 +12,13 @@ public class BattleCard : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (Input.GetMouseButtonDown(1) && !IsShowingDetails())
+        if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame 
+            && !IsShowingDetails())
         {
+            Debug.Log("Right click detected on " + this.name);
             if (MouseIsInside())
             {
+                Debug.Log("Mouse is inside the card area. Showing details for " + this.name);
                 GetCard().ShowCardDetails();
             }
         }
@@ -24,7 +28,7 @@ public class BattleCard : MonoBehaviour
     {
         Vector2 areaPosition = this.transform.position;
         Vector2 areaSize = this.GetComponent<Collider2D>().bounds.size;
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         return (mousePosition.x >= areaPosition.x - areaSize.x / 2 &&
                 mousePosition.x <= areaPosition.x + areaSize.x / 2 &&
                 mousePosition.y >= areaPosition.y - areaSize.y / 2 &&

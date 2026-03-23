@@ -55,7 +55,7 @@ public class SpellCard : Card
         cardDetailPanel.transform.SetAsLastSibling(); // Ensure the panel is on top
         cardDetailPanel.transform.localPosition = Vector3.zero; // Center the panel
         SpellCardText info = cardDetailPanel.GetComponent<SpellCardText>();
-        info.cardToRead = this;
+        info.UpdatePanel(this);
     }
      public virtual void ApplyEffect()
     {

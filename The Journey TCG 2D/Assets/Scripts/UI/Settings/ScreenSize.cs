@@ -44,7 +44,7 @@ public class ScreenSize : MonoBehaviour
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         PlayerPrefs.SetInt("valorResolucion", resolutionIndex);
-        Debug.Log("Resolución cambiada a: " + resolution.width + " x " + resolution.height);
+        //Debug.Log("Resolución cambiada a: " + resolution.width + " x " + resolution.height);
     }
 
     private void AplicarConfiguracionInicial()
@@ -72,7 +72,7 @@ public class ScreenSize : MonoBehaviour
         Screen.fullScreen = isFullScreen;
         PlayerPrefs.SetInt("PantallaCompleta", isFullScreen ? 1 : 0);
         resolutionDropdown.interactable = !isFullScreen;
-        Debug.Log("Pantalla completa: " + isFullScreen);
+        //Debug.Log("Pantalla completa: " + isFullScreen);
     }
 
 }
