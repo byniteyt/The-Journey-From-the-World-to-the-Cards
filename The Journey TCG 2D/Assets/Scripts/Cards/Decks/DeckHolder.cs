@@ -60,7 +60,7 @@ public class DeckHolder : MonoBehaviour
     {
         Action deleteAction = new(DestroyDeck);
         yield return null;
-        GameObject Warning = Instantiate(Resources.Load<GameObject>("Prefabs/Warning/Warning"));
+        GameObject Warning = Instantiate(Resources.Load<GameObject>("Prefabs/UI/Warning/Warning"));
         yield return new WaitForEndOfFrame();
         EventManager.GetOrder?.Invoke(this, deleteAction);
         DeleteDeck delete = new(DeckManager.Instance.SelectedDeck);
