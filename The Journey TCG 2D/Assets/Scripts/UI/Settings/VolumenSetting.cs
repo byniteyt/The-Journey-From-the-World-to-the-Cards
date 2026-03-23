@@ -19,10 +19,10 @@ public class VolumenSetting : MonoBehaviour
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("MusicVolume", volume);
     }
-    public void SetEfectVolume(float volume)
+    public void SetEffectsVolume(float volume)
     {
-        audioMixer.SetFloat("EfectVolume", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("EfectVolume", volume);
+        audioMixer.SetFloat("EffectsVolume", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("EffectsVolume", volume);
     }
 
     void LoadGeneralVolume() 
@@ -39,8 +39,8 @@ public class VolumenSetting : MonoBehaviour
 
     void LoadSfxVolume()
     {
-        sfxSlider.value = PlayerPrefs.GetFloat("EfectVolume", 1f);
-        SetEfectVolume(sfxSlider.value == 0 ? 1f : sfxSlider.value);
+        sfxSlider.value = PlayerPrefs.GetFloat("EffectsVolume", 1f);
+        SetEffectsVolume(sfxSlider.value == 0 ? 1f : sfxSlider.value);
     }
     private void Awake()
     {
