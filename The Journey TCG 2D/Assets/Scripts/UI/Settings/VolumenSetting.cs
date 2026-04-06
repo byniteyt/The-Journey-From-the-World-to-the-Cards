@@ -28,19 +28,19 @@ public class VolumenSetting : MonoBehaviour
     void LoadGeneralVolume() 
     {
         generalSlider.value = PlayerPrefs.GetFloat("GameVolume", 1f);
-        SetGlobalVolume(generalSlider.value == 0 ? 1f : generalSlider.value);
+        SetGlobalVolume(generalSlider.value);
     }
 
     void LoadMusicVolume()
     {
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
-        SetMusicVolume(musicSlider.value == 0 ? 1f : musicSlider.value);
+        SetMusicVolume(musicSlider.value);
     }
 
     void LoadSfxVolume()
     {
         sfxSlider.value = PlayerPrefs.GetFloat("EffectsVolume", 1f);
-        SetEffectsVolume(sfxSlider.value == 0 ? 1f : sfxSlider.value);
+        SetEffectsVolume(sfxSlider.value);
     }
     private void Awake()
     {

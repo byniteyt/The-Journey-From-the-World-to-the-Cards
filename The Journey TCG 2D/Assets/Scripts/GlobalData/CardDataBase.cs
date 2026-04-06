@@ -31,7 +31,42 @@ public class CardDataBase
 
     private CardDataBase() { }
 
-    #region Public API
+    #region Getters
+
+
+    /// <summary>
+    /// Devuelve un prefab cargado por Address.
+    /// </summary>
+    public GameObject GetObjectCard(string address)
+    {
+        cards.TryGetValue(address, out var obj);
+        return obj;
+    }
+
+    public BattleCard GetBattleCard(string address)
+    {
+        return GetObjectCard(address)?.GetComponent<BattleCard>();
+    }
+
+    public Card GetCard(string address)
+    {
+        return GetBattleCard(address)?.GetCard();
+    }
+
+    public IEnumerable<GameObject> GetAllCards()
+    {
+        return cards.Values;
+    }
+
+    #endregion
+    public bool HasNewCards(IEnumerable<string> loadedCardNames)
+    {
+        return loadedCardNames.Any(name => !cardNames.Contains(name));
+    }
+
+
+
+    #region Loaders
 
     /// <summary>
     /// Carga todas las cartas desde Addressables (una sola vez).
@@ -78,40 +113,6 @@ public class CardDataBase
             onComplete?.Invoke(); // <- ahora se llama siempre
         };
     }
-
-    /// <summary>
-    /// Devuelve un prefab cargado por Address.
-    /// </summary>
-    public GameObject GetObjectCard(string address)
-    {
-        cards.TryGetValue(address, out var obj);
-        return obj;
-    }
-
-    public BattleCard GetBattleCard(string address)
-    {
-        return GetObjectCard(address)?.GetComponent<BattleCard>();
-    }
-
-    public Card GetCard(string address)
-    {
-        return GetBattleCard(address)?.GetCard();
-    }
-
-    public IEnumerable<GameObject> GetAllCards()
-    {
-        return cards.Values;
-    }
-
-    #endregion
-    public bool HasNewCards(IEnumerable<string> loadedCardNames)
-    {
-        return loadedCardNames.Any(name => !cardNames.Contains(name));
-    }
-
-
-
-    #region Loaders
 
     private void OnCardLoaded(GameObject prefab)
     {
