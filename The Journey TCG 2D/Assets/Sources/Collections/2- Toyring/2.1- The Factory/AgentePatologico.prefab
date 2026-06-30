@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleCharCard
   card:
-    artwork: {fileID: -6960842374088517334, guid: cbf797e3aebe4524cb20ee62570e0444, type: 3}
+    artwork: {fileID: 5866266371813336958, guid: 6cf58c257fb6a7f47a81766d0ff1f01c, type: 3}
     cardName: "Agente Patol\xE9gico"
     description: <i>Cuack Cuack</i>\n\t\t\t ~The Duck
     cost: 1

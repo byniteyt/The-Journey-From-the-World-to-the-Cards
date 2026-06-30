@@ -73,4 +73,9 @@ public class MatchSelector : MonoBehaviour
         GameObject.Find("Play").GetComponentInChildren<TextMeshProUGUI>().text = 
             $"Start {format} match";
     }
+
+    public void StartTutorial()
+    {
+        SceneManager.LoadScene("TutorialCombat");
+    }
 }

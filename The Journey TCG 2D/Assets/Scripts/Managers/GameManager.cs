@@ -22,12 +22,13 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         format = (SceneManager.GetActiveScene().name == "StandardMatch") ? DeckFormat.Standard : DeckFormat.Wild;
-
-        pauseMenu = GameObject.Find("Canvas").transform.Find("PauseMenu").gameObject;
-        pauseButton = GameObject.Find("Start").GetComponent<Button>();
-        pauseButton.onClick.AddListener(() => ChangeGameState(GameState.InGame));
-        
-        EventManager.StartTurn+= (s, e) => StartTurn();
+        if(!SceneManager.GetActiveScene().name.Contains("Tutorial"))
+        {
+            pauseMenu = GameObject.Find("Canvas").transform.Find("PauseMenu").gameObject;
+            pauseButton = GameObject.Find("Start").GetComponent<Button>();
+            pauseButton.onClick.AddListener(() => ChangeGameState(GameState.InGame));
+        }
+        EventManager.StartTurn += (s, e) => StartTurn();
         EventManager.GameOver += EndGame;
     }
     // Update is called once per frame

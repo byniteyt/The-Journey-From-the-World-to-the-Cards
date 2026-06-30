@@ -20,6 +20,7 @@ public class CardDataBase
     public static CardDataBase Instance => instance ??= new CardDataBase();
 
     private Dictionary<string, GameObject> cards = new();
+    private Dictionary<string, Dictionary<string, GameObject>> collections = new();
 
     public List<string> cardNames = new();
 
@@ -27,9 +28,8 @@ public class CardDataBase
     private bool isLoaded = false;
 
     private const string SAVE_FILE = "CardDatabase.json";
-    private const string CARD_LABEL = "Collection";         // Revisar que este label exista en Groups: Windows -> Asset Management -> Addressables -> Groups 
-
-    private CardDataBase() { }
+    private const string CARD_LABEL = "Collection";         
+    // Revisar que este label exista en Groups: Windows -> Asset Management -> Addressables -> Groups 
 
     #region Getters
 
@@ -56,6 +56,13 @@ public class CardDataBase
     public IEnumerable<GameObject> GetAllCards()
     {
         return cards.Values;
+    }
+
+    public IEnumerable<GameObject> GetCollection(string label)
+    {
+        return collections.ContainsKey(label)
+            ? collections[label].Values
+            : Enumerable.Empty<GameObject>();
     }
 
     #endregion

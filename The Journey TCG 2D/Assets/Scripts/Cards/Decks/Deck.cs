@@ -164,7 +164,7 @@ public class Deck
             Debug.LogWarning($"Cannot add more copies of {key}");
             return;
         }
-        Debug.Log($"Adding card {key} to the deck."); 
+        Debug.Log($"Adding card {key} to the deck {deckName}."); 
         deck.Add(cardToAdd);
         cardLimits[key]++;
     }

@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleSpellCard
   card:
-    artwork: {fileID: 3537879861638250659, guid: c2958959c0e89274fbfe28f1947d5017, type: 3}
+    artwork: {fileID: 7843334816099491766, guid: a77f9b5d6ab71174dba0310806651d74, type: 3}
     cardName: Qaky Laser
     description: 
     cost: 1

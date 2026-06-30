@@ -21,6 +21,11 @@ public class GeneralButtons : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void BackToTitleMenu()
+    {
+        SceneManager.LoadScene("TitleMenu");
+    }
     public void Settings()
     {
         Instantiate(Resources.Load<GameObject>("Prefabs/UI/Settings/GlobalSettings"), this.transform);

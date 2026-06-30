@@ -92,31 +92,31 @@ public class SpellCard : Card
         switch(this.effect)
         {
             case SpellEffectType.Damage:
-                Debug.Log($"Applying {effect} of {effectAmount} to target card {targetCard.GetCard().cardName}");
+                //Debug.Log($"Applying {effect} of {effectAmount} to target card {targetCard.GetCard().cardName}");
                 ((BattleCharCard)targetCard).DamageCard(effectAmount);
                 break;
 
             case SpellEffectType.Heal:
-                Debug.Log($"Applying {effect} of {effectAmount} to target card {targetCard.GetCard().cardName}");
+                //Debug.Log($"Applying {effect} of {effectAmount} to target card {targetCard.GetCard().cardName}");
                 ((BattleCharCard)targetCard).GetCharacter().ChangeHealth(effectAmount);
                 break;
 
             case SpellEffectType.Buff:
-                Debug.Log($"Applying {effect} of {effectAmount} to target card {targetCard.GetCard().cardName}");
+                //Debug.Log($"Applying {effect} of {effectAmount} to target card {targetCard.GetCard().cardName}");
                 targetCard.GetCharacter().ChangeAttack(effectAmount);
                 break;
 
             case SpellEffectType.Debuff:
-                Debug.Log($"Applying {effect} of {effectAmount} to target card {targetCard.GetCard().cardName}");
+                //Debug.Log($"Applying {effect} of {effectAmount} to target card {targetCard.GetCard().cardName}");
                 targetCard.GetCharacter().ChangeAttack(effectAmount);
                 break;
 
             case SpellEffectType.Summon:
-                Debug.Log($"Applying {effect} of {effectAmount} to self");
+                //Debug.Log($"Applying {effect} of {effectAmount} to self");
                 // Implement self-effect logic here
                 break;
             case SpellEffectType.Destroy:
-                Debug.Log($"Applying {effect} to target card {targetCard.GetCard().cardName}");
+                //Debug.Log($"Applying {effect} to target card {targetCard.GetCard().cardName}");
                 // Implement destroy logic here
                 break;
             case SpellEffectType.DiscardCards:
