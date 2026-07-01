@@ -3,8 +3,8 @@ using UnityEngine;
 public class BattlegroundArea : MonoBehaviour
 {
     public int soldiersAmount;
-    [SerializeField] float characterSpacing;
-    [SerializeField] float maxSoldiersPerRow;
+    [SerializeField] protected float characterSpacing;
+    [SerializeField] protected float maxSoldiersPerRow;
     void Start()
     {
         characterSpacing = (characterSpacing == 0.0f )?2.0f:characterSpacing;
@@ -15,7 +15,7 @@ public class BattlegroundArea : MonoBehaviour
     {
         return soldiersAmount;
     }
-    public bool GenerateCharacter(BattleCharCard card)
+    public virtual bool GenerateCharacter(BattleCharCard card)
     {
         if (soldiersAmount >= maxSoldiersPerRow)
         {

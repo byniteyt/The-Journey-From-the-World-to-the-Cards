@@ -41,7 +41,7 @@ public class BattleCharCard : BattleCard
 
     public override void UseCard()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
     private void OnMouseDown()
     {

@@ -20,7 +20,7 @@ public class TutorialHand : PlayerHand
         hand = new BattleCard[7];
         AddDisabledCard(CardDataBase.Instance.GetBattleCard("Seta"));
         AddDisabledCard(CardDataBase.Instance.GetBattleCard("Town Hall"));
-        AddDisabledCard(CardDataBase.Instance.GetBattleCard("Sappy"));
+        AddEnabledCard(CardDataBase.Instance.GetBattleCard("Sappy"));
         AddDisabledCard(CardDataBase.Instance.GetBattleCard("Swords"));
         AddDisabledCard(CardDataBase.Instance.GetBattleCard("Shield"));
     }
@@ -28,5 +28,11 @@ public class TutorialHand : PlayerHand
     {
         AddCard(card);
         hand[GetHandAmount() - 1].GetComponent<BoxCollider2D>().enabled = false;
+    }
+
+    void AddEnabledCard(BattleCard card)
+    {
+        AddCard(card);
+        hand[GetHandAmount() - 1].GetComponent<BoxCollider2D>().enabled = true;
     }
 }
