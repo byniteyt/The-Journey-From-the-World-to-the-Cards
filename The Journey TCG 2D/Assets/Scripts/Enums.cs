@@ -1,6 +1,6 @@
-#region Deck Data
 using System;
 
+#region Deck Data
 public enum CollectionName
 {
     Durnei,

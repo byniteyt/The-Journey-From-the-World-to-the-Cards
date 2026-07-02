@@ -20,7 +20,7 @@ public class CharacterCard : Card
         card.rank = this.rank;
         return card;
     }
-    void Start()
+    public void Start()
     {
         maxHealth = health;
     }
@@ -55,9 +55,14 @@ public class CharacterCard : Card
     public override void ShowCardDetails()
     {
         GameObject canvas = GameObject.Find("Canvas");
-        GameObject cardDetailPanel =Object.Instantiate(Resources.Load<GameObject>("Prefabs/UI/Interfaces/CharacterCardInfo"), canvas.transform);
-        cardDetailPanel.transform.SetAsLastSibling(); // Ensure the panel is on top
-        cardDetailPanel.transform.localPosition = Vector3.zero; // Center the panel
+        if (canvas.transform.Find("CharacterCardInfo(Clone)") == null)
+        {
+            GameObject panel = Object.Instantiate(Resources.Load<GameObject>("Prefabs/UI/Interfaces/CharacterCardInfo"), canvas.transform); ;
+            panel.transform.SetAsLastSibling(); // Ensure the panel is on top
+            panel.transform.localPosition = Vector3.zero; // Center the panel
+        }
+        GameObject cardDetailPanel = canvas.transform.Find("CharacterCardInfo(Clone)").gameObject;
+        cardDetailPanel.SetActive(true);
         CharCardText info = cardDetailPanel.GetComponent<CharCardText>();
         info.cardToRead = this;
     }
