@@ -4607,6 +4607,65 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  dialogueSequence:
+  - dialogues:
+    - dialogue: "Esto de aqu\xED es tu vida"
+      image: {fileID: 2078154881}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: "Esto de aqu\xED es la vida del enemigo"
+      image: {fileID: 392283593}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: "Esto de aqu\xED es el man\xE1.\\nLo consumir\xE1s para jugar cartas
+        y cada turno recibes 4 hasta tener un m\xE1ximo de 10."
+      image: {fileID: 1193365575}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: "\xDAsalo sabiamente y no lo malgastes o la partida se podr\xE1 volver
+        en tu contra. "
+      image: {fileID: 1193365575}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: Eso es todo, probemos ahora el combate.\n Haz click sobre Sappy
+      image: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1073797805}
+            m_TargetAssemblyTypeName: TutorialHand, Assembly-CSharp
+            m_MethodName: StartTutorial
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 955725297}
+            m_TargetAssemblyTypeName: TurnManager, Assembly-CSharp
+            m_MethodName: StartGame
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+  - dialogues:
+    - dialogue: "Buen trabajo!\nComo puedes ver tu man\xE1 ha reducido"
+      image: {fileID: 1193365575}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
 --- !u!1 &1897149130
 GameObject:
   m_ObjectHideFlags: 0

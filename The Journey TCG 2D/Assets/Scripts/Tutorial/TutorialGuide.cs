@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,10 +15,17 @@ public class TutorialGuide : MonoBehaviour
         public RectTransform image;
         public UnityEvent action;
     }
+    [Serializable]
+    struct DialogueSequence
+    {
+        public DialogueData[] dialogues;
+    }
+
     private int index;
     [SerializeField, Range(0, 0.4f)] private float delay;
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private DialogueData[] dialogues;
+    [SerializeField] private List<DialogueSequence> dialogueSequence;
     TextMeshProUGUI text;
 
     private void Start()
