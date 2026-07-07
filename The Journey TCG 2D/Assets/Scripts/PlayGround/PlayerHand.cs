@@ -10,7 +10,8 @@ public class PlayerHand : Hand
         if (Instance == null)
         {
             Instance = FindFirstObjectByType<PlayerHand>();
-            Instance.battleground = GameObject.Find("PlayerBattleGround").GetComponent<BattlegroundArea>();
+            GameObject bg = GameObject.Find("PlayerBattleGround");
+            Instance.battleground = bg.GetComponent<BattlegroundArea>();
         }
         return Instance;
     }

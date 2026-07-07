@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class BattleCharCard : BattleCard
@@ -45,6 +46,12 @@ public class BattleCharCard : BattleCard
     }
     private void OnMouseDown()
     {
+        if (SceneManager.GetActiveScene().name.Contains("Tutorial"))
+        {
+            Debug.Log("Tutorial: Usando carta de personaje");
+            TutorialHand.Instance.UseCharacterCard(this);
+            return;
+        }
         PlayerHand.GetPlayerHand().UseCharacterCard(this);
     }
 

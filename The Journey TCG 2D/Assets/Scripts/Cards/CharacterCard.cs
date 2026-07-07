@@ -54,14 +54,18 @@ public class CharacterCard : Card
 
     public override void ShowCardDetails()
     {
+        base.ShowCardDetails();
         GameObject canvas = GameObject.Find("Canvas");
-        if (canvas.transform.Find("CharacterCardInfo(Clone)") == null)
+        if (canvas.transform.Find("CharacterCardInfo(Clone)") == null&&
+            canvas.transform.Find("CharacterCardInfo") == null)
         {
             GameObject panel = Object.Instantiate(Resources.Load<GameObject>("Prefabs/UI/Interfaces/CharacterCardInfo"), canvas.transform); ;
             panel.transform.SetAsLastSibling(); // Ensure the panel is on top
             panel.transform.localPosition = Vector3.zero; // Center the panel
         }
-        GameObject cardDetailPanel = canvas.transform.Find("CharacterCardInfo(Clone)").gameObject;
+        GameObject cardDetailPanel = canvas.transform.Find("CharacterCardInfo(Clone)")? 
+            canvas.transform.Find("CharacterCardInfo(Clone)").gameObject:
+            canvas.transform.Find("CharacterCardInfo").gameObject;
         cardDetailPanel.SetActive(true);
         CharCardText info = cardDetailPanel.GetComponent<CharCardText>();
         info.cardToRead = this;

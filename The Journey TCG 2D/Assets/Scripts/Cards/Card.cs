@@ -4,6 +4,8 @@ using UnityEngine;
 [Serializable]
 public class Card 
 {
+    // Event for when the card is clicked
+    public static event Action<Card> OnCardClicked;
     // Basic Info
     public Sprite artwork;
     public string cardName;
@@ -45,7 +47,7 @@ public class Card
     }
     public virtual void ShowCardDetails()
     {
-        
+        OnCardClicked?.Invoke(this);
     }
     
     

@@ -98,8 +98,13 @@ public class Hand : MonoBehaviour
 
     public virtual void UseCharacterCard(BattleCharCard card)
     {
+        if (battleground == null)
+        {
+            Debug.Log("Battleground is not set. Cannot summon character.");
+            return;
+        }
         // Summon to battlefield
-        if (battleground == null || !battleground.GenerateCharacter(card))
+        if (!battleground.GenerateCharacter(card))
         {
             Debug.Log("Failed to summon " + card.GetCharacter().cardName + " to the battlefield.");
             return;

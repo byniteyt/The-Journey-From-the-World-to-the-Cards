@@ -154,7 +154,7 @@ MonoBehaviour:
   card:
     artwork: {fileID: 112378386898512773, guid: 6bc49b0adef648d4f8bbc94ba6ade215, type: 3}
     cardName: Sappy
-    description: 
+    description: "Es un sapo que hace magia \\n\xBFqu\xE9 m\xE1s quieres?"
     cost: 2
     health: 3
     attack: 2

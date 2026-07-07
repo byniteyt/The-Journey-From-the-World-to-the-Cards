@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0f;
                 break;
         }
+        Debug.Log("Game State changed to: " + CurrentGameState);
     }
 
     public void ReanudarGame()

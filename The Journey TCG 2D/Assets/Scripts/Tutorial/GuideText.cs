@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GuideText : MonoBehaviour
@@ -11,6 +12,21 @@ public class GuideText : MonoBehaviour
         text = GetComponent<TextMeshProUGUI>();
         StartCoroutine(ShowAndHide());
     }
+    void OnEnable()
+    {
+        StartCoroutine(ShowAndHide());
+    }
+
+    private void OnDisable()
+    {
+        StopCoroutine(ShowAndHide());
+    }
+
+    private void OnDestroy()
+    {
+        StopCoroutine(ShowAndHide());
+    }
+
     IEnumerator ShowAndHide()
     {
         while (true)
