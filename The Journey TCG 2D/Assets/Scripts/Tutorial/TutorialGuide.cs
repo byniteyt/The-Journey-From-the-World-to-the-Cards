@@ -52,6 +52,24 @@ public class TutorialGuide : MonoBehaviour
         }
         StartDialogue(++activeDialogue);
     }
+
+    public void HideInformation(int num)
+    {
+        switch (num)
+        {
+            case 0:     // close character info
+
+                break; 
+            case 1:     // close spell info
+
+                break;
+            case 2:     // close room info
+
+                break;
+            default:
+                break;
+        }
+    }
     #endregion
 
     [Serializable]
@@ -66,7 +84,8 @@ public class TutorialGuide : MonoBehaviour
     {
         PlayCard,
         DestroyCard,
-        ShowInformation
+        ShowInformation,
+        HideInformation
     }
 
     [Serializable]

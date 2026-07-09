@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.UI;
 
 public class CardText : MonoBehaviour
 {
+    public static EventHandler<int> closeInfo;
     public Card cardToRead;
     // Basic UI Elements
     [SerializeField] protected TextMeshProUGUI nameText;
@@ -22,5 +24,10 @@ public class CardText : MonoBehaviour
     public virtual void UpdatePanel(Card card)
     {
         SetValues(card);
+    }
+    public virtual void ClosePanel(int num)
+    {
+        closeInfo?.Invoke(this, num);
+        gameObject.SetActive(false);
     }
 }

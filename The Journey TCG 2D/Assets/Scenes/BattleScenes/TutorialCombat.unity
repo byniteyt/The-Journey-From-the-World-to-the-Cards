@@ -5056,6 +5056,17 @@ MonoBehaviour:
       action:
         m_PersistentCalls:
           m_Calls: []
+    - dialogue: "Esto ser\xE1 la informaci\xF3n sobre tu carta. No tendr\xE1 importancia
+        en el combate pero es divertido saber acerca de ellos."
+      image: {fileID: 1416704749}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: Salgamos de este panel y volvamos al combate.
+      image: {fileID: 1416704749}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
     cardName: 
     task: 2
 --- !u!224 &1718604942 stripped
