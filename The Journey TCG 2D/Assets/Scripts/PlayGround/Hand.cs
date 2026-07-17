@@ -13,6 +13,10 @@ public class Hand : MonoBehaviour
         hand = new BattleCard[handLimit];
         LoadEvents();
     }
+    public BattleCard[] GetHand()
+    {
+        return hand;
+    }
     public int GetHandAmount()
     {
         return actualHandSize;

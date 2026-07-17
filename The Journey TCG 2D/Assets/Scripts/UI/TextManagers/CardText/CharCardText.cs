@@ -12,11 +12,6 @@ public class CharCardText : CardText
     {
         instance = this;
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        SetValues(cardToRead);
-    }
 
     override protected void SetValues(Card carta)
     {

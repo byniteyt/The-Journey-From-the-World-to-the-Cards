@@ -7,6 +7,8 @@ public class TurnManager : MonoBehaviour
 {
     //bool matchIsStarted = false;
 
+    public static event Action<InGamePhase> ChangePhase;
+
     public static TurnManager Instance { get; private set; }
 
     public static InGamePhase CurrentInGamePhase { get; set; }
@@ -112,6 +114,7 @@ public class TurnManager : MonoBehaviour
                 Debug.Log("Invalid phase transition");
                 break;
         }
+        ChangePhase?.Invoke(CurrentInGamePhase);
 
     }
 

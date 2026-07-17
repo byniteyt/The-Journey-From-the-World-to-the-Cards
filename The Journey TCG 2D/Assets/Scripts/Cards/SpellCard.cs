@@ -49,13 +49,21 @@ public class SpellCard : Card
     }
     override public void ShowCardDetails()
     {
+        base.ShowCardDetails();
         GameObject canvas = GameObject.Find("Canvas");
-        GameObject cardDetailPanel = Object.Instantiate(Resources.Load<GameObject>
-            ("Prefabs/UI/Interfaces/SpellCardInfo"), canvas.transform);
-        cardDetailPanel.transform.SetAsLastSibling(); // Ensure the panel is on top
-        cardDetailPanel.transform.localPosition = Vector3.zero; // Center the panel
+        if (canvas.transform.Find("SpellCardInfo(Clone)") == null &&
+            canvas.transform.Find("SpellCardInfo") == null)
+        {
+            GameObject panel = Object.Instantiate(Resources.Load<GameObject>("Prefabs/UI/Interfaces/SpellCardInfo"), canvas.transform); ;
+            panel.transform.SetAsLastSibling(); // Ensure the panel is on top
+            panel.transform.localPosition = Vector3.zero; // Center the panel
+        }
+        GameObject cardDetailPanel = canvas.transform.Find("SpellCardInfo(Clone)") ?
+            canvas.transform.Find("SpellCardInfo(Clone)").gameObject :
+            canvas.transform.Find("SpellCardInfo").gameObject;
         SpellCardText info = cardDetailPanel.GetComponent<SpellCardText>();
         info.UpdatePanel(this);
+        cardDetailPanel.SetActive(true);
     }
      public virtual void ApplyEffect()
     {

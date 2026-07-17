@@ -79,4 +79,11 @@ public class TutorialHand : Hand
         AddCard(card);
         hand[actualHandSize-1].GetComponent<BoxCollider2D>().enabled = true;
     }
+
+    public BattleCard GetCard(string nameCard)
+    {
+        BattleCard cardToReturn = Array.Find(hand, card => card.GetCard().cardName == nameCard);
+        if (cardToReturn == null) return null;
+        return cardToReturn;
+    }
 }

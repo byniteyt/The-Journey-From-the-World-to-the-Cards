@@ -62,13 +62,15 @@ public class CharacterCard : Card
             GameObject panel = Object.Instantiate(Resources.Load<GameObject>("Prefabs/UI/Interfaces/CharacterCardInfo"), canvas.transform); ;
             panel.transform.SetAsLastSibling(); // Ensure the panel is on top
             panel.transform.localPosition = Vector3.zero; // Center the panel
+            panel.GetComponent<CharCardText>().cardToRead = this;
         }
         GameObject cardDetailPanel = canvas.transform.Find("CharacterCardInfo(Clone)")? 
             canvas.transform.Find("CharacterCardInfo(Clone)").gameObject:
             canvas.transform.Find("CharacterCardInfo").gameObject;
-        cardDetailPanel.SetActive(true);
+        
         CharCardText info = cardDetailPanel.GetComponent<CharCardText>();
-        info.cardToRead = this;
+        info.UpdatePanel(this);
+        cardDetailPanel.SetActive(true);
     }
     public void ChangeHealth(int amount)
     {

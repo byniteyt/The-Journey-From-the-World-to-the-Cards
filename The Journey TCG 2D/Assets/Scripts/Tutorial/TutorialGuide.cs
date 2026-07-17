@@ -28,6 +28,7 @@ public class TutorialGuide : MonoBehaviour
             Debug.Log($"Spell played: {spellName}, expected: {dialogueSequence[activeDialogue].cardName}");
             return;
         }
+        Debug.Log($"Spell played: {spellName}, expected: {dialogueSequence[activeDialogue].cardName}");
         StartDialogue(++activeDialogue);
     }
 
@@ -53,22 +54,35 @@ public class TutorialGuide : MonoBehaviour
         StartDialogue(++activeDialogue);
     }
 
-    public void HideInformation(int num)
+    public void HideInformation(object sender, string cardName)
     {
-        switch (num)
+        if (dialogueSequence[activeDialogue].task != TutorialTasks.HideInformation)
         {
-            case 0:     // close character info
-
-                break; 
-            case 1:     // close spell info
-
-                break;
-            case 2:     // close room info
-
-                break;
-            default:
-                break;
+            Debug.Log($"Task: {TutorialTasks.HideInformation}, expected: {dialogueSequence[activeDialogue].task}");
+            return;
         }
+        if ((cardName != dialogueSequence[activeDialogue].cardName &&
+            dialogueSequence[activeDialogue].cardName!=""))
+        {
+            Debug.Log($"Information hidden for: {cardName}, expected: {dialogueSequence[activeDialogue].cardName}");
+            return;
+        }
+        StartDialogue(++activeDialogue);
+    }
+
+    public void ChangeGamePhase(string phase)
+    {
+        if(dialogueSequence[activeDialogue].task != TutorialTasks.ChangePhase)
+        {
+            Debug.Log($"Task: {TutorialTasks.ChangePhase}, expected: {dialogueSequence[activeDialogue].task}");
+            return;
+        }
+        if (phase != TurnManager.CurrentInGamePhase.ToString() && phase != "")
+        {
+            Debug.Log($"Phase changed to: {phase}, expected: {TurnManager.CurrentInGamePhase}");
+            return;
+        }
+        StartDialogue(++activeDialogue);
     }
     #endregion
 
@@ -85,7 +99,8 @@ public class TutorialGuide : MonoBehaviour
         PlayCard,
         DestroyCard,
         ShowInformation,
-        HideInformation
+        HideInformation,
+        ChangePhase
     }
 
     [Serializable]
@@ -113,6 +128,7 @@ public class TutorialGuide : MonoBehaviour
         TutorialHand.OnPlaySpell += PlaySpell;
         TutorialHand.OnPlayRoom += PlayRoom;
         Card.OnCardClicked += ShowInformation;
+        CardText.closeInfo += HideInformation;
     }
 
     private void OnDisable()
@@ -121,6 +137,7 @@ public class TutorialGuide : MonoBehaviour
         TutorialHand.OnPlaySpell -= PlaySpell;
         TutorialHand.OnPlayRoom -= PlayRoom;
         Card.OnCardClicked -= ShowInformation;
+        CardText.closeInfo -= HideInformation;
     }
 
     private void OnDestroy()
@@ -150,7 +167,6 @@ public class TutorialGuide : MonoBehaviour
         }
     #endregion
 
-    
     private void Update()
     {
         if (!isTexting) return;
@@ -167,6 +183,9 @@ public class TutorialGuide : MonoBehaviour
             }
         }
     }
+
+    #region Dialogue Methods
+    // Dialogue controllers
     private void StartDialogue(int indice = 0)
     {
         index = 0;
@@ -205,4 +224,38 @@ public class TutorialGuide : MonoBehaviour
             //Time.timeScale = 1f;
         }
     }
+    #endregion
+
+    #region Dialogue Events     
+    // Events called from the dialogue sequence
+    public void EnableCollider(Collider collider)
+    {
+        collider.enabled = true;
+    }
+
+    public void DisableCollider(Collider collider)
+    {
+        collider.enabled = false;
+    }
+
+    public void EnableCard(string card)
+    {
+        BattleCard searchedCard = TutorialHand.Instance.GetCard(card);
+        if (searchedCard == null)
+        {
+            Debug.LogWarning($"Card {card} not found in TutorialHand.");
+            return;
+        }
+        searchedCard.GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+    public void DisableCard(string card)
+    {
+        BattleCard searchedCard = TutorialHand.Instance.GetCard(card);
+        if (searchedCard != null)
+        {
+            searchedCard.GetComponent<BoxCollider2D>().enabled = false;
+        }
+    }
+    #endregion
 }

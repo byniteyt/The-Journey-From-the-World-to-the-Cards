@@ -191,6 +191,107 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 76376240}
   m_CullTransparentMesh: 1
+--- !u!1001 &114313379
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1025490817}
+    m_Modifications:
+    - target: {fileID: 4394422058259357769, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_Name
+      value: SpellCardInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394422058259357769, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
 --- !u!1 &181919170
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,7 +402,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1820, y: 980}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &226424737
 GameObject:
@@ -1001,6 +1102,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 720f4b30c5379ce46ac1be03b37e341d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+--- !u!224 &320099238 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7216434717635420601, guid: 73033a4df7c1e114d831153fbaecab0f, type: 3}
+  m_PrefabInstance: {fileID: 114313379}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &346570617
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,6 +1139,7 @@ RectTransform:
   - {fileID: 2078154881}
   - {fileID: 392283593}
   - {fileID: 2133509270}
+  - {fileID: 1268590761}
   m_Father: {fileID: 1025490817}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1536,7 +1643,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457311539}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -3290,7 +3397,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -3336,6 +3443,7 @@ RectTransform:
   - {fileID: 346570618}
   - {fileID: 2037550171}
   - {fileID: 1718604942}
+  - {fileID: 320099238}
   - {fileID: 226424738}
   - {fileID: 1718150455}
   m_Father: {fileID: 0}
@@ -4192,6 +4300,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218570268}
   m_CullTransparentMesh: 1
+--- !u!1 &1268590760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1268590761}
+  m_Layer: 5
+  m_Name: BattleGrounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1268590761
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268590760}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1542584525}
+  m_Father: {fileID: 346570618}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1312878783
 GameObject:
   m_ObjectHideFlags: 0
@@ -4580,6 +4724,78 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496767647}
+  m_CullTransparentMesh: 1
+--- !u!1 &1542584524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1542584525}
+  - component: {fileID: 1542584527}
+  - component: {fileID: 1542584526}
+  m_Layer: 5
+  m_Name: PBG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1542584525
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542584524}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1268590761}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -47, y: -159.58}
+  m_SizeDelta: {x: 1271.737, y: 319.15}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1542584526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542584524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &1542584527
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542584524}
   m_CullTransparentMesh: 1
 --- !u!1 &1546148347
 GameObject:
@@ -5066,9 +5282,171 @@ MonoBehaviour:
       image: {fileID: 1416704749}
       action:
         m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1718150458}
+            m_TargetAssemblyTypeName: TutorialGuide, Assembly-CSharp
+            m_MethodName: DisableCard
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: Sappy
+              m_BoolArgument: 0
+            m_CallState: 2
+    cardName: 
+    task: 3
+  - dialogues:
+    - dialogue: "Por el momento el da\xF1o no puede ser bloqueado."
+      image: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: "Durante esta fase se contar\xE1 la fuerza total de tus tropas..."
+      image: {fileID: 1542584525}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: "... y se le restar\xE1 a la vida del oponente."
+      image: {fileID: 392283593}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: Antes que nada fortalezcamos a nuestro valiente luchador.
+      image: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: 'Haz click derecho sobre las espadas. '
+      image: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1718150458}
+            m_TargetAssemblyTypeName: TutorialGuide, Assembly-CSharp
+            m_MethodName: EnableCard
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: Swords
+              m_BoolArgument: 0
+            m_CallState: 2
+    cardName: Swords
+    task: 2
+  - dialogues:
+    - dialogue: "Esto de aqu\xED es el efecto y potencia del hechizo."
+      image: {fileID: 1496767648}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: "El s\xEDmbolo identificar\xE1 el efecto que tiene."
+      image: {fileID: 1496767648}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: "Esto de aqu\xED es el objetivo del hechizo."
+      image: {fileID: 76376241}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: "Puede ser un aliado, m\xFAltiples cartas, un enemigo..."
+      image: {fileID: 76376241}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: "Esto de aqu\xED es el man\xE1 del hechizo.. "
+      image: {fileID: 1546148348}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: "Esto ser\xE1 la informaci\xF3n sobre tu carta. Con algo de suerte
+        te dar\xE1 consejos indirectos sobre c\xF3mo usarlas sabiamente."
+      image: {fileID: 1416704749}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: Salgamos de este panel y volvamos al combate.
+      image: {fileID: 1416704749}
+      action:
+        m_PersistentCalls:
           m_Calls: []
     cardName: 
+    task: 3
+  - dialogues:
+    - dialogue: Ahora apliquemos el hechizo a nuestro guerrero solitario.
+      image: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: "Arrastra el hechizo hacia la carta de Sappy y suelta el rat\xF3n."
+      image: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    cardName: Swords
+    task: 0
+  - dialogues:
+    - dialogue: "Con este simple acto hemos vuelto a nuestro sapo m\xE1s fuerte."
+      image: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: "Ve\xE1moslo accediendo a su informaci\xF3n."
+      image: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    cardName: Sappy
     task: 2
+  - dialogues:
+    - dialogue: Como observamos ahora su fuerza es de 4 en vez de 2, como era antes.
+      image: {fileID: 1909916199}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: "Cuando toque jugar cartas piensa si renta m\xE1s jugar una tropa
+        o mejorar las activas."
+      image: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    cardName: 
+    task: 3
+  - dialogues:
+    - dialogue: "Por ahora no hay tiempo l\xEDmite para acabar el turno."
+      image: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: "Aunque tampoco es plan que te quedes 5 a\xF1os sin pasar."
+      image: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: "Para pasar turno usa el bot\xF3n este de aqu\xED. Servir\xE1 para
+        cambiar de fases de turno."
+      image: {fileID: 457311540}
+      action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 457311541}
+            m_TargetAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
+    cardName: 
+    task: 4
 --- !u!224 &1718604942 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7216434717635420601, guid: 28201b3a1b83d2d468916e2151825bf0, type: 3}
@@ -5169,6 +5547,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38490f8154a66ef45b2027830138be78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StackManager
+--- !u!224 &1909916199 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3612267475063262556, guid: 28201b3a1b83d2d468916e2151825bf0, type: 3}
+  m_PrefabInstance: {fileID: 237207162}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1925527184
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,10 +15,9 @@ public class BattleCard : MonoBehaviour
         if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame 
             && !IsShowingDetails())
         {
-            Debug.Log("Right click detected on " + this.name);
             if (MouseIsInside())
             {
-                Debug.Log("Mouse is inside the card area. Showing details for " + this.name);
+                //Debug.Log("Mouse is inside the card area. Showing details for " + this.name);
                 GetCard().ShowCardDetails();
             }
         }

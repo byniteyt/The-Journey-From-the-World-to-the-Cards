@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class BattleSpellCard : BattleCard
@@ -21,7 +22,7 @@ public class BattleSpellCard : BattleCard
     // Update is called once per frame
     protected override void Update()
     {
-        
+        base.Update();
     }
     public override SpellCard GetSpell()
     {
@@ -56,7 +57,14 @@ public class BattleSpellCard : BattleCard
                             (card.targetType == TargetType.SingleAlly &&
                             objectiveCard.gameObject.transform.IsChildOf(card.GetPlayerBattleGroundZone().transform)))
                         {
-                            PlayerHand.GetPlayerHand().UseSpellCard(this, this);
+                            if(SceneManager.GetActiveScene().name.Contains("Tutorial"))
+                            {
+                                TutorialHand.Instance.UseSpellCard(this, this);
+                            }
+                            else
+                            {
+                                PlayerHand.GetPlayerHand().UseSpellCard(this, this);
+                            }
                             Debug.Log("Target selected: " + objectiveCard.GetCard().cardName);
                             card.SetTarget(objectiveCard);
                             card.ApplyEffectToTarget();
@@ -83,7 +91,7 @@ public class BattleSpellCard : BattleCard
 
     public override void ShowCardDetails()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public override void UseCard()
