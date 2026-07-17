@@ -10,34 +10,34 @@ public class TutorialGuide : MonoBehaviour
     #region Event Methods
     public void PlayCharacter(string characterName)
     {
-        if (characterName != dialogueSequence[activeDialogue].cardName
+        if (characterName != dialogueSequence[activeDialogue].target
             || dialogueSequence[activeDialogue].task != TutorialTasks.PlayCard)
         {
-            Debug.Log($"Character played: {characterName}, expected: {dialogueSequence[activeDialogue].cardName}");
+            Debug.Log($"Character played: {characterName}, expected: {dialogueSequence[activeDialogue].target}");
             return;
         }
-        Debug.Log($"Character played: {characterName}, expected: {dialogueSequence[activeDialogue].cardName}");
+        Debug.Log($"Character played: {characterName}, expected: {dialogueSequence[activeDialogue].target}");
         StartDialogue(++activeDialogue);
     }
 
     public void PlaySpell(string spellName)
     {
-        if (spellName != dialogueSequence[activeDialogue].cardName
+        if (spellName != dialogueSequence[activeDialogue].target
             || dialogueSequence[activeDialogue].task != TutorialTasks.PlayCard)
         {
-            Debug.Log($"Spell played: {spellName}, expected: {dialogueSequence[activeDialogue].cardName}");
+            Debug.Log($"Spell played: {spellName}, expected: {dialogueSequence[activeDialogue].target}");
             return;
         }
-        Debug.Log($"Spell played: {spellName}, expected: {dialogueSequence[activeDialogue].cardName}");
+        Debug.Log($"Spell played: {spellName}, expected: {dialogueSequence[activeDialogue].target}");
         StartDialogue(++activeDialogue);
     }
 
     public void PlayRoom(string roomName)
     {
-        if (roomName != dialogueSequence[activeDialogue].cardName
+        if (roomName != dialogueSequence[activeDialogue].target
             || dialogueSequence[activeDialogue].task != TutorialTasks.PlayCard)
         {
-            Debug.Log($"Room played: {roomName}, expected: {dialogueSequence[activeDialogue].cardName}");
+            Debug.Log($"Room played: {roomName}, expected: {dialogueSequence[activeDialogue].target}");
             return;
         }
         StartDialogue(++activeDialogue);
@@ -45,10 +45,10 @@ public class TutorialGuide : MonoBehaviour
 
     public void ShowInformation(Card card)
     {
-        if (card.cardName != dialogueSequence[activeDialogue].cardName
+        if (card.cardName != dialogueSequence[activeDialogue].target
             || dialogueSequence[activeDialogue].task != TutorialTasks.ShowInformation)
         {
-            Debug.Log($"Information shown for: {card.cardName}, expected: {dialogueSequence[activeDialogue].cardName}");
+            Debug.Log($"Information shown for: {card.cardName}, expected: {dialogueSequence[activeDialogue].target}");
             return;
         }
         StartDialogue(++activeDialogue);
@@ -61,27 +61,29 @@ public class TutorialGuide : MonoBehaviour
             Debug.Log($"Task: {TutorialTasks.HideInformation}, expected: {dialogueSequence[activeDialogue].task}");
             return;
         }
-        if ((cardName != dialogueSequence[activeDialogue].cardName &&
-            dialogueSequence[activeDialogue].cardName!=""))
+        if ((cardName != dialogueSequence[activeDialogue].target &&
+            dialogueSequence[activeDialogue].target!=""))
         {
-            Debug.Log($"Information hidden for: {cardName}, expected: {dialogueSequence[activeDialogue].cardName}");
+            Debug.Log($"Information hidden for: {cardName}, expected: {dialogueSequence[activeDialogue].target}");
             return;
         }
         StartDialogue(++activeDialogue);
     }
 
-    public void ChangeGamePhase(string phase)
+    public void ChangeGamePhase(InGamePhase phase)
     {
         if(dialogueSequence[activeDialogue].task != TutorialTasks.ChangePhase)
         {
             Debug.Log($"Task: {TutorialTasks.ChangePhase}, expected: {dialogueSequence[activeDialogue].task}");
             return;
         }
-        if (phase != TurnManager.CurrentInGamePhase.ToString() && phase != "")
+        if (phase.ToString() != dialogueSequence[activeDialogue].target &&
+            dialogueSequence[activeDialogue].target != "")
         {
-            Debug.Log($"Phase changed to: {phase}, expected: {TurnManager.CurrentInGamePhase}");
+            Debug.Log($"Phase changed to: {phase}, expected: {dialogueSequence[activeDialogue].target}");
             return;
         }
+        Debug.Log($"Phase changed to: {phase} correctly");
         StartDialogue(++activeDialogue);
     }
     #endregion
@@ -107,7 +109,7 @@ public class TutorialGuide : MonoBehaviour
     struct DialogueSequence
     {
         public DialogueData[] dialogues;
-        public string cardName;
+        public string target;
         public TutorialTasks task;
     }
 
@@ -129,6 +131,7 @@ public class TutorialGuide : MonoBehaviour
         TutorialHand.OnPlayRoom += PlayRoom;
         Card.OnCardClicked += ShowInformation;
         CardText.closeInfo += HideInformation;
+        TurnManager.ChangePhase += ChangeGamePhase;
     }
 
     private void OnDisable()
@@ -138,6 +141,7 @@ public class TutorialGuide : MonoBehaviour
         TutorialHand.OnPlayRoom -= PlayRoom;
         Card.OnCardClicked -= ShowInformation;
         CardText.closeInfo -= HideInformation;
+        TurnManager.ChangePhase -= ChangeGamePhase;
     }
 
     private void OnDestroy()
@@ -193,7 +197,7 @@ public class TutorialGuide : MonoBehaviour
         isTexting = true;
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
         StartCoroutine(Show());
-        //Time.timeScale = 0f;
+        Time.timeScale = 0f;
     }
     private IEnumerator Show()
     {
@@ -221,7 +225,7 @@ public class TutorialGuide : MonoBehaviour
             DarkUI.Instance.SetTarget(null);
             isTexting = false;
             gameObject.transform.GetChild(0).gameObject.SetActive(false);
-            //Time.timeScale = 1f;
+            Time.timeScale = 1f;
         }
     }
     #endregion
@@ -255,6 +259,44 @@ public class TutorialGuide : MonoBehaviour
         if (searchedCard != null)
         {
             searchedCard.GetComponent<BoxCollider2D>().enabled = false;
+        }
+    }
+
+    GameObject GetBattleGround()
+    {
+        GameObject battleground = GameObject.Find("PlayerBattleGround");
+        if (battleground == null)
+        {
+            Debug.LogWarning("BattleGround object not found in the scene.");
+        }
+        return battleground;
+    }
+
+    public void EnableCardFromBG(string card)
+    {
+        GameObject bg = GetBattleGround();
+        foreach (Transform child in bg.transform)
+        {
+            BattleCard battleCard = child.GetComponent<BattleCard>();
+            if (battleCard != null && battleCard.GetCard().cardName == card)
+            {
+                battleCard.GetComponent<BoxCollider2D>().enabled = true;
+                return;
+            }
+        }
+    }
+
+    public void DisableCardFromBG(string card)
+    {
+        GameObject bg = GetBattleGround();
+        foreach (Transform child in bg.transform)
+        {
+            BattleCard battleCard = child.GetComponent<BattleCard>();
+            if (battleCard != null && battleCard.GetCard().cardName == card)
+            {
+                battleCard.GetComponent<BoxCollider2D>().enabled = false;
+                return;
+            }
         }
     }
     #endregion

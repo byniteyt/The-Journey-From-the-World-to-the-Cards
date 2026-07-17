@@ -5282,19 +5282,7 @@ MonoBehaviour:
       image: {fileID: 1416704749}
       action:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1718150458}
-            m_TargetAssemblyTypeName: TutorialGuide, Assembly-CSharp
-            m_MethodName: DisableCard
-            m_Mode: 5
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: Sappy
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
     cardName: 
     task: 3
   - dialogues:
@@ -5426,12 +5414,6 @@ MonoBehaviour:
       image: {fileID: 0}
       action:
         m_PersistentCalls:
-          m_Calls: []
-    - dialogue: "Para pasar turno usa el bot\xF3n este de aqu\xED. Servir\xE1 para
-        cambiar de fases de turno."
-      image: {fileID: 457311540}
-      action:
-        m_PersistentCalls:
           m_Calls:
           - m_Target: {fileID: 457311541}
             m_TargetAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
@@ -5445,6 +5427,20 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 1
             m_CallState: 2
+    - dialogue: "Para pasar turno usa el bot\xF3n este de aqu\xED. Servir\xE1 para
+        cambiar de fases de turno."
+      image: {fileID: 457311540}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    cardName: 
+    task: 4
+  - dialogues:
+    - dialogue: Pasado
+      image: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
     cardName: 
     task: 4
 --- !u!224 &1718604942 stripped
