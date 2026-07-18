@@ -153,8 +153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -398, y: -376.99203}
-  m_SizeDelta: {x: 156.706, y: 102.104}
+  m_AnchoredPosition: {x: -399.5435, y: -373.01}
+  m_SizeDelta: {x: 121.7967, y: 94.142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &76376242
 MonoBehaviour:
@@ -2199,6 +2199,78 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580793879}
   m_CullTransparentMesh: 1
+--- !u!1 &592107018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 592107019}
+  - component: {fileID: 592107021}
+  - component: {fileID: 592107020}
+  m_Layer: 5
+  m_Name: EBG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &592107019
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592107018}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1268590761}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -47, y: 159.56996}
+  m_SizeDelta: {x: 1271.737, y: 319.15}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &592107020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592107018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &592107021
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592107018}
+  m_CullTransparentMesh: 1
 --- !u!1 &593856194
 GameObject:
   m_ObjectHideFlags: 0
@@ -2570,6 +2642,7 @@ GameObject:
   - component: {fileID: 626898357}
   - component: {fileID: 626898359}
   - component: {fileID: 626898358}
+  - component: {fileID: 626898360}
   m_Layer: 0
   m_Name: EnemyHand
   m_TagString: Untagged
@@ -2658,7 +2731,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 626898354}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b9e7cbac22870848b147576e0fa765d, type: 3}
   m_Name: 
@@ -2670,7 +2743,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 626898354}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfaa04ec0eff6c941ae91b19df3c3e62, type: 3}
   m_Name: 
@@ -2686,13 +2759,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 626898354}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e9510db9c6c63848a29731c3c4d173d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IAHand
   handLimit: 7
   testManaAmount: 10
+--- !u!114 &626898360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626898354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3112e47914a29d344843c625d7a0ea2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialEnemy
 --- !u!1 &722850044
 GameObject:
   m_ObjectHideFlags: 0
@@ -4329,6 +4414,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1542584525}
+  - {fileID: 592107019}
   m_Father: {fileID: 346570618}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4687,8 +4773,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -792.97614, y: -376.99203}
-  m_SizeDelta: {x: 156.706, y: 102.104}
+  m_AnchoredPosition: {x: -793.5886, y: -373.01117}
+  m_SizeDelta: {x: 133.4331, y: 94.1422}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1496767649
 MonoBehaviour:
@@ -4831,8 +4917,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -601, y: -376.99203}
-  m_SizeDelta: {x: 156.706, y: 102.104}
+  m_AnchoredPosition: {x: -599.16266, y: -373.00977}
+  m_SizeDelta: {x: 107.7105, y: 94.142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1546148349
 MonoBehaviour:
@@ -5224,7 +5310,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-    cardName: Sappy
+    target: Sappy
     task: 0
   - dialogues:
     - dialogue: "Buen trabajo!\nComo puedes ver tu man\xE1 ha reducido"
@@ -5237,7 +5323,7 @@ MonoBehaviour:
       action:
         m_PersistentCalls:
           m_Calls: []
-    cardName: Sappy
+    target: Sappy
     task: 2
   - dialogues:
     - dialogue: "Esto de aqu\xED es el ataque de la tropa."
@@ -5282,8 +5368,20 @@ MonoBehaviour:
       image: {fileID: 1416704749}
       action:
         m_PersistentCalls:
-          m_Calls: []
-    cardName: 
+          m_Calls:
+          - m_Target: {fileID: 1718150458}
+            m_TargetAssemblyTypeName: TutorialGuide, Assembly-CSharp
+            m_MethodName: DisableCardFromBG
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: Sappy
+              m_BoolArgument: 0
+            m_CallState: 2
+    target: 
     task: 3
   - dialogues:
     - dialogue: "Por el momento el da\xF1o no puede ser bloqueado."
@@ -5323,7 +5421,7 @@ MonoBehaviour:
               m_StringArgument: Swords
               m_BoolArgument: 0
             m_CallState: 2
-    cardName: Swords
+    target: Swords
     task: 2
   - dialogues:
     - dialogue: "Esto de aqu\xED es el efecto y potencia del hechizo."
@@ -5362,20 +5460,32 @@ MonoBehaviour:
       action:
         m_PersistentCalls:
           m_Calls: []
-    cardName: 
+    target: 
     task: 3
   - dialogues:
     - dialogue: Ahora apliquemos el hechizo a nuestro guerrero solitario.
       image: {fileID: 0}
       action:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 1718150458}
+            m_TargetAssemblyTypeName: TutorialGuide, Assembly-CSharp
+            m_MethodName: EnableCardFromBG
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: Sappy
+              m_BoolArgument: 0
+            m_CallState: 2
     - dialogue: "Arrastra el hechizo hacia la carta de Sappy y suelta el rat\xF3n."
       image: {fileID: 0}
       action:
         m_PersistentCalls:
           m_Calls: []
-    cardName: Swords
+    target: Swords
     task: 0
   - dialogues:
     - dialogue: "Con este simple acto hemos vuelto a nuestro sapo m\xE1s fuerte."
@@ -5388,7 +5498,7 @@ MonoBehaviour:
       action:
         m_PersistentCalls:
           m_Calls: []
-    cardName: Sappy
+    target: Sappy
     task: 2
   - dialogues:
     - dialogue: Como observamos ahora su fuerza es de 4 en vez de 2, como era antes.
@@ -5402,7 +5512,7 @@ MonoBehaviour:
       action:
         m_PersistentCalls:
           m_Calls: []
-    cardName: 
+    target: 
     task: 3
   - dialogues:
     - dialogue: "Por ahora no hay tiempo l\xEDmite para acabar el turno."
@@ -5411,6 +5521,55 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
     - dialogue: "Aunque tampoco es plan que te quedes 5 a\xF1os sin pasar."
+      image: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: "Para pasar turno usa el bot\xF3n este de aqu\xED. Servir\xE1 para
+        cambiar de fases de turno. Pru\xE9balo."
+      image: {fileID: 457311540}
+      action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 457311541}
+            m_TargetAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
+    target: 
+    task: 4
+  - dialogues:
+    - dialogue: "En futuras versiones esta fase servir\xEDa para reordenar nuestras
+        tropas..."
+      image: {fileID: 1542584525}
+      action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 457311541}
+            m_TargetAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    - dialogue: ... para luchar lo mejor posible contra las tropas enemigas.
+      image: {fileID: 592107019}
+      action:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: Pasemos a la etapa post combate.
       image: {fileID: 0}
       action:
         m_PersistentCalls:
@@ -5427,21 +5586,76 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 1
             m_CallState: 2
-    - dialogue: "Para pasar turno usa el bot\xF3n este de aqu\xED. Servir\xE1 para
-        cambiar de fases de turno."
-      image: {fileID: 457311540}
+    target: 
+    task: 4
+  - dialogues:
+    - dialogue: "Como puedes observar, la vida del enemigo ha disminuido tanto como
+        la fuerza de nuestro ej\xE9rcito."
+      image: {fileID: 392283593}
+      action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 457311541}
+            m_TargetAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    - dialogue: "Lo que nos indica que el da\xF1o se ha ejercido con \xE9xito."
+      image: {fileID: 392283593}
       action:
         m_PersistentCalls:
           m_Calls: []
-    cardName: 
-    task: 4
-  - dialogues:
-    - dialogue: Pasado
+    - dialogue: "Esta fase nos servir\xE1 para mejorar las defensas y potenciar a
+        los soldados."
       image: {fileID: 0}
       action:
         m_PersistentCalls:
           m_Calls: []
-    cardName: 
+    - dialogue: "Por el momento salt\xE9mosla y demos paso a nuestro enemigo."
+      image: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 457311541}
+            m_TargetAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
+    target: 
+    task: 4
+  - dialogues:
+    - dialogue: "La IA ir\xE1 haciendo lo mismo que nosotros pero con sus cartas."
+      image: {fileID: 392283593}
+      action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 457311541}
+            m_TargetAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    target: 
     task: 4
 --- !u!224 &1718604942 stripped
 RectTransform:
@@ -5563,7 +5777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1925527185
 Transform:
   m_ObjectHideFlags: 0
